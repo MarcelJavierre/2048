@@ -12,3 +12,13 @@
 
     O jogo é vencido quando uma peça com o valor de 2048 aparece no tabuleiro. Quando o jogador não tem movimentos legais (não há espaços vazios e nem peças adjacentes com o mesmo valor), o jogo termina.
 """
+
+# Propriedades do documento
+__author__ = 'Marcel_Javierre'
+__copyright__ = 'Copyright_2021'
+__credits__ = __author__
+__license__ = 'GPL'
+__version__ = '1.0.0'
+__maintainer__ = 'Marcel_Javierre'
+__email__ = 'javierremarcel@poli.ufrj.br'
+__status__ = 'Production'
