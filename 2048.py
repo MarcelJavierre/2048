@@ -22,3 +22,15 @@ __version__ = '1.0.0'
 __maintainer__ = 'Marcel_Javierre'
 __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
+
+# Classe da seção mecânica do jogo
+class mecanicaDoJogo:
+    pass
+
+# Classe da seção interface com o usuário
+class interfaceComOUsuario:
+    pass
+
+# Classe da seção log
+class log:
+    pass
