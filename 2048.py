@@ -35,24 +35,27 @@ class mecanicaDoJogo:
 class interfaceComOUsuario:
     'Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'
     def menuPrincipal():
+        'Método para exibir ao usuário o menu principal do jogo'
         pass
 
-    def pause():
+    def telaDePause():
+        'Método para exibir ao usuário a tela de pause do jogo'
         pass
 
-    def salvar():
+    def telaDeSalvamentoCarregamento():
+        'Método para exibir ao usuário a tela de salvamento/carregamento do jogo'
         pass
 
-    def carregar():
+    def telaDeOpcoes():
+        'Método para exibir ao usuário a tela de opções do jogo'
         pass
 
-    def opcoes():
+    def telaDoManual():
+        'Método para exibir ao usuário a tela do manual do jogo'
         pass
 
-    def manual():
-        pass
-
-    def estatisticas():
+    def telaDasEstatisticas():
+        'Método para exibir ao usuário a tela de estatísticas do jogo'
         pass
 
 # Classe da seção log
