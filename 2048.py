@@ -25,12 +25,15 @@ __status__ = 'Production'
 
 # Classe da seção mecânica do jogo
 class mecanicaDoJogo:
+    'Esta classe é responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador'
     pass
 
 # Classe da seção interface com o usuário
 class interfaceComOUsuario:
+    'Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'
     pass
 
 # Classe da seção log
 class log:
+    'Esta classe trata do armazenamento em arquivos de todos os dados que podem vir a ser de interesse do usuário, bem como todos os erros que ocorrerem durante a execução do jogo'
     pass
