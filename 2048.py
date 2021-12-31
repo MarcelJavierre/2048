@@ -34,7 +34,26 @@ class mecanicaDoJogo:
 # Classe da seção interface com o usuário
 class interfaceComOUsuario:
     'Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'
-    pass
+    def menuPrincipal():
+        pass
+
+    def pause():
+        pass
+
+    def salvar():
+        pass
+
+    def carregar():
+        pass
+
+    def opcoes():
+        pass
+
+    def manual():
+        pass
+
+    def estatisticas():
+        pass
 
 # Classe da seção log
 class log:
