@@ -1,6 +1,10 @@
+# Importando a super classe com os métodos genéricos associados com a comunicação com o usuário
+import ferramentasDeInterfaceComOUsuario
+
 # Classe da seção interface com o usuário
-class interfaceComOUsuario:
+class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
     '''Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'''
+
     def menuPrincipal():
         '''Método para exibir ao usuário o menu principal do jogo'''
         pass
@@ -23,8 +27,4 @@ class interfaceComOUsuario:
 
     def telaDasEstatisticas():
         '''Método para exibir ao usuário a tela de estatísticas do jogo'''
-        pass
-
-    def entradaDoUsuario():
-        '''Método para receber o comando do usuário'''
         pass
