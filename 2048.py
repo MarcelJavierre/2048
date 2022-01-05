@@ -22,47 +22,18 @@ __copyright__ = 'Copyright_2021'
 __credits__ = __author__
 __license__ = 'GPL'
 __version__ = '1.0.0'
-__maintainer__ = 'Marcel_Javierre'
+__maintainer__ = __author__
 __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
 
-# Classe da seção mecânica do jogo
-class mecanicaDoJogo:
-    'Esta classe é responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador'
+# Importando as classes
+import interfaceComOUsuario
+import mecanicaDoJogo
+import log
+
+# Função principal
+def main():
     pass
 
-# Classe da seção interface com o usuário
-class interfaceComOUsuario:
-    'Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'
-    def menuPrincipal():
-        'Método para exibir ao usuário o menu principal do jogo'
-        pass
-
-    def telaDePause():
-        'Método para exibir ao usuário a tela de pause do jogo'
-        pass
-
-    def telaDeSalvamentoCarregamento():
-        'Método para exibir ao usuário a tela de salvamento/carregamento do jogo'
-        pass
-
-    def telaDeOpcoes():
-        'Método para exibir ao usuário a tela de opções do jogo'
-        pass
-
-    def telaDoManual():
-        'Método para exibir ao usuário a tela do manual do jogo'
-        pass
-
-    def telaDasEstatisticas():
-        'Método para exibir ao usuário a tela de estatísticas do jogo'
-        pass
-
-    def entradaDoUsuario():
-        'Método para receber o comando do usuário'
-        pass
-
-# Classe da seção log
-class log:
-    'Esta classe trata do armazenamento em arquivos de todos os dados que podem vir a ser de interesse do usuário, bem como todos os erros que ocorrerem durante a execução do jogo'
-    pass
+if __name__ == '__main__':
+    main()
