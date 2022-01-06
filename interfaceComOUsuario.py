@@ -5,26 +5,65 @@ import ferramentasDeInterfaceComOUsuario
 class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
     '''Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe'''
 
-    def menuPrincipal():
-        '''Método para exibir ao usuário o menu principal do jogo'''
+    def menuPrincipal(self):
+        '''
+        Método para exibir ao usuário o menu principal do jogo.
+        self -> none
+        '''
         pass
 
-    def telaDePause():
-        '''Método para exibir ao usuário a tela de pause do jogo'''
+    def telaDePause(self):
+        '''
+        Método para exibir ao usuário a tela de pause do jogo.
+        self -> none
+        '''
         pass
 
-    def telaDeSalvamentoCarregamento():
-        '''Método para exibir ao usuário a tela de salvamento/carregamento do jogo'''
+    def telaDeSalvamentoCarregamento(self):
+        '''
+        Método para exibir ao usuário a tela de salvamento/carregamento do jogo.
+        self -> none
+        '''
         pass
 
-    def telaDeOpcoes():
-        '''Método para exibir ao usuário a tela de opções do jogo'''
+    def telaDeOpcoes(self):
+        '''
+        Método para exibir ao usuário a tela de opções do jogo.
+        self -> none
+        '''
         pass
 
-    def telaDoManual():
-        '''Método para exibir ao usuário a tela do manual do jogo'''
+    def telaDoManual(self):
+        '''
+        Método para exibir ao usuário a tela do manual do jogo.
+        self -> none
+        '''
         pass
 
-    def telaDasEstatisticas():
-        '''Método para exibir ao usuário a tela de estatísticas do jogo'''
+    def telaDasEstatisticas(self):
+        '''
+        Método para exibir ao usuário a tela de estatísticas do jogo.
+        self -> none
+        '''
         pass
+
+    def telaDoTabuleiro(self, matrizDoTabuleiro, score):
+        '''
+        Método para exibir a tela do tabuleiro do jogo.
+        self,list,int -> none
+        '''
+        pass
+
+    def telaDeFimDeJogo(self, score, foiVencedor):
+        '''
+        Método para exibir a tela de fim de jogo.
+        self,int,bool -> none
+        '''
+
+        # Se foi vencedor, exibe a tela de vencedor
+        if foiVencedor == True:
+            pass
+
+        # Se não, exibe a tela de perdedor
+        else:
+            pass
