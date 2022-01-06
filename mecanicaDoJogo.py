@@ -13,6 +13,21 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
         self.tabuleiro = ferramentasDeMecanicaDoJogo.geraMatriz(self, tamanhoDoTabuleiro, tamanhoDoTabuleiro)
         self.score = 0
 
+    def inserePeca(self):
+        '''
+        Método que insere uma nova peça no tabuleiro.
+        Retorna True se uma peça foi inserida ou False se não há casas vazias sobrando (fim de jogo).
+        self -> bool
+        '''
+
+    def movePecas(self, entradaDoUsuário):
+        '''
+        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário.
+        Retorna True se alguma peça virou 2048, ou False se nenhuma peça virou 2048.
+        self,str -> bool
+        '''
+        return None
+
     def getTabuleiro(self):
         '''
         Método que retorna a matriz do tabuleiro.

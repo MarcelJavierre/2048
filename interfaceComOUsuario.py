@@ -54,10 +54,10 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         '''
         pass
 
-    def telaDeFimDeJogo(self, score, foiVencedor):
+    def telaDeFimDeJogo(self, foiVencedor, score):
         '''
         Método para exibir a tela de fim de jogo.
-        self,int,bool -> none
+        self,bool,int -> none
         '''
 
         # Se foi vencedor, exibe a tela de vencedor
