@@ -1,6 +1,9 @@
 # Importando a super classe com os métodos genéricos associados com a comunicação com o usuário
 from ferramentasDeInterfaceComOUsuario import *
 
+# Função do módulo os para verificar as dimensões do terminal
+from os import get_terminal_size
+
 # Classe da seção interface com o usuário
 class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
     '''Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe.'''
@@ -100,7 +103,14 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário o menu principal do jogo.
         self -> none
         '''
-        pass
+        print('\n\n')
+        print('\x1b[0;33m2048\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\n\n')
+        print('\x1b[0;31m1 Novo Jogo\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;32m2 Carregar Jogo\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;34m3 Opções\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;34m4 Estatísticas\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;34m5 Manual do Desenvolvedor\x1b[0;0m'.center(get_terminal_size().columns))
 
     def telaDePause(self):
         '''
@@ -157,3 +167,11 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         # Se não, exibe a tela de perdedor
         else:
             pass
+
+def main():
+    a = interfaceComOUsuario()
+    a.limpaTela()
+    a.menuPrincipal()
+
+if __name__ == '__main__':
+    main()

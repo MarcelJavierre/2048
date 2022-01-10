@@ -1,6 +1,6 @@
-# Módulo da biblioteca sys para verificar qual sistema operacional está executando o código
+# Variável do módulo sys para verificar qual sistema operacional está executando o código
 from sys import platform
-# Módulo da biblioteca os para utilizar comandos do terminal
+# Função do módulo os para utilizar comandos do terminal
 from os import system
 
 class ferramentasDeInterfaceComOUsuario:
