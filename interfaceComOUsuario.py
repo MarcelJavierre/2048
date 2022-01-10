@@ -31,7 +31,8 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
             'limpaTela',
             'menuPrincipal',
             'telaDePause',
-            'telaDeSalvamentoCarregamento',
+            'telaDeSalvamento',
+            'telaDeCarregamento',
             'telaDeOpcoes',
             'telaDoManual',
             'telaDasEstatisticas',
@@ -90,7 +91,8 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
             'limpaTela': self.limpaTela.__doc__,
             'menuPrincipal': self.menuPrincipal.__doc__,
             'telaDePause': self.telaDePause.__doc__,
-            'telaDeSalvamentoCarregamento': self.telaDeSalvamentoCarregamento.__doc__,
+            'telaDeSalvamento': self.telaDeSalvamento.__doc__,
+            'telaDeCarregamento': self.telaDeCarregamento.__doc__,
             'telaDeOpcoes': self.telaDeOpcoes.__doc__,
             'telaDoManual': self.telaDoManual.__doc__,
             'telaDasEstatisticas': self.telaDasEstatisticas.__doc__,
@@ -120,9 +122,16 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         '''
         pass
 
-    def telaDeSalvamentoCarregamento(self):
+    def telaDeSalvamento(self):
         '''
-        Método para exibir ao usuário a tela de salvamento/carregamento do jogo.
+        Método para exibir ao usuário a tela de salvamento do jogo.
+        self -> none
+        '''
+        pass
+
+    def telaDeCarregamento(self):
+        '''
+        Método para exibir ao usuário a tela de carregamento do jogo.
         self -> none
         '''
         pass
