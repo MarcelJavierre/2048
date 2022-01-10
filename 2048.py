@@ -51,7 +51,7 @@ def main():
     # Verifica qual opção o usuário escolheu
     # Novo Jogo
     if entrada == '1':
-        print('Não implementado')
+        print('Não Implementado')
 
         # Volta para o menu principal
         input('Aperte Enter para Voltar ao Menu Principal\n')
@@ -59,7 +59,7 @@ def main():
 
     # Carregar Jogo
     elif entrada == '2':
-        print('Não implementado')
+        print('Não Implementado')
 
         # Volta para o menu principal
         input('Aperte Enter para Voltar ao Menu Principal\n')
@@ -67,7 +67,7 @@ def main():
 
     # Opções
     elif entrada == '3':
-        print('Não implementado')
+        print('Não Implementado')
 
         # Volta para o menu principal
         input('Aperte Enter para Voltar ao Menu Principal\n')
@@ -75,8 +75,8 @@ def main():
 
     # Estatísticas
     elif entrada == '4':
-        print('Não implementado')
-        
+        print('Não Implementado')
+
         # Volta para o menu principal
         input('Aperte Enter para Voltar ao Menu Principal\n')
         main()
@@ -93,8 +93,12 @@ def main():
         main()
 
     # Sair do Jogo
-    else:
+    elif entrada == '6':
         quit()
+
+    # Caso o usuário insira qualquer outra coisa diferente do pedido, exibe novamente o menu principal
+    else:
+        main()
 
 if __name__ == '__main__':
     main()
