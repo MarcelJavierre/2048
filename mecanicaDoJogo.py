@@ -35,6 +35,7 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
             'geraNumeroAleatorio',
             'inserePeca',
             'movePecas',
+            'checaTabuleiro',
             'getTabuleiro',
             'getScore'
         }
@@ -92,6 +93,7 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
             'geraNumeroAleatorio': self.geraNumeroAleatorio.__doc__,
             'inserePeca': self.inserePeca.__doc__,
             'movePecas': self.movePecas.__doc__,
+            'checaTabuleiro': self.checaTabuleiro.__doc__,
             'getTabuleiro': self.getTabuleiro.__doc__,
             'getScore': self.getScore.__doc__
         }
