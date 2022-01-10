@@ -83,9 +83,9 @@ class ferramentasDeInterfaceComOUsuario:
     def entradaDoUsuario(self):
         '''
         Método para receber o comando do usuário.
-        self -> none
+        self -> str
         '''
-        pass
+        return input()
 
     def limpaTela(self):
         '''

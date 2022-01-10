@@ -33,7 +33,52 @@ from log import *
 
 # Função principal
 def main():
-    pass
+    # Inicializando as instâncias de cada seção
+    interface = interfaceComOUsuario()
+    mecanica = mecanicaDoJogo()
+    registro = log()
+
+    # Exibindo o menu principal
+    interface.limpaTela()
+    interface.menuPrincipal()
+
+    # Recebendo a entrada do usuário
+    entrada = interface.entradaDoUsuario()
+
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Verifica qual opção o usuário escolheu
+    # Novo Jogo
+    if entrada == '1':
+        print('Não implementado')
+
+    # Carregar Jogo
+    elif entrada == '2':
+        print('Não implementado')
+
+    # Opções
+    elif entrada == '3':
+        print('Não implementado')
+
+    # Estatísticas
+    elif entrada == '4':
+        print('Não implementado')
+
+    # Manual do Desenvolvedor
+    elif entrada == '5':
+        # Escreve na tela a documentação de todas as classes do jogo
+        print(interface)
+        print(mecanica)
+        print(registro)
+
+        # Volta para o menu principal
+        input('Aperte Enter para Voltar ao Menu Principal\n')
+        main()
+
+    # Sair do Jogo
+    else:
+        quit()
 
 if __name__ == '__main__':
     main()

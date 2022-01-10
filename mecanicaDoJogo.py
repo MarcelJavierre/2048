@@ -11,7 +11,7 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
         self,int -> none
         '''
         # Atributo que armazena a matriz do tabuleiro
-        self.tabuleiro = self.geraMatriz(self, tamanhoDoTabuleiro, tamanhoDoTabuleiro)
+        self.tabuleiro = self.geraMatriz(tamanhoDoTabuleiro, tamanhoDoTabuleiro)
 
         # Atributo que armazena o score
         self.score = 0

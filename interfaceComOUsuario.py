@@ -106,11 +106,12 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         print('\n\n')
         print('\x1b[0;33m2048\x1b[0;0m'.center(get_terminal_size().columns))
         print('\n\n')
-        print('\x1b[0;31m1 Novo Jogo\x1b[0;0m'.center(get_terminal_size().columns))
-        print('\x1b[0;32m2 Carregar Jogo\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;32m1 Novo Jogo\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;34m2 Carregar Jogo\x1b[0;0m'.center(get_terminal_size().columns))
         print('\x1b[0;34m3 Opções\x1b[0;0m'.center(get_terminal_size().columns))
         print('\x1b[0;34m4 Estatísticas\x1b[0;0m'.center(get_terminal_size().columns))
         print('\x1b[0;34m5 Manual do Desenvolvedor\x1b[0;0m'.center(get_terminal_size().columns))
+        print('\x1b[0;31m6 Sair do Jogo\x1b[0;0m'.center(get_terminal_size().columns))
 
     def telaDePause(self):
         '''
