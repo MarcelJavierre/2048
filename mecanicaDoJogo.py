@@ -102,12 +102,19 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
         Retorna True se uma peça foi inserida ou False se não há casas vazias sobrando (fim de jogo).
         self -> bool
         '''
+        pass
 
-    def movePecas(self, entradaDoUsuário):
+    def movePecas(self, entradaDoUsuario):
         '''
         Método que move todas as peças do tabuleiro de acordo com a entrada do usuário.
-        Retorna True se alguma peça virou 2048, ou False se nenhuma peça virou 2048.
-        self,str -> bool
+        self,str -> none
+        '''
+        pass
+
+    def checaTabuleiro(self):
+        '''
+        Método que verifica todas as casas do tabuleiro. Retorna True se alguma peça virou 2048 ou False se não.
+        self -> bool
         '''
         pass
 
