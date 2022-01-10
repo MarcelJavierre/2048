@@ -53,17 +53,33 @@ def main():
     if entrada == '1':
         print('Não implementado')
 
+        # Volta para o menu principal
+        input('Aperte Enter para Voltar ao Menu Principal\n')
+        main()
+
     # Carregar Jogo
     elif entrada == '2':
         print('Não implementado')
+
+        # Volta para o menu principal
+        input('Aperte Enter para Voltar ao Menu Principal\n')
+        main()
 
     # Opções
     elif entrada == '3':
         print('Não implementado')
 
+        # Volta para o menu principal
+        input('Aperte Enter para Voltar ao Menu Principal\n')
+        main()
+
     # Estatísticas
     elif entrada == '4':
         print('Não implementado')
+        
+        # Volta para o menu principal
+        input('Aperte Enter para Voltar ao Menu Principal\n')
+        main()
 
     # Manual do Desenvolvedor
     elif entrada == '5':
