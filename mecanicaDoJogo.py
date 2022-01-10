@@ -37,7 +37,8 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
             'movePecas',
             'checaTabuleiro',
             'getTabuleiro',
-            'getScore'
+            'getScore',
+            'carregarJogo'
         }
 
     def __str__(self):
@@ -95,7 +96,8 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
             'movePecas': self.movePecas.__doc__,
             'checaTabuleiro': self.checaTabuleiro.__doc__,
             'getTabuleiro': self.getTabuleiro.__doc__,
-            'getScore': self.getScore.__doc__
+            'getScore': self.getScore.__doc__,
+            'carregarJogo': self.carregarJogo.__doc__
         }
 
     def inserePeca(self):
@@ -133,3 +135,11 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
         self -> int
         '''
         return self.score
+
+    def carregarJogo(self, tabuleiro, score):
+        '''
+        Método que atualiza os atributos com os dados do jogo salvo.
+        self,list,int -> none
+        '''
+        self.tabuleiro = tabuleiro
+        self.score = score

@@ -1,3 +1,6 @@
+# Função do módulo time para obter a data atual
+from time import ctime
+
 # Classe da seção log
 class log:
     '''Esta classe trata do armazenamento em arquivos de todos os dados que podem vir a ser de interesse do usuário, bem como todos os erros que ocorrerem durante a execução do jogo.'''
@@ -20,7 +23,12 @@ class log:
             '__str__',
             'getAtributos',
             'getMetodos',
-            'manual'
+            'manual',
+            'savarJogo',
+            'carregarJogo',
+            'estatisticasDeJogadas',
+            'estatisticasDePecas',
+            'relatorioDeErro'
         }
 
     def __str__(self):
@@ -69,5 +77,45 @@ class log:
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
             'getMetodos': self.getMetodos.__doc__,
-            'manual': self.manual.__doc__
+            'manual': self.manual.__doc__,
+            'savarJogo': self.savarJogo.__doc__,
+            'carregarJogo': self.carregarJogo.__doc__,
+            'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
+            'estatisticasDePecas': self.estatisticasDePecas.__doc__,
+            'relatorioDeErro': self.relatorioDeErro.__doc__
         }
+
+    def savarJogo(self, tabuleiro, score):
+        '''
+        Método que armazena em um arquivo o estado atual do jogo.
+        self,list,int -> none
+        '''
+        pass
+
+    def carregarJogo(self):
+        '''
+        Método que carrega de um arquivo o jogo salvo. Retorna uma tupla com a matriz do tabuleiro e o score.
+        self -> tuple
+        '''
+        pass
+
+    def estatisticasDeJogadas(self):
+        '''
+        Método que armazena em um arquivo todos os movimentos do usuário.
+        self -> none
+        '''
+        pass
+
+    def estatisticasDePecas(self):
+        '''
+        Método que armazena em um arquivo a quantidade total de peças formadas durante as partidas.
+        self -> none
+        '''
+        pass
+    
+    def relatorioDeErro(self):
+        '''
+        Método que cria um arquivo de relatório sobre um possível erro que ocorra durante a execução do código.
+        self -> none
+        '''
+        pass

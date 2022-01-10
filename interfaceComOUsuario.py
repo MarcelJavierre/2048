@@ -157,7 +157,7 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         '''
         pass
 
-    def telaDoTabuleiro(self, matrizDoTabuleiro, score):
+    def telaDoTabuleiro(self, tabuleiro, score):
         '''
         Método para exibir a tela do tabuleiro do jogo.
         self,list,int -> none
