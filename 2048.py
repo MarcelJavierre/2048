@@ -27,9 +27,9 @@ __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
 
 # Importando as classes
-import interfaceComOUsuario
-import mecanicaDoJogo
-import log
+from interfaceComOUsuario import *
+from mecanicaDoJogo import *
+from log import *
 
 # Função principal
 def main():
