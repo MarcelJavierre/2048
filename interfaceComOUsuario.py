@@ -177,11 +177,3 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         # Se não, exibe a tela de perdedor
         else:
             pass
-
-def main():
-    a = interfaceComOUsuario()
-    a.limpaTela()
-    a.menuPrincipal()
-
-if __name__ == '__main__':
-    main()
