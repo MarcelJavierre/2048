@@ -1,3 +1,6 @@
+# Função do módulo random para sortear um número aleatório de uma dada lista
+from random import choice
+
 class FerramentasDeMecanicaDoJogo:
     '''Super classe com métodos genéricos associados com a mecânica do jogo.'''
 
@@ -89,7 +92,7 @@ class FerramentasDeMecanicaDoJogo:
             # Passa por todas as colunas adicionando "None" em cada posição
             for j in range(numeroDeColunas):
                 matriz[i].append(None)
-                
+
         return matriz
 
     def geraNumeroAleatorio(self, listaDeNumeros):
@@ -97,4 +100,4 @@ class FerramentasDeMecanicaDoJogo:
         Método para sortear um número aleatório de uma dada lista. Retorna o número sorteado.
         self,list -> int
         '''
-        pass
+        return choice(listaDeNumeros)
