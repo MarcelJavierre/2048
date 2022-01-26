@@ -20,12 +20,17 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Atributo que armazena o score
         self.score = 0
 
+        # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
+        # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
+        self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
             'self.__metodos',
             'self.tabuleiro',
-            'self.score'
+            'self.score',
+            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada'
         }
 
         # Conjunto com todos os métodos da classe
@@ -87,15 +92,16 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
-            'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro',
-            'self.score': 'Atributo que armazena o score',
+            'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
+            'self.score': 'Atributo que armazena o score.',
+            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada': 'Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
             'geraMatriz': self.geraMatriz.__doc__,
-            'geraNumeroAleatorio': self.geraNumeroAleatorio.__doc__,
+            'geraNumeroAleatorio': self.geraElementoAleatorio.__doc__,
             'inserePeca': self.inserePeca.__doc__,
             'movePecas': self.movePecas.__doc__,
             'checaTabuleiro': self.checaTabuleiro.__doc__,
@@ -104,13 +110,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'carregarJogo': self.carregarJogo.__doc__
         }
 
-    def inserePeca(self):
+    def inserePeca(self, listaComAsCasasVazias):
         '''
-        Método que insere uma nova peça no tabuleiro.
-        Retorna "True" se uma peça foi inserida ou False se não há casas vazias sobrando (fim de jogo).
-        self -> bool
+        Método que insere uma nova peça no tabuleiro em uma casa livre.
+        self,list -> none
         '''
-        pass
+        # Sorteia a nova peça
+        peca = self.geraElementoAleatorio(self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada)
+
+        # Sorteia a casa vazia
+        casa = self.geraElementoAleatorio(listaComAsCasasVazias)
+
+        # Altera o atributo "tabuleiro" com a nova peça
+        self.tabuleiro[int(casa[0])][int(casa[1])] = peca
 
     def movePecas(self, entradaDoUsuario):
         '''

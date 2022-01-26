@@ -75,7 +75,7 @@ class FerramentasDeMecanicaDoJogo:
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
             'geraMatriz': self.geraMatriz.__doc__,
-            'geraNumeroAleatorio': self.geraNumeroAleatorio.__doc__
+            'geraNumeroAleatorio': self.geraElementoAleatorio.__doc__
         }
 
     def geraMatriz(self, numeroDeLinhas, numeroDeColunas):
@@ -95,9 +95,9 @@ class FerramentasDeMecanicaDoJogo:
 
         return matriz
 
-    def geraNumeroAleatorio(self, listaDeNumeros):
+    def geraElementoAleatorio(self, lista):
         '''
-        Método para sortear um número aleatório de uma dada lista. Retorna o número sorteado.
+        Método para sortear um elemento aleatório de uma dada lista. Retorna o elemento sorteado.
         self,list -> int
         '''
-        return choice(listaDeNumeros)
+        return choice(lista)
