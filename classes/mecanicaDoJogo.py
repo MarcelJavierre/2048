@@ -5,6 +5,9 @@ if __name__ == '__main__':
 else:
     from classes.ferramentasDeMecanicaDoJogo import *
 
+# Função do módulo copy para realizar uma cópia independente do objeto original
+from copy import deepcopy
+
 # Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     '''Esta classe contém todos os métodos responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador.'''
@@ -41,7 +44,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getMetodos',
             'manual',
             'geraMatriz',
-            'geraNumeroAleatorio',
+            'geraElementoAleatorio',
             'inserePeca',
             'movePecas',
             'checaTabuleiro',
@@ -101,7 +104,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
             'geraMatriz': self.geraMatriz.__doc__,
-            'geraNumeroAleatorio': self.geraElementoAleatorio.__doc__,
+            'geraElementoAleatorio': self.geraElementoAleatorio.__doc__,
             'inserePeca': self.inserePeca.__doc__,
             'movePecas': self.movePecas.__doc__,
             'checaTabuleiro': self.checaTabuleiro.__doc__,
@@ -126,10 +129,170 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def movePecas(self, entradaDoUsuario):
         '''
-        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário. Retorna "True" se alguma peça virou 2048 ou "False" se não.
-        self,str -> none
+        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário. Retorna uma lista com todas as movimentações de peças realizadas.
+        self,str -> list
         '''
-        pass
+        # Lista com as diferentes partes da movimentação das peças
+        listaComAsMovimentacoes = []
+
+        # Caso a entrada do usuário for "cima"
+        if entradaDoUsuario == 'cima':
+            # Loop para realizar todas as movimentações até não ter mais movimentos válidos
+            while True:
+                # Variável para indicar se ainda têm movimentos válidos
+                pecaFoiMovida = False
+
+                # Passa por todas as linhas, de cima para baixo
+                for i in range(1, len(self.tabuleiro)):
+                    # Passa por todas as colunas
+                    for j in range(len(self.tabuleiro[i])):
+
+                        # Caso a peça não seja "None"
+                        if self.tabuleiro[i][j] != None:
+
+                            # Verifica a casa da linha anterior
+                            # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
+                            if self.tabuleiro[i - 1][j] == None:
+                                self.tabuleiro[i - 1][j] = self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+                                pecaFoiMovida = True
+
+                            # Caso a casa esteja com uma peça igual, junta as duas peças
+                            elif self.tabuleiro[i - 1][j] == self.tabuleiro[i][j]:
+                                self.tabuleiro[i - 1][j] += self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+
+                                # Adiciona o valor da nova peça ao score
+                                self.score += self.tabuleiro[i - 1][j]
+
+                                pecaFoiMovida = True
+
+                # Caso não possua mais nenhum movimento válido, encerra o loop
+                if pecaFoiMovida == False:
+                    break
+
+                # Armazena as diferentes partes da movimentação das peças
+                listaComAsMovimentacoes.append(deepcopy(self.tabuleiro))
+
+        # Caso a entrada do usuário for "baixo"
+        elif entradaDoUsuario == 'baixo':
+            # Loop para realizar todas as movimentações até não ter mais movimentos válidos
+            while True:
+                # Variável para indicar se ainda têm movimentos válidos
+                pecaFoiMovida = False
+
+                # Passa por todas as linhas, de baixo para cima
+                for i in range(len(self.tabuleiro) - 2, - 1, - 1):
+                    # Passa por todas as colunas
+                    for j in range(len(self.tabuleiro[i])):
+
+                        # Caso a peça não seja "None"
+                        if self.tabuleiro[i][j] != None:
+
+                            # Verifica a casa da linha anterior
+                            # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
+                            if self.tabuleiro[i + 1][j] == None:
+                                self.tabuleiro[i + 1][j] = self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+                                pecaFoiMovida = True
+
+                            # Caso a casa esteja com uma peça igual, junta as duas peças
+                            elif self.tabuleiro[i + 1][j] == self.tabuleiro[i][j]:
+                                self.tabuleiro[i + 1][j] += self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+
+                                # Adiciona o valor da nova peça ao score
+                                self.score += self.tabuleiro[i + 1][j]
+
+                                pecaFoiMovida = True
+
+                # Caso não possua mais nenhum movimento válido, encerra o loop
+                if pecaFoiMovida == False:
+                    break
+
+                # Armazena as diferentes partes da movimentação das peças
+                listaComAsMovimentacoes.append(deepcopy(self.tabuleiro))
+
+        # Caso a entrada do usuário for "esquerda"
+        elif entradaDoUsuario == 'esquerda':
+            # Loop para realizar todas as movimentações até não ter mais movimentos válidos
+            while True:
+                # Variável para indicar se ainda têm movimentos válidos
+                pecaFoiMovida = False
+
+                # Passa por todas as linhas
+                for i in range(len(self.tabuleiro)):
+                    # Passa por todas as colunas, da esquerda para a direita
+                    for j in range(1, len(self.tabuleiro[i])):
+
+                        # Caso a peça não seja "None"
+                        if self.tabuleiro[i][j] != None:
+
+                            # Verifica a casa da coluna anterior
+                            # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
+                            if self.tabuleiro[i][j - 1] == None:
+                                self.tabuleiro[i][j - 1] = self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+                                pecaFoiMovida = True
+
+                            # Caso a casa esteja com uma peça igual, junta as duas peças
+                            elif self.tabuleiro[i][j - 1] == self.tabuleiro[i][j]:
+                                self.tabuleiro[i][j - 1] += self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+
+                                # Adiciona o valor da nova peça ao score
+                                self.score += self.tabuleiro[i][j - 1]
+
+                                pecaFoiMovida = True
+
+                # Caso não possua mais nenhum movimento válido, encerra o loop
+                if pecaFoiMovida == False:
+                    break
+
+                # Armazena as diferentes partes da movimentação das peças
+                listaComAsMovimentacoes.append(deepcopy(self.tabuleiro))
+
+        # Caso a entrada do usuário for "direita"
+        else:
+            # Loop para realizar todas as movimentações até não ter mais movimentos válidos
+            while True:
+                # Variável para indicar se ainda têm movimentos válidos
+                pecaFoiMovida = False
+
+                # Passa por todas as linhas
+                for i in range(len(self.tabuleiro)):
+                    # Passa por todas as colunas, da direita para a esquerda
+                    for j in range(len(self.tabuleiro[i]) - 2, - 1, - 1):
+
+                        # Caso a peça não seja "None"
+                        if self.tabuleiro[i][j] != None:
+
+                            # Verifica a casa da coluna anterior
+                            # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
+                            if self.tabuleiro[i][j + 1] == None:
+                                self.tabuleiro[i][j + 1] = self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+                                pecaFoiMovida = True
+
+                            # Caso a casa esteja com uma peça igual, junta as duas peças
+                            elif self.tabuleiro[i][j + 1] == self.tabuleiro[i][j]:
+                                self.tabuleiro[i][j + 1] += self.tabuleiro[i][j]
+                                self.tabuleiro[i][j] = None
+
+                                # Adiciona o valor da nova peça ao score
+                                self.score += self.tabuleiro[i][j + 1]
+
+                                pecaFoiMovida = True
+
+                # Caso não possua mais nenhum movimento válido, encerra o loop
+                if pecaFoiMovida == False:
+                    break
+
+                # Armazena as diferentes partes da movimentação das peças
+                listaComAsMovimentacoes.append(deepcopy(self.tabuleiro))
+
+        # Retorna a lista com as diferentes partes da movimentação das peças
+        return listaComAsMovimentacoes
 
     def checaTabuleiro(self):
         '''

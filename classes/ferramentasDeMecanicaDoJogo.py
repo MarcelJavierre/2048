@@ -24,7 +24,7 @@ class FerramentasDeMecanicaDoJogo:
             'getMetodos',
             'manual',
             'geraMatriz',
-            'geraNumeroAleatorio'
+            'geraElementoAleatorio'
         }
 
     def __str__(self):
@@ -75,7 +75,7 @@ class FerramentasDeMecanicaDoJogo:
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
             'geraMatriz': self.geraMatriz.__doc__,
-            'geraNumeroAleatorio': self.geraElementoAleatorio.__doc__
+            'geraElementoAleatorio': self.geraElementoAleatorio.__doc__
         }
 
     def geraMatriz(self, numeroDeLinhas, numeroDeColunas):
