@@ -81,12 +81,12 @@ class FerramentasDeInterfaceComOUsuario:
             'limpaTela': self.limpaTela.__doc__
         }
 
-    def entradaDoUsuario(self):
+    def entradaDoUsuario(self, mensagem = ''):
         '''
         Método para receber o comando do usuário.
-        self -> str
+        self,str -> str
         '''
-        return input()
+        return input(mensagem)
 
     def limpaTela(self):
         '''

@@ -54,7 +54,7 @@ def main():
         print('Não Implementado')
 
         # Volta para o menu principal
-        input('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Carregar Jogo
@@ -62,7 +62,7 @@ def main():
         print('Não Implementado')
 
         # Volta para o menu principal
-        input('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Opções
@@ -70,7 +70,7 @@ def main():
         print('Não Implementado')
 
         # Volta para o menu principal
-        input('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Estatísticas
@@ -78,7 +78,7 @@ def main():
         print('Não Implementado')
 
         # Volta para o menu principal
-        input('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Manual do Desenvolvedor
@@ -89,7 +89,7 @@ def main():
         print(log)
 
         # Volta para o menu principal
-        input('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Sair do Jogo
