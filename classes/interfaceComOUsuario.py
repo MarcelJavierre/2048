@@ -1,5 +1,9 @@
 # Importando a super classe com os métodos genéricos associados com a comunicação com o usuário
-from classes.ferramentasDeInterfaceComOUsuario import *
+if __name__ == '__main__':
+    from ferramentasDeInterfaceComOUsuario import *
+
+else:
+    from classes.ferramentasDeInterfaceComOUsuario import *
 
 # Função do módulo os para verificar as dimensões do terminal
 from os import get_terminal_size
@@ -177,7 +181,51 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir a tela do tabuleiro do jogo.
         self,list,int -> none
         '''
-        pass
+
+        # Strings com as bordas do tabuleiro
+        topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
+        centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
+        fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
+        espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
+
+        # Escreve na tela o score
+        print('\n\n')
+        print(f'Score:  {score}'.center(get_terminal_size().columns))
+        print('\n\n')
+
+        # Escreve na tela o tabuleiro
+        print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
+        # Passa por todas as linhas
+        for i in range(len(tabuleiro)):
+            print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+
+            # Variável para armazenar a linha do tabuleiro
+            linhaComOValorDasPecas = ''
+
+            # Passa por todas as colunas
+            for j in range(len(tabuleiro[i])):
+                # Determina o espaço do número dependendo de quantas casas o número possui
+                if len(str(tabuleiro[i][j])) == 1:
+                    linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
+
+                elif len(str(tabuleiro[i][j])) == 2:
+                    linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}  '
+
+                elif len(str(tabuleiro[i][j])) == 3:
+                    linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
+
+                else:
+                    linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
+
+            linhaComOValorDasPecas += '│'
+
+            print(linhaComOValorDasPecas.center(get_terminal_size().columns))
+            print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+
+            # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
+            if i != (len(tabuleiro[i]) - 1):
+                print(centroDaBordaDoTabuleiro.center(get_terminal_size().columns))
+        print(fundoDaBordaDoTabuleiro.center(get_terminal_size().columns))
 
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''
