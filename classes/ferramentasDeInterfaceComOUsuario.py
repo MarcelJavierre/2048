@@ -1,9 +1,11 @@
-# Função do módulo time para obter a data atual
-from time import ctime
+# Variável do módulo sys para verificar qual sistema operacional está executando o código
+from sys import platform
 
-# Classe da seção log
-class log:
-    '''Esta classe trata do armazenamento em arquivos de todos os dados que podem vir a ser de interesse do usuário, bem como todos os erros que ocorrerem durante a execução do jogo.'''
+# Função do módulo os para utilizar comandos do terminal
+from os import system
+
+class FerramentasDeInterfaceComOUsuario:
+    '''Super classe com os métodos genéricos associados com a comunicação com o usuário.'''
 
     def __init__(self):
         '''
@@ -24,11 +26,8 @@ class log:
             'getAtributos',
             'getMetodos',
             'manual',
-            'savarJogo',
-            'carregarJogo',
-            'estatisticasDeJogadas',
-            'estatisticasDePecas',
-            'relatorioDeErro'
+            'entradaDoUsuario',
+            'limpaTela'
         }
 
     def __str__(self):
@@ -37,7 +36,7 @@ class log:
         self -> str
         '''
 
-        string = f'Classe log:\n{log.__doc__}\n\nAtributos:\n'
+        string = f'Classe ferramentasDeInterfaceComOUsuario:\n{FerramentasDeInterfaceComOUsuario.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:
@@ -78,44 +77,32 @@ class log:
             'getAtributos': self.getAtributos.__doc__,
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
-            'savarJogo': self.savarJogo.__doc__,
-            'carregarJogo': self.carregarJogo.__doc__,
-            'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
-            'estatisticasDePecas': self.estatisticasDePecas.__doc__,
-            'relatorioDeErro': self.relatorioDeErro.__doc__
+            'entradaDoUsuario': self.entradaDoUsuario.__doc__,
+            'limpaTela': self.limpaTela.__doc__
         }
 
-    def savarJogo(self, tabuleiro, score):
+    def entradaDoUsuario(self):
         '''
-        Método que armazena em um arquivo o estado atual do jogo.
-        self,list,int -> none
+        Método para receber o comando do usuário.
+        self -> str
         '''
-        pass
+        return input()
 
-    def carregarJogo(self):
+    def limpaTela(self):
         '''
-        Método que carrega de um arquivo o jogo salvo. Retorna uma tupla com a matriz do tabuleiro e o score.
-        self -> tuple
-        '''
-        pass
-
-    def estatisticasDeJogadas(self):
-        '''
-        Método que armazena em um arquivo todos os movimentos do usuário.
+        Método para limpar a tela do terminal.
         self -> none
         '''
-        pass
 
-    def estatisticasDePecas(self):
-        '''
-        Método que armazena em um arquivo a quantidade total de peças formadas durante as partidas.
-        self -> none
-        '''
-        pass
-    
-    def relatorioDeErro(self):
-        '''
-        Método que cria um arquivo de relatório sobre um possível erro que ocorra durante a execução do código.
-        self -> none
-        '''
-        pass
+        # Verifica qual é o sistema operacional executando o código
+        # Se for windows, utiliza o comando cls para limpar a tela
+        if platform == 'win32':
+            system('cls')
+
+        # Se for linux, utiliza o comando clear
+        elif platform == 'linux':
+            system('clear')
+
+        # Se não for nenhum dos dois, não faz nada
+        else:
+            pass

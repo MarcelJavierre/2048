@@ -1,8 +1,8 @@
 # Importando a super classe com os métodos genéricos associados com a mecânica do jogo
-from ferramentasDeMecanicaDoJogo import *
+from classes.ferramentasDeMecanicaDoJogo import *
 
 # Classe da seção mecânica do jogo
-class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
+class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     '''Esta classe contém todos os métodos responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador.'''
 
     def __init__(self, tamanhoDoTabuleiro = 4):
@@ -47,7 +47,7 @@ class mecanicaDoJogo(ferramentasDeMecanicaDoJogo):
         self -> str
         '''
 
-        string = f'Classe mecanicaDoJogo:\n{mecanicaDoJogo.__doc__}\n\nAtributos:\n'
+        string = f'Classe mecanicaDoJogo:\n{MecanicaDoJogo.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:

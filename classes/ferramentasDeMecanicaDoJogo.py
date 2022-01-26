@@ -1,4 +1,4 @@
-class ferramentasDeMecanicaDoJogo:
+class FerramentasDeMecanicaDoJogo:
     '''Super classe com métodos genéricos associados com a mecânica do jogo.'''
 
     def __init__(self):
@@ -30,7 +30,7 @@ class ferramentasDeMecanicaDoJogo:
         self -> str
         '''
 
-        string = f'Classe ferramentasDeMecanicaDoJogo:\n{ferramentasDeMecanicaDoJogo.__doc__}\n\nAtributos:\n'
+        string = f'Classe ferramentasDeMecanicaDoJogo:\n{FerramentasDeMecanicaDoJogo.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:

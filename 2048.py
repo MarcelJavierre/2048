@@ -18,7 +18,7 @@
 
 # Propriedades do documento
 __author__ = 'Marcel_Javierre'
-__copyright__ = 'Copyright_2021'
+__copyright__ = 'Copyright_2022'
 __credits__ = __author__
 __license__ = 'GPL'
 __version__ = '1.0.0'
@@ -27,16 +27,16 @@ __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
 
 # Importando as classes
-from interfaceComOUsuario import *
-from mecanicaDoJogo import *
-from log import *
+from classes.interfaceComOUsuario import *
+from classes.mecanicaDoJogo import *
+from classes.log import *
 
 # Função principal
 def main():
     # Inicializando as instâncias de cada seção
-    interface = interfaceComOUsuario()
-    mecanica = mecanicaDoJogo()
-    registro = log()
+    interface = InterfaceComOUsuario()
+    mecanica = MecanicaDoJogo()
+    log = Log()
 
     # Exibindo o menu principal
     interface.limpaTela()
@@ -86,7 +86,7 @@ def main():
         # Escreve na tela a documentação de todas as classes do jogo
         print(interface)
         print(mecanica)
-        print(registro)
+        print(log)
 
         # Volta para o menu principal
         input('Aperte Enter para Voltar ao Menu Principal\n')

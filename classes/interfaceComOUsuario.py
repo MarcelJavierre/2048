@@ -1,11 +1,11 @@
 # Importando a super classe com os métodos genéricos associados com a comunicação com o usuário
-from ferramentasDeInterfaceComOUsuario import *
+from classes.ferramentasDeInterfaceComOUsuario import *
 
 # Função do módulo os para verificar as dimensões do terminal
 from os import get_terminal_size
 
 # Classe da seção interface com o usuário
-class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
+class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe.'''
 
     def __init__(self):
@@ -46,7 +46,7 @@ class interfaceComOUsuario(ferramentasDeInterfaceComOUsuario):
         self -> str
         '''
 
-        string = f'Classe interfaceComOUsuario:\n{interfaceComOUsuario.__doc__}\n\nAtributos:\n'
+        string = f'Classe interfaceComOUsuario:\n{InterfaceComOUsuario.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:
