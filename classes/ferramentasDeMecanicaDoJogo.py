@@ -1,4 +1,4 @@
-# Função do módulo random para sortear um número aleatório de uma dada lista
+# Função do módulo random para sortear um elemento aleatório de uma dada lista
 from random import choice
 
 class FerramentasDeMecanicaDoJogo:
