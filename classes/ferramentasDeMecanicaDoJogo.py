@@ -80,7 +80,17 @@ class FerramentasDeMecanicaDoJogo:
         Método para gerar uma matriz. Retorna uma lista de listas (matriz).
         self,int,int -> list
         '''
-        return None
+        # Cria uma lista vazia
+        matriz = []
+
+        # Passa por todas as linhas adicionando uma lista vazia
+        for i in range(numeroDeLinhas):
+            matriz.append([])
+            # Passa por todas as colunas adicionando "None" em cada posição
+            for j in range(numeroDeColunas):
+                matriz[i].append(None)
+                
+        return matriz
 
     def geraNumeroAleatorio(self, listaDeNumeros):
         '''
