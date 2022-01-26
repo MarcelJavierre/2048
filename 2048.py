@@ -84,9 +84,9 @@ def main():
     # Manual do Desenvolvedor
     elif entrada == '5':
         # Escreve na tela a documentação de todas as classes do jogo
-        print(interface)
-        print(mecanica)
-        print(log)
+        print(interface, end = '')
+        print(mecanica, end = '')
+        print(log, end = '')
 
         # Volta para o menu principal
         interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
