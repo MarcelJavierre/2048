@@ -83,7 +83,7 @@ class FerramentasDeInterfaceComOUsuario:
 
     def entradaDoUsuario(self, mensagem = ''):
         '''
-        Método para receber o comando do usuário.
+        Método para receber o comando do usuário. Retorna uma string com a entrada do usuário.
         self,str -> str
         '''
         return input(mensagem)
