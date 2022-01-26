@@ -51,7 +51,32 @@ def main():
     # Verifica qual opção o usuário escolheu
     # Novo Jogo
     if entrada == '1':
-        print('Não Implementado')
+        # Loop do jogo
+        while True:
+            # Mostra o tabuleiro
+            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+
+            # Espera a entrada do usuário
+            entrada = interface.entradaDoUsuario()
+
+            # Seleciona uma ação de acordo com a entrada do usuário
+            if entrada == 'w':
+                listaComAsMovimentacoes = mecanica.movePecas('cima')
+            elif entrada == 'a':
+                listaComAsMovimentacoes = mecanica.movePecas('esquerda')
+            elif entrada == 's':
+                listaComAsMovimentacoes = mecanica.movePecas('baixo')
+            else:
+                listaComAsMovimentacoes = mecanica.movePecas('direita')
+
+            # Mostra na tela toda a movimentação das peças
+            for i in range(len(listaComAsMovimentacoes)):
+                interface.limpaTela()
+                interface.telaDoTabuleiro(listaComAsMovimentacoes[i], mecanica.getScore())
+
+            # Insere uma nova peça no tabuleiro
+            mecanica.inserePeca(mecanica.checaTabuleiro())
+            interface.limpaTela()
 
         # Volta para o menu principal
         interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')

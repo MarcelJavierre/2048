@@ -26,6 +26,10 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
         # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
         self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
+        
+        # Inicia o tabuleiro com 2 peças
+        self.inserePeca(self.checaTabuleiro())
+        self.inserePeca(self.checaTabuleiro())
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
