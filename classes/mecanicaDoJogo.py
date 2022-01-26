@@ -1,5 +1,9 @@
 # Importando a super classe com os métodos genéricos associados com a mecânica do jogo
-from classes.ferramentasDeMecanicaDoJogo import *
+if __name__ == '__main__':
+    from ferramentasDeMecanicaDoJogo import *
+
+else:
+    from classes.ferramentasDeMecanicaDoJogo import *
 
 # Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
@@ -103,24 +107,37 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     def inserePeca(self):
         '''
         Método que insere uma nova peça no tabuleiro.
-        Retorna True se uma peça foi inserida ou False se não há casas vazias sobrando (fim de jogo).
+        Retorna "True" se uma peça foi inserida ou False se não há casas vazias sobrando (fim de jogo).
         self -> bool
         '''
         pass
 
     def movePecas(self, entradaDoUsuario):
         '''
-        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário.
+        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário. Retorna "True" se alguma peça virou 2048 ou "False" se não.
         self,str -> none
         '''
         pass
 
     def checaTabuleiro(self):
         '''
-        Método que verifica todas as casas do tabuleiro. Retorna True se alguma peça virou 2048 ou False se não.
-        self -> bool
+        Método que verifica todas as casas do tabuleiro.
+        Retorna uma lista de strings com todas as posições de casas vazias.
+        A primeira posição da string é a posição da linha e a segunda é a posição da coluna.
+        self -> list
         '''
-        pass
+        # Lista para armazenar as posições vazias
+        lista = []
+
+        # Passa por todas as linhas
+        for i in range(len(self.tabuleiro)):
+            # Passa por todas as colunas
+            for j in range(len(self.tabuleiro[i])):
+                # Caso a casa possuir o elemento "None", adiciona na lista a posição da casa
+                if self.tabuleiro[i][j] == None:
+                    lista.append(f'{i}{j}')
+
+        return lista
 
     def getTabuleiro(self):
         '''
