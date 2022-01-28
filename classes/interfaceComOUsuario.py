@@ -222,6 +222,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Escreve na tela o score
         print('\x1b[0;32m')
         print(f'SCORE:  {score}'.center(get_terminal_size().columns))
+        print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
         print('\x1b[0;0m')
         print('')
 
