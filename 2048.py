@@ -129,6 +129,9 @@ def main():
 
     # Manual do Desenvolvedor
     elif entrada == '5':
+        # Mostra o título da tela
+        interface.telaDoManual()
+        
         # Escreve na tela a documentação de todas as classes do jogo
         print(interface, end = '')
         print(mecanica, end = '')

@@ -111,7 +111,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário o menu principal do jogo.
         self -> none
         '''
-        print('')
         print('\x1b[0;33m')
         print("┌──────────────────┐┌──────────────────┐┌──────────────────┐┌──────────────────┐".center(get_terminal_size().columns))
         print("│ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ │".center(get_terminal_size().columns))
@@ -146,6 +145,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('\x1b[0;38;5;130m', end = '')
         print('│ 6 │       Sair do Jogo      │'.center(get_terminal_size().columns))
         print('└───┴─────────────────────────┘'.center(get_terminal_size().columns))
+        print('')
         print('\x1b[0;0m')
 
     def telaDePause(self):
@@ -181,7 +181,14 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela do manual do jogo.
         self -> none
         '''
-        pass
+        print('')
+        print('\x1b[0;31m', end = '')
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│   │   │ M │ A │ N │ U │ A │ L │   │ D │ O │   │   │'.center(get_terminal_size().columns))
+        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+        print('│ D │ E │ S │ E │ N │ V │ O │ L │ V │ E │ D │ O │ R │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('\x1b[0;0m')
 
     def telaDasEstatisticas(self):
         '''
