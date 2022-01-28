@@ -45,29 +45,69 @@ def main():
     # Recebendo a entrada do usuário
     entrada = interface.entradaDoUsuario()
 
-    # Limpa a tela
-    interface.limpaTela()
-
     # Verifica qual opção o usuário escolheu
     # Novo Jogo
     if entrada == '1':
         # Loop do jogo
         while True:
-            # Mostra o tabuleiro
-            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+            # Loop para receber a entrada do usuário da tela do tabuleiro
+            while True:
+                # Limpa a tela
+                interface.limpaTela()
 
-            # Espera a entrada do usuário
-            entrada = interface.entradaDoUsuario()
+                # Mostra o tabuleiro
+                interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
 
-            # Seleciona uma ação de acordo com a entrada do usuário
-            if entrada == 'w':
-                listaComAsMovimentacoes = mecanica.movePecas('cima')
-            elif entrada == 'a':
-                listaComAsMovimentacoes = mecanica.movePecas('esquerda')
-            elif entrada == 's':
-                listaComAsMovimentacoes = mecanica.movePecas('baixo')
-            else:
-                listaComAsMovimentacoes = mecanica.movePecas('direita')
+                # Espera a entrada do usuário
+                entrada = interface.entradaDoUsuario()
+
+                # Seleciona uma ação de acordo com a entrada do usuário
+                # Cima
+                if entrada == 'w' or entrada == 'W':
+                    listaComAsMovimentacoes = mecanica.movePecas('cima')
+                    break
+
+                # Esquerda
+                elif entrada == 'a' or entrada == 'A':
+                    listaComAsMovimentacoes = mecanica.movePecas('esquerda')
+                    break
+
+                # Baixo
+                elif entrada == 's' or entrada == 'S':
+                    listaComAsMovimentacoes = mecanica.movePecas('baixo')
+                    break
+
+                # Direita
+                elif entrada == 'd' or entrada == 'D':
+                    listaComAsMovimentacoes = mecanica.movePecas('direita')
+                    break
+
+                # Pause
+                elif entrada == 'p' or entrada == 'P':
+                    # Loop para receber a entrada do usuário da tela de pause
+                    while True:
+                        # Limpa a tela e mostra a tela de pause
+                        interface.limpaTela()
+                        interface.telaDePause()
+
+                        # Espera a entrada do usuário
+                        entrada = interface.entradaDoUsuario()
+
+                        # Seleciona uma ação de acordo com a entrada do usuário
+                        # Voltar ao jogo
+                        if entrada == '1':
+                            # Limpa a tela, mostra o tabuleiro e volta ao loop de receber uma entrada para mover as peças do tabuleiro
+                            interface.limpaTela()
+                            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                            break
+
+                        # Salvar o jogo
+                        elif entrada == '2':
+                            pass
+
+                        # Voltar ao menu principal
+                        elif entrada == '3':
+                            main()
 
             # Mostra na tela toda a movimentação das peças
             for i in range(len(listaComAsMovimentacoes)):
@@ -96,15 +136,15 @@ def main():
                     venceuOJogo = False
                     break
 
-            # Limpa a tela
-            interface.limpaTela()
-
         # Volta para o menu principal
         interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Carregar Jogo
     elif entrada == '2':
+        # Limpa a tela
+        interface.limpaTela()
+
         print('Não Implementado')
 
         # Volta para o menu principal
@@ -113,6 +153,9 @@ def main():
 
     # Opções
     elif entrada == '3':
+        # Limpa a tela
+        interface.limpaTela()
+
         print('Não Implementado')
 
         # Volta para o menu principal
@@ -121,6 +164,9 @@ def main():
 
     # Estatísticas
     elif entrada == '4':
+        # Limpa a tela
+        interface.limpaTela()
+
         print('Não Implementado')
 
         # Volta para o menu principal
@@ -129,9 +175,12 @@ def main():
 
     # Manual do Desenvolvedor
     elif entrada == '5':
+        # Limpa a tela
+        interface.limpaTela()
+
         # Mostra o título da tela
         interface.telaDoManual()
-        
+
         # Escreve na tela a documentação de todas as classes do jogo
         print(interface, end = '')
         print(mecanica, end = '')
