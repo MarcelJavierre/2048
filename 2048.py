@@ -71,6 +71,7 @@ def main():
 
             # Mostra na tela toda a movimentação das peças
             for i in range(len(listaComAsMovimentacoes)):
+                interface.pausa(0.1)
                 interface.limpaTela()
                 interface.telaDoTabuleiro(listaComAsMovimentacoes[i], mecanica.getScore())
 

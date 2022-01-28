@@ -4,6 +4,9 @@ from sys import platform
 # Função do módulo os para utilizar comandos do terminal
 from os import system
 
+# Função do módulo time para pausar a execução do código por um determinado tempo
+from time import sleep
+
 class FerramentasDeInterfaceComOUsuario:
     '''Super classe com os métodos genéricos associados com a comunicação com o usuário.'''
 
@@ -27,7 +30,8 @@ class FerramentasDeInterfaceComOUsuario:
             'getMetodos',
             'manual',
             'entradaDoUsuario',
-            'limpaTela'
+            'limpaTela',
+            'pausa'
         }
 
     def __str__(self):
@@ -78,7 +82,8 @@ class FerramentasDeInterfaceComOUsuario:
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
             'entradaDoUsuario': self.entradaDoUsuario.__doc__,
-            'limpaTela': self.limpaTela.__doc__
+            'limpaTela': self.limpaTela.__doc__,
+            'pausa': self.pausa.__doc__
         }
 
     def entradaDoUsuario(self, mensagem = ''):
@@ -106,3 +111,10 @@ class FerramentasDeInterfaceComOUsuario:
         # Se não for nenhum dos dois, não faz nada
         else:
             pass
+
+    def pausa(self, tempo):
+        '''
+        Método para pausar a execução do código por um dado tempo.
+        self,float -> none
+        '''
+        sleep(tempo)
