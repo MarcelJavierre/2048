@@ -310,7 +310,17 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Retorna "True" se o tabuleiro possui uma peça com o valor definido como o objetivo (padrão 2048) ou "False" se não.
         self -> bool
         '''
-        pass
+        # Passa por todas as linhas do tabuleiro
+        for i in range(len(self.tabuleiro)):
+            # Passa por todas as colunas do tabuleiro
+            for j in range(len(self.tabuleiro)):
+                # Verifica se possui alguma peça com o valor do objetivo
+                if self.tabuleiro[i][j] == self.pecaDaVitoria:
+                    # Caso encontre, retorna "True"
+                    return True
+
+        # Caso passe por todas as casas e não encontre a peça com o valor do objetivo, retorna "False"
+        return False
 
     def possuiMovimentosVailidos(self):
         '''
