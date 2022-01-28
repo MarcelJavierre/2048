@@ -12,16 +12,20 @@ from copy import deepcopy
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     '''Esta classe contém todos os métodos responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador.'''
 
-    def __init__(self, tamanhoDoTabuleiro = 4):
+    def __init__(self, tamanhoDoTabuleiro = 4, pecaDaVitoria = 2048):
         '''
-        Método construtor que inicializa o tabuleiro. Se nenhum parâmetro for passado, inicializa com o tamanho padrão 4X4.
-        self,int -> none
+        Método construtor que inicializa o tabuleiro.
+        Se nenhum parâmetro for passado, inicializa com o tamanho padrão 4X4 e com objetivo de atingir 2048.
+        self,int,int -> none
         '''
         # Atributo que armazena a matriz do tabuleiro
         self.tabuleiro = self.geraMatriz(tamanhoDoTabuleiro, tamanhoDoTabuleiro)
 
         # Atributo que armazena o score
         self.score = 0
+
+        # Atributo com o valor da peça do objetivo do jogo
+        self.pecaDaVitoria = pecaDaVitoria
 
         # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
         # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
@@ -37,6 +41,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.__metodos',
             'self.tabuleiro',
             'self.score',
+            'self.pecaDaVitoria',
             'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada'
         }
 
@@ -101,6 +106,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
             'self.score': 'Atributo que armazena o score.',
+            'self.pecaDaVitoria': 'Atributo com o valor da peça do objetivo do jogo',
             'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada': 'Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
@@ -297,6 +303,22 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Retorna a lista com as diferentes partes da movimentação das peças
         return listaComAsMovimentacoes
+
+    def venceuOJogo(self):
+        '''
+        Método que verifica todas as casas do tabuleiro.
+        Retorna "True" se o tabuleiro possui uma peça com o valor definido como o objetivo (padrão 2048) ou "False" se não.
+        self -> bool
+        '''
+        pass
+
+    def possuiMovimentosVailidos(self):
+        '''
+        Método que verifica todas as casas do tabuleiro.
+        Retorna "True" se possui movimentos válidos ou "False" se não.
+        self -> bool
+        '''
+        pass
 
     def getCasasVazias(self):
         '''

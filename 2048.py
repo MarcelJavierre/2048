@@ -74,16 +74,26 @@ def main():
                 interface.limpaTela()
                 interface.telaDoTabuleiro(listaComAsMovimentacoes[i], mecanica.getScore())
 
+            # Verifica se o alguma peça atingiu o objetivo
+            if mecanica.venceuOJogo() == True:
+                # Se sim, coloca a variável "venceuOJogo" como "True" e encerra o loop do jogo
+                venceuOJogo = True
+                break
+
             # Verifica quais são as casas vazias do tabuleiro
             casasVazias = mecanica.getCasasVazias()
 
             # Caso o tabuleiro possua casas vazias, insere um nova peça
-            if casasVazias != '':
-                mecanica.inserePeca(mecanica.getCasasVazias())
+            if casasVazias != []:
+                mecanica.inserePeca(casasVazias)
 
-            # Caso contrário, verifica ainda possui jogadas válidas
+            # Caso não possua, verifica se ainda têm jogadas válidas
             else:
-                pass
+                # Verifica se ainda tem jogadas válidas
+                if mecanica.possuiMovimentosVailidos() == False:
+                    # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
+                    venceuOJogo = False
+                    break
 
             # Limpa a tela
             interface.limpaTela()
