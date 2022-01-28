@@ -6,6 +6,7 @@ else:
     from classes.ferramentasDeInterfaceComOUsuario import *
 
 # Função do módulo os para verificar as dimensões do terminal
+from code import interact
 from os import get_terminal_size
 
 # Classe da seção interface com o usuário
@@ -180,12 +181,32 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         '''
         pass
 
-    def telaDeOpcoes(self):
+    def telaDeOpcoes(self, tamanhoDoTabuleiro, pecaDaVitoria):
         '''
         Método para exibir ao usuário a tela de opções do jogo.
-        self -> none
+        self,int,int -> none
         '''
-        pass
+        print('\x1b[0;34m')
+        print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('')
+        print('')
+
+        print('\x1b[0;94m', end = '')
+        print(f'Tamanho do Tabuleiro:\t{tamanhoDoTabuleiro}x{tamanhoDoTabuleiro}')
+        print('')
+        print(f'Objetivo do Jogo:\t{pecaDaVitoria}')
+        print('')
+        print('')
+
+        print('\x1b[0;34m', end = '')
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ 1 │   │ A │ L │ T │ E │ R │ A │ R │   │ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
+        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+        print('│ 2 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('\x1b[0;0m')
 
     def telaDoManual(self):
         '''
@@ -221,7 +242,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Escreve na tela o score
         print('\x1b[0;32m')
-        print(f'SCORE:  {score}'.center(get_terminal_size().columns))
+        print(f'SCORE:    {score}'.center(get_terminal_size().columns))
         print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
         print('\x1b[0;0m')
         print('')
