@@ -220,9 +220,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
 
         # Escreve na tela o score
-        print('\n\n')
-        print(f'Score:  {score}'.center(get_terminal_size().columns))
-        print('\n\n')
+        print('\x1b[0;32m')
+        print(f'SCORE:  {score}'.center(get_terminal_size().columns))
+        print('\x1b[0;0m')
+        print('')
 
         # Escreve na tela o tabuleiro
         print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
