@@ -192,7 +192,10 @@ def main():
 
     # Sair do Jogo
     elif entrada == '6':
+        # Limpa a tela
         interface.limpaTela()
+
+        # Sai do jogo
         quit()
 
     # Caso o usuário insira qualquer outra coisa diferente do pedido, exibe novamente o menu principal

@@ -51,7 +51,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self -> str
         '''
 
-        string = f'Classe interfaceComOUsuario:\n{InterfaceComOUsuario.__doc__}\n\nAtributos:\n'
+        string = f'Classe InterfaceComOUsuario:\n{InterfaceComOUsuario.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:

@@ -68,7 +68,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self -> str
         '''
 
-        string = f'Classe mecanicaDoJogo:\n{MecanicaDoJogo.__doc__}\n\nAtributos:\n'
+        string = f'Classe MecanicaDoJogo:\n{MecanicaDoJogo.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:

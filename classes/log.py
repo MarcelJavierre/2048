@@ -37,7 +37,7 @@ class Log:
         self -> str
         '''
 
-        string = f'Classe log:\n{Log.__doc__}\n\nAtributos:\n'
+        string = f'Classe Log:\n{Log.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:

@@ -33,7 +33,7 @@ class FerramentasDeMecanicaDoJogo:
         self -> str
         '''
 
-        string = f'Classe ferramentasDeMecanicaDoJogo:\n{FerramentasDeMecanicaDoJogo.__doc__}\n\nAtributos:\n'
+        string = f'Classe FerramentasDeMecanicaDoJogo:\n{FerramentasDeMecanicaDoJogo.__doc__}\n\nAtributos:\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:
