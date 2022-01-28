@@ -181,8 +181,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela do manual do jogo.
         self -> none
         '''
-        print('')
-        print('\x1b[0;31m', end = '')
+        print('\x1b[0;31m')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│   │   │ M │ A │ N │ U │ A │ L │   │ D │ O │   │   │'.center(get_terminal_size().columns))
         print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
