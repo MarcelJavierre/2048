@@ -163,7 +163,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('│ 2 │   │ S │ A │ L │ V │ A │ R │   │ O │   │ J │ O │ G │ O │   │   │'.center(get_terminal_size().columns))
         print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
         print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns), end = '')
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m', end = '')
 
     def telaDeSalvamento(self):
