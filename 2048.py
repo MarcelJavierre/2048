@@ -74,8 +74,18 @@ def main():
                 interface.limpaTela()
                 interface.telaDoTabuleiro(listaComAsMovimentacoes[i], mecanica.getScore())
 
-            # Insere uma nova peça no tabuleiro
-            mecanica.inserePeca(mecanica.checaTabuleiro())
+            # Verifica quais são as casas vazias do tabuleiro
+            casasVazias = mecanica.getCasasVazias()
+
+            # Caso o tabuleiro possua casas vazias, insere um nova peça
+            if casasVazias != '':
+                mecanica.inserePeca(mecanica.getCasasVazias())
+
+            # Caso contrário, verifica ainda possui jogadas válidas
+            else:
+                pass
+
+            # Limpa a tela
             interface.limpaTela()
 
         # Volta para o menu principal

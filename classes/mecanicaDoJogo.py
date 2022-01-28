@@ -28,8 +28,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
         
         # Inicia o tabuleiro com 2 peças
-        self.inserePeca(self.checaTabuleiro())
-        self.inserePeca(self.checaTabuleiro())
+        self.inserePeca(self.getCasasVazias())
+        self.inserePeca(self.getCasasVazias())
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -51,7 +51,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'geraElementoAleatorio',
             'inserePeca',
             'movePecas',
-            'checaTabuleiro',
+            'getCasasVazias',
             'getTabuleiro',
             'getScore',
             'carregarJogo'
@@ -111,7 +111,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'geraElementoAleatorio': self.geraElementoAleatorio.__doc__,
             'inserePeca': self.inserePeca.__doc__,
             'movePecas': self.movePecas.__doc__,
-            'checaTabuleiro': self.checaTabuleiro.__doc__,
+            'getCasasVazias': self.getCasasVazias.__doc__,
             'getTabuleiro': self.getTabuleiro.__doc__,
             'getScore': self.getScore.__doc__,
             'carregarJogo': self.carregarJogo.__doc__
@@ -298,7 +298,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Retorna a lista com as diferentes partes da movimentação das peças
         return listaComAsMovimentacoes
 
-    def checaTabuleiro(self):
+    def getCasasVazias(self):
         '''
         Método que verifica todas as casas do tabuleiro.
         Retorna uma lista de strings com todas as posições de casas vazias.
