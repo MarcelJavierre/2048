@@ -72,22 +72,38 @@ def main():
                 # Seleciona uma ação de acordo com a entrada do usuário
                 # Cima
                 if entrada == 'w' or entrada == 'W':
-                    listaComAsMovimentacoes = mecanica.movePecas('cima')
+                    # Loop para realizar toda a movimentação das peças do tabuleiro
+                    while mecanica.movePecas('cima') == True:
+                        interface.pausa(0.1)
+                        interface.limpaTela()
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
                     break
 
                 # Esquerda
                 elif entrada == 'a' or entrada == 'A':
-                    listaComAsMovimentacoes = mecanica.movePecas('esquerda')
+                    # Loop para realizar toda a movimentação das peças do tabuleiro
+                    while mecanica.movePecas('esquerda') == True:
+                        interface.pausa(0.1)
+                        interface.limpaTela()
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
                     break
 
                 # Baixo
                 elif entrada == 's' or entrada == 'S':
-                    listaComAsMovimentacoes = mecanica.movePecas('baixo')
+                    # Loop para realizar toda a movimentação das peças do tabuleiro
+                    while mecanica.movePecas('baixo') == True:
+                        interface.pausa(0.1)
+                        interface.limpaTela()
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
                     break
 
                 # Direita
                 elif entrada == 'd' or entrada == 'D':
-                    listaComAsMovimentacoes = mecanica.movePecas('direita')
+                    # Loop para realizar toda a movimentação das peças do tabuleiro
+                    while mecanica.movePecas('direita') == True:
+                        interface.pausa(0.1)
+                        interface.limpaTela()
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
                     break
 
                 # Pause
@@ -116,12 +132,6 @@ def main():
                         # Voltar ao menu principal
                         elif entrada == '3':
                             main()
-
-            # Mostra na tela toda a movimentação das peças
-            for i in range(len(listaComAsMovimentacoes)):
-                interface.pausa(0.1)
-                interface.limpaTela()
-                interface.telaDoTabuleiro(listaComAsMovimentacoes[i], mecanica.getScore())
 
             # Verifica se o alguma peça atingiu o objetivo
             if mecanica.venceuOJogo() == True:
