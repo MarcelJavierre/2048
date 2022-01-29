@@ -100,7 +100,7 @@ class Log:
         self,int,int,list,int -> none
         '''
         arquivo = open('partidasSalvas/PartidasSalvas', 'a')
-        arquivo.write(f'{localtime()[2]}/{localtime()[1]}/{localtime()[0]}\t{localtime()[3]}:{localtime()[4]}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
+        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}\t{localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
         arquivo.close()
 
     def carregarJogo(self):
