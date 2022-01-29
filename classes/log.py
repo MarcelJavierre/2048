@@ -1,5 +1,5 @@
 # Função do módulo time para obter a data atual
-from time import ctime
+from time import localtime
 
 # Classe da seção log
 class Log:
@@ -85,12 +85,23 @@ class Log:
             'relatorioDeErro': self.relatorioDeErro.__doc__
         }
 
-    def savarJogo(self, tabuleiro, score):
+    def savarJogo(self, tamanhoDoTabuleiro, pecaDaVitoria, tabuleiro, score):
         '''
         Método que armazena em um arquivo o estado atual do jogo.
-        self,list,int -> none
+        O arquivo de salvamento se encontra em "partidasSalvadas/partidasSalvadas".
+        Cada partida salva ocupa 5 linhas no arquivo, sendo elas:
+
+        * 1ª Linha: Data e Hora do Salvamento;
+        * 2ª Linha: Tamanho do Tabuleiro;
+        * 3ª Linha: Objetivo da Partida;
+        * 4ª Linha: Matriz do Tabuleiro;
+        * 5ª Linha: Score.
+
+        self,int,int,list,int -> none
         '''
-        pass
+        arquivo = open('partidasSalvadas/PartidasSalvadas', 'a')
+        arquivo.write(f'{localtime()[2]}/{localtime()[1]}/{localtime()[0]}\t{localtime()[3]}:{localtime()[4]}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
+        arquivo.close()
 
     def carregarJogo(self):
         '''

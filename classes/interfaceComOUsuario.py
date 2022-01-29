@@ -172,7 +172,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela de salvamento do jogo.
         self -> none
         '''
-        pass
+        print('\n' * (int((get_terminal_size().lines - 3) / 2)), end = '') # Centraliza verticalmente a tela de salvamento
+        print('\x1b[0;96m', end = '')
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ J │ O │ G │ O │   │ S │ A │ L │ V │ O │ ! │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('\x1b[0;0m', end = '')
 
     def telaDeCarregamento(self):
         '''

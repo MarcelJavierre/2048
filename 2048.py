@@ -35,16 +35,21 @@ from classes.log import *
 tamanhoDoTabuleiro = 4
 pecaDaVitoria = 2048
 
+# Inicializando as instâncias de cada seção
+interface = InterfaceComOUsuario()
+mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+log = Log()
+
 # Função principal
 def main():
     # Definindo as variáveis de configuração como globais
     global tamanhoDoTabuleiro
     global pecaDaVitoria
 
-    # Inicializando as instâncias de cada seção
-    interface = InterfaceComOUsuario()
-    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
-    log = Log()
+    # Definindo as instâncias de cada seção como globais
+    global interface
+    global mecanica
+    global log
 
     # Exibindo o menu principal
     interface.limpaTela()
@@ -127,10 +132,21 @@ def main():
 
                         # Salvar o jogo
                         elif entrada == '2':
-                            pass
+                            # Mostra a tela de salvamento
+                            interface.limpaTela()
+                            interface.telaDeSalvamento()
+
+                            # Salva o jogo
+                            log.savarJogo(tamanhoDoTabuleiro, pecaDaVitoria, mecanica.getTabuleiro(), mecanica.getScore())
+
+                            interface.pausa(1)
 
                         # Voltar ao menu principal
                         elif entrada == '3':
+                            # Reinicia a instância da mecânica do jogo
+                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+
+                            # Volta ao menu principal
                             main()
 
             # Verifica se o alguma peça atingiu o objetivo
@@ -193,14 +209,17 @@ def main():
                 # Espera a entrada do usuário
                 entrada = interface.entradaDoUsuario('Insira o tamanho do tabuleiro:\nEx.: 4 -> 4x4.\n')
 
-                # Troca na variável o tamanho do tabuleiro
+                # Muda a variável com o novo tamanho do tabuleiro
                 tamanhoDoTabuleiro = int(entrada)
 
                 # Espera a entrada do usuário
                 entrada = interface.entradaDoUsuario('Insira o valor do objetivo:\n')
 
-                # Troca na variável o tamanho do tabuleiro
+                # Muda a variável com o novo objetivo
                 pecaDaVitoria = int(entrada)
+
+                # Reinicia a instância da mecânica do jogo com os novos parâmetros
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
 
             # Voltar ao menu principal
             elif entrada == '2':
