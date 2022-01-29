@@ -88,7 +88,7 @@ class Log:
     def savarJogo(self, tamanhoDoTabuleiro, pecaDaVitoria, tabuleiro, score):
         '''
         Método que armazena em um arquivo o estado atual do jogo.
-        O arquivo de salvamento se encontra em "partidasSalvadas/partidasSalvadas".
+        O arquivo de salvamento se encontra em "partidasSalvas/partidasSalvas".
         Cada partida salva ocupa 5 linhas no arquivo, sendo elas:
 
         * 1ª Linha: Data e Hora do Salvamento;
@@ -99,7 +99,7 @@ class Log:
 
         self,int,int,list,int -> none
         '''
-        arquivo = open('partidasSalvadas/PartidasSalvadas', 'a')
+        arquivo = open('partidasSalvas/PartidasSalvas', 'a')
         arquivo.write(f'{localtime()[2]}/{localtime()[1]}/{localtime()[0]}\t{localtime()[3]}:{localtime()[4]}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
         arquivo.close()
 

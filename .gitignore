@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Partidas salvadas
-partidasSalvadas
+# Partidas salvas
+partidasSalvas
