@@ -154,7 +154,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela de pause do jogo.
         self -> none
         '''
-        print('\n' * (int((get_terminal_size().lines - 9) / 2))) # Centraliza verticalmente a tela de pause
+        print('\n' * (int((get_terminal_size().lines - 10) / 2)), end = '') # Centraliza verticalmente a tela de pause
         print('\x1b[0;33m', end = '')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│   │   │   │   │   │   │ P │ A │ U │ S │ E │   │   │   │   │   │   │'.center(get_terminal_size().columns))
@@ -165,7 +165,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
         print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m', end = '')
+        print('\x1b[0;0m')
 
     def telaDeSalvamento(self):
         '''
@@ -292,8 +292,26 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Se foi vencedor, exibe a tela de vencedor
         if foiVencedor == True:
-            pass
+            print('\n' * (int((get_terminal_size().lines - 8) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+            print('\x1b[0;33m')
+            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+            print('│ V │ O │ C │ Ê │   │ V │ E │ N │ C │ E │ U │ ! │'.center(get_terminal_size().columns))
+            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+            print('')
+            print('\x1b[0;32m', end = '')
+            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
+            print('─────────────────────────'.center(get_terminal_size().columns))
+            print('\x1b[0;0m')
 
         # Se não, exibe a tela de perdedor
         else:
-            pass
+            print('\n' * (int((get_terminal_size().lines - 8) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+            print('\x1b[0;31m')
+            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+            print('│ V │ O │ C │ Ê │   │ P │ E │ R │ D │ E │ U │ ! │'.center(get_terminal_size().columns))
+            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+            print('')
+            print('\x1b[0;32m', end = '')
+            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
+            print('─────────────────────────'.center(get_terminal_size().columns))
+            print('\x1b[0;0m')

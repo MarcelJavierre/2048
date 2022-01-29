@@ -144,8 +144,12 @@ def main():
                     venceuOJogo = False
                     break
 
+        # Mostra a tela de fim de jogo
+        interface.limpaTela()
+        interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
+
         # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
+        interface.entradaDoUsuario()
         main()
 
     # Carregar Jogo
@@ -161,6 +165,7 @@ def main():
 
     # Opções
     elif entrada == '3':
+        # Loop para receber a entrada do usuário da tela de opções
         while True:
             # Limpa a tela
             interface.limpaTela()
