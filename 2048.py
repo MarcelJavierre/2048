@@ -31,11 +31,19 @@ from classes.interfaceComOUsuario import *
 from classes.mecanicaDoJogo import *
 from classes.log import *
 
+# Definição das configurações do jogo
+tamanhoDoTabuleiro = 4
+pecaDaVitoria = 2048
+
 # Função principal
 def main():
+    # Definindo as variáveis de configuração como globais
+    global tamanhoDoTabuleiro
+    global pecaDaVitoria
+
     # Inicializando as instâncias de cada seção
     interface = InterfaceComOUsuario()
-    mecanica = MecanicaDoJogo()
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
     log = Log()
 
     # Exibindo o menu principal
@@ -153,14 +161,34 @@ def main():
 
     # Opções
     elif entrada == '3':
-        # Limpa a tela
-        interface.limpaTela()
+        while True:
+            # Limpa a tela
+            interface.limpaTela()
 
-        print('Não Implementado')
+            # Mostra a tela de opções
+            interface.telaDeOpcoes(tamanhoDoTabuleiro, pecaDaVitoria)
+            
+            # Espera a entrada do usuário
+            entrada = interface.entradaDoUsuario()
 
-        # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
-        main()
+            # Seleciona uma ação de acordo com a entrada do usuário
+            # Alterar as opções
+            if entrada == '1':
+                # Espera a entrada do usuário
+                entrada = interface.entradaDoUsuario('Digite o tamanho do tabuleiro:\nEx.: 4 -> 4x4.\n')
+
+                # Troca na variável o tamanho do tabuleiro
+                tamanhoDoTabuleiro = int(entrada)
+
+                # Espera a entrada do usuário
+                entrada = interface.entradaDoUsuario('Digite o valor do objetivo:\n')
+
+                # Troca na variável o tamanho do tabuleiro
+                pecaDaVitoria = int(entrada)
+
+            # Voltar ao menu principal
+            elif entrada == '2':
+                main()
 
     # Estatísticas
     elif entrada == '4':
