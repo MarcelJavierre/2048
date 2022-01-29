@@ -184,7 +184,8 @@ def main():
         # Limpa a tela
         interface.limpaTela()
 
-        print('Não Implementado')
+        listaComOsDadosDasPartidasSalvas = log.carregarJogo()
+        interface.telaDeCarregamento(listaComOsDadosDasPartidasSalvas)
 
         # Volta para o menu principal
         interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')

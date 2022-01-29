@@ -99,16 +99,20 @@ class Log:
 
         self,int,int,list,int -> none
         '''
-        arquivo = open('partidasSalvas/PartidasSalvas', 'a')
-        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}\t{localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
+        arquivo = open('partidasSalvas/partidasSalvas', 'a')
+        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
         arquivo.close()
 
     def carregarJogo(self):
         '''
-        Método que carrega de um arquivo o jogo salvo. Retorna uma tupla com a matriz do tabuleiro e o score.
-        self -> tuple
+        Método que carrega de um arquivo o jogo salvo.
+        Retorna uma lista com o tamanho do tabuleiro, o objetivo do jogo, a matriz do tabuleiro e o score de cada partida salva.
+        self -> list
         '''
-        pass
+        arquivo = open('partidasSalvas/partidasSalvas', 'r')
+        conteudoDoArquivo = arquivo.readlines()
+        arquivo.close()
+        return conteudoDoArquivo
 
     def estatisticasDeJogadas(self):
         '''
