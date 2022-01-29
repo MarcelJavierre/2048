@@ -159,7 +159,8 @@ def main():
         interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
 
         # Volta para o menu principal
-        interface.entradaDoUsuario()
+        interface.pausa(5)
+        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Carregar Jogo

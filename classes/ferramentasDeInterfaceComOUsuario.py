@@ -114,7 +114,7 @@ class FerramentasDeInterfaceComOUsuario:
 
     def pausa(self, tempo):
         '''
-        Método para pausar a execução do código por um dado tempo.
+        Método para pausar a execução do código por um dado tempo em segundos.
         self,float -> none
         '''
         sleep(tempo)
