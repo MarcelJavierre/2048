@@ -180,13 +180,13 @@ def main():
             # Alterar as opções
             if entrada == '1':
                 # Espera a entrada do usuário
-                entrada = interface.entradaDoUsuario('Digite o tamanho do tabuleiro:\nEx.: 4 -> 4x4.\n')
+                entrada = interface.entradaDoUsuario('Insira o tamanho do tabuleiro:\nEx.: 4 -> 4x4.\n')
 
                 # Troca na variável o tamanho do tabuleiro
                 tamanhoDoTabuleiro = int(entrada)
 
                 # Espera a entrada do usuário
-                entrada = interface.entradaDoUsuario('Digite o valor do objetivo:\n')
+                entrada = interface.entradaDoUsuario('Insira o valor do objetivo:\n')
 
                 # Troca na variável o tamanho do tabuleiro
                 pecaDaVitoria = int(entrada)

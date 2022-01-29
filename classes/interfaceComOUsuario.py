@@ -186,18 +186,26 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela de opções do jogo.
         self,int,int -> none
         '''
-        print('\x1b[0;34m')
+        print('\n' * (int((get_terminal_size().lines - 22) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+        print('\x1b[0;34m', end = '')
         print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('')
-        print('')
 
         print('\x1b[0;94m', end = '')
-        print(f'Tamanho do Tabuleiro:\t{tamanhoDoTabuleiro}x{tamanhoDoTabuleiro}')
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ T │ A │ M │ A │ N │ H │ O │   │ D │ O │   │ T │ A │ B │ U │ L │ E │ I │ R │ O │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print(f'{tamanhoDoTabuleiro}x{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
+        print('─────────────────────────'.center(get_terminal_size().columns))
         print('')
-        print(f'Objetivo do Jogo:\t{pecaDaVitoria}')
-        print('')
+
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ O │ B │ J │ E │ T │ I │ V │ O │   │ D │ O │   │ J │ O │ G │ O │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print(f'{pecaDaVitoria}'.center(get_terminal_size().columns))
+        print('─────────────────────────'.center(get_terminal_size().columns))
         print('')
 
         print('\x1b[0;34m', end = '')
@@ -292,8 +300,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Se foi vencedor, exibe a tela de vencedor
         if foiVencedor == True:
-            print('\n' * (int((get_terminal_size().lines - 8) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
-            print('\x1b[0;33m')
+            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+            print('\x1b[0;33m', end = '')
             print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
             print('│ V │ O │ C │ Ê │   │ V │ E │ N │ C │ E │ U │ ! │'.center(get_terminal_size().columns))
             print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
@@ -305,8 +313,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Se não, exibe a tela de perdedor
         else:
-            print('\n' * (int((get_terminal_size().lines - 8) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
-            print('\x1b[0;31m')
+            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+            print('\x1b[0;31m', end = '')
             print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
             print('│ V │ O │ C │ Ê │   │ P │ E │ R │ D │ E │ U │ ! │'.center(get_terminal_size().columns))
             print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
