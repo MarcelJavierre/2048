@@ -42,6 +42,10 @@ log = Log()
 
 # Função principal
 def main():
+    '''
+    Função principal.
+    none -> none
+    '''
     # Definindo as variáveis de configuração como globais
     global tamanhoDoTabuleiro
     global pecaDaVitoria
@@ -62,122 +66,7 @@ def main():
     # Novo Jogo
     if entrada == '1':
         # Loop do jogo
-        while True:
-            # Loop para receber a entrada do usuário da tela do tabuleiro
-            while True:
-                # Limpa a tela
-                interface.limpaTela()
-
-                # Mostra o tabuleiro
-                interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-
-                # Espera a entrada do usuário
-                entrada = interface.entradaDoUsuario()
-
-                # Seleciona uma ação de acordo com a entrada do usuário
-                # Cima
-                if entrada == 'w' or entrada == 'W':
-                    # Loop para realizar toda a movimentação das peças do tabuleiro
-                    while mecanica.movePecas('cima') == True:
-                        interface.pausa(0.1)
-                        interface.limpaTela()
-                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-                    break
-
-                # Esquerda
-                elif entrada == 'a' or entrada == 'A':
-                    # Loop para realizar toda a movimentação das peças do tabuleiro
-                    while mecanica.movePecas('esquerda') == True:
-                        interface.pausa(0.1)
-                        interface.limpaTela()
-                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-                    break
-
-                # Baixo
-                elif entrada == 's' or entrada == 'S':
-                    # Loop para realizar toda a movimentação das peças do tabuleiro
-                    while mecanica.movePecas('baixo') == True:
-                        interface.pausa(0.1)
-                        interface.limpaTela()
-                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-                    break
-
-                # Direita
-                elif entrada == 'd' or entrada == 'D':
-                    # Loop para realizar toda a movimentação das peças do tabuleiro
-                    while mecanica.movePecas('direita') == True:
-                        interface.pausa(0.1)
-                        interface.limpaTela()
-                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-                    break
-
-                # Pause
-                elif entrada == 'p' or entrada == 'P':
-                    # Loop para receber a entrada do usuário da tela de pause
-                    while True:
-                        # Limpa a tela e mostra a tela de pause
-                        interface.limpaTela()
-                        interface.telaDePause()
-
-                        # Espera a entrada do usuário
-                        entrada = interface.entradaDoUsuario()
-
-                        # Seleciona uma ação de acordo com a entrada do usuário
-                        # Voltar ao jogo
-                        if entrada == '1':
-                            # Limpa a tela, mostra o tabuleiro e volta ao loop de receber uma entrada para mover as peças do tabuleiro
-                            interface.limpaTela()
-                            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
-                            break
-
-                        # Salvar o jogo
-                        elif entrada == '2':
-                            # Mostra a tela de salvamento
-                            interface.limpaTela()
-                            interface.telaDeSalvamento()
-
-                            # Salva o jogo
-                            log.savarJogo(tamanhoDoTabuleiro, pecaDaVitoria, mecanica.getTabuleiro(), mecanica.getScore())
-
-                            interface.pausa(1)
-
-                        # Voltar ao menu principal
-                        elif entrada == '3':
-                            # Reinicia a instância da mecânica do jogo
-                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
-
-                            # Volta ao menu principal
-                            main()
-
-            # Verifica se o alguma peça atingiu o objetivo
-            if mecanica.venceuOJogo() == True:
-                # Se sim, coloca a variável "venceuOJogo" como "True" e encerra o loop do jogo
-                venceuOJogo = True
-                break
-
-            # Verifica quais são as casas vazias do tabuleiro
-            casasVazias = mecanica.getCasasVazias()
-
-            # Caso o tabuleiro possua casas vazias, insere um nova peça
-            if casasVazias != []:
-                mecanica.inserePeca(casasVazias)
-
-            # Caso não possua, verifica se ainda têm jogadas válidas
-            else:
-                # Verifica se ainda tem jogadas válidas
-                if mecanica.possuiMovimentosVailidos() == False:
-                    # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
-                    venceuOJogo = False
-                    break
-
-        # Mostra a tela de fim de jogo
-        interface.limpaTela()
-        interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
-
-        # Volta para o menu principal
-        interface.pausa(5)
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
-        main()
+        loopDoJogo()
 
     # Carregar Jogo
     elif entrada == '2':
@@ -265,6 +154,142 @@ def main():
     # Caso o usuário insira qualquer outra coisa diferente do pedido, exibe novamente o menu principal
     else:
         main()
+
+# Função do loop do jogo
+def loopDoJogo():
+    '''
+    Função com o loop do jogo.
+    none -> none
+    '''
+    # Definindo as variáveis de configuração como globais
+    global tamanhoDoTabuleiro
+    global pecaDaVitoria
+
+    # Definindo as instâncias de cada seção como globais
+    global interface
+    global mecanica
+    global log
+
+    # Loop do jogo
+    while True:
+        # Loop para receber a entrada do usuário da tela do tabuleiro
+        while True:
+            # Limpa a tela
+            interface.limpaTela()
+
+            # Mostra o tabuleiro
+            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+
+            # Espera a entrada do usuário
+            entrada = interface.entradaDoUsuario()
+
+            # Seleciona uma ação de acordo com a entrada do usuário
+            # Cima
+            if entrada == 'w' or entrada == 'W':
+                # Loop para realizar toda a movimentação das peças do tabuleiro
+                while mecanica.movePecas('cima') == True:
+                    interface.pausa(0.1)
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                break
+
+            # Esquerda
+            elif entrada == 'a' or entrada == 'A':
+                # Loop para realizar toda a movimentação das peças do tabuleiro
+                while mecanica.movePecas('esquerda') == True:
+                    interface.pausa(0.1)
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                break
+
+            # Baixo
+            elif entrada == 's' or entrada == 'S':
+                # Loop para realizar toda a movimentação das peças do tabuleiro
+                while mecanica.movePecas('baixo') == True:
+                    interface.pausa(0.1)
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                break
+
+            # Direita
+            elif entrada == 'd' or entrada == 'D':
+                # Loop para realizar toda a movimentação das peças do tabuleiro
+                while mecanica.movePecas('direita') == True:
+                    interface.pausa(0.1)
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                break
+
+            # Pause
+            elif entrada == 'p' or entrada == 'P':
+                # Loop para receber a entrada do usuário da tela de pause
+                while True:
+                    # Limpa a tela e mostra a tela de pause
+                    interface.limpaTela()
+                    interface.telaDePause()
+
+                    # Espera a entrada do usuário
+                    entrada = interface.entradaDoUsuario()
+
+                    # Seleciona uma ação de acordo com a entrada do usuário
+                    # Voltar ao jogo
+                    if entrada == '1':
+                        # Limpa a tela, mostra o tabuleiro e volta ao loop de receber uma entrada para mover as peças do tabuleiro
+                        interface.limpaTela()
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                        break
+
+                    # Salvar o jogo
+                    elif entrada == '2':
+                        # Mostra a tela de salvamento
+                        interface.limpaTela()
+                        interface.telaDeSalvamento()
+
+                        # Salva o jogo
+                        log.savarJogo(tamanhoDoTabuleiro, pecaDaVitoria, mecanica.getTabuleiro(), mecanica.getScore())
+
+                        interface.pausa(1)
+
+                    # Voltar ao menu principal
+                    elif entrada == '3':
+                        # Reinicia a instância da mecânica do jogo
+                        mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+
+                        # Volta ao menu principal
+                        main()
+
+        # Verifica se o alguma peça atingiu o objetivo
+        if mecanica.venceuOJogo() == True:
+            # Se sim, coloca a variável "venceuOJogo" como "True" e encerra o loop do jogo
+            venceuOJogo = True
+            break
+
+        # Verifica quais são as casas vazias do tabuleiro
+        casasVazias = mecanica.getCasasVazias()
+
+        # Caso o tabuleiro possua casas vazias, insere um nova peça
+        if casasVazias != []:
+            mecanica.inserePeca(casasVazias)
+
+        # Caso não possua, verifica se ainda têm jogadas válidas
+        else:
+            # Verifica se ainda tem jogadas válidas
+            if mecanica.possuiMovimentosVailidos() == False:
+                # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
+                venceuOJogo = False
+                break
+
+    # Mostra a tela de fim de jogo
+    interface.limpaTela()
+    interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
+
+    # Reinicia a instância da mecânica do jogo
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+
+    # Volta para o menu principal
+    interface.pausa(1)
+    interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
+    main()
 
 if __name__ == '__main__':
     main()
