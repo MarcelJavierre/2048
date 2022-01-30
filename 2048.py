@@ -70,15 +70,54 @@ def main():
 
     # Carregar Jogo
     elif entrada == '2':
-        # Limpa a tela
-        interface.limpaTela()
+        # Loop para receber a entrada do usuário da tela de opções
+        while True:
+            # Limpa a tela
+            interface.limpaTela()
 
-        listaComOsDadosDasPartidasSalvas = log.carregarJogo()
-        interface.telaDeCarregamento(listaComOsDadosDasPartidasSalvas)
+            # Lê as partidas salvas
+            listaComOsDadosDasPartidasSalvas = log.carregarJogo()
 
-        # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
-        main()
+            # Mostra a tela de carregamento
+            interface.telaDeCarregamento(listaComOsDadosDasPartidasSalvas)
+
+            # Espera a entrada do usuário
+            entrada = interface.entradaDoUsuario()
+
+            # Seleciona uma ação de acordo com a entrada do usuário
+            # Carregar jogo
+            if entrada == '1':
+                entrada = interface.entradaDoUsuario('Selecione a partida que deseja carregar:\n')
+
+                # Converte a entrada para o índice da lista com os dados das partidas salvas
+                indice = (int(entrada) - 1) * 5
+
+                # Atualiza as variáveis de configuração com os dados da partida salva
+                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indice + 1])
+                pecaDaVitoria = int(listaComOsDadosDasPartidasSalvas[indice + 2])
+
+                # Reinicia a instância da mecânica do jogo
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+
+                # Atualiza o tabuleiro e o score com os dados da partida salva
+                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indice + 3]), int(listaComOsDadosDasPartidasSalvas[indice + 4]))
+
+                # Reinicia o loop do jogo
+                loopDoJogo()
+
+            # Apagar partida salva
+            elif entrada == '2':
+                entrada = interface.entradaDoUsuario('Selecione a partida que deseja apagar:\n')
+
+                # Converte a entrada para o índice da lista com os dados das partidas salvas
+                indice = (int(entrada) - 1) * 5
+
+                # Apaga a partida salva
+                log.apagarJogoSalvo(indice)
+
+            # Voltar ao menu principal
+            elif entrada == '3':
+                main()
 
     # Opções
     elif entrada == '3':

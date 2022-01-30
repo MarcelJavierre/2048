@@ -26,6 +26,7 @@ class Log:
             'manual',
             'savarJogo',
             'carregarJogo',
+            'apagarJogoSalvo',
             'estatisticasDeJogadas',
             'estatisticasDePecas',
             'relatorioDeErro'
@@ -80,6 +81,7 @@ class Log:
             'manual': self.manual.__doc__,
             'savarJogo': self.savarJogo.__doc__,
             'carregarJogo': self.carregarJogo.__doc__,
+            'apagarJogoSalvo': self.apagarJogoSalvo.__doc__,
             'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
             'estatisticasDePecas': self.estatisticasDePecas.__doc__,
             'relatorioDeErro': self.relatorioDeErro.__doc__
@@ -106,13 +108,51 @@ class Log:
     def carregarJogo(self):
         '''
         Método que carrega de um arquivo o jogo salvo.
-        Retorna uma lista com o tamanho do tabuleiro, o objetivo do jogo, a matriz do tabuleiro e o score de cada partida salva.
+        Retorna uma lista com o seguinte conteúdo:
+
+        * 1ª índice [0]: Data e Hora do Salvamento;
+        * 2ª índice [1]: Tamanho do Tabuleiro;
+        * 3ª índice [2]: Objetivo da Partida;
+        * 4ª índice [3]: Matriz do Tabuleiro;
+        * 5ª índice [4]: Score.
+
         self -> list
         '''
         arquivo = open('partidasSalvas/partidasSalvas', 'r')
         conteudoDoArquivo = arquivo.readlines()
         arquivo.close()
         return conteudoDoArquivo
+
+    def apagarJogoSalvo(self, indiceDaPartidaSalva):
+        '''
+        Método para apagar do arquivo com as partidas salvas um jogo salvo.
+        self,int -> none
+        '''
+        # Abre o arquivo no modo leitura
+        arquivo = open('partidasSalvas/partidasSalvas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Remove os dados da partida salva
+        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+
+        # Abre o arquivo no modo sobrescrever
+        arquivo = open('partidasSalvas/partidasSalvas', 'w')
+
+        # Escreve o conteúdo de volta no arquivo
+        for i in range(len(conteudoDoArquivo)):
+            arquivo.write(conteudoDoArquivo[i])
+
+        # Fecha o arquivo
+        arquivo.close()
 
     def estatisticasDeJogadas(self):
         '''
