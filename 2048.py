@@ -319,6 +319,7 @@ def loopDoJogo():
                 break
 
     # Mostra a tela de fim de jogo
+    interface.pausa(1)
     interface.limpaTela()
     interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
 
@@ -326,7 +327,7 @@ def loopDoJogo():
     mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
 
     # Volta para o menu principal
-    interface.pausa(1)
+    interface.pausa(2)
     interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
     main()
 

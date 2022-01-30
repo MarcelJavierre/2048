@@ -337,10 +337,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('\x1b[0;0m')
 
         # Escreve na tela o tabuleiro
-        print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
+        # Centraliza o tabuleiro
+        margem = int((get_terminal_size().columns - len(topoDaBordaDoTabuleiro)) / 2)
+
+        # Escreve na tela o topo da borda do tabuleiro
+        print(' ' * margem, end = '')
+        print(topoDaBordaDoTabuleiro)
+
         # Passa por todas as linhas
         for i in range(len(tabuleiro)):
-            print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+            # Escreve o espaço entre a borda e os números
+            print(' ' * margem, end = '')
+            print(espacoEntreOsNumeros)
 
             # Variável para armazenar a linha do tabuleiro
             linhaComOValorDasPecas = ''
@@ -355,23 +363,35 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
                     linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
 
                 elif len(str(tabuleiro[i][j])) == 2:
-                    linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}  '
+                    linhaComOValorDasPecas += f'│  \x1b[0;31m{tabuleiro[i][j]}\x1b[0;0m  '
 
                 elif len(str(tabuleiro[i][j])) == 3:
-                    linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
+                    linhaComOValorDasPecas += f'│ \x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m  '
+
+                elif len(str(tabuleiro[i][j])) == 4:
+                    linhaComOValorDasPecas += f'│ \x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m '
 
                 else:
-                    linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
+                    linhaComOValorDasPecas += f'│\x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m'
 
             linhaComOValorDasPecas += '│'
 
-            print(linhaComOValorDasPecas.center(get_terminal_size().columns))
-            print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+            # Escreve na tela a linha com os números das casas
+            print(' ' * margem, end = '')
+            print(linhaComOValorDasPecas)
+
+            # Escreve o espaço entre a borda e os números
+            print(' ' * margem, end = '')
+            print(espacoEntreOsNumeros)
 
             # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
             if i != (len(tabuleiro[i]) - 1):
-                print(centroDaBordaDoTabuleiro.center(get_terminal_size().columns))
-        print(fundoDaBordaDoTabuleiro.center(get_terminal_size().columns))
+                print(' ' * margem, end = '')
+                print(centroDaBordaDoTabuleiro)
+
+        # Escreve na tela o fundo da borda do tabuleiro
+        print(' ' * margem, end = '')
+        print(fundoDaBordaDoTabuleiro)
 
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''
