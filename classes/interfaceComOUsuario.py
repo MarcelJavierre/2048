@@ -189,79 +189,88 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('│ P │ A │ R │ T │ I │ D │ A │ S │   │ S │ A │ L │ V │ A │ S │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('')
-        
-        # Passa por todas as partidas salvas
-        # De 5 em 5 por causa da quantidade de linhas que cada partida salva ocupa
-        for x in range(0, len(listaComOsDadosDasPartidasSalvas), 5):
-            # Escreve na tela o índice da partida salva
-            print(f'{int(x / 5 + 1)}'.center(get_terminal_size().columns))
+
+        # Verifica se possui alguma partida salva
+        # Caso possua, escreve na tela uma lista com todas as partidas salvas
+        if listaComOsDadosDasPartidasSalvas != []:
+            # Passa por todas as partidas salvas
+            # De 5 em 5 por causa da quantidade de linhas que cada partida salva ocupa
+            for x in range(0, len(listaComOsDadosDasPartidasSalvas), 5):
+                # Escreve na tela o índice da partida salva
+                print(f'{int(x / 5 + 1)}'.center(get_terminal_size().columns))
+                print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
+
+                # Escreve na tela a data e hora da partida salva
+                print(listaComOsDadosDasPartidasSalvas[x][: - 1].center(get_terminal_size().columns))
+
+                # Escreve na tela o objetivo da partida salva
+                print(f'OBJETIVO:    {listaComOsDadosDasPartidasSalvas[x + 2][: - 1]}'.center(get_terminal_size().columns))
+
+                # Escreve na tela o score da partida salva
+                print(f'SCORE:    {listaComOsDadosDasPartidasSalvas[x + 4][: - 1]}'.center(get_terminal_size().columns))
+
+                # Escreve na tela o tabuleiro da partida salva
+                # Converte a string do tabuleiro de volta para lista
+                tabuleiro = eval(listaComOsDadosDasPartidasSalvas[x + 3][: - 1])
+
+                # Strings com as bordas do tabuleiro
+                topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
+                centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
+                fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
+                espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
+
+                # Escreve na tela o tabuleiro
+                print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
+                # Passa por todas as linhas
+                for i in range(len(tabuleiro)):
+                    print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+
+                    # Variável para armazenar a linha do tabuleiro
+                    linhaComOValorDasPecas = ''
+
+                    # Passa por todas as colunas
+                    for j in range(len(tabuleiro[i])):
+                        # Determina o espaço do número dependendo de quantas casas o número possui
+                        if tabuleiro[i][j] == None:
+                            linhaComOValorDasPecas += f'│      '
+
+                        elif len(str(tabuleiro[i][j])) == 1:
+                            linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
+
+                        elif len(str(tabuleiro[i][j])) == 2:
+                            linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}  '
+
+                        elif len(str(tabuleiro[i][j])) == 3:
+                            linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
+
+                        else:
+                            linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
+
+                    linhaComOValorDasPecas += '│'
+
+                    print(linhaComOValorDasPecas.center(get_terminal_size().columns))
+                    print(espacoEntreOsNumeros.center(get_terminal_size().columns))
+
+                    # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
+                    if i != (len(tabuleiro[i]) - 1):
+                        print(centroDaBordaDoTabuleiro.center(get_terminal_size().columns))
+                print(fundoDaBordaDoTabuleiro.center(get_terminal_size().columns))
+                print('')
+
+            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+            print('│ 1 │   │ C │ A │ R │ R │ E │ G │ A │ R │   │ J │ O │ G │ O │   │'.center(get_terminal_size().columns))
+            print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+            print('│ 2 │   │ A │ P │ A │ G │ A │ R │   │ P │ A │ R │ T │ I │ D │ A │'.center(get_terminal_size().columns))
+            print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+            print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │'.center(get_terminal_size().columns))
+            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+            print('\x1b[0;0m')
+
+        # Se não possuir, mostra uma tela diferente
+        else:
+            print('Não há partidas salvas!'.center(get_terminal_size().columns))
             print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
-
-            # Escreve na tela a data e hora da partida salva
-            print(listaComOsDadosDasPartidasSalvas[x][: - 1].center(get_terminal_size().columns))
-
-            # Escreve na tela o objetivo da partida salva
-            print(f'OBJETIVO:    {listaComOsDadosDasPartidasSalvas[x + 2][: - 1]}'.center(get_terminal_size().columns))
-
-            # Escreve na tela o score da partida salva
-            print(f'SCORE:    {listaComOsDadosDasPartidasSalvas[x + 4][: - 1]}'.center(get_terminal_size().columns))
-
-            # Escreve na tela o tabuleiro da partida salva
-            # Converte a string do tabuleiro de volta para lista
-            tabuleiro = eval(listaComOsDadosDasPartidasSalvas[x + 3][: - 1])
-
-            # Strings com as bordas do tabuleiro
-            topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
-            centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
-            fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
-            espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
-
-            # Escreve na tela o tabuleiro
-            print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
-            # Passa por todas as linhas
-            for i in range(len(tabuleiro)):
-                print(espacoEntreOsNumeros.center(get_terminal_size().columns))
-
-                # Variável para armazenar a linha do tabuleiro
-                linhaComOValorDasPecas = ''
-
-                # Passa por todas as colunas
-                for j in range(len(tabuleiro[i])):
-                    # Determina o espaço do número dependendo de quantas casas o número possui
-                    if tabuleiro[i][j] == None:
-                        linhaComOValorDasPecas += f'│      '
-
-                    elif len(str(tabuleiro[i][j])) == 1:
-                        linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
-
-                    elif len(str(tabuleiro[i][j])) == 2:
-                        linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}  '
-
-                    elif len(str(tabuleiro[i][j])) == 3:
-                        linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
-
-                    else:
-                        linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
-
-                linhaComOValorDasPecas += '│'
-
-                print(linhaComOValorDasPecas.center(get_terminal_size().columns))
-                print(espacoEntreOsNumeros.center(get_terminal_size().columns))
-
-                # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
-                if i != (len(tabuleiro[i]) - 1):
-                    print(centroDaBordaDoTabuleiro.center(get_terminal_size().columns))
-            print(fundoDaBordaDoTabuleiro.center(get_terminal_size().columns))
-            print('')
-
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ 1 │   │ C │ A │ R │ R │ E │ G │ A │ R │   │ J │ O │ G │ O │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 2 │   │ A │ P │ A │ G │ A │ R │   │ P │ A │ R │ T │ I │ D │ A │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m')
+            print('\x1b[0;0m')
 
     def telaDeOpcoes(self, tamanhoDoTabuleiro, pecaDaVitoria):
         '''

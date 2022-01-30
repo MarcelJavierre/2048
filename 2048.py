@@ -81,6 +81,11 @@ def main():
             # Mostra a tela de carregamento
             interface.telaDeCarregamento(listaComOsDadosDasPartidasSalvas)
 
+            # Caso não exista nenhuma partida salva, volta para o menu principal
+            if listaComOsDadosDasPartidasSalvas == []:
+                interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
+                main()
+
             # Espera a entrada do usuário
             entrada = interface.entradaDoUsuario()
 
