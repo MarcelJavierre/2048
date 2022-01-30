@@ -10,9 +10,33 @@ class Log:
 
     def __init__(self):
         '''
-        Método construtor.
+        Método construtor. Cria as pastas para armazenar os arquivos salvos.
         self -> none
         '''
+
+        # Cria a pasta "estatisticas"
+        try:
+            mkdir('estatisticas')
+
+        # Caso a pasta já exista, não faz nada
+        except FileExistsError:
+            pass
+
+        # Cria a pasta "partidasSalvas"
+        try:
+            mkdir('partidasSalvas')
+
+        # Caso a pasta já exista, não faz nada
+        except FileExistsError:
+            pass
+
+        # Cria a pasta "relatorioDeErros"
+        try:
+            mkdir('relatorioDeErros')
+
+        # Caso a pasta já exista, não faz nada
+        except FileExistsError:
+            pass
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -104,14 +128,8 @@ class Log:
 
         self,int,int,list,int -> none
         '''
-        # Tenta abrir o arquivo
-        try:
-            arquivo = open('partidasSalvas/partidasSalvas', 'a')
-
-        # Caso a pasta "partidasSalvas" não exista, cria ela e abre o arquivo
-        except FileNotFoundError:
-            mkdir('partidasSalvas')
-            arquivo = open('partidasSalvas/partidasSalvas', 'a')
+        # Abre o arquivo
+        arquivo = open('partidasSalvas/partidasSalvas', 'a')
 
         # Escreve no arquivo o conteúdo da partida
         arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
@@ -136,20 +154,11 @@ class Log:
         try:
             arquivo = open('partidasSalvas/partidasSalvas', 'r')
 
+        # Caso o arquivo não exista, cria e abre o arquivo
         except FileNotFoundError:
-            # Caso a pasta "partidasSalvas" não exista, cria ela e o arquivo
-            try:
-                mkdir('partidasSalvas')
-
-            # Caso a pasta exista, não tenta criá-la
-            except FileExistsError:
-                pass
-
-            # Por fim, cria e abre o arquivo
-            finally:
-                arquivo = open('partidasSalvas/partidasSalvas', 'x')
-                arquivo.close()
-                arquivo = open('partidasSalvas/partidasSalvas', 'r')
+            arquivo = open('partidasSalvas/partidasSalvas', 'x')
+            arquivo.close()
+            arquivo = open('partidasSalvas/partidasSalvas', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
