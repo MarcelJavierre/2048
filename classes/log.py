@@ -1,6 +1,9 @@
 # Função do módulo time para obter a data atual
 from time import localtime
 
+# Função do módulo os para criar uma pasta
+from os import mkdir
+
 # Classe da seção log
 class Log:
     '''Esta classe trata do armazenamento em arquivos de todos os dados que podem vir a ser de interesse do usuário, bem como todos os erros que ocorrerem durante a execução do jogo.'''
@@ -101,8 +104,19 @@ class Log:
 
         self,int,int,list,int -> none
         '''
-        arquivo = open('partidasSalvas/partidasSalvas', 'a')
+        # Tenta abrir o arquivo
+        try:
+            arquivo = open('partidasSalvas/partidasSalvas', 'a')
+
+        # Caso a pasta "partidasSalvas" não exista, cria ela e abre o arquivo
+        except FileNotFoundError:
+            mkdir('partidasSalvas')
+            arquivo = open('partidasSalvas/partidasSalvas', 'a')
+
+        # Escreve no arquivo o conteúdo da partida
         arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{pecaDaVitoria}\n{tabuleiro}\n{score}\n')
+        
+        # Fecha o arquivo
         arquivo.close()
 
     def carregarJogo(self):
@@ -118,9 +132,32 @@ class Log:
 
         self -> list
         '''
-        arquivo = open('partidasSalvas/partidasSalvas', 'r')
+        # Tenta abrir o arquivo
+        try:
+            arquivo = open('partidasSalvas/partidasSalvas', 'r')
+
+        except FileNotFoundError:
+            # Caso a pasta "partidasSalvas" não exista, cria ela e o arquivo
+            try:
+                mkdir('partidasSalvas')
+
+            # Caso a pasta exista, não tenta criá-la
+            except FileExistsError:
+                pass
+
+            # Por fim, cria e abre o arquivo
+            finally:
+                arquivo = open('partidasSalvas/partidasSalvas', 'x')
+                arquivo.close()
+                arquivo = open('partidasSalvas/partidasSalvas', 'r')
+
+        # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
         arquivo.close()
+
+        # Retorna o conteúdo do arquivo
         return conteudoDoArquivo
 
     def apagarJogoSalvo(self, indiceDaPartidaSalva):
