@@ -1,13 +1,17 @@
-# Função do módulo random para sortear um elemento aleatório de uma dada lista
+# Importando a função "choice" do módulo "random" que sorteia um elemento aleatório de uma dada lista
 from random import choice
 
 class FerramentasDeMecanicaDoJogo:
-    '''Super classe com métodos genéricos associados com a mecânica do jogo.'''
+    '''
+    Super classe com métodos genéricos associados com a mecânica do
+    jogo.
+    '''
 
     def __init__(self):
         '''
         Método construtor.
-        self -> none
+
+        Self -> None
         '''
 
         # Conjunto com todos os atributos da classe
@@ -29,8 +33,10 @@ class FerramentasDeMecanicaDoJogo:
 
     def __str__(self):
         '''
-        Método que retorna uma string convenientemente formatada com todos os atributos e métodos da classe.
-        self -> str
+        Método que retorna uma string convenientemente formatada com
+        todos os atributos e métodos da classe.
+
+        Self -> str
         '''
 
         string = f'Classe FerramentasDeMecanicaDoJogo:\n{FerramentasDeMecanicaDoJogo.__doc__}\n\nAtributos:\n'
@@ -50,21 +56,25 @@ class FerramentasDeMecanicaDoJogo:
     def getAtributos(self):
         '''
         Método que retorna o conjunto com todos os atributos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__atributos
 
     def getMetodos(self):
         '''
         Método que retorna o conjunto com todos os métodos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__metodos
 
     def manual(self):
         '''
-        Método que retorna um dicionário com todos os atributos e métodos da classe com suas respectivas documentações.
-        self -> dict
+        Método que retorna um dicionário com todos os atributos e
+        métodos da classe com suas respectivas documentações.
+
+        Self -> dict[str]
         '''
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
@@ -80,8 +90,10 @@ class FerramentasDeMecanicaDoJogo:
 
     def geraMatriz(self, numeroDeLinhas, numeroDeColunas):
         '''
-        Método para gerar uma matriz. Retorna uma lista de listas (matriz).
-        self,int,int -> list
+        Método para gerar uma matriz. Retorna uma lista de listas
+        (matriz).
+
+        Self, int, int -> list[None]
         '''
         # Cria uma lista vazia
         matriz = []
@@ -97,7 +109,9 @@ class FerramentasDeMecanicaDoJogo:
 
     def geraElementoAleatorio(self, lista):
         '''
-        Método para sortear um elemento aleatório de uma dada lista. Retorna o elemento sorteado.
-        self,list -> int
+        Método para sortear um elemento aleatório de uma dada lista.
+        Retorna o elemento sorteado.
+
+        Self, list[Any] -> Any
         '''
         return choice(lista)

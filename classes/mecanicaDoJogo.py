@@ -1,4 +1,4 @@
-# Importando a super classe com os métodos genéricos associados com a mecânica do jogo
+# Importando a super classe "FerramentasDeMecanicaDoJogo" com os métodos genéricos associados com a mecânica do jogo
 if __name__ == '__main__':
     from ferramentasDeMecanicaDoJogo import *
 
@@ -7,13 +7,18 @@ else:
 
 # Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
-    '''Esta classe contém todos os métodos responsável por alterar a tela e o estado do jogo de acordo com os comandos do jogador.'''
+    '''
+    Esta classe contém todos os métodos responsável por alterar a tela e
+    o estado do jogo de acordo com os comandos do jogador.
+    '''
 
-    def __init__(self, tamanhoDoTabuleiro = 4, pecaDaVitoria = 2048):
+    def __init__(self, tamanhoDoTabuleiro = 4, objetivo = 2048):
         '''
-        Método construtor que inicializa o tabuleiro.
-        Se nenhum parâmetro for passado, inicializa com o tamanho padrão 4X4 e com objetivo de atingir 2048.
-        self,int,int -> none
+        Método construtor que inicializa o tabuleiro. Se nenhum
+        parâmetro for passado, inicializa com o tamanho padrão 4X4 e com
+        objetivo de atingir 2048.
+
+        Self, int, int -> None
         '''
         # Atributo que armazena a matriz do tabuleiro
         self.tabuleiro = self.geraMatriz(tamanhoDoTabuleiro, tamanhoDoTabuleiro)
@@ -22,7 +27,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self.score = 0
 
         # Atributo com o valor da peça do objetivo do jogo
-        self.pecaDaVitoria = pecaDaVitoria
+        self.objetivo = objetivo
 
         # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
         # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
@@ -38,7 +43,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.__metodos',
             'self.tabuleiro',
             'self.score',
-            'self.pecaDaVitoria',
+            'self.objetivo',
             'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada'
         }
 
@@ -61,8 +66,10 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def __str__(self):
         '''
-        Método que retorna uma string convenientemente formatada com todos os atributos e métodos da classe.
-        self -> str
+        Método que retorna uma string convenientemente formatada com
+        todos os atributos e métodos da classe.
+
+        Self -> str
         '''
 
         string = f'Classe MecanicaDoJogo:\n{MecanicaDoJogo.__doc__}\n\nAtributos:\n'
@@ -82,28 +89,32 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     def getAtributos(self):
         '''
         Método que retorna o conjunto com todos os atributos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__atributos
 
     def getMetodos(self):
         '''
         Método que retorna o conjunto com todos os métodos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__metodos
 
     def manual(self):
         '''
-        Método que retorna um dicionário com todos os atributos e métodos da classe com suas respectivas documentações.
-        self -> dict
+        Método que retorna um dicionário com todos os atributos e
+        métodos da classe com suas respectivas documentações.
+
+        Self -> dict[str]
         '''
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
             'self.score': 'Atributo que armazena o score.',
-            'self.pecaDaVitoria': 'Atributo com o valor da peça do objetivo do jogo',
+            'self.objetivo': 'Atributo com o valor da peça do objetivo do jogo',
             'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada': 'Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
@@ -123,7 +134,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     def inserePeca(self, listaComAsCasasVazias):
         '''
         Método que insere uma nova peça no tabuleiro em uma casa livre.
-        self,list -> none
+
+        Self, list[str] -> None
         '''
         # Sorteia a nova peça
         peca = self.geraElementoAleatorio(self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada)
@@ -136,10 +148,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def movePecas(self, entradaDoUsuario):
         '''
-        Método que move todas as peças do tabuleiro de acordo com a entrada do usuário.
-        Retorna "True" se alguma peça foi deslocada ou "False" se não.
-        O parâmetro "entradaDoUsuario" precisa ser "cima", "baixo", "esquerda" ou "direita".
-        self,str -> bool
+        Método que move todas as peças do tabuleiro de acordo com a
+        entrada do usuário. Retorna "True" se alguma peça foi deslocada
+        ou "False" se não. O parâmetro "entradaDoUsuario" precisa ser
+        "cima", "baixo", "esquerda" ou "direita".
+
+        Self, str -> bool
         '''
         # Variável para indicar se alguma peça foi movida
         pecaFoiMovida = False
@@ -241,16 +255,18 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def venceuOJogo(self):
         '''
-        Método que verifica todas as casas do tabuleiro.
-        Retorna "True" se o tabuleiro possui uma peça com o valor definido como o objetivo (padrão 2048) ou "False" se não.
-        self -> bool
+        Método que verifica todas as casas do tabuleiro. Retorna "True"
+        se o tabuleiro possui uma peça com o valor definido como o
+        objetivo (padrão 2048) ou "False" se não.
+
+        Self -> bool
         '''
         # Passa por todas as linhas do tabuleiro
         for i in range(len(self.tabuleiro)):
             # Passa por todas as colunas do tabuleiro
             for j in range(len(self.tabuleiro[i])):
                 # Verifica se possui alguma peça com o valor do objetivo
-                if self.tabuleiro[i][j] == self.pecaDaVitoria:
+                if self.tabuleiro[i][j] == self.objetivo:
                     # Caso encontre, retorna "True"
                     return True
 
@@ -259,9 +275,10 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def possuiMovimentosVailidos(self):
         '''
-        Método que verifica todas as casas do tabuleiro.
-        Retorna "True" se possui movimentos válidos ou "False" se não.
-        self -> bool
+        Método que verifica todas as casas do tabuleiro. Retorna "True"
+        se possui movimentos válidos ou "False" se não.
+
+        Self -> bool
         '''
         # Verifica as casas centrais
         # Passa pelas linhas, da segunda até a penúltima
@@ -332,10 +349,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def getCasasVazias(self):
         '''
-        Método que verifica todas as casas do tabuleiro.
-        Retorna uma lista de strings com todas as posições de casas vazias.
-        A primeira posição da string é a posição da linha e a segunda é a posição da coluna.
-        self -> list
+        Método que verifica todas as casas do tabuleiro. Retorna uma
+        lista de strings com todas as posições de casas vazias. A
+        primeira posição da string é o índice da linha e a segunda é o
+        índice da coluna.
+
+        Self -> list[str]
         '''
         # Lista para armazenar as posições vazias
         lista = []
@@ -353,21 +372,24 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     def getTabuleiro(self):
         '''
         Método que retorna a matriz do tabuleiro.
-        self -> list
+
+        Self -> list[int]
         '''
         return self.tabuleiro
 
     def getScore(self):
         '''
         Método que retorna o score.
-        self -> int
+
+        Self -> int
         '''
         return self.score
 
     def carregarJogo(self, tabuleiro, score):
         '''
         Método que atualiza os atributos com os dados do jogo salvo.
-        self,list,int -> none
+
+        Self, list[int], int -> None
         '''
         self.tabuleiro = tabuleiro
         self.score = score

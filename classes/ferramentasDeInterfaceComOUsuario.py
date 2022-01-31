@@ -1,19 +1,23 @@
-# Variável do módulo sys para verificar qual sistema operacional está executando o código
+# Importando a variável "platform" do módulo "sys" que indica qual sistema operacional está executando o código
 from sys import platform
 
-# Função do módulo os para utilizar comandos do terminal
+# Importando a função "system" do módulo "os" que permite utilizar comandos do terminal
 from os import system
 
-# Função do módulo time para pausar a execução do código por um determinado tempo
+# Importando a função "sleep" do módulo "time" que pausa a execução do código por um dado tempo
 from time import sleep
 
 class FerramentasDeInterfaceComOUsuario:
-    '''Super classe com os métodos genéricos associados com a comunicação com o usuário.'''
+    '''
+    Super classe com os métodos genéricos associados com a comunicação
+    com o usuário.
+    '''
 
     def __init__(self):
         '''
         Método construtor.
-        self -> none
+
+        Self -> None
         '''
 
         # Conjunto com todos os atributos da classe
@@ -36,8 +40,10 @@ class FerramentasDeInterfaceComOUsuario:
 
     def __str__(self):
         '''
-        Método que retorna uma string convenientemente formatada com todos os atributos e métodos da classe.
-        self -> str
+        Método que retorna uma string convenientemente formatada com
+        todos os atributos e métodos da classe.
+
+        Self -> str
         '''
 
         string = f'Classe FerramentasDeInterfaceComOUsuario:\n{FerramentasDeInterfaceComOUsuario.__doc__}\n\nAtributos:\n'
@@ -57,21 +63,25 @@ class FerramentasDeInterfaceComOUsuario:
     def getAtributos(self):
         '''
         Método que retorna o conjunto com todos os atributos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__atributos
 
     def getMetodos(self):
         '''
         Método que retorna o conjunto com todos os métodos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__metodos
 
     def manual(self):
         '''
-        Método que retorna um dicionário com todos os atributos e métodos da classe com suas respectivas documentações.
-        self -> dict
+        Método que retorna um dicionário com todos os atributos e
+        métodos da classe com suas respectivas documentações.
+
+        Self -> dict[str]
         '''
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
@@ -88,17 +98,19 @@ class FerramentasDeInterfaceComOUsuario:
 
     def entradaDoUsuario(self, mensagem = ''):
         '''
-        Método para receber o comando do usuário. Retorna uma string com a entrada do usuário.
-        self,str -> str
+        Método para receber o comando do usuário. Retorna uma string com
+        a entrada do usuário.
+
+        Self, str -> str
         '''
         return input(mensagem)
 
     def limpaTela(self):
         '''
         Método para limpar a tela do terminal.
-        self -> none
-        '''
 
+        Self -> None
+        '''
         # Verifica qual é o sistema operacional executando o código
         # Se for windows, utiliza o comando cls para limpar a tela
         if platform == 'win32':
@@ -114,7 +126,9 @@ class FerramentasDeInterfaceComOUsuario:
 
     def pausa(self, tempo):
         '''
-        Método para pausar a execução do código por um dado tempo em segundos.
-        self,float -> none
+        Método para pausar a execução do código por um dado tempo em
+        segundos.
+
+        Self, float -> None
         '''
         sleep(tempo)

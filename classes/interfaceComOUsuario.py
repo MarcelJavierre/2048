@@ -1,22 +1,25 @@
-# Importando a super classe com os métodos genéricos associados com a comunicação com o usuário
+# Importando a super classe "FerramentasDeInterfaceComOUsuario" com os métodos genéricos associados com a comunicação com o usuário
 if __name__ == '__main__':
     from ferramentasDeInterfaceComOUsuario import *
 
 else:
     from classes.ferramentasDeInterfaceComOUsuario import *
 
-# Função do módulo os para verificar as dimensões do terminal
-from code import interact
+# Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
 from os import get_terminal_size
 
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
-    '''Classe responsável por toda a interação com o usuário. Tudo que é pedido ao usuário ou mostrado para ele é função desta classe.'''
+    '''
+    Classe responsável por toda a interação com o usuário. Tudo que é
+    pedido ao usuário ou mostrado para ele é função desta classe.
+    '''
 
     def __init__(self):
         '''
         Método construtor.
-        self -> none
+
+        Self -> None
         '''
 
         # Conjunto com todos os atributos da classe
@@ -48,8 +51,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def __str__(self):
         '''
-        Método que retorna uma string convenientemente formatada com todos os atributos e métodos da classe.
-        self -> str
+        Método que retorna uma string convenientemente formatada com
+        todos os atributos e métodos da classe.
+
+        Self -> str
         '''
 
         string = f'Classe InterfaceComOUsuario:\n{InterfaceComOUsuario.__doc__}\n\nAtributos:\n'
@@ -69,21 +74,25 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def getAtributos(self):
         '''
         Método que retorna o conjunto com todos os atributos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__atributos
 
     def getMetodos(self):
         '''
         Método que retorna o conjunto com todos os métodos da classe.
-        self -> set
+
+        Self -> set[str]
         '''
         return self.__metodos
 
     def manual(self):
         '''
-        Método que retorna um dicionário com todos os atributos e métodos da classe com suas respectivas documentações.
-        self -> dict
+        Método que retorna um dicionário com todos os atributos e
+        métodos da classe com suas respectivas documentações.
+
+        Self -> dict[str]
         '''
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
@@ -110,7 +119,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def menuPrincipal(self):
         '''
         Método para exibir ao usuário o menu principal do jogo.
-        self -> none
+
+        Self -> None
         '''
         print('\x1b[0;33m')
         print("┌──────────────────┐┌──────────────────┐┌──────────────────┐┌──────────────────┐".center(get_terminal_size().columns))
@@ -152,7 +162,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def telaDePause(self):
         '''
         Método para exibir ao usuário a tela de pause do jogo.
-        self -> none
+
+        Self -> None
         '''
         print('\n' * (int((get_terminal_size().lines - 10) / 2)), end = '') # Centraliza verticalmente a tela de pause
         print('\x1b[0;33m', end = '')
@@ -170,7 +181,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def telaDeSalvamento(self):
         '''
         Método para exibir ao usuário a tela de salvamento do jogo.
-        self -> none
+
+        Self -> None
         '''
         print('\n' * (int((get_terminal_size().lines - 3) / 2)), end = '') # Centraliza verticalmente a tela de salvamento
         print('\x1b[0;96m', end = '')
@@ -181,8 +193,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def telaDeCarregamento(self, listaComOsDadosDasPartidasSalvas):
         '''
-        Método para exibir ao usuário a tela de carregamento das partidas salvas.
-        self,list -> none
+        Método para exibir ao usuário a tela de carregamento das
+        partidas salvas.
+
+        Self, list[str] -> None
         '''
         print('\x1b[0;96m')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
@@ -272,12 +286,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
             print('\x1b[0;0m')
 
-    def telaDeOpcoes(self, tamanhoDoTabuleiro, pecaDaVitoria):
+    def telaDeOpcoes(self, tamanhoDoTabuleiro, objetivo):
         '''
         Método para exibir ao usuário a tela de opções do jogo.
-        self,int,int -> none
+
+        Self, int, int -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 22) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
+        print('\n' * (int((get_terminal_size().lines - 22) / 2)), end = '') # Centraliza verticalmente a tela de opções
         print('\x1b[0;34m', end = '')
         print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
@@ -295,7 +310,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ O │ B │ J │ E │ T │ I │ V │ O │   │ D │ O │   │ J │ O │ G │ O │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print(f'{pecaDaVitoria}'.center(get_terminal_size().columns))
+        print(f'{objetivo}'.center(get_terminal_size().columns))
         print('─────────────────────────'.center(get_terminal_size().columns))
         print('')
 
@@ -310,7 +325,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def telaDoManual(self):
         '''
         Método para exibir ao usuário a tela do manual do jogo.
-        self -> none
+
+        Self -> None
         '''
         print('\x1b[0;31m')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
@@ -323,14 +339,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def telaDasEstatisticas(self):
         '''
         Método para exibir ao usuário a tela de estatísticas do jogo.
-        self -> none
+
+        Self -> None
         '''
         pass
 
     def telaDoTabuleiro(self, tabuleiro, score):
         '''
         Método para exibir a tela do tabuleiro do jogo.
-        self,list,int -> none
+
+        Self, list[int], int -> None
         '''
 
         # Strings com as bordas do tabuleiro
@@ -405,7 +423,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''
         Método para exibir a tela de fim de jogo.
-        self,bool,int -> none
+
+        Self, bool, int -> None
         '''
 
         # Se foi vencedor, exibe a tela de vencedor

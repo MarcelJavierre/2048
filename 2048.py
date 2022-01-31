@@ -1,19 +1,26 @@
 """
-- Nome do jogo:
-    2048
+2048
+====
 
-- Sobre o jogo:
+Sobre o jogo:
+-------------
 
-    2048 é jogado em um tabuleiro de 4X4, com peças numéricas que deslizam suavemente quando o jogador as move em um dos quatro sentidos disponíveis: para cima, para baixo, à
-    esquerda e à direita.
+2048 é jogado em um tabuleiro de 4X4, com peças numéricas que deslizam
+suavemente quando o jogador as move em um dos quatro sentidos
+disponíveis: para cima, para baixo, à esquerda e à direita.
 
-    Cada vez, um novo número aparece aleatoriamente em um local vazio na placa (com um valor de 2 ou 4).
+Cada vez, um novo número aparece aleatoriamente em um local vazio na
+placa (com um valor de 2 ou 4).
 
-    Os blocos deslizam o mais longe possível na direção escolhida até que eles sejam interrompidos por qualquer outro bloco ou a borda do tabuleiro. Se duas peças do mesmo número
-    colidem durante a movimentação, elas irão se fundir em uma peça com o valor total das duas peças que colidiram.
+Os blocos deslizam o mais longe possível na direção escolhida até que
+eles sejam interrompidos por qualquer outro bloco ou a borda do
+tabuleiro. Se duas peças do mesmo número colidem durante a movimentação,
+elas irão se fundir em uma peça com o valor total das duas peças que
+colidiram.
 
-    O jogo é vencido quando uma peça com o valor de 2048 aparece no tabuleiro. Quando o jogador não tem movimentos legais (não há espaços vazios e nem peças adjacentes com o mesmo
-    valor), o jogo termina.
+O jogo é vencido quando uma peça com o valor de 2048 aparece no
+tabuleiro. Quando o jogador não tem movimentos legais (não há espaços
+vazios e nem peças adjacentes com o mesmo valor), o jogo termina.
 """
 
 # Propriedades do documento
@@ -26,29 +33,30 @@ __maintainer__ = __author__
 __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
 
-# Importando as classes
+# Importando as classes de cada seção
 from classes.interfaceComOUsuario import *
 from classes.mecanicaDoJogo import *
 from classes.log import *
 
-# Definição das configurações do jogo
+# Definindo as configurações padrão do jogo
 tamanhoDoTabuleiro = 4
-pecaDaVitoria = 2048
+objetivo = 2048
 
 # Inicializando as instâncias de cada seção
 interface = InterfaceComOUsuario()
-mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 log = Log()
 
 # Função principal
 def main():
     '''
     Função principal.
-    none -> none
+
+    () -> None
     '''
     # Definindo as variáveis de configuração como globais
     global tamanhoDoTabuleiro
-    global pecaDaVitoria
+    global objetivo
 
     # Definindo as instâncias de cada seção como globais
     global interface
@@ -99,10 +107,10 @@ def main():
 
                 # Atualiza as variáveis de configuração com os dados da partida salva
                 tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indice + 1])
-                pecaDaVitoria = int(listaComOsDadosDasPartidasSalvas[indice + 2])
+                objetivo = int(listaComOsDadosDasPartidasSalvas[indice + 2])
 
                 # Reinicia a instância da mecânica do jogo
-                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
                 # Atualiza o tabuleiro e o score com os dados da partida salva
                 mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indice + 3]), int(listaComOsDadosDasPartidasSalvas[indice + 4]))
@@ -132,7 +140,7 @@ def main():
             interface.limpaTela()
 
             # Mostra a tela de opções
-            interface.telaDeOpcoes(tamanhoDoTabuleiro, pecaDaVitoria)
+            interface.telaDeOpcoes(tamanhoDoTabuleiro, objetivo)
             
             # Espera a entrada do usuário
             entrada = interface.entradaDoUsuario()
@@ -150,10 +158,10 @@ def main():
                 entrada = interface.entradaDoUsuario('Insira o valor do objetivo:\n')
 
                 # Muda a variável com o novo objetivo
-                pecaDaVitoria = int(entrada)
+                objetivo = int(entrada)
 
                 # Reinicia a instância da mecânica do jogo com os novos parâmetros
-                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
             # Voltar ao menu principal
             elif entrada == '2':
@@ -202,12 +210,13 @@ def main():
 # Função do loop do jogo
 def loopDoJogo():
     '''
-    Função com o loop do jogo.
-    none -> none
+    Função do loop do jogo.
+
+    () -> None
     '''
     # Definindo as variáveis de configuração como globais
     global tamanhoDoTabuleiro
-    global pecaDaVitoria
+    global objetivo
 
     # Definindo as instâncias de cada seção como globais
     global interface
@@ -290,14 +299,14 @@ def loopDoJogo():
                         interface.telaDeSalvamento()
 
                         # Salva o jogo
-                        log.savarJogo(tamanhoDoTabuleiro, pecaDaVitoria, mecanica.getTabuleiro(), mecanica.getScore())
+                        log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro(), mecanica.getScore())
 
                         interface.pausa(1)
 
                     # Voltar ao menu principal
                     elif entrada == '3':
                         # Reinicia a instância da mecânica do jogo
-                        mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+                        mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
                         # Volta ao menu principal
                         main()
@@ -329,7 +338,7 @@ def loopDoJogo():
     interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
 
     # Reinicia a instância da mecânica do jogo
-    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, pecaDaVitoria)
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
     # Volta para o menu principal
     interface.pausa(2)
