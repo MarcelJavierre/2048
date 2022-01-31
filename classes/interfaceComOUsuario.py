@@ -122,7 +122,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\x1b[0;33m')
+        print('\n' * (int((get_terminal_size().lines - 28) / 2)), end = '') # Centraliza verticalmente a tela do menu principal
+        print('\x1b[0;33m', end = '')
         print("┌──────────────────┐┌──────────────────┐┌──────────────────┐┌──────────────────┐".center(get_terminal_size().columns))
         print("│ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ │".center(get_terminal_size().columns))
         print("│ │    _____     │ ││ │     ____     │ ││ │   _    _     │ ││ │     ____     │ │".center(get_terminal_size().columns))
