@@ -91,9 +91,9 @@ class FerramentasDeMecanicaDoJogo:
     def geraMatriz(self, numeroDeLinhas, numeroDeColunas):
         '''
         Método para gerar uma matriz. Retorna uma lista de listas
-        (matriz).
+        (matriz) com todas as posições contendo o valor 0.
 
-        Self, int, int -> list[None]
+        Self, int, int -> list[int]
         '''
         # Cria uma lista vazia
         matriz = []
@@ -101,9 +101,9 @@ class FerramentasDeMecanicaDoJogo:
         # Passa por todas as linhas adicionando uma lista vazia
         for i in range(numeroDeLinhas):
             matriz.append([])
-            # Passa por todas as colunas adicionando "None" em cada posição
+            # Passa por todas as colunas adicionando "0" em cada posição
             for j in range(numeroDeColunas):
-                matriz[i].append(None)
+                matriz[i].append(0)
 
         return matriz
 

@@ -75,6 +75,44 @@ class Log:
         except FileExistsError:
             pass
 
+        # Cria o arquivo "estatisticasDePecas" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
+        try:
+            # Cria o arquivo
+            arquivo = open('estatisticas/estatisticasDePecas', 'x')
+            arquivo.close()
+
+            # Abre novamente o arquivo e escreve nele a estrutura para armazenar os dados
+            arquivo = open('estatisticas/estatisticasDePecas', 'w')
+            arquivo.write('2:\n')
+            arquivo.write('0\n')
+            arquivo.write('4:\n')
+            arquivo.write('0\n')
+            arquivo.write('8:\n')
+            arquivo.write('0\n')
+            arquivo.write('16:\n')
+            arquivo.write('0\n')
+            arquivo.write('32:\n')
+            arquivo.write('0\n')
+            arquivo.write('64:\n')
+            arquivo.write('0\n')
+            arquivo.write('128:\n')
+            arquivo.write('0\n')
+            arquivo.write('256:\n')
+            arquivo.write('0\n')
+            arquivo.write('512:\n')
+            arquivo.write('0\n')
+            arquivo.write('1024:\n')
+            arquivo.write('0\n')
+            arquivo.write('2048:\n')
+            arquivo.write('0\n')
+            arquivo.write('Outros:\n')
+            arquivo.write('0\n')
+            arquivo.close()
+
+        # Caso o arquivo já exista, não faz nada
+        except FileExistsError:
+            pass
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
@@ -284,14 +322,59 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-    def estatisticasDePecas(self):
+    def estatisticasDePecas(self, maiorPecaNoTabuleiro):
         '''
-        Método que armazena em um arquivo a quantidade total de peças
-        formadas durante as partidas.
+        Método que armazena em um arquivo a quantidade de vezes que
+        aquela peça foi a maior no tabuleiro ao finalizar ou sair de uma
+        partida. A estrutura do arquivo é a seguinte:
+
+        * 1ª Linha: "2";
+        * 2ª Linha: Quantidade de partidas encerradas com a peça no
+                    valor 2 sendo a maior do tabuleiro;
+        * 3ª Linha: "4";
+        * 4ª Linha: Quantidade de partidas encerradas com a peça no
+                    valor 4 sendo a maior do tabuleiro;
+        * 5ª Linha: "8";
+        * 6ª Linha: Quantidade de partidas encerradas com a peça no
+                    valor 8 sendo a maior do tabuleiro;
+        * 7ª Linha: "16";
+        * 8ª Linha: Quantidade de partidas encerradas com a peça no
+                    valor 16 sendo a maior do tabuleiro;
+
+        .
+        .
+        .
         
-        Self -> None
+        Self, int -> None
         '''
-        pass
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Abre o arquivo no modo sobrescrever
+        arquivo = open('estatisticas/estatisticasDePecas', 'w')
+
+        # Caso o valor da maior peça seja maior que 2048, muda seu valor para "Outros"
+        if maiorPecaNoTabuleiro > 2048:
+            maiorPecaNoTabuleiro = 'Outros'
+
+        # Procura o índice da quantidade da peça no conteúdo do arquivo
+        indice = conteudoDoArquivo.index(f'{maiorPecaNoTabuleiro}:\n') + 1
+
+        # Insere mais 1 na quantidade
+        conteudoDoArquivo[indice] = f'{int(conteudoDoArquivo[indice][: - 1]) + 1}\n'
+
+        # Escreve o conteúdo de volta no arquivo
+        for i in range(len(conteudoDoArquivo)):
+            arquivo.write(conteudoDoArquivo[i])
+
+        # Fecha o arquivo
+        arquivo.close()
     
     def relatorioDeErro(self):
         '''

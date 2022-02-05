@@ -246,7 +246,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
                     # Passa por todas as colunas
                     for j in range(len(tabuleiro[i])):
                         # Determina o espaço do número dependendo de quantas casas o número possui
-                        if tabuleiro[i][j] == None:
+                        if tabuleiro[i][j] == 0:
                             linhaComOValorDasPecas += f'│      '
 
                         elif len(str(tabuleiro[i][j])) == 1:
@@ -384,7 +384,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             # Passa por todas as colunas
             for j in range(len(tabuleiro[i])):
                 # Determina o espaço do número dependendo de quantas casas o número possui
-                if tabuleiro[i][j] == None:
+                if tabuleiro[i][j] == 0:
                     linhaComOValorDasPecas += f'│      '
 
                 elif len(str(tabuleiro[i][j])) == 1:

@@ -61,6 +61,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getCasasVazias',
             'getTabuleiro',
             'getScore',
+            'getValorDaMaiorPeca',
             'carregarJogo'
         }
 
@@ -128,6 +129,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getCasasVazias': self.getCasasVazias.__doc__,
             'getTabuleiro': self.getTabuleiro.__doc__,
             'getScore': self.getScore.__doc__,
+            'getValorDaMaiorPeca': self.getValorDaMaiorPeca.__doc__,
             'carregarJogo': self.carregarJogo.__doc__
         }
 
@@ -164,19 +166,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             for i in range(1, len(self.tabuleiro)):
                 # Passa por todas as colunas
                 for j in range(len(self.tabuleiro[i])):
-                    # Caso a peça não seja "None"
-                    if self.tabuleiro[i][j] != None:
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
-                        # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
-                        if self.tabuleiro[i - 1][j] == None:
+                        # Caso a casa esteja vazia (com uma peça 0), move a peça para a casa de cima
+                        if self.tabuleiro[i - 1][j] == 0:
                             self.tabuleiro[i - 1][j] = self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
                         # Caso a casa esteja com uma peça igual, junta as duas peças
                         elif self.tabuleiro[i - 1][j] == self.tabuleiro[i][j]:
                             self.tabuleiro[i - 1][j] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i - 1][j]
                             pecaFoiMovida = True
@@ -187,19 +189,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             for i in range(len(self.tabuleiro) - 2, - 1, - 1):
                 # Passa por todas as colunas
                 for j in range(len(self.tabuleiro[i])):
-                    # Caso a peça não seja "None"
-                    if self.tabuleiro[i][j] != None:
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
-                        # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
-                        if self.tabuleiro[i + 1][j] == None:
+                        # Caso a casa esteja vazia (com uma peça 0), move a peça para a casa de cima
+                        if self.tabuleiro[i + 1][j] == 0:
                             self.tabuleiro[i + 1][j] = self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
                         # Caso a casa esteja com uma peça igual, junta as duas peças
                         elif self.tabuleiro[i + 1][j] == self.tabuleiro[i][j]:
                             self.tabuleiro[i + 1][j] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i + 1][j]
                             pecaFoiMovida = True
@@ -210,19 +212,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             for i in range(len(self.tabuleiro)):
                 # Passa por todas as colunas, da esquerda para a direita
                 for j in range(1, len(self.tabuleiro[i])):
-                    # Caso a peça não seja "None"
-                    if self.tabuleiro[i][j] != None:
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
-                        # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
-                        if self.tabuleiro[i][j - 1] == None:
+                        # Caso a casa esteja vazia (com uma peça 0), move a peça para a casa de cima
+                        if self.tabuleiro[i][j - 1] == 0:
                             self.tabuleiro[i][j - 1] = self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
                         # Caso a casa esteja com uma peça igual, junta as duas peças
                         elif self.tabuleiro[i][j - 1] == self.tabuleiro[i][j]:
                             self.tabuleiro[i][j - 1] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j - 1]
                             pecaFoiMovida = True
@@ -233,19 +235,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             for i in range(len(self.tabuleiro)):
                 # Passa por todas as colunas, da direita para a esquerda
                 for j in range(len(self.tabuleiro[i]) - 2, - 1, - 1):
-                    # Caso a peça não seja "None"
-                    if self.tabuleiro[i][j] != None:
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
-                        # Caso a casa esteja vazia (com uma peça "None"), move a peça para a casa de cima
-                        if self.tabuleiro[i][j + 1] == None:
+                        # Caso a casa esteja vazia (com uma peça 0), move a peça para a casa de cima
+                        if self.tabuleiro[i][j + 1] == 0:
                             self.tabuleiro[i][j + 1] = self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
                         # Caso a casa esteja com uma peça igual, junta as duas peças
                         elif self.tabuleiro[i][j + 1] == self.tabuleiro[i][j]:
                             self.tabuleiro[i][j + 1] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = None
+                            self.tabuleiro[i][j] = 0
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j + 1]
                             pecaFoiMovida = True
@@ -288,7 +290,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                 # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[i][j] == None or
+                    self.tabuleiro[i][j] == 0 or
                     self.tabuleiro[i][j] == self.tabuleiro[i + 1][j] or
                     self.tabuleiro[i][j] == self.tabuleiro[i - 1][j] or
                     self.tabuleiro[i][j] == self.tabuleiro[i][j + 1] or
@@ -302,7 +304,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[0][j] == None or
+                    self.tabuleiro[0][j] == 0 or
                     self.tabuleiro[0][j] == self.tabuleiro[0][j + 1] or
                     self.tabuleiro[0][j] == self.tabuleiro[0][j - 1]
                 ):
@@ -314,7 +316,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == None or
+                    self.tabuleiro[len(self.tabuleiro) - 1][j] == 0 or
                     self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j + 1] or
                     self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j - 1]
                 ):
@@ -326,7 +328,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[i][0] == None or
+                    self.tabuleiro[i][0] == 0 or
                     self.tabuleiro[i][0] == self.tabuleiro[i + 1][0] or
                     self.tabuleiro[i][0] == self.tabuleiro[i - 1][0]
                 ):
@@ -338,7 +340,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == None or
+                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == 0 or
                     self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i + 1][len(self.tabuleiro[0]) - 1] or
                     self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i - 1][len(self.tabuleiro[0]) - 1]
                 ):
@@ -363,8 +365,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         for i in range(len(self.tabuleiro)):
             # Passa por todas as colunas
             for j in range(len(self.tabuleiro[i])):
-                # Caso a casa possuir o elemento "None", adiciona na lista a posição da casa
-                if self.tabuleiro[i][j] == None:
+                # Caso a casa possuir o elemento 0, adiciona na lista a posição da casa
+                if self.tabuleiro[i][j] == 0:
                     lista.append(f'{i}{j}')
 
         return lista
@@ -384,6 +386,14 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Self -> int
         '''
         return self.score
+
+    def getValorDaMaiorPeca(self):
+        '''
+        Método que retorna o valor da maior peça no tabuleiro.
+
+        Self -> int
+        '''
+        return max(map(max, self.tabuleiro))
 
     def carregarJogo(self, tabuleiro, score):
         '''

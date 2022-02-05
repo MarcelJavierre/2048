@@ -317,6 +317,9 @@ def loopDoJogo():
 
                     # Voltar ao menu principal
                     elif entrada == '3':
+                        # Atualiza a estatística de peças com a maior peça no tabuleiro
+                        log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+                        
                         # Reinicia a instância da mecânica do jogo
                         mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
@@ -324,9 +327,15 @@ def loopDoJogo():
                         main()
 
         # Verifica se o alguma peça atingiu o objetivo
+        # Se sim, coloca a variável "venceuOJogo" como "True" e encerra o loop do jogo
         if mecanica.venceuOJogo() == True:
-            # Se sim, coloca a variável "venceuOJogo" como "True" e encerra o loop do jogo
+            # Atualiza a estatística de peças com o objetivo atingido
+            log.estatisticasDePecas(objetivo)
+
+            # Atualiza a variável
             venceuOJogo = True
+
+            # Encerra o loop do jogo
             break
 
         # Verifica quais são as casas vazias do tabuleiro
@@ -339,9 +348,15 @@ def loopDoJogo():
         # Caso não possua, verifica se ainda têm jogadas válidas
         else:
             # Verifica se ainda tem jogadas válidas
+            # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
             if mecanica.possuiMovimentosVailidos() == False:
-                # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
+                # Atualiza a estatística de peças com a maior peça no tabuleiro
+                log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+
+                # Atualiza a variável
                 venceuOJogo = False
+
+                # Encerra o loop do jogo
                 break
 
     # Mostra a tela de fim de jogo
