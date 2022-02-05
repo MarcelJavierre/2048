@@ -14,8 +14,8 @@ class Log:
 
     def __init__(self):
         '''
-        Método construtor. Cria as pastas para armazenar os arquivos
-        salvos.
+        Método construtor. Cria as pastas e os arquivos para armazenar
+        os dados salvos.
 
         Self -> None
         '''
@@ -41,6 +41,15 @@ class Log:
             mkdir('relatorioDeErros')
 
         # Caso a pasta já exista, não faz nada
+        except FileExistsError:
+            pass
+
+        # Cria o arquivo "partidasSalvas" dentro da pasta "partidasSalvas"
+        try:
+            arquivo = open('partidasSalvas/partidasSalvas', 'x')
+            arquivo.close()
+
+        # Caso o arquivo já exista, não faz nada
         except FileExistsError:
             pass
 
@@ -163,15 +172,8 @@ class Log:
 
         Self -> list[str]
         '''
-        # Tenta abrir o arquivo
-        try:
-            arquivo = open('partidasSalvas/partidasSalvas', 'r')
-
-        # Caso o arquivo não exista, cria e abre o arquivo
-        except FileNotFoundError:
-            arquivo = open('partidasSalvas/partidasSalvas', 'x')
-            arquivo.close()
-            arquivo = open('partidasSalvas/partidasSalvas', 'r')
+        # Abre o arquivo
+        arquivo = open('partidasSalvas/partidasSalvas', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
