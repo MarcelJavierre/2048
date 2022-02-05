@@ -53,6 +53,28 @@ class Log:
         except FileExistsError:
             pass
 
+        # Cria o arquivo "estatisticasDeJogadas" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
+        try:
+            # Cria o arquivo
+            arquivo = open('estatisticas/estatisticasDeJogadas', 'x')
+            arquivo.close()
+
+            # Abre novamente o arquivo e escreve nele a estrutura para armazenar os dados
+            arquivo = open('estatisticas/estatisticasDeJogadas', 'w')
+            arquivo.write('Cima:\n')
+            arquivo.write('0\n')
+            arquivo.write('Baixo:\n')
+            arquivo.write('0\n')
+            arquivo.write('Esquerda:\n')
+            arquivo.write('0\n')
+            arquivo.write('Direita:\n')
+            arquivo.write('0\n')
+            arquivo.close()
+
+        # Caso o arquivo já exista, não faz nada
+        except FileExistsError:
+            pass
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
@@ -217,14 +239,50 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-    def estatisticasDeJogadas(self):
+    def estatisticasDeJogadas(self, jogada):
         '''
-        Método que armazena em um arquivo todos os movimentos do
-        usuário.
+        Método que armazena em um arquivo a quantidade de jogadas para
+        cada direção. A estrutura do arquivo é a seguinte:
 
-        Self -> None
+        * 1ª linha: "Cima";
+        * 2ª linha: Quantidade de jogadas realizadas para cima;
+        * 3ª linha: "Baixo";
+        * 4ª linha: Quantidade de jogadas realizadas para baixo;
+        * 5ª linha: "Esquerda";
+        * 6ª linha: Quantidade de jogadas realizadas para a esquerda;
+        * 7ª linha: "Direita";
+        * 8ª linha: Quantidade de jogadas realizadas para a direita.
+
+        Self, str -> None
         '''
-        pass
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDeJogadas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Abre o arquivo no modo sobrescrever
+        arquivo = open('estatisticas/estatisticasDeJogadas', 'w')
+
+        # Verifica qual jogada foi realizada e insere mais 1 na quantidade de jogadas realizadas para aquela direção
+        if jogada == 'cima':
+            conteudoDoArquivo[1] = f'{int(conteudoDoArquivo[1][: - 1]) + 1}\n'
+        elif jogada == 'baixo':
+            conteudoDoArquivo[3] = f'{int(conteudoDoArquivo[3][: - 1]) + 1}\n'
+        elif jogada == 'esquerda':
+            conteudoDoArquivo[5] = f'{int(conteudoDoArquivo[5][: - 1]) + 1}\n'
+        else:
+            conteudoDoArquivo[7] = f'{int(conteudoDoArquivo[7][: - 1]) + 1}\n'
+
+        # Escreve o conteúdo de volta no arquivo
+        for i in range(len(conteudoDoArquivo)):
+            arquivo.write(conteudoDoArquivo[i])
+
+        # Fecha o arquivo
+        arquivo.close()
 
     def estatisticasDePecas(self):
         '''

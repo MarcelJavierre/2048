@@ -239,6 +239,9 @@ def loopDoJogo():
             # Seleciona uma ação de acordo com a entrada do usuário
             # Cima
             if entrada == 'w' or entrada == 'W':
+                # Atualiza a estatística de jogadas
+                log.estatisticasDeJogadas('cima')
+
                 # Loop para realizar toda a movimentação das peças do tabuleiro
                 while mecanica.movePecas('cima') == True:
                     interface.pausa(0.1)
@@ -248,6 +251,9 @@ def loopDoJogo():
 
             # Esquerda
             elif entrada == 'a' or entrada == 'A':
+                # Atualiza a estatística de jogadas
+                log.estatisticasDeJogadas('esquerda')
+
                 # Loop para realizar toda a movimentação das peças do tabuleiro
                 while mecanica.movePecas('esquerda') == True:
                     interface.pausa(0.1)
@@ -257,6 +263,9 @@ def loopDoJogo():
 
             # Baixo
             elif entrada == 's' or entrada == 'S':
+                # Atualiza a estatística de jogadas
+                log.estatisticasDeJogadas('baixo')
+
                 # Loop para realizar toda a movimentação das peças do tabuleiro
                 while mecanica.movePecas('baixo') == True:
                     interface.pausa(0.1)
@@ -266,6 +275,9 @@ def loopDoJogo():
 
             # Direita
             elif entrada == 'd' or entrada == 'D':
+                # Atualiza a estatística de jogadas
+                log.estatisticasDeJogadas('direita')
+
                 # Loop para realizar toda a movimentação das peças do tabuleiro
                 while mecanica.movePecas('direita') == True:
                     interface.pausa(0.1)
