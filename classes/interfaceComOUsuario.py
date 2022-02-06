@@ -347,11 +347,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         '''
         pass
 
-    def telaDoTabuleiro(self, tabuleiro, score):
+    def telaDoTabuleiro(self, tabuleiro, score, objetivo):
         '''
         Método para exibir a tela do tabuleiro do jogo.
 
-        Self, list[int], int -> None
+        Self, list[int], int, int -> None
         '''
 
         # Strings com as bordas do tabuleiro
@@ -362,6 +362,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Escreve na tela o score
         print('\x1b[0;32m')
+        print(f'OBJETIVO:    {objetivo}'.center(get_terminal_size().columns))
         print(f'SCORE:    {score}'.center(get_terminal_size().columns))
         print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
         print('\x1b[0;0m')

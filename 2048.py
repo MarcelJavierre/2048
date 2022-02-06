@@ -236,7 +236,7 @@ def loopDoJogo():
             interface.limpaTela()
 
             # Mostra o tabuleiro
-            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
             # Espera a entrada do usuário
             entrada = interface.entradaDoUsuario()
@@ -251,7 +251,7 @@ def loopDoJogo():
                 while mecanica.movePecas('cima') == True:
                     interface.pausa(0.1)
                     interface.limpaTela()
-                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
                 break
 
             # Esquerda
@@ -263,7 +263,7 @@ def loopDoJogo():
                 while mecanica.movePecas('esquerda') == True:
                     interface.pausa(0.1)
                     interface.limpaTela()
-                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
                 break
 
             # Baixo
@@ -275,7 +275,7 @@ def loopDoJogo():
                 while mecanica.movePecas('baixo') == True:
                     interface.pausa(0.1)
                     interface.limpaTela()
-                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
                 break
 
             # Direita
@@ -287,7 +287,7 @@ def loopDoJogo():
                 while mecanica.movePecas('direita') == True:
                     interface.pausa(0.1)
                     interface.limpaTela()
-                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
                 break
 
             # Pause
@@ -306,7 +306,7 @@ def loopDoJogo():
                     if entrada == '1':
                         # Limpa a tela, mostra o tabuleiro e volta ao loop de receber uma entrada para mover as peças do tabuleiro
                         interface.limpaTela()
-                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore())
+                        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
                         break
 
                     # Salvar o jogo
