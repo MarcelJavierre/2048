@@ -46,7 +46,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'telaDoManual',
             'telaDasEstatisticas',
             'telaDoTabuleiro',
-            'telaDeFimDeJogo'
+            'telaDeFimDeJogo',
+            'telaDosControles'
         }
 
     def __str__(self):
@@ -113,7 +114,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'telaDoManual': self.telaDoManual.__doc__,
             'telaDasEstatisticas': self.telaDasEstatisticas.__doc__,
             'telaDoTabuleiro': self.telaDoTabuleiro.__doc__,
-            'telaDeFimDeJogo': self.telaDeFimDeJogo.__doc__
+            'telaDeFimDeJogo': self.telaDeFimDeJogo.__doc__,
+            'telaDosControles': self.telaDosControles.__doc__
         }
 
     def menuPrincipal(self):
@@ -451,3 +453,34 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             print(f'SCORE:    {score}'.center(get_terminal_size().columns))
             print('─────────────────────────'.center(get_terminal_size().columns))
             print('\x1b[0;0m')
+
+    def telaDosControles(self):
+        '''
+        Método para exibir a tela com os controles do jogo.
+
+        Self -> None
+        '''
+        print('\n' * (int((get_terminal_size().lines - 20) / 2)), end = '') # Centraliza verticalmente a tela de fim de controles
+        print('\x1b[0;33m', end = '')
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ C │ O │ N │ T │ R │ O │ L │ E │ S │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('')
+
+        print('Movimentação'.center(get_terminal_size().columns))
+        print('─────────────────────────────────────'.center(get_terminal_size().columns))
+        print('    ┌───┐                   ┌──────┐ '.center(get_terminal_size().columns))
+        print('    │ W │         ┌───┐     │      │ '.center(get_terminal_size().columns))
+        print('┌───┼───┼───┐     │ + │     └┐Enter│ '.center(get_terminal_size().columns))
+        print('│ A │ S │ D │     └───┘      │     │ '.center(get_terminal_size().columns))
+        print('└───┴───┴───┘                └─────┘ '.center(get_terminal_size().columns))
+        print('')
+
+        print('Pause'.center(get_terminal_size().columns))
+        print('─────────────────────────────────────'.center(get_terminal_size().columns))
+        print('                            ┌──────┐ '.center(get_terminal_size().columns))
+        print('    ┌───┐         ┌───┐     │      │ '.center(get_terminal_size().columns))
+        print('    │ P │         │ + │     └┐Enter│ '.center(get_terminal_size().columns))
+        print('    └───┘         └───┘      │     │ '.center(get_terminal_size().columns))
+        print('                             └─────┘ '.center(get_terminal_size().columns))
+        print('\x1b[0;0m')

@@ -73,6 +73,11 @@ def main():
     # Verifica qual opção o usuário escolheu
     # Novo Jogo
     if entrada == '1':
+        # Mostra a tela dos controles
+        interface.limpaTela()
+        interface.telaDosControles()
+        interface.entradaDoUsuario('Aperte Enter para Iniciar a Partida\n')
+
         # Loop do jogo
         loopDoJogo()
 
