@@ -324,6 +324,9 @@ def loopDoJogo():
                     elif entrada == '3':
                         # Atualiza a estatística de peças com a maior peça no tabuleiro
                         log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+
+                        # Atualiza a estatística de score com o score da partida
+                        log.estatisticasDeScore(mecanica.getScore())
                         
                         # Reinicia a instância da mecânica do jogo
                         mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
@@ -336,6 +339,9 @@ def loopDoJogo():
         if mecanica.venceuOJogo() == True:
             # Atualiza a estatística de peças com o objetivo atingido
             log.estatisticasDePecas(objetivo)
+
+            # Atualiza a estatística de score com o score da partida
+            log.estatisticasDeScore(mecanica.getScore())
 
             # Atualiza a variável
             venceuOJogo = True
@@ -357,6 +363,9 @@ def loopDoJogo():
             if mecanica.possuiMovimentosVailidos() == False:
                 # Atualiza a estatística de peças com a maior peça no tabuleiro
                 log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+
+                # Atualiza a estatística de score com o score da partida
+                log.estatisticasDeScore(mecanica.getScore())
 
                 # Atualiza a variável
                 venceuOJogo = False

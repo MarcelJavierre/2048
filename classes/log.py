@@ -113,6 +113,15 @@ class Log:
         except FileExistsError:
             pass
 
+        # Cria o arquivo "estatisticasDeScore" dentro da pasta "estatisticas"
+        try:
+            arquivo = open('estatisticas/estatisticasDeScore', 'x')
+            arquivo.close()
+
+        # Caso o arquivo já exista, não faz nada
+        except FileExistsError:
+            pass
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
@@ -131,6 +140,7 @@ class Log:
             'apagarJogoSalvo',
             'estatisticasDeJogadas',
             'estatisticasDePecas',
+            'estatisticasDeScore',
             'relatorioDeErro'
         }
 
@@ -192,6 +202,7 @@ class Log:
             'apagarJogoSalvo': self.apagarJogoSalvo.__doc__,
             'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
             'estatisticasDePecas': self.estatisticasDePecas.__doc__,
+            'estatisticasDeScore': self.estatisticasDeScore.__doc__,
             'relatorioDeErro': self.relatorioDeErro.__doc__
         }
 
@@ -372,6 +383,23 @@ class Log:
         # Escreve o conteúdo de volta no arquivo
         for i in range(len(conteudoDoArquivo)):
             arquivo.write(conteudoDoArquivo[i])
+
+        # Fecha o arquivo
+        arquivo.close()
+
+    def estatisticasDeScore(self, score):
+        '''
+        Método que armazena em um arquivo o histórico de score das
+        partidas. A estrutura do arquivo consiste em cada linha conter o
+        score de uma partida.
+
+        Self, int -> None
+        '''
+        # Abre o arquivo
+        arquivo = open('estatisticas/estatisticasDeScore', 'a')
+
+        # Insere o score no final do arquivo
+        arquivo.write(f'{score}\n')
 
         # Fecha o arquivo
         arquivo.close()
