@@ -273,17 +273,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> bool
         '''
-        # Passa por todas as linhas do tabuleiro
-        for i in range(self.tamanhoDoTabuleiro):
-            # Passa por todas as colunas do tabuleiro
-            for j in range(self.tamanhoDoTabuleiro):
-                # Verifica se possui alguma peça com o valor do objetivo
-                if self.tabuleiro[i][j] == self.objetivo:
-                    # Caso encontre, retorna "True"
-                    return True
-
-        # Caso passe por todas as casas e não encontre a peça com o valor do objetivo, retorna "False"
-        return False
+        return (self.objetivo in self.tabuleiro)
 
     def possuiMovimentosVailidos(self):
         '''
