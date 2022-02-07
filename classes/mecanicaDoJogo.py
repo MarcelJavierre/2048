@@ -393,7 +393,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> int
         '''
-        return max(map(max, self.tabuleiro))
+        return np.max(self.tabuleiro)
 
     def carregarJogo(self, tabuleiro, score):
         '''
