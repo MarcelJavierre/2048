@@ -138,17 +138,17 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'carregarJogo': self.carregarJogo.__doc__
         }
 
-    def inserePeca(self, listaComAsCasasVazias):
+    def inserePeca(self, casasVazias):
         '''
         Método que insere uma nova peça no tabuleiro em uma casa livre.
 
-        Self, list[str] -> None
+        Self, numpy.ndarray[str] -> None
         '''
         # Sorteia a nova peça
-        peca = self.geraElementoAleatorio(self.numerosParaSeremSorteados)
+        peca = self.geraElementoAleatorio(self.numerosParaSeremSorteados, self.probabilidade)
 
         # Sorteia a casa vazia
-        casa = self.geraElementoAleatorio(listaComAsCasasVazias)
+        casa = self.geraElementoAleatorio(casasVazias)
 
         # Altera o atributo "tabuleiro" com a nova peça
         self.tabuleiro[int(casa[0])][int(casa[1])] = peca
