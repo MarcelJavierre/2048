@@ -310,7 +310,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Verifica as casas da borda superior
         # Passa pelas colunas, da segunda até a penúltima
-        for j in range(1, len(self.tabuleiro[0]) - 1):
+        for j in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -322,7 +322,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                     
         # Verifica as casas da borda inferior
         # Passa pelas colunas, da segunda até a penúltima
-        for j in range(1, len(self.tabuleiro[0]) - 1):
+        for j in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -350,9 +350,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == 0 or
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i + 1][len(self.tabuleiro[0]) - 1] or
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i - 1][len(self.tabuleiro[0]) - 1]
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == 0 or
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i + 1][self.tamanhoDoTabuleiro - 1] or
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i - 1][self.tamanhoDoTabuleiro - 1]
                 ):
                     return True
 
