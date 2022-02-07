@@ -401,5 +401,5 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self, list[int], int -> None
         '''
-        self.tabuleiro = tabuleiro
+        self.tabuleiro = np.array(tabuleiro)
         self.score = score
