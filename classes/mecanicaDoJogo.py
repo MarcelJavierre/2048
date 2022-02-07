@@ -351,8 +351,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def getCasasVazias(self):
         '''
-        Método que verifica todas as casas do tabuleiro. Retorna uma
-        lista de strings com todas as posições de casas vazias. A
+        Método que verifica todas as casas do tabuleiro. Retorna um
+        vetor de strings com todas as posições de casas vazias. A
         primeira posição da string é o índice da linha e a segunda é o
         índice da coluna.
 
@@ -375,7 +375,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         Método que retorna a matriz do tabuleiro.
 
-        Self -> list[int]
+        Self -> numpy.ndarray[int]
         '''
         return self.tabuleiro
 
