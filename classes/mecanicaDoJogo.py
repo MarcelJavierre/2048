@@ -20,6 +20,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self, int, int -> None
         '''
+        # Atributo que armazena o tamanho do tabuleiro
+        self.tamanhoDoTabuleiro = tamanhoDoTabuleiro
+
         # Atributo que armazena a matriz do tabuleiro
         self.tabuleiro = self.geraMatriz(tamanhoDoTabuleiro, tamanhoDoTabuleiro)
 
@@ -44,6 +47,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self.__atributos = {
             'self.__atributos',
             'self.__metodos',
+            'self.tamanhoDoTabuleiro',
             'self.tabuleiro',
             'self.score',
             'self.objetivo',
@@ -117,6 +121,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
+            'self.tamanhoDoTabuleiro': 'Atributo que armazena o tamanho do tabuleiro',
             'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
             'self.score': 'Atributo que armazena o score.',
             'self.objetivo': 'Atributo com o valor da peça do objetivo do jogo',
@@ -168,9 +173,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "cima"
         if entradaDoUsuario == 'cima':
             # Passa por todas as linhas, de cima para baixo
-            for i in range(1, len(self.tabuleiro)):
+            for i in range(1, self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas
-                for j in range(len(self.tabuleiro[i])):
+                for j in range(self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
@@ -191,9 +196,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "baixo"
         elif entradaDoUsuario == 'baixo':
             # Passa por todas as linhas, de baixo para cima
-            for i in range(len(self.tabuleiro) - 2, - 1, - 1):
+            for i in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                 # Passa por todas as colunas
-                for j in range(len(self.tabuleiro[i])):
+                for j in range(self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
@@ -214,9 +219,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "esquerda"
         elif entradaDoUsuario == 'esquerda':
             # Passa por todas as linhas
-            for i in range(len(self.tabuleiro)):
+            for i in range(self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas, da esquerda para a direita
-                for j in range(1, len(self.tabuleiro[i])):
+                for j in range(1, self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
@@ -237,9 +242,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "direita"
         else:
             # Passa por todas as linhas
-            for i in range(len(self.tabuleiro)):
+            for i in range(self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas, da direita para a esquerda
-                for j in range(len(self.tabuleiro[i]) - 2, - 1, - 1):
+                for j in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
@@ -269,9 +274,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Self -> bool
         '''
         # Passa por todas as linhas do tabuleiro
-        for i in range(len(self.tabuleiro)):
+        for i in range(self.tamanhoDoTabuleiro):
             # Passa por todas as colunas do tabuleiro
-            for j in range(len(self.tabuleiro[i])):
+            for j in range(self.tamanhoDoTabuleiro):
                 # Verifica se possui alguma peça com o valor do objetivo
                 if self.tabuleiro[i][j] == self.objetivo:
                     # Caso encontre, retorna "True"
@@ -289,9 +294,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         # Verifica as casas centrais
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Passa pelas colunas, da segunda até a penúltima
-            for j in range(1, len(self.tabuleiro[i]) - 1):
+            for j in range(1, self.tamanhoDoTabuleiro - 1):
                 # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -321,15 +326,15 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == 0 or
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j + 1] or
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j - 1]
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == 0 or
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j + 1] or
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j - 1]
                 ):
                     return True
 
         # Verifica as casas da borda esquerda
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -341,7 +346,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Verifica as casas da borda direita
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -367,9 +372,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         lista = []
 
         # Passa por todas as linhas
-        for i in range(len(self.tabuleiro)):
+        for i in range(self.tamanhoDoTabuleiro):
             # Passa por todas as colunas
-            for j in range(len(self.tabuleiro[i])):
+            for j in range(self.tamanhoDoTabuleiro):
                 # Caso a casa possuir o elemento 0, adiciona na lista a posição da casa
                 if self.tabuleiro[i][j] == 0:
                     lista.append(f'{i}{j}')
