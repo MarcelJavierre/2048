@@ -36,9 +36,9 @@ class Log:
         except FileExistsError:
             pass
 
-        # Cria a pasta "relatorioDeErros"
+        # Cria a pasta "relatoriosDeErros"
         try:
-            mkdir('relatorioDeErros')
+            mkdir('relatoriosDeErros')
 
         # Caso a pasta já exista, não faz nada
         except FileExistsError:
