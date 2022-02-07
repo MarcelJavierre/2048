@@ -1,4 +1,7 @@
 # Importando a super classe "FerramentasDeMecanicaDoJogo" com os métodos genéricos associados com a mecânica do jogo
+from audioop import add
+
+
 if __name__ == '__main__':
     from ferramentasDeMecanicaDoJogo import *
 
@@ -358,18 +361,15 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> numpy.ndarray[str]
         '''
-        # Lista para armazenar as posições vazias
-        lista = []
+        # Cria dois vetores com os índices das casas vazias
+        indicesDasLinhas, indicesDasColunas = np.where(self.tabuleiro == 0)
 
-        # Passa por todas as linhas
-        for i in range(self.tamanhoDoTabuleiro):
-            # Passa por todas as colunas
-            for j in range(self.tamanhoDoTabuleiro):
-                # Caso a casa possuir o elemento 0, adiciona na lista a posição da casa
-                if self.tabuleiro[i][j] == 0:
-                    lista.append(f'{i}{j}')
+        # Converte os dois vetores de int para vetores de strings
+        indicesDasLinhas = indicesDasLinhas.astype(str)
+        indicesDasColunas = indicesDasColunas.astype(str)
 
-        return np.array(lista, str)
+        # Retorna os dois vetores concatenados
+        return np.char.add(indicesDasLinhas, indicesDasColunas)
 
     def getTabuleiro(self):
         '''
