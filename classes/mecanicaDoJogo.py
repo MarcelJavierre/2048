@@ -369,7 +369,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                 if self.tabuleiro[i][j] == 0:
                     lista.append(f'{i}{j}')
 
-        return np.array(lista)
+        return np.array(lista, str)
 
     def getTabuleiro(self):
         '''
@@ -401,5 +401,5 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self, list[int], int -> None
         '''
-        self.tabuleiro = np.array(tabuleiro)
+        self.tabuleiro = np.array(tabuleiro, int)
         self.score = score
