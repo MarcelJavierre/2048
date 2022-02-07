@@ -316,7 +316,7 @@ def loopDoJogo():
                         interface.telaDeSalvamento()
 
                         # Salva o jogo
-                        log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro(), mecanica.getScore())
+                        log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
 
                         interface.pausa(1)
 
