@@ -351,7 +351,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         '''
         Método para exibir a tela do tabuleiro do jogo.
 
-        Self, list[int], int, int -> None
+        Self, numpy.ndarray[int], int, int -> None
         '''
 
         # Strings com as bordas do tabuleiro

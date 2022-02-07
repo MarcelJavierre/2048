@@ -1,4 +1,7 @@
 # Importando a super classe "FerramentasDeMecanicaDoJogo" com os métodos genéricos associados com a mecânica do jogo
+from audioop import add
+
+
 if __name__ == '__main__':
     from ferramentasDeMecanicaDoJogo import *
 
@@ -20,6 +23,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self, int, int -> None
         '''
+        # Atributo que armazena o tamanho do tabuleiro
+        self.tamanhoDoTabuleiro = tamanhoDoTabuleiro
+
         # Atributo que armazena a matriz do tabuleiro
         self.tabuleiro = self.geraMatriz(tamanhoDoTabuleiro, tamanhoDoTabuleiro)
 
@@ -29,9 +35,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Atributo com o valor da peça do objetivo do jogo
         self.objetivo = objetivo
 
-        # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
+        # Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
+        self.numerosParaSeremSorteados = np.array((2, 4), int)
+
+        # Atributo que armazena o vetor com a probabilidade do sorteio
         # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
-        self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
+        self.probabilidade = np.array((0.9, 0.1), float)
         
         # Inicia o tabuleiro com 2 peças
         self.inserePeca(self.getCasasVazias())
@@ -41,10 +50,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self.__atributos = {
             'self.__atributos',
             'self.__metodos',
+            'self.tamanhoDoTabuleiro',
             'self.tabuleiro',
             'self.score',
             'self.objetivo',
-            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada'
+            'self.numerosParaSeremSorteados',
+            'self.probabilidade'
         }
 
         # Conjunto com todos os métodos da classe
@@ -113,10 +124,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
+            'self.tamanhoDoTabuleiro': 'Atributo que armazena o tamanho do tabuleiro',
             'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
             'self.score': 'Atributo que armazena o score.',
             'self.objetivo': 'Atributo com o valor da peça do objetivo do jogo',
-            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada': 'Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
+            'self.numerosParaSeremSorteados': 'Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
+            'self.probabilidade': 'Atributo que armazena o vetor com a probabilidade do sorteio',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
@@ -133,17 +146,17 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'carregarJogo': self.carregarJogo.__doc__
         }
 
-    def inserePeca(self, listaComAsCasasVazias):
+    def inserePeca(self, casasVazias):
         '''
         Método que insere uma nova peça no tabuleiro em uma casa livre.
 
-        Self, list[str] -> None
+        Self, numpy.ndarray[str] -> None
         '''
         # Sorteia a nova peça
-        peca = self.geraElementoAleatorio(self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada)
+        peca = self.geraElementoAleatorio(self.numerosParaSeremSorteados, self.probabilidade)
 
         # Sorteia a casa vazia
-        casa = self.geraElementoAleatorio(listaComAsCasasVazias)
+        casa = self.geraElementoAleatorio(casasVazias)
 
         # Altera o atributo "tabuleiro" com a nova peça
         self.tabuleiro[int(casa[0])][int(casa[1])] = peca
@@ -163,9 +176,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "cima"
         if entradaDoUsuario == 'cima':
             # Passa por todas as linhas, de cima para baixo
-            for i in range(1, len(self.tabuleiro)):
+            for i in range(1, self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas
-                for j in range(len(self.tabuleiro[i])):
+                for j in range(self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
@@ -186,9 +199,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "baixo"
         elif entradaDoUsuario == 'baixo':
             # Passa por todas as linhas, de baixo para cima
-            for i in range(len(self.tabuleiro) - 2, - 1, - 1):
+            for i in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                 # Passa por todas as colunas
-                for j in range(len(self.tabuleiro[i])):
+                for j in range(self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da linha anterior
@@ -209,9 +222,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "esquerda"
         elif entradaDoUsuario == 'esquerda':
             # Passa por todas as linhas
-            for i in range(len(self.tabuleiro)):
+            for i in range(self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas, da esquerda para a direita
-                for j in range(1, len(self.tabuleiro[i])):
+                for j in range(1, self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
@@ -232,9 +245,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Caso a entrada do usuário for "direita"
         else:
             # Passa por todas as linhas
-            for i in range(len(self.tabuleiro)):
+            for i in range(self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas, da direita para a esquerda
-                for j in range(len(self.tabuleiro[i]) - 2, - 1, - 1):
+                for j in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
                         # Verifica a casa da coluna anterior
@@ -263,17 +276,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> bool
         '''
-        # Passa por todas as linhas do tabuleiro
-        for i in range(len(self.tabuleiro)):
-            # Passa por todas as colunas do tabuleiro
-            for j in range(len(self.tabuleiro[i])):
-                # Verifica se possui alguma peça com o valor do objetivo
-                if self.tabuleiro[i][j] == self.objetivo:
-                    # Caso encontre, retorna "True"
-                    return True
-
-        # Caso passe por todas as casas e não encontre a peça com o valor do objetivo, retorna "False"
-        return False
+        return (self.objetivo in self.tabuleiro)
 
     def possuiMovimentosVailidos(self):
         '''
@@ -284,9 +287,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         # Verifica as casas centrais
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Passa pelas colunas, da segunda até a penúltima
-            for j in range(1, len(self.tabuleiro[i]) - 1):
+            for j in range(1, self.tamanhoDoTabuleiro - 1):
                 # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -300,7 +303,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Verifica as casas da borda superior
         # Passa pelas colunas, da segunda até a penúltima
-        for j in range(1, len(self.tabuleiro[0]) - 1):
+        for j in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -312,19 +315,19 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                     
         # Verifica as casas da borda inferior
         # Passa pelas colunas, da segunda até a penúltima
-        for j in range(1, len(self.tabuleiro[0]) - 1):
+        for j in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == 0 or
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j + 1] or
-                    self.tabuleiro[len(self.tabuleiro) - 1][j] == self.tabuleiro[len(self.tabuleiro) - 1][j - 1]
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == 0 or
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j + 1] or
+                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j - 1]
                 ):
                     return True
 
         # Verifica as casas da borda esquerda
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
@@ -336,13 +339,13 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Verifica as casas da borda direita
         # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, len(self.tabuleiro) - 1):
+        for i in range(1, self.tamanhoDoTabuleiro - 1):
             # Verifica se a casa pode se juntar com alguma outra casa ao redor
                 # Se sim, retorna "True"
                 if (
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == 0 or
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i + 1][len(self.tabuleiro[0]) - 1] or
-                    self.tabuleiro[i][len(self.tabuleiro[0]) - 1] == self.tabuleiro[i - 1][len(self.tabuleiro[0]) - 1]
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == 0 or
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i + 1][self.tamanhoDoTabuleiro - 1] or
+                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i - 1][self.tamanhoDoTabuleiro - 1]
                 ):
                     return True
 
@@ -351,31 +354,28 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
     def getCasasVazias(self):
         '''
-        Método que verifica todas as casas do tabuleiro. Retorna uma
-        lista de strings com todas as posições de casas vazias. A
+        Método que verifica todas as casas do tabuleiro. Retorna um
+        vetor de strings com todas as posições de casas vazias. A
         primeira posição da string é o índice da linha e a segunda é o
         índice da coluna.
 
-        Self -> list[str]
+        Self -> numpy.ndarray[str]
         '''
-        # Lista para armazenar as posições vazias
-        lista = []
+        # Cria dois vetores com os índices das casas vazias
+        indicesDasLinhas, indicesDasColunas = np.where(self.tabuleiro == 0)
 
-        # Passa por todas as linhas
-        for i in range(len(self.tabuleiro)):
-            # Passa por todas as colunas
-            for j in range(len(self.tabuleiro[i])):
-                # Caso a casa possuir o elemento 0, adiciona na lista a posição da casa
-                if self.tabuleiro[i][j] == 0:
-                    lista.append(f'{i}{j}')
+        # Converte os dois vetores de int para vetores de strings
+        indicesDasLinhas = indicesDasLinhas.astype(str)
+        indicesDasColunas = indicesDasColunas.astype(str)
 
-        return lista
+        # Retorna os dois vetores concatenados
+        return np.char.add(indicesDasLinhas, indicesDasColunas)
 
     def getTabuleiro(self):
         '''
         Método que retorna a matriz do tabuleiro.
 
-        Self -> list[int]
+        Self -> numpy.ndarray[int]
         '''
         return self.tabuleiro
 
@@ -393,7 +393,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> int
         '''
-        return max(map(max, self.tabuleiro))
+        return np.max(self.tabuleiro)
 
     def carregarJogo(self, tabuleiro, score):
         '''
@@ -401,5 +401,5 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self, list[int], int -> None
         '''
-        self.tabuleiro = tabuleiro
+        self.tabuleiro = np.array(tabuleiro, int)
         self.score = score
