@@ -356,7 +356,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         primeira posição da string é o índice da linha e a segunda é o
         índice da coluna.
 
-        Self -> list[str]
+        Self -> numpy.ndarray[str]
         '''
         # Lista para armazenar as posições vazias
         lista = []
@@ -369,7 +369,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                 if self.tabuleiro[i][j] == 0:
                     lista.append(f'{i}{j}')
 
-        return lista
+        return np.array(lista)
 
     def getTabuleiro(self):
         '''
