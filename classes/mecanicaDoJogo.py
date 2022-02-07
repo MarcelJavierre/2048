@@ -29,9 +29,12 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Atributo com o valor da peça do objetivo do jogo
         self.objetivo = objetivo
 
-        # Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
+        # Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada
+        self.numerosParaSeremSorteados = np.array((2, 4), int)
+
+        # Atributo que armazena o vetor com a probabilidade do sorteio
         # A cada nova rodada, 90% de chance da nova peça ser 2 e 10% de chance da nova peça ser 4
-        self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4]
+        self.probabilidade = np.array((0.9, 0.1), float)
         
         # Inicia o tabuleiro com 2 peças
         self.inserePeca(self.getCasasVazias())
@@ -44,7 +47,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.tabuleiro',
             'self.score',
             'self.objetivo',
-            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada'
+            'self.numerosParaSeremSorteados',
+            'probabilidade'
         }
 
         # Conjunto com todos os métodos da classe
@@ -116,7 +120,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.tabuleiro': 'Atributo que armazena a matriz do tabuleiro.',
             'self.score': 'Atributo que armazena o score.',
             'self.objetivo': 'Atributo com o valor da peça do objetivo do jogo',
-            'self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada': 'Atributo que armazena a lista com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
+            'self.numerosParaSeremSorteados': 'Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
+            'self.probabilidade': 'Atributo que armazena o vetor com a probabilidade do sorteio',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
@@ -140,7 +145,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Self, list[str] -> None
         '''
         # Sorteia a nova peça
-        peca = self.geraElementoAleatorio(self.listaComOsNumerosParaSeremSorteadosEInseridosACadaNovaRodada)
+        peca = self.geraElementoAleatorio(self.numerosParaSeremSorteados)
 
         # Sorteia a casa vazia
         casa = self.geraElementoAleatorio(listaComAsCasasVazias)
