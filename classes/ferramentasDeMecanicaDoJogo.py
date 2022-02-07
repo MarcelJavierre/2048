@@ -1,5 +1,5 @@
-# Importando a função "choice" do módulo "random" que sorteia um elemento aleatório de uma dada lista
-from random import choice
+# Importando o módulo "numpy" com o apelido "np"
+import numpy as np
 
 class FerramentasDeMecanicaDoJogo:
     '''
@@ -90,28 +90,18 @@ class FerramentasDeMecanicaDoJogo:
 
     def geraMatriz(self, numeroDeLinhas, numeroDeColunas):
         '''
-        Método para gerar uma matriz. Retorna uma lista de listas
-        (matriz) com todas as posições contendo o valor 0.
+        Método para gerar uma matriz. Retorna uma matriz numpy com todas
+        as posições contendo o valor 0.
 
-        Self, int, int -> list[int]
+        Self, int, int -> numpy.ndarray[int]
         '''
-        # Cria uma lista vazia
-        matriz = []
+        return np.zeros((numeroDeLinhas, numeroDeColunas), int)
 
-        # Passa por todas as linhas adicionando uma lista vazia
-        for i in range(numeroDeLinhas):
-            matriz.append([])
-            # Passa por todas as colunas adicionando "0" em cada posição
-            for j in range(numeroDeColunas):
-                matriz[i].append(0)
-
-        return matriz
-
-    def geraElementoAleatorio(self, lista):
+    def geraElementoAleatorio(self, vetor, probabilidade = None):
         '''
-        Método para sortear um elemento aleatório de uma dada lista.
+        Método para sortear um elemento aleatório de um dado vetor.
         Retorna o elemento sorteado.
 
-        Self, list[Any] -> Any
+        Self, numpy.ndarray[Any], numpy.ndarray[float] -> Any
         '''
-        return choice(lista)
+        return np.random.choice(vetor, 1, p = probabilidade)
