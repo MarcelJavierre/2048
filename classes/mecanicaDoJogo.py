@@ -52,7 +52,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.score',
             'self.objetivo',
             'self.numerosParaSeremSorteados',
-            'probabilidade'
+            'self.probabilidade'
         }
 
         # Conjunto com todos os métodos da classe
