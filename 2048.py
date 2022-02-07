@@ -353,7 +353,7 @@ def loopDoJogo():
         casasVazias = mecanica.getCasasVazias()
 
         # Caso o tabuleiro possua casas vazias, insere um nova peça
-        if casasVazias != []:
+        if len(casasVazias) != 0:
             mecanica.inserePeca(casasVazias)
 
         # Caso não possua, verifica se ainda têm jogadas válidas
