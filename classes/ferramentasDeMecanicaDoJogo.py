@@ -104,4 +104,4 @@ class FerramentasDeMecanicaDoJogo:
 
         Self, numpy.ndarray[Any], numpy.ndarray[float] -> Any
         '''
-        return np.random.choice(vetor, 1, p = probabilidade)
+        return np.random.choice(vetor, 1, p = probabilidade)[0]
