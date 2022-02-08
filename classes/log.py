@@ -503,11 +503,19 @@ class Log:
 
         return eixoX, eixoY
     
-    def relatorioDeErro(self):
+    def relatorioDeErro(self, mensagemDeErro):
         '''
         Método que cria um arquivo de relatório sobre um possível erro
-        que ocorra durante a execução do código.
+        que ocorra durante a execução do código. O nome do arquivo
+        gerado é "relatorio-de-erro-AAAA-MM-DD-HH-MM-SS.txt".
 
-        Self -> None
+        Self, str -> None
         '''
-        pass
+        # Cria o arquivo dentro da pasta "relatoriosDeErros"
+        arquivo = open(f'relatoriosDeErros/relatorio-de-erro-{localtime()[0]}-{localtime()[1]:02d}-{localtime()[2]:02d}-{localtime()[3]:02d}-{localtime()[4]:02d}-{localtime()[5]:02d}.txt', 'w')
+
+        # Escreve no arquivo a mensagem de erro
+        arquivo.write(mensagemDeErro)
+
+        # Fecha o arquivo
+        arquivo.close()
