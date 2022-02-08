@@ -141,6 +141,9 @@ class Log:
             'estatisticasDeJogadas',
             'estatisticasDePecas',
             'estatisticasDeScore',
+            'getEstatisticasDeJogadas',
+            'getEstatisticasDePecas',
+            'getEstatisticasDeScore',
             'relatorioDeErro'
         }
 
@@ -203,6 +206,9 @@ class Log:
             'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
             'estatisticasDePecas': self.estatisticasDePecas.__doc__,
             'estatisticasDeScore': self.estatisticasDeScore.__doc__,
+            'getEstatisticasDeJogadas': self.getEstatisticasDeJogadas.__doc__,
+            'getEstatisticasDePecas': self.getEstatisticasDePecas.__doc__,
+            'getEstatisticasDeScore': self.getEstatisticasDeScore.__doc__,
             'relatorioDeErro': self.relatorioDeErro.__doc__
         }
 
@@ -403,6 +409,99 @@ class Log:
 
         # Fecha o arquivo
         arquivo.close()
+
+    def getEstatisticasDeJogadas(self):
+        '''
+        Método que retorna uma tupla na qual a primeira posição é uma
+        lista com as direções (eixo x) e a segunda é uma lista com a
+        quantidade (eixo y).
+
+        Self -> tuple[list[str], list[int]]
+        '''
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDeJogadas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Lista para armazenar as estatísticas
+        eixoX = []
+        eixoY = []
+
+        # Passa por todas as linhas do arquivo
+        for i in range(len(conteudoDoArquivo) - 1):
+            # Remove os caracteres ":" e "\n" e armazena na lista
+            eixoX.append(conteudoDoArquivo[i][: - 2])
+
+            # Remove o caractere "\n", converte para int e armazena na lista
+            eixoY.append(int(conteudoDoArquivo[i + 1][: - 1]))
+
+        return eixoX, eixoY
+
+    def getEstatisticasDePecas(self):
+        '''
+        Método que retorna uma tupla na qual a primeira posição é uma
+        lista com o valor das peças (eixo x) e a segunda é uma lista com
+        a quantidade (eixo y).
+
+        Self -> tuple[list[str], list[int]]
+        '''
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Lista para armazenar as estatísticas
+        eixoX = []
+        eixoY = []
+
+        # Passa por todas as linhas do arquivo
+        for i in range(len(conteudoDoArquivo) - 1):
+            # Remove os caracteres ":" e "\n" e armazena na lista
+            eixoX.append(conteudoDoArquivo[i][: - 2])
+
+            # Remove o caractere "\n", converte para int e armazena na lista
+            eixoY.append(int(conteudoDoArquivo[i + 1][: - 1]))
+
+        return eixoX, eixoY
+
+    def getEstatisticasDeScore(self):
+        '''
+        Método que retorna uma tupla na qual a primeira posição é uma
+        lista com a quantidade de partidas (eixo x) e a segunda é uma
+        lista com os scores (eixo y).
+
+        Self -> tuple[list[int]]
+        '''
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Lista para armazenar as estatísticas
+        eixoX = []
+        eixoY = []
+
+        # Passa por todas as linhas do arquivo
+        for i in range(len(conteudoDoArquivo)):
+            # Adiciona na lista o número da partida
+            eixoX.append(i + 1)
+
+            # Remove o caractere "\n", converte para int e armazena na lista
+            eixoY.append(int(conteudoDoArquivo[i][: - 1]))
+
+        return eixoX, eixoY
     
     def relatorioDeErro(self):
         '''
