@@ -1,7 +1,7 @@
+# Importando a função "log2" do módulo "math" para calcular logaritmos na base 2
+from math import log2
+
 # Importando a super classe "FerramentasDeMecanicaDoJogo" com os métodos genéricos associados com a mecânica do jogo
-from audioop import add
-
-
 if __name__ == '__main__':
     from ferramentasDeMecanicaDoJogo import *
 
@@ -19,10 +19,21 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         Método construtor que inicializa o tabuleiro. Se nenhum
         parâmetro for passado, inicializa com o tamanho padrão 4X4 e com
-        objetivo de atingir 2048.
+        objetivo de atingir 2048. Caso o tamanho do tabuleiro passado
+        for menor ou igual a 1 ou o objetivo não for uma potência de 2,
+        gera um "ValueError".
 
         Self, int, int -> None
         '''
+        # Verifica se o tamanho do tabuleiro passado é válido
+        if tamanhoDoTabuleiro <= 1:
+            # Se não for, retorna um "ValueError"
+            raise ValueError(f'Nao e possivel gerar um tabuleiro com o tamanho {tamanhoDoTabuleiro}X{tamanhoDoTabuleiro}')
+
+        # Verifica se o objetivo passado é válido
+        if not log2(objetivo).is_integer():
+            raise ValueError(f'O valor {objetivo} nao e um objetivo valido')
+
         # Atributo que armazena o tamanho do tabuleiro
         self.tamanhoDoTabuleiro = tamanhoDoTabuleiro
 

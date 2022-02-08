@@ -1,15 +1,15 @@
+# Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
+from os import get_terminal_size
+
+# Importando o módulo "matplotlib.pyplot" com o apelido "plt"
+import matplotlib.pyplot as plt
+
 # Importando a super classe "FerramentasDeInterfaceComOUsuario" com os métodos genéricos associados com a comunicação com o usuário
 if __name__ == '__main__':
     from ferramentasDeInterfaceComOUsuario import *
 
 else:
     from classes.ferramentasDeInterfaceComOUsuario import *
-
-# Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
-from os import get_terminal_size
-
-# Importando o módulo "matplotlib.pyplot" com o apelido "plt"
-import matplotlib.pyplot as plt
 
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
@@ -298,7 +298,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, int, int -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 22) / 2)), end = '') # Centraliza verticalmente a tela de opções
+        print('\n' * (int((get_terminal_size().lines - 24) / 2)), end = '') # Centraliza verticalmente a tela de opções
         print('\x1b[0;34m', end = '')
         print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
@@ -309,7 +309,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ T │ A │ M │ A │ N │ H │ O │   │ D │ O │   │ T │ A │ B │ U │ L │ E │ I │ R │ O │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print(f'{tamanhoDoTabuleiro}x{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
+        print(f'{tamanhoDoTabuleiro}X{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
         print('─────────────────────────────────────────────────'.center(get_terminal_size().columns))
         print('')
 
@@ -321,11 +321,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('')
 
         print('\x1b[0;34m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ 1 │   │ A │ L │ T │ E │ R │ A │ R │   │ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 2 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        print('│ 1 │   │ A │ L │ T │ E │ R │ A │ R │   │ T │ A │ M │ A │ N │ H │ O │   │'.center(get_terminal_size().columns))
+        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+        print('│ 2 │   │ A │ L │ T │ E │ R │ A │ R │   │ O │ B │ J │ E │ T │ I │ V │ O │'.center(get_terminal_size().columns))
+        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
+        print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │   │'.center(get_terminal_size().columns))
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m')
 
     def telaDoManual(self):

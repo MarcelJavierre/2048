@@ -24,8 +24,8 @@ vazios e nem peças adjacentes com o mesmo valor), o jogo termina.
 """
 
 # Propriedades do documento
-__author__ = 'Marcel_Javierre'
-__copyright__ = 'Copyright_2022'
+__author__ = 'Marcel Javierre'
+__copyright__ = 'Copyright 2022'
 __credits__ = __author__
 __license__ = 'GPL'
 __version__ = '1.0.0'
@@ -121,7 +121,7 @@ def main():
                         try:
                             # Se não for, gera um erro
                             if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
-                                raise ValueError('Nao existe partida salva com o numero inserido.')
+                                raise ValueError('Nao existe partida salva com o numero inserido')
 
                             # Se for, carrega a partida salva
                             else:
@@ -146,7 +146,7 @@ def main():
                     # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
                     except ValueError as mensagemDeErro:
                         log.relatorioDeErro(repr(mensagemDeErro))
-                        print('Entrada inválida.')
+                        print('Entrada inválida')
 
             # Apagar partida salva
             elif entrada == '2':
@@ -166,7 +166,7 @@ def main():
                         try:
                             # Se não for, gera um erro
                             if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
-                                raise ValueError('Nao existe partida salva com o numero inserido.')
+                                raise ValueError('Nao existe partida salva com o numero inserido')
 
                             # Se for, apaga a partida salve e quebra o loop
                             else:
@@ -184,7 +184,7 @@ def main():
                     # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
                     except ValueError as mensagemDeErro:
                         log.relatorioDeErro(repr(mensagemDeErro))
-                        print('Entrada inválida.')
+                        print('Entrada inválida')
 
             # Voltar ao menu principal
             elif entrada == '3':
@@ -204,25 +204,90 @@ def main():
             entrada = interface.entradaDoUsuario()
 
             # Seleciona uma ação de acordo com a entrada do usuário
-            # Alterar as opções
+            # Alterar o tamanho do tabuleiro
             if entrada == '1':
-                # Espera a entrada do usuário
-                entrada = interface.entradaDoUsuario('Insira o tamanho do tabuleiro:\nEx.: 4 -> 4x4.\n')
+                # Variável para armazenar o tamanho antigo do tabuleiro
+                tamanhoDoTabuleiroAntigo = tamanhoDoTabuleiro
 
-                # Muda a variável com o novo tamanho do tabuleiro
-                tamanhoDoTabuleiro = int(entrada)
+                # Loop para receber a entrada do usuário na alteração do tamanho do tabuleiro
+                while True:
+                    # Espera a entrada do usuário
+                    entrada = interface.entradaDoUsuario('Insira o novo tamanho do tabuleiro ou "c" para cancelar:\n')
 
-                # Espera a entrada do usuário
-                entrada = interface.entradaDoUsuario('Insira o valor do objetivo:\n')
+                    # Caso o usuário tenha inserido "c", quebra o loop
+                    if entrada == 'c' or entrada == 'C':
+                        # Se o usuário cancelar a mudança, muda de volta para o tamanho do tabuleiro antigo
+                        tamanhoDoTabuleiro = tamanhoDoTabuleiroAntigo
 
-                # Muda a variável com o novo objetivo
-                objetivo = int(entrada)
+                        # Quebra o loop
+                        break
 
-                # Reinicia a instância da mecânica do jogo com os novos parâmetros
-                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+                    # Tenta converter a entrada para int
+                    try:
+                        # Muda a variável com o novo tamanho do tabuleiro
+                        tamanhoDoTabuleiro = int(entrada)
+
+                        # Tenta reiniciar a instância da mecânica do jogo com o valor inserido
+                        try:
+                            # Reinicia a instância da mecânica do jogo com o novo parâmetro
+                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+                            # Quebra o loop
+                            break
+
+                        # Caso o número inserido não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
+                        except ValueError as mensagemDeErro:
+                            log.relatorioDeErro(repr(mensagemDeErro))
+                            print(mensagemDeErro)
+
+                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
+                    except ValueError as mensagemDeErro:
+                        log.relatorioDeErro(repr(mensagemDeErro))
+                        print('Entrada inválida')
+
+            # Alterar o objetivo da partida
+            elif entrada == '2':
+                # Variável para armazenar o objetivo da partida antigo
+                objetivoAntigo = objetivo
+
+                # Loop para receber a entrada do usuário na alteração do objetivo da partida
+                while True:
+                    # Espera a entrada do usuário
+                    entrada = interface.entradaDoUsuario('Insira o novo valor do objetivo ou "c" para cancelar:\n')
+
+                    # Caso o usuário tenha inserido "c", quebra o loop
+                    if entrada == 'c' or entrada == 'C':
+                        # Se o usuário cancelar a mudança, muda de volta para o tamanho do tabuleiro antigo
+                        objetivo = objetivoAntigo
+
+                        # Quebra o loop
+                        break
+
+                    # Tenta converter a entrada para int
+                    try:
+                        # Muda a variável com o novo objetivo
+                        objetivo = int(entrada)
+
+                        # Tenta reiniciar a instância da mecânica do jogo com o valor inserido
+                        try:
+                            # Reinicia a instância da mecânica do jogo com o novo parâmetro
+                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+                            # Quebra o loop
+                            break
+
+                        # Caso o número inserido não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
+                        except ValueError as mensagemDeErro:
+                            log.relatorioDeErro(repr(mensagemDeErro))
+                            print(mensagemDeErro)
+
+                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
+                    except ValueError as mensagemDeErro:
+                        log.relatorioDeErro(repr(mensagemDeErro))
+                        print('Entrada inválida')
 
             # Voltar ao menu principal
-            elif entrada == '2':
+            elif entrada == '3':
                 main()
 
     # Estatísticas
