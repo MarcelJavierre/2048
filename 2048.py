@@ -113,27 +113,27 @@ def main():
                     if entrada == 'c' or entrada == 'C':
                         break
 
-                    # Tenta converter a entrada para o índice da lista com os dados das partidas salvas
+                    # Tenta converter a entrada para o índice da partida salva
                     try:
-                        indice = (int(entrada) - 1) * 5
+                        indiceDaPartidaSalva = (int(entrada) - 1) * 5
 
                         # Verifica se o índice inserido é válido
                         try:
                             # Se não for, gera um erro
-                            if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
+                            if indiceDaPartidaSalva < 0 or indiceDaPartidaSalva >= len(listaComOsDadosDasPartidasSalvas):
                                 raise ValueError('Nao existe partida salva com o numero inserido')
 
                             # Se for, carrega a partida salva
                             else:
                                 # Atualiza as variáveis de configuração com os dados da partida salva
-                                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indice + 1])
-                                objetivo = int(listaComOsDadosDasPartidasSalvas[indice + 2])
+                                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 1])
+                                objetivo = int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 2])
 
                                 # Reinicia a instância da mecânica do jogo
                                 mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
                                 # Atualiza o tabuleiro e o score com os dados da partida salva
-                                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indice + 3]), int(listaComOsDadosDasPartidasSalvas[indice + 4]))
+                                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
 
                                 # Reinicia o loop do jogo
                                 loopDoJogo()
@@ -158,23 +158,17 @@ def main():
                     if entrada == 'c' or entrada == 'C':
                         break
 
-                    # Tenta converter a entrada para o índice da lista com os dados das partidas salvas
+                    # Tenta converter a entrada para int
                     try:
-                        indice = (int(entrada) - 1) * 5
+                        indiceDaPartidaSalva = int(entrada)
 
-                        # Verifica se o índice inserido é válido
+                        # Tenta apagar a partida salva
                         try:
-                            # Se não for, gera um erro
-                            if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
-                                raise ValueError('Nao existe partida salva com o numero inserido')
+                            # Apaga a partida salva
+                            log.apagarJogoSalvo(indiceDaPartidaSalva)
 
-                            # Se for, apaga a partida salve e quebra o loop
-                            else:
-                                # Apaga a partida salva
-                                log.apagarJogoSalvo(indice)
-
-                                # Quebra o loop
-                                break
+                            # Quebra o loop
+                            break
 
                         # Caso o índice não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
                         except ValueError as mensagemDeErro:

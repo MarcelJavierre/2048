@@ -264,7 +264,8 @@ class Log:
     def apagarJogoSalvo(self, indiceDaPartidaSalva):
         '''
         Método para apagar do arquivo com as partidas salvas um jogo
-        salvo.
+        salvo. Gera um "ValueError" caso o índice passado não seja
+        válido.
 
         Self, int -> None
         '''
@@ -277,12 +278,20 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
+        # Converte o índice passado para o índice da lista do conteúdo do arquivo
+        indiceDoConteudoDoArquivo = (indiceDaPartidaSalva - 1) * 5
+
+        # Verifica se o índice passado é válido
+        if indiceDoConteudoDoArquivo < 0 or indiceDoConteudoDoArquivo >= len(conteudoDoArquivo):
+            # Se não for, gera um erro
+            raise ValueError('Nao existe partida salva com o numero inserido')
+
         # Remove os dados da partida salva
-        conteudoDoArquivo.pop(indiceDaPartidaSalva)
-        conteudoDoArquivo.pop(indiceDaPartidaSalva)
-        conteudoDoArquivo.pop(indiceDaPartidaSalva)
-        conteudoDoArquivo.pop(indiceDaPartidaSalva)
-        conteudoDoArquivo.pop(indiceDaPartidaSalva)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
 
         # Abre o arquivo no modo sobrescrever
         arquivo = open('partidas-salvas/partidas-salvas', 'w')
