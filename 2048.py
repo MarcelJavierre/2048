@@ -177,10 +177,10 @@ def main():
         # Limpa a tela
         interface.limpaTela()
 
-        print('Não Implementado')
+        # Mostra a tela das estatísticas
+        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
 
         # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
         main()
 
     # Manual do Desenvolvedor

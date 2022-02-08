@@ -8,6 +8,9 @@ else:
 # Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
 from os import get_terminal_size
 
+# Importando o módulo "matplotlib.pyplot" com o apelido "plt"
+import matplotlib.pyplot as plt
+
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''
@@ -339,13 +342,47 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m')
 
-    def telaDasEstatisticas(self):
+    def telaDasEstatisticas(self, estatisticasDeJogadas, estatisticasDePecas, estatisticasDeScore):
         '''
         Método para exibir ao usuário a tela de estatísticas do jogo.
 
-        Self -> None
+        Self,
+        tuple[list[str], list[int]],
+        tuple[list[str], list[int]],
+        tuple[list[int]] -> None
         '''
-        pass
+        # Define o estilo do gráfico
+        plt.style.use('dark_background')
+
+        # Define a organização dos gráficos com um "grid" no formato 2x2
+        grid = (2, 2)
+
+        # Define a figura
+        fig = plt.figure('2048 - Estatísticas', (15, 8))
+
+        # Define os eixos
+        eixoDasEstatisticasDeJogadas = plt.subplot2grid(grid, (0, 0))
+        eixoDasEstatisticasDePecas = plt.subplot2grid(grid, (0, 1))
+        eixoDasEstatisticasDeScore = plt.subplot2grid(grid, (1, 0), colspan = 2)
+
+        # Gráfico das estatísticas de jogadas
+        eixoDasEstatisticasDeJogadas.pie(estatisticasDeJogadas[1], labels = estatisticasDeJogadas[0], colors = ('red', 'green', 'blue', 'purple'), autopct = '%1.1f%%')
+        eixoDasEstatisticasDeJogadas.set_title('Estatísticas de Jogadas')
+
+        # Gráfico das estatísticas de peças
+        eixoDasEstatisticasDePecas.bar(estatisticasDePecas[0], estatisticasDePecas[1], color = 'yellow')
+        eixoDasEstatisticasDePecas.set_xlabel('Peça')
+        eixoDasEstatisticasDePecas.set_ylabel('Quantidade')
+        eixoDasEstatisticasDePecas.set_title('Estatísticas da Maior Peça de Cada Partida')
+
+        # Gráfico das estatísticas de scores
+        eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], 'cyan')
+        eixoDasEstatisticasDeScore.set_xlabel('Partidas')
+        eixoDasEstatisticasDeScore.set_ylabel('Score')
+        eixoDasEstatisticasDeScore.set_title('Estatísticas de Score')
+
+        # Mostra o gráfico
+        plt.show()
 
     def telaDoTabuleiro(self, tabuleiro, score, objetivo):
         '''
