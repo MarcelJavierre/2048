@@ -105,33 +105,86 @@ def main():
             # Seleciona uma ação de acordo com a entrada do usuário
             # Carregar jogo
             if entrada == '1':
-                entrada = interface.entradaDoUsuario('Selecione a partida que deseja carregar:\n')
+                # Loop para receber a entrada do usuário
+                while True:
+                    entrada = interface.entradaDoUsuario('Insira o número da partida que deseja carregar ou "c" para cancelar:\n')
 
-                # Converte a entrada para o índice da lista com os dados das partidas salvas
-                indice = (int(entrada) - 1) * 5
+                    # Caso o usuário tenha inserido "c", quebra o loop
+                    if entrada == 'c' or entrada == 'C':
+                        break
 
-                # Atualiza as variáveis de configuração com os dados da partida salva
-                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indice + 1])
-                objetivo = int(listaComOsDadosDasPartidasSalvas[indice + 2])
+                    # Tenta converter a entrada para o índice da lista com os dados das partidas salvas
+                    try:
+                        indice = (int(entrada) - 1) * 5
 
-                # Reinicia a instância da mecânica do jogo
-                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+                        # Verifica se o índice inserido é válido
+                        try:
+                            # Se não for, gera um erro
+                            if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
+                                raise ValueError('Nao existe partida salva com o numero inserido.')
 
-                # Atualiza o tabuleiro e o score com os dados da partida salva
-                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indice + 3]), int(listaComOsDadosDasPartidasSalvas[indice + 4]))
+                            # Se for, carrega a partida salva
+                            else:
+                                # Atualiza as variáveis de configuração com os dados da partida salva
+                                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indice + 1])
+                                objetivo = int(listaComOsDadosDasPartidasSalvas[indice + 2])
 
-                # Reinicia o loop do jogo
-                loopDoJogo()
+                                # Reinicia a instância da mecânica do jogo
+                                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+                                # Atualiza o tabuleiro e o score com os dados da partida salva
+                                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indice + 3]), int(listaComOsDadosDasPartidasSalvas[indice + 4]))
+
+                                # Reinicia o loop do jogo
+                                loopDoJogo()
+
+                        # Caso o índice não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
+                        except ValueError as mensagemDeErro:
+                            log.relatorioDeErro(repr(mensagemDeErro))
+                            print(mensagemDeErro)
+
+                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
+                    except ValueError as mensagemDeErro:
+                        log.relatorioDeErro(repr(mensagemDeErro))
+                        print('Entrada inválida.')
 
             # Apagar partida salva
             elif entrada == '2':
-                entrada = interface.entradaDoUsuario('Selecione a partida que deseja apagar:\n')
+                # Loop para receber a entrada do usuário
+                while True:
+                    entrada = interface.entradaDoUsuario('Insira o número da partida que deseja apagar ou "c" para cancelar:\n')
 
-                # Converte a entrada para o índice da lista com os dados das partidas salvas
-                indice = (int(entrada) - 1) * 5
+                    # Caso o usuário tenha inserido "c", quebra o loop
+                    if entrada == 'c' or entrada == 'C':
+                        break
 
-                # Apaga a partida salva
-                log.apagarJogoSalvo(indice)
+                    # Tenta converter a entrada para o índice da lista com os dados das partidas salvas
+                    try:
+                        indice = (int(entrada) - 1) * 5
+
+                        # Verifica se o índice inserido é válido
+                        try:
+                            # Se não for, gera um erro
+                            if indice < 0 or indice >= len(listaComOsDadosDasPartidasSalvas):
+                                raise ValueError('Nao existe partida salva com o numero inserido.')
+
+                            # Se for, apaga a partida salve e quebra o loop
+                            else:
+                                # Apaga a partida salva
+                                log.apagarJogoSalvo(indice)
+
+                                # Quebra o loop
+                                break
+
+                        # Caso o índice não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
+                        except ValueError as mensagemDeErro:
+                            log.relatorioDeErro(repr(mensagemDeErro))
+                            print(mensagemDeErro)
+
+                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
+                    except ValueError as mensagemDeErro:
+                        log.relatorioDeErro(repr(mensagemDeErro))
+                        print('Entrada inválida.')
 
             # Voltar ao menu principal
             elif entrada == '3':
