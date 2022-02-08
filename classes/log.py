@@ -432,7 +432,7 @@ class Log:
         eixoY = []
 
         # Passa por todas as linhas do arquivo
-        for i in range(len(conteudoDoArquivo) - 1):
+        for i in range(0, len(conteudoDoArquivo) - 1, 2):
             # Remove os caracteres ":" e "\n" e armazena na lista
             eixoX.append(conteudoDoArquivo[i][: - 2])
 
@@ -463,7 +463,7 @@ class Log:
         eixoY = []
 
         # Passa por todas as linhas do arquivo
-        for i in range(len(conteudoDoArquivo) - 1):
+        for i in range(0, len(conteudoDoArquivo) - 1, 2):
             # Remove os caracteres ":" e "\n" e armazena na lista
             eixoX.append(conteudoDoArquivo[i][: - 2])
 
@@ -481,7 +481,7 @@ class Log:
         Self -> tuple[list[int]]
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+        arquivo = open('estatisticas/estatisticasDeScore', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
