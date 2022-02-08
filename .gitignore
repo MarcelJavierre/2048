@@ -132,7 +132,7 @@ dmypy.json
 estatisticas/
 
 # Partidas salvas
-partidasSalvas/
+partidas-salvas/
 
 # Relatórios de Erros
-relatoriosDeErros/
+relatorios-de-erros/
