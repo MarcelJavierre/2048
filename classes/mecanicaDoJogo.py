@@ -80,6 +80,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'geraElementoAleatorio',
             'inserePeca',
             'movePecas',
+            'juntaPecas',
+            'venceuOJogo',
+            'possuiMovimentosVailidos',
             'getCasasVazias',
             'getTabuleiro',
             'getScore',
@@ -150,6 +153,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'geraElementoAleatorio': self.geraElementoAleatorio.__doc__,
             'inserePeca': self.inserePeca.__doc__,
             'movePecas': self.movePecas.__doc__,
+            'juntaPecas': self.juntaPecas.__doc__,
+            'venceuOJogo': self.venceuOJogo.__doc__,
+            'possuiMovimentosVailidos': self.possuiMovimentosVailidos.__doc__,
             'getCasasVazias': self.getCasasVazias.__doc__,
             'getTabuleiro': self.getTabuleiro.__doc__,
             'getScore': self.getScore.__doc__,
@@ -186,7 +192,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Caso a entrada do usuário for "cima"
         if entradaDoUsuario == 'cima':
-            # Passa por todas as linhas, de cima para baixo
+            # Passa da segunda até a última linha
             for i in range(1, self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas
                 for j in range(self.tamanhoDoTabuleiro):
@@ -199,17 +205,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-                        # Caso a casa esteja com uma peça igual, junta as duas peças
-                        elif self.tabuleiro[i - 1][j] == self.tabuleiro[i][j]:
-                            self.tabuleiro[i - 1][j] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = 0
-                            # Adiciona o valor da nova peça ao score
-                            self.score += self.tabuleiro[i - 1][j]
-                            pecaFoiMovida = True
-
         # Caso a entrada do usuário for "baixo"
         elif entradaDoUsuario == 'baixo':
-            # Passa por todas as linhas, de baixo para cima
+            # Passa da penúltima até a primeira linha
             for i in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                 # Passa por todas as colunas
                 for j in range(self.tamanhoDoTabuleiro):
@@ -222,19 +220,11 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-                        # Caso a casa esteja com uma peça igual, junta as duas peças
-                        elif self.tabuleiro[i + 1][j] == self.tabuleiro[i][j]:
-                            self.tabuleiro[i + 1][j] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = 0
-                            # Adiciona o valor da nova peça ao score
-                            self.score += self.tabuleiro[i + 1][j]
-                            pecaFoiMovida = True
-
         # Caso a entrada do usuário for "esquerda"
         elif entradaDoUsuario == 'esquerda':
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
-                # Passa por todas as colunas, da esquerda para a direita
+                # Passa da segunda até a última coluna
                 for j in range(1, self.tamanhoDoTabuleiro):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
@@ -245,19 +235,11 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-                        # Caso a casa esteja com uma peça igual, junta as duas peças
-                        elif self.tabuleiro[i][j - 1] == self.tabuleiro[i][j]:
-                            self.tabuleiro[i][j - 1] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = 0
-                            # Adiciona o valor da nova peça ao score
-                            self.score += self.tabuleiro[i][j - 1]
-                            pecaFoiMovida = True
-
         # Caso a entrada do usuário for "direita"
         else:
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
-                # Passa por todas as colunas, da direita para a esquerda
+                # Passa da penúltima até a primeira coluna
                 for j in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                     # Caso a peça não seja 0
                     if self.tabuleiro[i][j] != 0:
@@ -268,16 +250,91 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-                        # Caso a casa esteja com uma peça igual, junta as duas peças
-                        elif self.tabuleiro[i][j + 1] == self.tabuleiro[i][j]:
-                            self.tabuleiro[i][j + 1] += self.tabuleiro[i][j]
-                            self.tabuleiro[i][j] = 0
-                            # Adiciona o valor da nova peça ao score
-                            self.score += self.tabuleiro[i][j + 1]
-                            pecaFoiMovida = True
-
         # Retorna a variável que indica se alguma peça foi movida ou não
         return pecaFoiMovida
+
+    def juntaPecas(self, entradaDoUsuario):
+        '''
+        Método que junta todas as peças vizinhas iguais do tabuleiro de
+        acordo com a entrada do usuário. Retorna "True" se alguma peça
+        foi juntada ou "False" se não. O parâmetro "entradaDoUsuario"
+        precisa ser "cima", "baixo", "esquerda" ou "direita".
+
+        Self, str -> bool
+        '''
+        # Variável para indicar se alguma peça foi movida
+        pecaFoiJuntada = False
+
+        # Caso a entrada do usuário for "cima"
+        if entradaDoUsuario == 'cima':
+            # Passa da primeira até a penúltima linha
+            for i in range(self.tamanhoDoTabuleiro - 1):
+                # Passa por todas as colunas
+                for j in range(self.tamanhoDoTabuleiro):
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
+                        # Verifica a casa da linha de baixo
+                        # Caso a casa esteja com uma peça igual, junta as duas peças
+                        if self.tabuleiro[i][j] == self.tabuleiro[i + 1][j]:
+                            self.tabuleiro[i][j] += self.tabuleiro[i + 1][j]
+                            self.tabuleiro[i + 1][j] = 0
+                            # Adiciona o valor da nova peça ao score
+                            self.score += self.tabuleiro[i][j]
+                            pecaFoiJuntada = True
+
+        # Caso a entrada do usuário for "baixo"
+        elif entradaDoUsuario == 'baixo':
+            # Passa da última até a segunda linha
+            for i in range(self.tamanhoDoTabuleiro - 1, 0, - 1):
+                # Passa por todas as colunas
+                for j in range(self.tamanhoDoTabuleiro):
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
+                        # Verifica a casa da linha de cima
+                        # Caso a casa esteja com uma peça igual, junta as duas peças
+                        if self.tabuleiro[i][j] == self.tabuleiro[i - 1][j]:
+                            self.tabuleiro[i][j] += self.tabuleiro[i - 1][j]
+                            self.tabuleiro[i - 1][j] = 0
+                            # Adiciona o valor da nova peça ao score
+                            self.score += self.tabuleiro[i][j]
+                            pecaFoiJuntada = True
+
+        # Caso a entrada do usuário for "esquerda"
+        elif entradaDoUsuario == 'esquerda':
+            # Passa por todas as linhas
+            for i in range(self.tamanhoDoTabuleiro):
+                # Passa da primeira até a penúltima coluna
+                for j in range(self.tamanhoDoTabuleiro - 1):
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
+                        # Verifica a casa da coluna anterior
+                        # Caso a casa esteja com uma peça igual, junta as duas peças
+                        if self.tabuleiro[i][j] == self.tabuleiro[i][j + 1]:
+                            self.tabuleiro[i][j] += self.tabuleiro[i][j + 1]
+                            self.tabuleiro[i][j + 1] = 0
+                            # Adiciona o valor da nova peça ao score
+                            self.score += self.tabuleiro[i][j]
+                            pecaFoiJuntada = True
+
+        # Caso a entrada do usuário for "direita"
+        else:
+            # Passa por todas as linhas
+            for i in range(self.tamanhoDoTabuleiro):
+                # Passa da última até a segunda coluna
+                for j in range(self.tamanhoDoTabuleiro - 1, 0, - 1):
+                    # Caso a peça não seja 0
+                    if self.tabuleiro[i][j] != 0:
+                        # Verifica a casa da coluna anterior
+                        # Caso a casa esteja com uma peça igual, junta as duas peças
+                        if self.tabuleiro[i][j] == self.tabuleiro[i][j - 1]:
+                            self.tabuleiro[i][j] += self.tabuleiro[i][j - 1]
+                            self.tabuleiro[i][j - 1] = 0
+                            # Adiciona o valor da nova peça ao score
+                            self.score += self.tabuleiro[i][j]
+                            pecaFoiJuntada = True
+
+        # Retorna a variável que indica se alguma peça foi movida ou não
+        return pecaFoiJuntada
 
     def venceuOJogo(self):
         '''
