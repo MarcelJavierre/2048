@@ -350,6 +350,9 @@ def loopDoJogo():
     while True:
         # Loop para receber a entrada do usuário da tela do tabuleiro
         while True:
+            # Variável para armazenar a quantidade de vezes que as peças foram movidas
+            contador = 0
+
             # Espera a entrada do usuário
             entrada = interface.entradaDoUsuario()
 
@@ -364,7 +367,19 @@ def loopDoJogo():
                     interface.pausa(0.1)
                     interface.limpaTela()
                     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-                break
+
+                    # Adiciona 1 no contador
+                    contador += 1
+
+                # Se nenhuma peça foi movida na direção passada, não quebra o loop
+                if contador != 0:
+                    # Quebra o loop para receber a entrada do usuário da tela do tabuleiro
+                    break
+
+                # Mostra novamente a tela do tabuleiro
+                else:
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
             # Esquerda
             elif entrada == 'a' or entrada == 'A':
@@ -376,7 +391,19 @@ def loopDoJogo():
                     interface.pausa(0.1)
                     interface.limpaTela()
                     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-                break
+
+                    # Adiciona 1 no contador
+                    contador += 1
+
+                # Se nenhuma peça foi movida na direção passada, não quebra o loop
+                if contador != 0:
+                    # Quebra o loop para receber a entrada do usuário da tela do tabuleiro
+                    break
+
+                # Mostra novamente a tela do tabuleiro
+                else:
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
             # Baixo
             elif entrada == 's' or entrada == 'S':
@@ -388,7 +415,19 @@ def loopDoJogo():
                     interface.pausa(0.1)
                     interface.limpaTela()
                     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-                break
+
+                    # Adiciona 1 no contador
+                    contador += 1
+
+                # Se nenhuma peça foi movida na direção passada, não quebra o loop
+                if contador != 0:
+                    # Quebra o loop para receber a entrada do usuário da tela do tabuleiro
+                    break
+
+                # Mostra novamente a tela do tabuleiro
+                else:
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
             # Direita
             elif entrada == 'd' or entrada == 'D':
@@ -400,7 +439,19 @@ def loopDoJogo():
                     interface.pausa(0.1)
                     interface.limpaTela()
                     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-                break
+
+                    # Adiciona 1 no contador
+                    contador += 1
+
+                # Se nenhuma peça foi movida na direção passada, não quebra o loop
+                if contador != 0:
+                    # Quebra o loop para receber a entrada do usuário da tela do tabuleiro
+                    break
+
+                # Mostra novamente a tela do tabuleiro
+                else:
+                    interface.limpaTela()
+                    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
             # Pause
             elif entrada == 'p' or entrada == 'P':
