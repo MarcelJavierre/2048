@@ -353,51 +353,28 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         Self -> bool
         '''
-        # Caso o tabuleiro possua alguma casa vazia, retorna true
+        # Caso o tabuleiro possua alguma casa vazia, retorna "True"
         if 0 in self.tabuleiro:
             return True
 
-        # Passa pelas linhas, da segunda até a penúltima
-        for i in range(1, self.tamanhoDoTabuleiro - 1):
-            # Passa pelas colunas, da segunda até a penúltima
-            for j in range(1, self.tamanhoDoTabuleiro - 1):
-                # Verifica se a casa pode se juntar com alguma outra casa ao redor
-                if (
-                    # Verifica as casas centrais
-                    self.tabuleiro[i][j] == self.tabuleiro[i + 1][j] or
-                    self.tabuleiro[i][j] == self.tabuleiro[i - 1][j] or
-                    self.tabuleiro[i][j] == self.tabuleiro[i][j + 1] or
-                    self.tabuleiro[i][j] == self.tabuleiro[i][j - 1] or
-
-                    # Verifica as casas da borda superior
-                    self.tabuleiro[0][j] == self.tabuleiro[0][j + 1] or
-                    self.tabuleiro[0][j] == self.tabuleiro[0][j - 1] or
-
-                    # Verifica as casas da borda inferior
-                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j + 1] or
-                    self.tabuleiro[self.tamanhoDoTabuleiro - 1][j] == self.tabuleiro[self.tamanhoDoTabuleiro - 1][j - 1] or
-
-                    # Verifica as casas da borda esquerda
-                    self.tabuleiro[i][0] == self.tabuleiro[i + 1][0] or
-                    self.tabuleiro[i][0] == self.tabuleiro[i - 1][0] or
-
-                    # Verifica as casas da borda direita
-                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i + 1][self.tamanhoDoTabuleiro - 1] or
-                    self.tabuleiro[i][self.tamanhoDoTabuleiro - 1] == self.tabuleiro[i - 1][self.tamanhoDoTabuleiro - 1]
-                ):
-                    # Se sim, retorna "True"
+        # Verifica se tem movimentos válidos na vertical
+        # Passa da primeira até a penúltima linha
+        for i in range(self.tamanhoDoTabuleiro - 1):
+            # Passa por todas as colunas
+            for j in range(self.tamanhoDoTabuleiro):
+                # Caso a casa possua uma peça igual a casa de baixo, retorna "True"
+                if self.tabuleiro[i][j] == self.tabuleiro[i + 1][j]:
                     return True
 
-        # Como o tabuleiro pode assumir o formato 2X2, o "for" de cima pode não ser executado
-        # Por isso, verifica cada extremidade do tabuleiro
-        if (
-            self.tabuleiro[0][0] == self.tabuleiro[0][1] or
-            self.tabuleiro[0][0] == self.tabuleiro[1][0] or
-            self.tabuleiro[1][1] == self.tabuleiro[0][1] or
-            self.tabuleiro[1][1] == self.tabuleiro[1][0]
-        ):
-            return True
-
+        # Verifica se tem movimentos válidos na horizontal
+        # Passa por todas as linhas
+        for i in range(self.tamanhoDoTabuleiro):
+            # Passa da primeira até a penúltima coluna
+            for j in range(self.tamanhoDoTabuleiro - 1):
+                # Caso a casa possua uma peça igual a casa ao lado, retorna "True"
+                if self.tabuleiro[i][j] == self.tabuleiro[i][j + 1]:
+                    return True
+                    
         # Caso não possua movimentos válidos, retorna "False"
         return False
 
