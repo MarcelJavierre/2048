@@ -340,16 +340,16 @@ def loopDoJogo():
     global mecanica
     global log
 
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Mostra o tabuleiro
+    interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
+
     # Loop do jogo
     while True:
         # Loop para receber a entrada do usuário da tela do tabuleiro
         while True:
-            # Limpa a tela
-            interface.limpaTela()
-
-            # Mostra o tabuleiro
-            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-
             # Espera a entrada do usuário
             entrada = interface.entradaDoUsuario()
 
@@ -468,22 +468,26 @@ def loopDoJogo():
         if len(casasVazias) != 0:
             mecanica.inserePeca(casasVazias)
 
-        # Caso não possua, verifica se ainda têm jogadas válidas
-        else:
-            # Verifica se ainda tem jogadas válidas
-            # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
-            if mecanica.possuiMovimentosVailidos() == False:
-                # Atualiza a estatística de peças com a maior peça no tabuleiro
-                log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+        # Limpa a tela
+        interface.limpaTela()
+    
+        # Mostra o tabuleiro
+        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
-                # Atualiza a estatística de score com o score da partida
-                log.estatisticasDeScore(mecanica.getScore())
+        # Verifica se ainda tem jogadas válidas
+        # Se não possuir, coloca a variável "venceuOJogo" como "False" e encerra o loop do jogo
+        if mecanica.possuiMovimentosVailidos() == False:
+            # Atualiza a estatística de peças com a maior peça no tabuleiro
+            log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
 
-                # Atualiza a variável
-                venceuOJogo = False
+            # Atualiza a estatística de score com o score da partida
+            log.estatisticasDeScore(mecanica.getScore())
 
-                # Encerra o loop do jogo
-                break
+            # Atualiza a variável
+            venceuOJogo = False
+
+            # Encerra o loop do jogo
+            break
 
     # Mostra a tela de fim de jogo
     interface.pausa(1)
