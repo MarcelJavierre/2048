@@ -7,6 +7,9 @@ from os import system
 # Importando a função "sleep" do módulo "time" que pausa a execução do código por um dado tempo
 from time import sleep
 
+# Importando o módulo "tkinter"
+from tkinter import *
+
 class FerramentasDeInterfaceComOUsuario:
     '''
     Super classe com os métodos genéricos associados com a comunicação
@@ -35,7 +38,8 @@ class FerramentasDeInterfaceComOUsuario:
             'manual',
             'entradaDoUsuario',
             'limpaTela',
-            'pausa'
+            'pausa',
+            'mudaCorDeFundoDoBotao'
         }
 
     def __str__(self):
@@ -93,7 +97,8 @@ class FerramentasDeInterfaceComOUsuario:
             'manual': self.manual.__doc__,
             'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
-            'pausa': self.pausa.__doc__
+            'pausa': self.pausa.__doc__,
+            'mudaCorDeFundoDoBotao': self.mudaCorDeFundoDoBotao.__doc__
         }
 
     def entradaDoUsuario(self, mensagem = ''):
@@ -132,3 +137,11 @@ class FerramentasDeInterfaceComOUsuario:
         Self, float -> None
         '''
         sleep(tempo)
+
+    def mudaCorDeFundoDoBotao(self, evento, botao, cor):
+        '''
+        Método que altera a cor do fundo botão passado.
+
+        Self, tkinter.Event, tkinter.Button, str -> None
+        '''
+        botao['bg'] = cor

@@ -11,6 +11,12 @@ if __name__ == '__main__':
 else:
     from classes.ferramentasDeInterfaceComOUsuario import *
 
+# Importando as definições das cores utilizadas
+from configuracoes.cores import *
+
+# Importando as definições das fontes utilizadas
+from configuracoes.fontes import *
+
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''
@@ -20,13 +26,137 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def __init__(self):
         '''
-        Método construtor.
+        Método construtor. Inicializa os componentes de todas as telas.
 
         Self -> None
         '''
+        # Atributo com a janela do jogo
+        self.janela = Tk()
+
+        # Configurações da janela
+        self.janela.title('2048') # Define o título "2048" para a janela
+        self.janela.geometry('1280x720') # Define o tamanho "1280x720" para a janela
+        self.janela.configure(bg = COR_DO_FUNDO) # Define a cor de fundo da janela
+        self.janela.rowconfigure(0, weight = 1) # Configura o posicionamento da linha com o redimensionamento da janela
+        self.janela.columnconfigure(0, weight = 1) # Configura o posicionamento da coluna com o redimensionamento da janela
+
+        # Atributo com os componentes do menu principal
+        self.quadroDoMenuPrincipal = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo do menu principal
+
+        self.logo = PhotoImage(file = 'imagens/logo.png') # Atributo com a imagem da logo
+        self.titulo = Canvas( # Atributo com o título do menu principal
+            master = self.quadroDoMenuPrincipal,
+            width = self.logo.width(),
+            height = self.logo.height(),
+            background = COR_DO_FUNDO,
+            highlightthickness = 0
+        )
+        self.titulo.create_image(0, 0, image = self.logo, anchor = 'nw') # Insere a logo no título
+        self.titulo.grid(row = 0, column = 0, pady = 20) # Insere o título no quadro
+
+        self.botaoNovoJogo = Button( # Atributo com o botão "Novo Jogo"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Novo Jogo',
+            font = FONTE_TAMANHO_14,
+            fg = VERDE,
+            activeforeground = VERDE_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoNovoJogo.grid(row = 1, column = 0) # Insere o botão no quadro
+        self.botaoNovoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoNovoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoNovoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoNovoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoCarregarJogo = Button( # Atributo com o botão "Carregar Jogo"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Carregar Jogo',
+            font = FONTE_TAMANHO_14,
+            fg = CIANO,
+            activeforeground = CIANO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoCarregarJogo.grid(row = 2, column = 0) # Insere o botão no quadro
+        self.botaoCarregarJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoCarregarJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoCarregarJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoCarregarJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoOpcoes = Button( # Atributo com o botão "Opções"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Opções',
+            font = FONTE_TAMANHO_14,
+            fg = AZUL,
+            activeforeground = AZUL_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoOpcoes.grid(row = 3, column = 0) # Insere o botão no quadro
+        self.botaoOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoEstatisticas = Button( # Atributo com o botão "Estatísticas"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Estatísticas',
+            font = FONTE_TAMANHO_14,
+            fg = ROXO,
+            activeforeground = ROXO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoEstatisticas.grid(row = 4, column = 0) # Insere o botão no quadro
+        self.botaoEstatisticas.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoEstatisticas, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoEstatisticas.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoEstatisticas, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoManualDoDesenvolvedor = Button( # Atributo com o botão "Manual do Desenvolvedor"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Manual do Desenvolvedor',
+            font = FONTE_TAMANHO_14,
+            fg = VERMELHO,
+            activeforeground = VERMELHO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoManualDoDesenvolvedor.grid(row = 5, column = 0) # Insere o botão no quadro
+        self.botaoManualDoDesenvolvedor.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoManualDoDesenvolvedor, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoManualDoDesenvolvedor.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoManualDoDesenvolvedor, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoSairDoJogo = Button( # Atributo com o botão "Sair do Jogo"
+            master = self.quadroDoMenuPrincipal,
+            text = 'Sair do Jogo',
+            font = FONTE_TAMANHO_14,
+            fg = LARANJA,
+            activeforeground = LARANJA_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0,
+            command = quit
+        )
+        self.botaoSairDoJogo.grid(row = 6, column = 0) # Insere o botão no quadro
+        self.botaoSairDoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoSairDoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
+            'self.janela',
+            'self.quadroDoMenuPrincipal',
+            'self.logo',
+            'self.titulo',
+            'self.botaoNovoJogo',
+            'self.botaoCarregarJogo',
+            'self.botaoOpcoes',
+            'self.botaoEstatisticas',
+            'self.botaoManualDoDesenvolvedor',
+            'self.botaoSairDoJogo',
             'self.__atributos',
             'self.__metodos'
         }
@@ -41,6 +171,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'entradaDoUsuario',
             'limpaTela',
             'pausa',
+            'mudaCorDeFundoDoBotao',
             'menuPrincipal',
             'telaDePause',
             'telaDeSalvamento',
@@ -99,6 +230,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Self -> dict[str]
         '''
         return {
+            'self.janela': 'Atributo com a janela do jogo.',
+            'self.quadroDoMenuPrincipal': 'Atributo com os componentes do menu principal.',
+            'self.logo': 'Atributo com a imagem da logo.',
+            'self.titulo': 'Atributo com o título do menu principal.',
+            'self.botaoNovoJogo': 'Atributo com o botão "Novo Jogo".',
+            'self.botaoCarregarJogo': 'Atributo com o botão "Carregar Jogo".',
+            'self.botaoOpcoes': 'Atributo com o botão "Opções".',
+            'self.botaoEstatisticas': 'Atributo com o botão "Estatísticas".',
+            'self.botaoManualDoDesenvolvedor': 'Atributo com o botão "Manual do Desenvolvedor".',
+            'self.botaoSairDoJogo': 'Atributo com o botão "Sair do Jogo".',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -109,6 +250,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
             'pausa': self.pausa.__doc__,
+            'mudaCorDeFundoDoBotao': self.mudaCorDeFundoDoBotao.__doc__,
             'menuPrincipal': self.menuPrincipal.__doc__,
             'telaDePause': self.telaDePause.__doc__,
             'telaDeSalvamento': self.telaDeSalvamento.__doc__,
@@ -127,43 +269,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 28) / 2)), end = '') # Centraliza verticalmente a tela do menu principal
-        print('\x1b[0;33m', end = '')
-        print("┌──────────────────┐┌──────────────────┐┌──────────────────┐┌──────────────────┐".center(get_terminal_size().columns))
-        print("│ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ ││ ┌──────────────┐ │".center(get_terminal_size().columns))
-        print("│ │    _____     │ ││ │     ____     │ ││ │   _    _     │ ││ │     ____     │ │".center(get_terminal_size().columns))
-        print("│ │   / ___ `.   │ ││ │   .'    '.   │ ││ │  │ │  │ │    │ ││ │   .' __ '.   │ │".center(get_terminal_size().columns))
-        print("│ │  │_/___) │   │ ││ │  │  .--.  │  │ ││ │  │ │__│ │_   │ ││ │   │ (__) │   │ │".center(get_terminal_size().columns))
-        print("│ │   .'____.'   │ ││ │  │ │    │ │  │ ││ │  │____   _│  │ ││ │   .`____'.   │ │".center(get_terminal_size().columns))
-        print("│ │  / /____     │ ││ │  │  `--'  │  │ ││ │      _│ │_   │ ││ │  │ (____) │  │ │".center(get_terminal_size().columns))
-        print("│ │  │_______│   │ ││ │   '.____.'   │ ││ │     │_____│  │ ││ │  `.______.'  │ │".center(get_terminal_size().columns))
-        print("│ │              │ ││ │              │ ││ │              │ ││ │              │ │".center(get_terminal_size().columns))
-        print("│ └──────────────┘ ││ └──────────────┘ ││ └──────────────┘ ││ └──────────────┘ │".center(get_terminal_size().columns))
-        print("└──────────────────┘└──────────────────┘└──────────────────┘└──────────────────┘".center(get_terminal_size().columns))
-        print('')
-        print('')
-
-        print('\x1b[0;32m', end = '')
-        print('┌───┬─────────────────────────┐'.center(get_terminal_size().columns))
-        print('│ 1 │         Novo Jogo       │'.center(get_terminal_size().columns))
-        print('\x1b[0;96m', end = '')
-        print('├───┼─────────────────────────┤'.center(get_terminal_size().columns))
-        print('│ 2 │      Carregar Jogo      │'.center(get_terminal_size().columns))
-        print('\x1b[0;34m', end = '')
-        print('├───┼─────────────────────────┤'.center(get_terminal_size().columns))
-        print('│ 3 │          Opções         │'.center(get_terminal_size().columns))
-        print('\x1b[0;35m', end = '')
-        print('├───┼─────────────────────────┤'.center(get_terminal_size().columns))
-        print('│ 4 │       Estatísticas      │'.center(get_terminal_size().columns))
-        print('\x1b[0;31m', end = '')
-        print('├───┼─────────────────────────┤'.center(get_terminal_size().columns))
-        print('│ 5 │ Manual do Desenvolvedor │'.center(get_terminal_size().columns))
-        print('├───┼─────────────────────────┤'.center(get_terminal_size().columns))
-        print('\x1b[0;38;5;130m', end = '')
-        print('│ 6 │       Sair do Jogo      │'.center(get_terminal_size().columns))
-        print('└───┴─────────────────────────┘'.center(get_terminal_size().columns))
-        print('')
-        print('\x1b[0;0m')
+        self.quadroDoMenuPrincipal.grid()
 
     def telaDePause(self):
         '''
