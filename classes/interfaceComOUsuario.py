@@ -612,6 +612,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.score['text'] = f'SCORE:    {score}'
         self.objetivo['text'] = f'OBJETIVO:    {objetivo}'
 
+        # Passa por todas as "Labels" contidas no "Frame" do tabuleiro
+        for label in self.tabuleiro.winfo_children():
+            # Remove a "Label" do "Frame" do tabuleiro
+            label.destroy()
+
         # Insere o valor de cada casa do tabuleiro na tela
         # Passa por todas as linhas
         for i in range(len(tabuleiro)):
@@ -630,6 +635,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Mostra a tela do tabuleiro
         self.quadroDaTelaDoTabuleiro.grid()
+
+        # Atualiza a janela
+        self.janela.update()
 
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''

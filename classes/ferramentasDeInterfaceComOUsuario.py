@@ -1,12 +1,3 @@
-# Importando a variável "platform" do módulo "sys" que indica qual sistema operacional está executando o código
-from sys import platform
-
-# Importando a função "system" do módulo "os" que permite utilizar comandos do terminal
-from os import system
-
-# Importando a função "sleep" do módulo "time" que pausa a execução do código por um dado tempo
-from time import sleep
-
 # Importando o módulo "tkinter"
 from tkinter import *
 
@@ -131,14 +122,14 @@ class FerramentasDeInterfaceComOUsuario:
         '''
         tela.unbind(evento)
 
-    def pausa(self, tempo):
+    def pausa(self, tela, tempo):
         '''
         Método para pausar a execução do código por um dado tempo em
-        segundos.
+        milissegundos.
 
-        Self, float -> None
+        Self, tkinter.Tk, float -> None
         '''
-        sleep(tempo)
+        tela.after(tempo)
 
     def mudaCorDeFundoDoBotao(self, evento, botao, cor):
         '''
