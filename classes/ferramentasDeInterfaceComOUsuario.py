@@ -110,24 +110,16 @@ class FerramentasDeInterfaceComOUsuario:
         '''
         return input(mensagem)
 
-    def limpaTela(self):
+    def limpaTela(self, tela):
         '''
-        Método para limpar a tela do terminal.
+        Método para limpar a tela.
 
-        Self -> None
+        Self, tkinter.Tk -> None
         '''
-        # Verifica qual é o sistema operacional executando o código
-        # Se for windows, utiliza o comando cls para limpar a tela
-        if platform == 'win32':
-            system('cls')
-
-        # Se for linux, utiliza o comando clear
-        elif platform == 'linux':
-            system('clear')
-
-        # Se não for nenhum dos dois, não faz nada
-        else:
-            pass
+        # Verifica quais componentes estão na tela
+        for componente in tela.winfo_children():
+            # Esquece os componentes na tela
+            componente.grid_forget()
 
     def pausa(self, tempo):
         '''

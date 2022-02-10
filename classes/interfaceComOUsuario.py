@@ -40,7 +40,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.janela.rowconfigure(0, weight = 1) # Configura o posicionamento da linha com o redimensionamento da janela
         self.janela.columnconfigure(0, weight = 1) # Configura o posicionamento da coluna com o redimensionamento da janela
 
-        # Atributo com os componentes do menu principal
+        # Atributos com os componentes do menu principal
         self.quadroDoMenuPrincipal = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo do menu principal
 
         self.logo = PhotoImage(file = 'imagens/logo.png') # Atributo com a imagem da logo
@@ -145,6 +145,91 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoSairDoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoSairDoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        # Atributos com os componentes da tela dos controles
+        self.quadroDaTelaDosControles = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela dos controles
+
+        self.tituloDaTelaDosControles = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'Controles',
+            font = FONTE_TAMANHO_32,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.tituloDaTelaDosControles.grid(row = 0, column = 0, columnspan = 3, pady = 50)
+
+        self.textoMovimentacao = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'Movimentação',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO,
+        )
+        self.textoMovimentacao.grid(row = 1, column = 0, columnspan = 3, pady = 10)
+
+        self.teclaW = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'W',
+            font = FONTE_TAMANHO_14,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.teclaA = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'A',
+            font = FONTE_TAMANHO_14,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.teclaS = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'S',
+            font = FONTE_TAMANHO_14,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.teclaD = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'D',
+            font = FONTE_TAMANHO_14,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.teclaW.grid(row = 2, column = 1, stick = 's')
+        self.teclaA.grid(row = 3, column = 0, stick = 'e')
+        self.teclaS.grid(row = 3, column = 1, stick = 'n')
+        self.teclaD.grid(row = 3, column = 2, stick = 'w')
+
+        self.textoPause = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'Pause',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO,
+        )
+        self.textoPause.grid(row = 4, column = 0, columnspan = 3, pady = 10)
+
+        self.teclaESC = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'ESC',
+            font = FONTE_TAMANHO_14,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.teclaESC.grid(row = 5, column = 1)
+
+        self.textoParaSair = Label(
+            master = self.quadroDaTelaDosControles,
+            text = 'Aperte Qualquer Tecla para Continuar',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO,
+        )
+        self.textoParaSair.grid(row = 6, column = 0, columnspan = 3, pady = 10, pady = 50)
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -231,7 +316,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         '''
         return {
             'self.janela': 'Atributo com a janela do jogo.',
-            'self.quadroDoMenuPrincipal': 'Atributo com os componentes do menu principal.',
+            'self.quadroDoMenuPrincipal': 'Atributo com o quadro para armazenar o conteúdo do menu principal.',
             'self.logo': 'Atributo com a imagem da logo.',
             'self.titulo': 'Atributo com o título do menu principal.',
             'self.botaoNovoJogo': 'Atributo com o botão "Novo Jogo".',
@@ -606,27 +691,28 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 20) / 2)), end = '') # Centraliza verticalmente a tela de fim de controles
-        print('\x1b[0;33m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ C │ O │ N │ T │ R │ O │ L │ E │ S │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('')
+        self.quadroDaTelaDosControles.grid()
+        #print('\n' * (int((get_terminal_size().lines - 20) / 2)), end = '') # Centraliza verticalmente a tela de fim de controles
+        #print('\x1b[0;33m', end = '')
+        #print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
+        #print('│ C │ O │ N │ T │ R │ O │ L │ E │ S │'.center(get_terminal_size().columns))
+        #print('└───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        #print('')
 
-        print('Movimentação'.center(get_terminal_size().columns))
-        print('─────────────────────────────────────'.center(get_terminal_size().columns))
-        print('    ┌───┐                   ┌──────┐ '.center(get_terminal_size().columns))
-        print('    │ W │         ┌───┐     │      │ '.center(get_terminal_size().columns))
-        print('┌───┼───┼───┐     │ + │     └┐Enter│ '.center(get_terminal_size().columns))
-        print('│ A │ S │ D │     └───┘      │     │ '.center(get_terminal_size().columns))
-        print('└───┴───┴───┘                └─────┘ '.center(get_terminal_size().columns))
-        print('')
+        #print('Movimentação'.center(get_terminal_size().columns))
+        #print('─────────────────────────────────────'.center(get_terminal_size().columns))
+        #print('    ┌───┐                   ┌──────┐ '.center(get_terminal_size().columns))
+        #print('    │ W │         ┌───┐     │      │ '.center(get_terminal_size().columns))
+        #print('┌───┼───┼───┐     │ + │     └┐Enter│ '.center(get_terminal_size().columns))
+        #print('│ A │ S │ D │     └───┘      │     │ '.center(get_terminal_size().columns))
+        #print('└───┴───┴───┘                └─────┘ '.center(get_terminal_size().columns))
+        #print('')
 
-        print('Pause'.center(get_terminal_size().columns))
-        print('─────────────────────────────────────'.center(get_terminal_size().columns))
-        print('                            ┌──────┐ '.center(get_terminal_size().columns))
-        print('    ┌───┐         ┌───┐     │      │ '.center(get_terminal_size().columns))
-        print('    │ P │         │ + │     └┐Enter│ '.center(get_terminal_size().columns))
-        print('    └───┘         └───┘      │     │ '.center(get_terminal_size().columns))
-        print('                             └─────┘ '.center(get_terminal_size().columns))
-        print('\x1b[0;0m')
+        #print('Pause'.center(get_terminal_size().columns))
+        #print('─────────────────────────────────────'.center(get_terminal_size().columns))
+        #print('                            ┌──────┐ '.center(get_terminal_size().columns))
+        #print('    ┌───┐         ┌───┐     │      │ '.center(get_terminal_size().columns))
+        #print('    │ P │         │ + │     └┐Enter│ '.center(get_terminal_size().columns))
+        #print('    └───┘         └───┘      │     │ '.center(get_terminal_size().columns))
+        #print('                             └─────┘ '.center(get_terminal_size().columns))
+        #print('\x1b[0;0m')

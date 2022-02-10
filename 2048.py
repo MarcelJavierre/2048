@@ -47,7 +47,6 @@ interface = InterfaceComOUsuario()
 mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 log = Log()
 
-# Função principal
 def main():
     '''
     Função principal.
@@ -63,9 +62,11 @@ def main():
     global mecanica
     global log
 
-    # Exibindo o menu principal
-    interface.limpaTela()
+    # Exibe o menu principal
     interface.menuPrincipal()
+
+    # Configura o comando de cada botão
+    interface.botaoNovoJogo['command'] = novoJogo
 
     # Recebendo a entrada do usuário
     entrada = interface.entradaDoUsuario()
@@ -73,13 +74,8 @@ def main():
     # Verifica qual opção o usuário escolheu
     # Novo Jogo
     if entrada == '1':
-        # Mostra a tela dos controles
-        interface.limpaTela()
-        interface.telaDosControles()
-        interface.entradaDoUsuario('Aperte Enter para Iniciar a Partida\n')
-
-        # Loop do jogo
-        loopDoJogo()
+        # Inicia um novo jogo
+        novoJogo()
 
     # Carregar Jogo
     elif entrada == '2':
@@ -324,7 +320,19 @@ def main():
     else:
         main()
 
-# Função do loop do jogo
+def novoJogo():
+    '''
+    Função para iniciar um novo jogo.
+
+    () -> None
+    '''
+    # Mostra a tela dos controles
+    interface.limpaTela(interface.janela)
+    interface.telaDosControles()
+
+    # Espera uma resposta do usuário para iniciar o loop do jogo
+    interface.janela.bind('<KeyRelease>', lambda evento: loopDoJogo())
+
 def loopDoJogo():
     '''
     Função do loop do jogo.
