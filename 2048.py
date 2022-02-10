@@ -331,7 +331,8 @@ def novoJogo():
     interface.telaDosControles()
 
     # Espera uma resposta do usuário para iniciar o loop do jogo
-    interface.janela.bind('<KeyRelease>', lambda evento: loopDoJogo())
+    interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
+    interface.janela.bind('<KeyRelease>', lambda evento: loopDoJogo(), '+')
 
 def loopDoJogo():
     '''
@@ -349,7 +350,7 @@ def loopDoJogo():
     global log
 
     # Limpa a tela
-    interface.limpaTela()
+    interface.limpaTela(interface.janela)
 
     # Mostra o tabuleiro
     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)

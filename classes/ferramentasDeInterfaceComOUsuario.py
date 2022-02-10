@@ -38,6 +38,7 @@ class FerramentasDeInterfaceComOUsuario:
             'manual',
             'entradaDoUsuario',
             'limpaTela',
+            'removeEvento',
             'pausa',
             'mudaCorDeFundoDoBotao'
         }
@@ -97,6 +98,7 @@ class FerramentasDeInterfaceComOUsuario:
             'manual': self.manual.__doc__,
             'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
+            'removeEvento': self.removeEvento.__doc__,
             'pausa': self.pausa.__doc__,
             'mudaCorDeFundoDoBotao': self.mudaCorDeFundoDoBotao.__doc__
         }
@@ -120,6 +122,14 @@ class FerramentasDeInterfaceComOUsuario:
         for componente in tela.winfo_children():
             # Esquece os componentes na tela
             componente.grid_forget()
+
+    def removeEvento(self, tela, evento):
+        '''
+        Função para remover um evento da tela.
+
+        Self, tkinter.Tk, str -> None
+        '''
+        tela.unbind(evento)
 
     def pausa(self, tempo):
         '''

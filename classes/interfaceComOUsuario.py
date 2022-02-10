@@ -228,7 +228,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             fg = AMARELO,
             bg = COR_DO_FUNDO,
         )
-        self.textoParaSair.grid(row = 6, column = 0, columnspan = 3, pady = 10, pady = 50)
+        self.textoParaSair.grid(row = 6, column = 0, columnspan = 3, pady = 50)
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -255,6 +255,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'manual',
             'entradaDoUsuario',
             'limpaTela',
+            'removeEvento',
             'pausa',
             'mudaCorDeFundoDoBotao',
             'menuPrincipal',
@@ -334,6 +335,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'manual': self.manual.__doc__,
             'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
+            'removeEvento': self.removeEvento.__doc__,
             'pausa': self.pausa.__doc__,
             'mudaCorDeFundoDoBotao': self.mudaCorDeFundoDoBotao.__doc__,
             'menuPrincipal': self.menuPrincipal.__doc__,
