@@ -1,5 +1,6 @@
 # Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
 from os import get_terminal_size
+from turtle import width
 
 # Importando o módulo "matplotlib.pyplot" com o apelido "plt"
 import matplotlib.pyplot as plt
@@ -229,6 +230,28 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             bg = COR_DO_FUNDO,
         )
         self.textoParaSair.grid(row = 6, column = 0, columnspan = 3, pady = 50)
+
+        # Atributos com os componentes da tela do tabuleiro
+        self.quadroDaTelaDoTabuleiro = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro
+
+        self.score = Label(
+            master = self.quadroDaTelaDoTabuleiro,
+            font = FONTE_TAMANHO_18,
+            fg = VERDE,
+            bg = COR_DO_FUNDO
+        )
+        self.score.grid(row = 0, column = 0)
+
+        self.objetivo = Label(
+            master = self.quadroDaTelaDoTabuleiro,
+            font = FONTE_TAMANHO_18,
+            fg = VERDE,
+            bg = COR_DO_FUNDO
+        )
+        self.objetivo.grid(row = 1, column = 0)
+
+        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5)
+        self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -585,76 +608,28 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, numpy.ndarray[int], int, int -> None
         '''
+        # Altera o texto dos atributos para incluir o valor do score e do objetivo atualizado
+        self.score['text'] = f'SCORE:    {score}'
+        self.objetivo['text'] = f'OBJETIVO:    {objetivo}'
 
-        # Strings com as bordas do tabuleiro
-        topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
-        centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
-        fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
-        espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
-
-        # Escreve na tela o score
-        print('\x1b[0;32m')
-        print(f'OBJETIVO:    {objetivo}'.center(get_terminal_size().columns))
-        print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-        print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
-        print('\x1b[0;0m')
-
-        # Escreve na tela o tabuleiro
-        # Centraliza o tabuleiro
-        margem = int((get_terminal_size().columns - len(topoDaBordaDoTabuleiro)) / 2)
-
-        # Escreve na tela o topo da borda do tabuleiro
-        print(' ' * margem, end = '')
-        print(topoDaBordaDoTabuleiro)
-
+        # Insere o valor de cada casa do tabuleiro na tela
         # Passa por todas as linhas
         for i in range(len(tabuleiro)):
-            # Escreve o espaço entre a borda e os números
-            print(' ' * margem, end = '')
-            print(espacoEntreOsNumeros)
-
-            # Variável para armazenar a linha do tabuleiro
-            linhaComOValorDasPecas = ''
-
             # Passa por todas as colunas
             for j in range(len(tabuleiro[i])):
-                # Determina o espaço do número dependendo de quantas casas o número possui
-                if tabuleiro[i][j] == 0:
-                    linhaComOValorDasPecas += f'│      '
+                # Insere uma "Label" com o valor da peça
+                Label(
+                    master = self.tabuleiro,
+                    text = f'{tabuleiro[i][j]}',
+                    font = FONTE_TAMANHO_24_EM_NEGRITO,
+                    fg = COR_DO_NUMERO_DAS_PECAS[tabuleiro[i][j]],
+                    bg = COR_DO_FUNDO_DAS_PECAS[tabuleiro[i][j]],
+                    width = 5,
+                    height = 3
+                ).grid(row = i, column = j, padx = 5, pady = 5)
 
-                elif len(str(tabuleiro[i][j])) == 1:
-                    linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
-
-                elif len(str(tabuleiro[i][j])) == 2:
-                    linhaComOValorDasPecas += f'│  \x1b[0;31m{tabuleiro[i][j]}\x1b[0;0m  '
-
-                elif len(str(tabuleiro[i][j])) == 3:
-                    linhaComOValorDasPecas += f'│ \x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m  '
-
-                elif len(str(tabuleiro[i][j])) == 4:
-                    linhaComOValorDasPecas += f'│ \x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m '
-
-                else:
-                    linhaComOValorDasPecas += f'│\x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m'
-
-            linhaComOValorDasPecas += '│'
-
-            # Escreve na tela a linha com os números das casas
-            print(' ' * margem, end = '')
-            print(linhaComOValorDasPecas)
-
-            # Escreve o espaço entre a borda e os números
-            print(' ' * margem, end = '')
-            print(espacoEntreOsNumeros)
-
-            # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
-            if i != (len(tabuleiro[i]) - 1):
-                print(' ' * margem, end = '')
-                print(centroDaBordaDoTabuleiro)
-
-        # Escreve na tela o fundo da borda do tabuleiro
-        print(' ' * margem, end = '')
-        print(fundoDaBordaDoTabuleiro)
+        # Mostra a tela do tabuleiro
+        self.quadroDaTelaDoTabuleiro.grid()
 
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''
@@ -694,27 +669,3 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Self -> None
         '''
         self.quadroDaTelaDosControles.grid()
-        #print('\n' * (int((get_terminal_size().lines - 20) / 2)), end = '') # Centraliza verticalmente a tela de fim de controles
-        #print('\x1b[0;33m', end = '')
-        #print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        #print('│ C │ O │ N │ T │ R │ O │ L │ E │ S │'.center(get_terminal_size().columns))
-        #print('└───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        #print('')
-
-        #print('Movimentação'.center(get_terminal_size().columns))
-        #print('─────────────────────────────────────'.center(get_terminal_size().columns))
-        #print('    ┌───┐                   ┌──────┐ '.center(get_terminal_size().columns))
-        #print('    │ W │         ┌───┐     │      │ '.center(get_terminal_size().columns))
-        #print('┌───┼───┼───┐     │ + │     └┐Enter│ '.center(get_terminal_size().columns))
-        #print('│ A │ S │ D │     └───┘      │     │ '.center(get_terminal_size().columns))
-        #print('└───┴───┴───┘                └─────┘ '.center(get_terminal_size().columns))
-        #print('')
-
-        #print('Pause'.center(get_terminal_size().columns))
-        #print('─────────────────────────────────────'.center(get_terminal_size().columns))
-        #print('                            ┌──────┐ '.center(get_terminal_size().columns))
-        #print('    ┌───┐         ┌───┐     │      │ '.center(get_terminal_size().columns))
-        #print('    │ P │         │ + │     └┐Enter│ '.center(get_terminal_size().columns))
-        #print('    └───┘         └───┘      │     │ '.center(get_terminal_size().columns))
-        #print('                             └─────┘ '.center(get_terminal_size().columns))
-        #print('\x1b[0;0m')
