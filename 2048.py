@@ -66,7 +66,7 @@ def main():
     interface.menuPrincipal()
 
     # Configura o comando de cada botão
-    interface.botaoNovoJogo['command'] = novoJogo
+    interface.botaoNovoJogo['command'] = iniciaLoopDoJogo
 
     # Loop do tkinter
     interface.janela.mainloop()
@@ -78,7 +78,7 @@ def main():
     # Novo Jogo
     if entrada == '1':
         # Inicia um novo jogo
-        novoJogo()
+        iniciaLoopDoJogo()
 
     # Carregar Jogo
     elif entrada == '2':
@@ -135,7 +135,7 @@ def main():
                                 mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
 
                                 # Reinicia o loop do jogo
-                                eventosDaTelaDoTabuleiro()
+                                iniciaLoopDoJogo()
 
                         # Caso o índice não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
                         except ValueError as mensagemDeErro:
@@ -323,33 +323,7 @@ def main():
     else:
         main()
 
-def novoJogo():
-    '''
-    Função para iniciar um novo jogo.
-
-    () -> None
-    '''
-    # Definindo a utilização das variáveis de configuração globais
-    global tamanhoDoTabuleiro
-    global objetivo
-
-    # Definindo a utilização das instâncias de cada seção globais
-    global interface
-    global mecanica
-    global log
-
-    # Mostra a tela dos controles
-    interface.limpaTela(interface.janela)
-    interface.telaDosControles()
-
-    # Espera uma resposta do usuário para iniciar o loop do jogo
-    interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
-    interface.janela.bind('<KeyRelease>', lambda evento: eventosDaTelaDoTabuleiro(), '+')
-
-    # Loop do tkinter
-    interface.janela.mainloop()
-
-def eventosDaTelaDoTabuleiro():
+def iniciaLoopDoJogo():
     '''
     Função que define os eventos da tela do tabuleiro.
 
