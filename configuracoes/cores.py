@@ -48,6 +48,9 @@ AZUL_CLARO = '#3b78ff'
 # Roxo Claro
 ROXO_CLARO = '#ff00ff'
 
+# Branco
+BRANCO = '#ffffff'
+
 # Cinza
 CINZA = '#555555'
 

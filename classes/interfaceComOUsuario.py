@@ -1,6 +1,5 @@
 # Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
 from os import get_terminal_size
-from turtle import width
 
 # Importando o módulo "matplotlib.pyplot" com o apelido "plt"
 import matplotlib.pyplot as plt
@@ -168,6 +167,62 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5) # Atributo com o "Frame" do tabuleiro
         self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
+        # Atributos com os componentes da tela de fim de jogo
+        self.quadroDaTelaDeVitoria = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de vitória
+        self.quadroDaTelaDeDerrota = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de derrota
+
+        self.vitoria = Label( # Atributo com a "Label" do título da tela de vitória
+            master = self.quadroDaTelaDeVitoria,
+            text = 'Você Venceu!',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.vitoria.grid(row = 0, column = 0, pady = 20)
+
+        self.scoreDaTelaDeVitoria = Label( # Atributo com a "Label" do score da tela de vitória
+            master = self.quadroDaTelaDeVitoria,
+            font = FONTE_TAMANHO_16,
+            fg = CIANO,
+            bg = COR_DO_FUNDO
+        )
+        self.scoreDaTelaDeVitoria.grid(row = 1, column = 0)
+
+        self.voltarAoMenuPrincipalDaTelaDeVitoria = Label( # Atributo com a "Label" da tela de vitória para voltar ao menu principal
+            master = self.quadroDaTelaDeVitoria,
+            text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_16,
+            fg = ROXO,
+            bg = COR_DO_FUNDO
+        )
+        self.voltarAoMenuPrincipalDaTelaDeVitoria.grid(row = 2, column = 0, pady = 20)
+
+        self.derrota = Label( # Atributo com a "Label" do título da tela de derrota
+            master = self.quadroDaTelaDeDerrota,
+            text = 'Você Perdeu!',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = VERMELHO,
+            bg = COR_DO_FUNDO
+        )
+        self.derrota.grid(row = 0, column = 0, pady = 20)
+
+        self.scoreDaTelaDeDerrota = Label( # Atributo com a "Label" do score da tela de derrota
+            master = self.quadroDaTelaDeDerrota,
+            font = FONTE_TAMANHO_16,
+            fg = VERDE,
+            bg = COR_DO_FUNDO
+        )
+        self.scoreDaTelaDeDerrota.grid(row = 1, column = 0)
+
+        self.voltarAoMenuPrincipalDaTelaDeDerrota = Label( # Atributo com a "Label" da tela de derrota para voltar ao menu principal
+            master = self.quadroDaTelaDeDerrota,
+            text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_16,
+            fg = AZUL,
+            bg = COR_DO_FUNDO
+        )
+        self.voltarAoMenuPrincipalDaTelaDeDerrota.grid(row = 2, column = 0, pady = 20)
+
         # Atributos com os componentes da tela de pause
         self.quadroDaTelaDePause = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de pause
 
@@ -253,6 +308,14 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.score',
             'self.objetivo',
             'self.tabuleiro',
+            'self.quadroDaTelaDeVitoria',
+            'self.quadroDaTelaDeDerrota',
+            'self.vitoria',
+            'self.scoreDaTelaDeVitoria',
+            'self.voltarAoMenuPrincipalDaTelaDeVitoria',
+            'self.derrota',
+            'self.scoreDaTelaDeDerrota',
+            'self.voltarAoMenuPrincipalDaTelaDeDerrota',
             'self.quadroDaTelaDePause',
             'self.pause',
             'self.botaoVoltarAoJogo',
@@ -354,6 +417,14 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoVoltarAoMenuPrincipal': 'Atributo com o botão "Voltar ao Menu Principal".',
             'self.quadroDaTelaDeSalvamento': 'Atributo com o quadro para armazenar o conteúdo da tela de salvamento.',
             'self.jogoSalvo': 'Atributo com o título da tela de salvamento.',
+            'self.quadroDaTelaDeVitoria': 'Atributo com o quadro para armazenar o conteúdo da tela de vitória.',
+            'self.quadroDaTelaDeDerrota': 'Atributo com o quadro para armazenar o conteúdo da tela de derrota.',
+            'self.vitoria': 'Atributo com a "Label" do título da tela de vitória.',
+            'self.scoreDaTelaDeVitoria': 'Atributo com a "Label" do score da tela de vitória.',
+            'self.voltarAoMenuPrincipalDaTelaDeVitoria': 'Atributo com a "Label" da tela de vitória para voltar ao menu principal.',
+            'self.derrota': 'Atributo com a "Label" do título da tela de derrota.',
+            'self.scoreDaTelaDeDerrota': 'Atributo com a "Label" do score da tela de derrota.',
+            'self.voltarAoMenuPrincipalDaTelaDeDerrota': 'Atributo com a "Label" da tela de derrota para voltar ao menu principal.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -640,24 +711,22 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Se foi vencedor, exibe a tela de vencedor
         if foiVencedor == True:
-            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
-            print('\x1b[0;33m', end = '')
-            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-            print('│ V │ O │ C │ Ê │   │ V │ E │ N │ C │ E │ U │ ! │'.center(get_terminal_size().columns))
-            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-            print('\x1b[0;32m')
-            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-            print('─────────────────────────'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
+            # Atualiza o atributo com o score
+            self.scoreDaTelaDeVitoria['text'] = f'SCORE:    {score}'
+
+            # Exibe a tela de vitória
+            self.quadroDaTelaDeVitoria.grid()
+
+            # Atualiza a janela
+            self.janela.update()
 
         # Se não, exibe a tela de perdedor
         else:
-            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
-            print('\x1b[0;31m', end = '')
-            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-            print('│ V │ O │ C │ Ê │   │ P │ E │ R │ D │ E │ U │ ! │'.center(get_terminal_size().columns))
-            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-            print('\x1b[0;32m')
-            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-            print('─────────────────────────'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
+            # Atualiza o atributo com o score
+            self.scoreDaTelaDeDerrota['text'] = f'SCORE:    {score}'
+
+            # Exibe a tela de derrota
+            self.quadroDaTelaDeDerrota.grid()
+
+            # Atualiza a janela
+            self.janela.update()
