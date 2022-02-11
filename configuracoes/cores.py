@@ -3,7 +3,7 @@ Módulo com a definição de todas as cores utilizadas na interface com o
 usuário.
 '''
 
-# Cor do fundo
+# Cor do Fundo
 COR_DO_FUNDO = '#000000'
 
 # Vermelho
@@ -55,6 +55,8 @@ BRANCO = '#ffffff'
 CINZA = '#555555'
 
 # Cores utilizadas no tabuleiro
+COR_DA_BORDA_DO_TABULEIRO = '#a39489'
+
 COR_DO_NUMERO_DAS_PECAS = {
     0: '#c2b3a9',
     2: '#695c57',

@@ -26,7 +26,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def __init__(self):
         '''
-        Método construtor. Inicializa os componentes de todas as telas.
+        Método construtor. Inicia os componentes de todas as telas.
 
         Self -> None
         '''
@@ -164,7 +164,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.objetivo.grid(row = 1, column = 0)
 
-        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5) # Atributo com o "Frame" do tabuleiro
+        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = COR_DA_BORDA_DO_TABULEIRO, borderwidth = 5) # Atributo com o "Frame" do tabuleiro
         self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
         # Atributos com os componentes da tela de fim de jogo
