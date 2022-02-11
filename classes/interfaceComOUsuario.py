@@ -168,6 +168,63 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5) # Atributo com o "Frame" do tabuleiro
         self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
+        # Atributos com os componentes da tela de pause
+        self.quadroDaTelaDePause = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de pause
+
+        self.pause = Label( # Atributo com a "Label" do título da tela de pause
+            master = self.quadroDaTelaDePause,
+            text = 'Pause',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.pause.grid(row = 0, column = 0, pady = 20)
+
+        self.botaoVoltarAoJogo = Button( # Atributo com o botão "Voltar ao Jogo"
+            master = self.quadroDaTelaDePause,
+            text = 'Voltar ao Jogo',
+            font = FONTE_TAMANHO_14,
+            fg = ROXO,
+            activeforeground = ROXO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoJogo.grid(row = 1, column = 0) # Insere o botão no quadro
+        self.botaoVoltarAoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoSalvarOJogo = Button( # Atributo com o botão "Salvar o Jogo"
+            master = self.quadroDaTelaDePause,
+            text = 'Salvar o Jogo',
+            font = FONTE_TAMANHO_14,
+            fg = ROXO,
+            activeforeground = ROXO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoSalvarOJogo.grid(row = 2, column = 0) # Insere o botão no quadro
+        self.botaoSalvarOJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSalvarOJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoSalvarOJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSalvarOJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.botaoVoltarAoMenuPrincipal = Button( # Atributo com o botão "Voltar ao Menu Principal"
+            master = self.quadroDaTelaDePause,
+            text = 'Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_14,
+            fg = ROXO,
+            activeforeground = ROXO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoMenuPrincipal.grid(row = 3, column = 0) # Insere o botão no quadro
+        self.botaoVoltarAoMenuPrincipal.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipal.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -184,6 +241,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.score',
             'self.objetivo',
             'self.tabuleiro',
+            'self.quadroDaTelaDePause',
+            'self.pause',
+            'self.botaoVoltarAoJogo',
+            'self.botaoSalvarOJogo',
+            'self.botaoVoltarAoMenuPrincipal',
             'self.__atributos',
             'self.__metodos'
         }
@@ -267,10 +329,15 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoEstatisticas': 'Atributo com o botão "Estatísticas".',
             'self.botaoManualDoDesenvolvedor': 'Atributo com o botão "Manual do Desenvolvedor".',
             'self.botaoSairDoJogo': 'Atributo com o botão "Sair do Jogo".',
-            'self.quadroDaTelaDoTabuleiro': 'Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro',
-            'self.score': 'Atributo com a "Label" do score',
-            'self.objetivo': 'Atributo com a "Label" do objetivo',
-            'self.tabuleiro': 'Atributo com o "Frame" do tabuleiro',
+            'self.quadroDaTelaDoTabuleiro': 'Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro.',
+            'self.score': 'Atributo com a "Label" do score.',
+            'self.objetivo': 'Atributo com a "Label" do objetivo.',
+            'self.tabuleiro': 'Atributo com o "Frame" do tabuleiro.',
+            'self.quadroDaTelaDePause': 'Atributo com o quadro para armazenar o conteúdo da tela de pause.',
+            'self.pause': 'Atributo com a "Label" do título da tela de pause.',
+            'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
+            'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
+            'self.botaoVoltarAoMenuPrincipal': 'Atributo com o botão "Voltar ao Menu Principal".',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -308,18 +375,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 10) / 2)), end = '') # Centraliza verticalmente a tela de pause
-        print('\x1b[0;33m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│   │   │   │   │   │   │ P │ A │ U │ S │ E │   │   │   │   │   │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 1 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ J │ O │ G │ O │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 2 │   │ S │ A │ L │ V │ A │ R │   │ O │   │ J │ O │ G │ O │   │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m')
+        self.quadroDaTelaDePause.grid()
 
     def telaDeSalvamento(self):
         '''

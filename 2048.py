@@ -62,6 +62,12 @@ def main():
     global mecanica
     global log
 
+    # Reinicia a instância da mecânica do jogo
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
     # Exibe o menu principal
     interface.menuPrincipal()
 
@@ -338,56 +344,21 @@ def iniciaLoopDoJogo():
     global mecanica
     global log
 
+    # Define os eventos das teclas do teclado
+    interface.janela.bind('<Up>', lambda evento: loopDoJogo('cima'))
+    interface.janela.bind('<Down>', lambda evento: loopDoJogo('baixo'))
+    interface.janela.bind('<Left>', lambda evento: loopDoJogo('esquerda'))
+    interface.janela.bind('<Right>', lambda evento: loopDoJogo('direita'))
+    interface.janela.bind('<Escape>', lambda evento: pause())
+
     # Limpa a tela
     interface.limpaTela(interface.janela)
 
     # Mostra o tabuleiro
     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
-    # Define os eventos das teclas do teclado
-    interface.janela.bind('<Up>', lambda evento: loopDoJogo('cima'), '+')
-    interface.janela.bind('<Down>', lambda evento: loopDoJogo('baixo'), '+')
-    interface.janela.bind('<Left>', lambda evento: loopDoJogo('esquerda'), '+')
-    interface.janela.bind('<Right>', lambda evento: loopDoJogo('direita'), '+')
-
     # Loop do tkinter
     interface.janela.mainloop()
-
-    # Pause
-    #if entrada == 'p' or entrada == 'P':
-    #    # Loop para receber a entrada do usuário da tela de pause
-    #    while True:
-    #        # Limpa a tela e mostra a tela de pause
-    #        interface.limpaTela(interface.janela)
-    #        interface.telaDePause()
-    #        # Espera a entrada do usuário
-    #        entrada = interface.entradaDoUsuario()
-    #        # Seleciona uma ação de acordo com a entrada do usuário
-    #        # Voltar ao jogo
-    #        if entrada == '1':
-    #            # Limpa a tela, mostra o tabuleiro e volta ao loop de receber uma entrada para mover as peças do tabuleiro
-    #            interface.limpaTela(interface.janela)
-    #            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-    #            break
-    #        # Salvar o jogo
-    #        elif entrada == '2':
-    #            # Mostra a tela de salvamento
-    #            interface.limpaTela(interface.janela)
-    #            interface.telaDeSalvamento()
-    #            # Salva o jogo
-    #            log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
-    #            interface.pausa(interface.janela, 1)
-    #        # Voltar ao menu principal
-    #        elif entrada == '3':
-    #            # Atualiza a estatística de peças com a maior peça no tabuleiro
-    #            log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
-    #            # Atualiza a estatística de score com o score da partida
-    #            log.estatisticasDeScore(mecanica.getScore())
-    #            
-    #            # Reinicia a instância da mecânica do jogo
-    #            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
-    #            # Volta ao menu principal
-    #            main()
 
 def loopDoJogo(direcao):
     '''
@@ -497,14 +468,12 @@ def fimDeJogo(venceuOJogo):
     interface.removeEvento(interface.janela, '<Down>')
     interface.removeEvento(interface.janela, '<Left>')
     interface.removeEvento(interface.janela, '<Right>')
+    interface.removeEvento(interface.janela, '<Escape>')
 
     # Mostra a tela de fim de jogo
     interface.pausa(interface.janela, 1500)
     interface.limpaTela(interface.janela)
     interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
-
-    # Reinicia a instância da mecânica do jogo
-    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
     # Volta para o menu principal
     interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
@@ -512,6 +481,72 @@ def fimDeJogo(venceuOJogo):
 
     # Loop do tkinter
     interface.janela.mainloop()
+
+def pause():
+    '''
+    Função para mostrar a tela de pause.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Remove os eventos da tela do tabuleiro
+    interface.removeEvento(interface.janela, '<Up>')
+    interface.removeEvento(interface.janela, '<Down>')
+    interface.removeEvento(interface.janela, '<Left>')
+    interface.removeEvento(interface.janela, '<Right>')
+    interface.removeEvento(interface.janela, '<Escape>')
+
+    # Define os comandos dos botões
+    interface.botaoVoltarAoJogo['command'] = iniciaLoopDoJogo
+    interface.botaoSalvarOJogo['command'] = salvarOJogo
+    interface.botaoVoltarAoMenuPrincipal['command'] = main
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra a tela de pause
+    interface.telaDePause()
+
+    # Loop do tkinter
+    interface.janela.mainloop()
+
+def salvarOJogo():
+    '''
+    Função para salvar o jogo.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra a tela de salvamento
+    interface.telaDeSalvamento()
+
+    # Salva o jogo
+    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
+
+    # Espera 1 segundo
+    interface.pausa(interface.janela, 1000)
+
+    # Volta para a tela de pause
+    pause()
 
 if __name__ == '__main__':
     main()
