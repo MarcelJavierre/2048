@@ -225,6 +225,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipal.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipal.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        # Atributos com os componentes da tela de salvamento
+        self.quadroDaTelaDeSalvamento = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de salvamento
+
+        self.jogoSalvo = Label( # Atributo com o título da tela de salvamento
+            master = self.quadroDaTelaDeSalvamento,
+            text = 'Jogo Salvo!',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = CIANO,
+            bg = COR_DO_FUNDO
+        )
+        self.jogoSalvo.grid(row = 0, column = 0)
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -246,6 +258,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoVoltarAoJogo',
             'self.botaoSalvarOJogo',
             'self.botaoVoltarAoMenuPrincipal',
+            'self.quadroDaTelaDeSalvamento',
+            'self.jogoSalvo',
             'self.__atributos',
             'self.__metodos'
         }
@@ -338,6 +352,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
             'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
             'self.botaoVoltarAoMenuPrincipal': 'Atributo com o botão "Voltar ao Menu Principal".',
+            'self.quadroDaTelaDeSalvamento': 'Atributo com o quadro para armazenar o conteúdo da tela de salvamento.',
+            'self.jogoSalvo': 'Atributo com o título da tela de salvamento.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -383,12 +399,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 3) / 2)), end = '') # Centraliza verticalmente a tela de salvamento
-        print('\x1b[0;96m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ J │ O │ G │ O │   │ S │ A │ L │ V │ O │ ! │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m', end = '')
+        # Mostra a tela de salvamento
+        self.quadroDaTelaDeSalvamento.grid()
+
+        # Atualiza a janela
+        self.janela.update()
 
     def telaDeCarregamento(self, listaComOsDadosDasPartidasSalvas):
         '''
