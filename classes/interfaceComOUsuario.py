@@ -149,7 +149,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atributos com os componentes da tela do tabuleiro
         self.quadroDaTelaDoTabuleiro = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro
 
-        self.score = Label(
+        self.score = Label( # Atributo com a "Label" do score
             master = self.quadroDaTelaDoTabuleiro,
             font = FONTE_TAMANHO_18,
             fg = VERDE,
@@ -157,7 +157,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.score.grid(row = 0, column = 0)
 
-        self.objetivo = Label(
+        self.objetivo = Label( # Atributo com a "Label" do objetivo
             master = self.quadroDaTelaDoTabuleiro,
             font = FONTE_TAMANHO_18,
             fg = VERDE,
@@ -165,7 +165,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.objetivo.grid(row = 1, column = 0)
 
-        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5)
+        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = '#a39489', borderwidth = 5) # Atributo com o "Frame" do tabuleiro
         self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
         # Conjunto com todos os atributos da classe
@@ -180,6 +180,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoEstatisticas',
             'self.botaoManualDoDesenvolvedor',
             'self.botaoSairDoJogo',
+            'self.quadroDaTelaDoTabuleiro',
+            'self.score',
+            'self.objetivo',
+            'self.tabuleiro',
             'self.__atributos',
             'self.__metodos'
         }
@@ -263,6 +267,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoEstatisticas': 'Atributo com o botão "Estatísticas".',
             'self.botaoManualDoDesenvolvedor': 'Atributo com o botão "Manual do Desenvolvedor".',
             'self.botaoSairDoJogo': 'Atributo com o botão "Sair do Jogo".',
+            'self.quadroDaTelaDoTabuleiro': 'Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro',
+            'self.score': 'Atributo com a "Label" do score',
+            'self.objetivo': 'Atributo com a "Label" do objetivo',
+            'self.tabuleiro': 'Atributo com o "Frame" do tabuleiro',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
