@@ -26,3 +26,6 @@ FONTE_TAMANHO_24_EM_NEGRITO = ('Helvetica', 24, 'bold')
 
 # Fonte tamanho 32 em Negrito
 FONTE_TAMANHO_32_EM_NEGRITO = ('Helvetica', 32, 'bold')
+
+# Fonte Monoespaçada tamanho 12
+FONTE_MONOESPACADA_TAMANHO_12 = ('Consolas', 12)

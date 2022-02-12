@@ -131,10 +131,10 @@ class FerramentasDeInterfaceComOUsuario:
         '''
         tela.after(tempo)
 
-    def mudaCorDeFundoDoBotao(self, evento, botao, cor):
+    def mudaCorDeFundoDoBotao(self, botao, cor):
         '''
         Método que altera a cor do fundo botão passado.
 
-        Self, tkinter.Event, tkinter.Button, str -> None
+        Self, tkinter.Button, str -> None
         '''
         botao['bg'] = cor

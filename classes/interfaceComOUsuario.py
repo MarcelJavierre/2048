@@ -66,8 +66,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoNovoJogo.grid(row = 1, column = 0) # Insere o botão no quadro
-        self.botaoNovoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoNovoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoNovoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoNovoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoNovoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoNovoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoNovoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoNovoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoCarregarJogo = Button( # Atributo com o botão "Carregar Jogo"
             master = self.quadroDoMenuPrincipal,
@@ -81,8 +81,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoCarregarJogo.grid(row = 2, column = 0) # Insere o botão no quadro
-        self.botaoCarregarJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoCarregarJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoCarregarJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoCarregarJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoCarregarJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoCarregarJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoCarregarJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoCarregarJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoOpcoes = Button( # Atributo com o botão "Opções"
             master = self.quadroDoMenuPrincipal,
@@ -96,8 +96,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoOpcoes.grid(row = 3, column = 0) # Insere o botão no quadro
-        self.botaoOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoEstatisticas = Button( # Atributo com o botão "Estatísticas"
             master = self.quadroDoMenuPrincipal,
@@ -111,8 +111,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoEstatisticas.grid(row = 4, column = 0) # Insere o botão no quadro
-        self.botaoEstatisticas.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoEstatisticas, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoEstatisticas.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoEstatisticas, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoEstatisticas.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoEstatisticas, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoEstatisticas.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoEstatisticas, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoManualDoDesenvolvedor = Button( # Atributo com o botão "Manual do Desenvolvedor"
             master = self.quadroDoMenuPrincipal,
@@ -126,8 +126,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoManualDoDesenvolvedor.grid(row = 5, column = 0) # Insere o botão no quadro
-        self.botaoManualDoDesenvolvedor.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoManualDoDesenvolvedor, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoManualDoDesenvolvedor.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoManualDoDesenvolvedor, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoManualDoDesenvolvedor.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoManualDoDesenvolvedor, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoManualDoDesenvolvedor.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoManualDoDesenvolvedor, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoSairDoJogo = Button( # Atributo com o botão "Sair do Jogo"
             master = self.quadroDoMenuPrincipal,
@@ -142,8 +142,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             command = quit
         )
         self.botaoSairDoJogo.grid(row = 6, column = 0) # Insere o botão no quadro
-        self.botaoSairDoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoSairDoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSairDoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoSairDoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSairDoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoSairDoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSairDoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         # Atributos com os componentes da tela do tabuleiro
         self.quadroDaTelaDoTabuleiro = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro
@@ -247,8 +247,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoVoltarAoJogo.grid(row = 1, column = 0) # Insere o botão no quadro
-        self.botaoVoltarAoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoVoltarAoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoVoltarAoJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         self.botaoSalvarOJogo = Button( # Atributo com o botão "Salvar o Jogo"
             master = self.quadroDaTelaDePause,
@@ -262,10 +262,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             borderwidth = 0
         )
         self.botaoSalvarOJogo.grid(row = 2, column = 0) # Insere o botão no quadro
-        self.botaoSalvarOJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSalvarOJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoSalvarOJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoSalvarOJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoSalvarOJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSalvarOJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoSalvarOJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSalvarOJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
-        self.botaoVoltarAoMenuPrincipal = Button( # Atributo com o botão "Voltar ao Menu Principal"
+        self.botaoVoltarAoMenuPrincipalDaTelaDePause = Button( # Atributo com o botão "Voltar ao Menu Principal"
             master = self.quadroDaTelaDePause,
             text = 'Voltar ao Menu Principal',
             font = FONTE_TAMANHO_14,
@@ -276,9 +276,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             relief = 'flat',
             borderwidth = 0
         )
-        self.botaoVoltarAoMenuPrincipal.grid(row = 3, column = 0) # Insere o botão no quadro
-        self.botaoVoltarAoMenuPrincipal.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
-        self.botaoVoltarAoMenuPrincipal.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(evento, self.botaoVoltarAoMenuPrincipal, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDePause.grid(row = 3, column = 0) # Insere o botão no quadro
+        self.botaoVoltarAoMenuPrincipalDaTelaDePause.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDePause, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDePause.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDePause, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         # Atributos com os componentes da tela de salvamento
         self.quadroDaTelaDeSalvamento = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de salvamento
@@ -292,6 +292,43 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.jogoSalvo.grid(row = 0, column = 0)
 
+        # Atributos com os componentes da tela de carregamento
+        self.quadroDaTelaDeCarregamento = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de carregamento
+
+        self.tituloDaTelaDeCarregamento = Label( # Atributo com o título da tela de carregamento
+            master = self.quadroDaTelaDeCarregamento,
+            text = 'Partidas Salvas',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = CIANO,
+            bg = COR_DO_FUNDO
+        )
+        self.tituloDaTelaDeCarregamento.grid(row = 0, column = 0, pady = 20)
+
+        self.partidasSalvas = Frame(master = self.quadroDaTelaDeCarregamento, bg = COR_DO_FUNDO) # Atributo com o "Frame" das partidas salvas
+
+        self.naoHaPartidasSalvas = Label( # Atributo com o texto indicando que não há partidas salvas
+            master = self.quadroDaTelaDeCarregamento,
+            text = 'Não Há Partidas Salvas!',
+            font = FONTE_TAMANHO_16,
+            fg = CIANO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento = Button(
+            master = self.quadroDaTelaDeCarregamento,
+            text = 'Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_14,
+            fg = AZUL,
+            activeforeground = AZUL_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.grid(row = 2, column = 0, pady = 20) # Insere o botão no quadro
+        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -320,7 +357,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.pause',
             'self.botaoVoltarAoJogo',
             'self.botaoSalvarOJogo',
-            'self.botaoVoltarAoMenuPrincipal',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDePause',
             'self.quadroDaTelaDeSalvamento',
             'self.jogoSalvo',
             'self.__atributos',
@@ -410,13 +447,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.score': 'Atributo com a "Label" do score.',
             'self.objetivo': 'Atributo com a "Label" do objetivo.',
             'self.tabuleiro': 'Atributo com o "Frame" do tabuleiro.',
-            'self.quadroDaTelaDePause': 'Atributo com o quadro para armazenar o conteúdo da tela de pause.',
-            'self.pause': 'Atributo com a "Label" do título da tela de pause.',
-            'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
-            'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
-            'self.botaoVoltarAoMenuPrincipal': 'Atributo com o botão "Voltar ao Menu Principal".',
-            'self.quadroDaTelaDeSalvamento': 'Atributo com o quadro para armazenar o conteúdo da tela de salvamento.',
-            'self.jogoSalvo': 'Atributo com o título da tela de salvamento.',
             'self.quadroDaTelaDeVitoria': 'Atributo com o quadro para armazenar o conteúdo da tela de vitória.',
             'self.quadroDaTelaDeDerrota': 'Atributo com o quadro para armazenar o conteúdo da tela de derrota.',
             'self.vitoria': 'Atributo com a "Label" do título da tela de vitória.',
@@ -425,6 +455,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.derrota': 'Atributo com a "Label" do título da tela de derrota.',
             'self.scoreDaTelaDeDerrota': 'Atributo com a "Label" do score da tela de derrota.',
             'self.voltarAoMenuPrincipalDaTelaDeDerrota': 'Atributo com a "Label" da tela de derrota para voltar ao menu principal.',
+            'self.quadroDaTelaDePause': 'Atributo com o quadro para armazenar o conteúdo da tela de pause.',
+            'self.pause': 'Atributo com a "Label" do título da tela de pause.',
+            'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
+            'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDePause': 'Atributo com o botão "Voltar ao Menu Principal".',
+            'self.quadroDaTelaDeSalvamento': 'Atributo com o quadro para armazenar o conteúdo da tela de salvamento.',
+            'self.jogoSalvo': 'Atributo com o título da tela de salvamento.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -476,100 +513,77 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atualiza a janela
         self.janela.update()
 
-    def telaDeCarregamento(self, listaComOsDadosDasPartidasSalvas):
+    def telaDeCarregamento(self, dadosDasPartidasSalvas):
         '''
         Método para exibir ao usuário a tela de carregamento das
         partidas salvas.
 
         Self, list[str] -> None
         '''
-        print('\x1b[0;96m')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ P │ A │ R │ T │ I │ D │ A │ S │   │ S │ A │ L │ V │ A │ S │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('')
+        # Passa por todas as "Labels" contidas no "Frame" das partidas salvas
+        for label in self.partidasSalvas.winfo_children():
+            # Remove a "Label" do "Frame" das partidas salvas
+            label.destroy()
 
         # Verifica se possui alguma partida salva
         # Caso possua, escreve na tela uma lista com todas as partidas salvas
-        if listaComOsDadosDasPartidasSalvas != []:
+        if dadosDasPartidasSalvas != []:
+            self.naoHaPartidasSalvas.grid_forget()
+            self.partidasSalvas.grid(row = 1, column = 0)
+
             # Passa por todas as partidas salvas
-            # De 5 em 5 por causa da quantidade de linhas que cada partida salva ocupa
-            for x in range(0, len(listaComOsDadosDasPartidasSalvas), 5):
-                # Escreve na tela o índice da partida salva
-                print(f'{int(x / 5 + 1)}'.center(get_terminal_size().columns))
-                print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
+            for i in range(0, len(dadosDasPartidasSalvas), 5):
+                # Converte o tabuleiro de string para list
+                tabuleiro = eval(dadosDasPartidasSalvas[i + 3][: - 1])
 
-                # Escreve na tela a data e hora da partida salva
-                print(listaComOsDadosDasPartidasSalvas[x][: - 1].center(get_terminal_size().columns))
-
-                # Escreve na tela o objetivo da partida salva
-                print(f'OBJETIVO:    {listaComOsDadosDasPartidasSalvas[x + 2][: - 1]}'.center(get_terminal_size().columns))
-
-                # Escreve na tela o score da partida salva
-                print(f'SCORE:    {listaComOsDadosDasPartidasSalvas[x + 4][: - 1]}'.center(get_terminal_size().columns))
-
-                # Escreve na tela o tabuleiro da partida salva
-                # Converte a string do tabuleiro de volta para lista
-                tabuleiro = eval(listaComOsDadosDasPartidasSalvas[x + 3][: - 1])
-
-                # Strings com as bordas do tabuleiro
-                topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
-                centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
-                fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
-                espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
-
-                # Escreve na tela o tabuleiro
-                print(topoDaBordaDoTabuleiro.center(get_terminal_size().columns))
-                # Passa por todas as linhas
-                for i in range(len(tabuleiro)):
-                    print(espacoEntreOsNumeros.center(get_terminal_size().columns))
-
-                    # Variável para armazenar a linha do tabuleiro
-                    linhaComOValorDasPecas = ''
-
-                    # Passa por todas as colunas
-                    for j in range(len(tabuleiro[i])):
-                        # Determina o espaço do número dependendo de quantas casas o número possui
-                        if tabuleiro[i][j] == 0:
-                            linhaComOValorDasPecas += f'│      '
-
-                        elif len(str(tabuleiro[i][j])) == 1:
-                            linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}   '
-
-                        elif len(str(tabuleiro[i][j])) == 2:
-                            linhaComOValorDasPecas += f'│  {tabuleiro[i][j]}  '
-
-                        elif len(str(tabuleiro[i][j])) == 3:
-                            linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
-
+                # Cria uma variável que armazena o tabuleiro em forma de string devidamente formatado
+                # Inicia a string com o topo do tabuleiro
+                tabuleiroFormatado = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐\n'
+                # Passa por todas as linhas do tabuleiro
+                for linha in range(len(tabuleiro)):
+                    # Adiciona o espaço entre a borda da casa e o número
+                    tabuleiroFormatado += '│      ' * len(tabuleiro[0]) + '│\n'
+                    # Passa por todas as colunas do tabuleiro
+                    for coluna in range(len(tabuleiro[linha])):
+                        tabuleiroFormatado += '│'
+                        # Caso o valor da casa seja diferente de 0, adiciona na string o valor da casa
+                        if tabuleiro[linha][coluna] != 0:
+                            tabuleiroFormatado += f'{tabuleiro[linha][coluna]}'.center(6)
+                        # Caso o valor seja 0, imprime um espaço em branco na casa
                         else:
-                            linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
+                            tabuleiroFormatado += '      '
+                    tabuleiroFormatado += '│\n'
+                    # Adiciona mais um espaço entre a borda da casa e o número
+                    tabuleiroFormatado += '│      ' * len(tabuleiro[0]) + '│\n'
+                    # Caso seja a última iteração, não adiciona na string a divisão entre as casas do tabuleiro
+                    if linha != (len(tabuleiro[linha]) - 1):
+                        tabuleiroFormatado += '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤\n'
+                # Aciona na string o fundo do tabuleiro
+                tabuleiroFormatado += '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
 
-                    linhaComOValorDasPecas += '│'
-
-                    print(linhaComOValorDasPecas.center(get_terminal_size().columns))
-                    print(espacoEntreOsNumeros.center(get_terminal_size().columns))
-
-                    # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
-                    if i != (len(tabuleiro[i]) - 1):
-                        print(centroDaBordaDoTabuleiro.center(get_terminal_size().columns))
-                print(fundoDaBordaDoTabuleiro.center(get_terminal_size().columns))
-                print('')
-
-            print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-            print('│ 1 │   │ C │ A │ R │ R │ E │ G │ A │ R │   │ J │ O │ G │ O │   │'.center(get_terminal_size().columns))
-            print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-            print('│ 2 │   │ A │ P │ A │ G │ A │ R │   │ P │ A │ R │ T │ I │ D │ A │'.center(get_terminal_size().columns))
-            print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-            print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │'.center(get_terminal_size().columns))
-            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
+                # Cria um botão para cada partida salva
+                Button(
+                    master = self.partidasSalvas,
+                    text = f'{dadosDasPartidasSalvas[i]}\nOBJETIVO:    {dadosDasPartidasSalvas[i + 2]}\nSCORE:    {dadosDasPartidasSalvas[i + 4]}\n{tabuleiroFormatado}',
+                    font = FONTE_MONOESPACADA_TAMANHO_12,
+                    fg = CIANO,
+                    activeforeground = CIANO_CLARO,
+                    bg = COR_DO_FUNDO,
+                    activebackground = CINZA,
+                    relief = 'flat',
+                    borderwidth = 0
+                ).grid(column = 0, pady = 5)
+                
+            # Atualiza a janela
+            self.janela.update()
 
         # Se não possuir, mostra uma tela diferente
         else:
-            print('Não há partidas salvas!'.center(get_terminal_size().columns))
-            print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
+            self.partidasSalvas.grid_forget()
+            self.naoHaPartidasSalvas.grid(row = 1, column = 0)
+
+        # Mostra a tela de carregamento
+        self.quadroDaTelaDeCarregamento.grid()
 
     def telaDeOpcoes(self, tamanhoDoTabuleiro, objetivo):
         '''

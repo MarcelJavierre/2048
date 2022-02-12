@@ -49,7 +49,7 @@ log = Log()
 
 def main():
     '''
-    Função principal.
+    Função principal. Exibe o menu principal.
 
     () -> None
     '''
@@ -73,6 +73,7 @@ def main():
 
     # Configura o comando de cada botão
     interface.botaoNovoJogo['command'] = iniciaLoopDoJogo
+    interface.botaoCarregarJogo['command'] = partidasSalvas
 
     # Loop do tkinter
     interface.janela.mainloop()
@@ -94,13 +95,13 @@ def main():
             interface.limpaTela(interface.janela)
 
             # Lê as partidas salvas
-            listaComOsDadosDasPartidasSalvas = log.carregarJogo()
+            dadosDasPartidasSalvas = log.carregarJogo()
 
             # Mostra a tela de carregamento
-            interface.telaDeCarregamento(listaComOsDadosDasPartidasSalvas)
+            interface.telaDeCarregamento(dadosDasPartidasSalvas)
 
             # Caso não exista nenhuma partida salva, volta para o menu principal
-            if listaComOsDadosDasPartidasSalvas == []:
+            if dadosDasPartidasSalvas == []:
                 interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
                 main()
 
@@ -125,20 +126,20 @@ def main():
                         # Verifica se o índice inserido é válido
                         try:
                             # Se não for, gera um erro
-                            if indiceDaPartidaSalva < 0 or indiceDaPartidaSalva >= len(listaComOsDadosDasPartidasSalvas):
+                            if indiceDaPartidaSalva < 0 or indiceDaPartidaSalva >= len(dadosDasPartidasSalvas):
                                 raise ValueError('Nao existe partida salva com o numero inserido')
 
                             # Se for, carrega a partida salva
                             else:
                                 # Atualiza as variáveis de configuração com os dados da partida salva
-                                tamanhoDoTabuleiro = int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 1])
-                                objetivo = int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 2])
+                                tamanhoDoTabuleiro = int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 1])
+                                objetivo = int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 2])
 
                                 # Reinicia a instância da mecânica do jogo
                                 mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
                                 # Atualiza o tabuleiro e o score com os dados da partida salva
-                                mecanica.carregarJogo(eval(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(listaComOsDadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
+                                mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
 
                                 # Reinicia o loop do jogo
                                 iniciaLoopDoJogo()
@@ -507,7 +508,7 @@ def pause():
     # Define os comandos dos botões
     interface.botaoVoltarAoJogo['command'] = iniciaLoopDoJogo
     interface.botaoSalvarOJogo['command'] = salvarOJogo
-    interface.botaoVoltarAoMenuPrincipal['command'] = main
+    interface.botaoVoltarAoMenuPrincipalDaTelaDePause['command'] = main
 
     # Limpa a tela
     interface.limpaTela(interface.janela)
@@ -547,6 +548,28 @@ def salvarOJogo():
 
     # Volta para a tela de pause
     pause()
+
+def partidasSalvas():
+    '''
+    Função para mostrar a lista de partidas salvas na tela de carregar
+    jogo.
+
+    () -> None
+    '''
+    # Define o comando dos botão
+    interface.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento['command'] = main
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Lê as partidas salvas
+    dadosDasPartidasSalvas = log.carregarJogo()
+
+    # Mostra a tela de carregamento
+    interface.telaDeCarregamento(dadosDasPartidasSalvas)
+
+    # Loop do tkinter
+    interface.janela.mainloop()
 
 if __name__ == '__main__':
     main()
