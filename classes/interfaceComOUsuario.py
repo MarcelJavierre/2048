@@ -537,10 +537,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, list[str] -> None
         '''
-        # Passa por todas as "Labels" contidas no "Frame" das partidas salvas
-        for label in self.partidasSalvas.winfo_children():
-            # Remove a "Label" do "Frame" das partidas salvas
-            label.destroy()
+        # Passa por todas os botões contidos no "Frame" das partidas salvas
+        for botao in self.partidasSalvas.winfo_children():
+            # Remove o botão do "Frame" das partidas salvas
+            botao.destroy()
 
         # Verifica se possui alguma partida salva
         # Caso possua, escreve na tela uma lista com todas as partidas salvas
