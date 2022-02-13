@@ -556,7 +556,16 @@ def partidasSalvas():
 
     () -> None
     '''
-    # Define o comando dos botão
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Define o comando do botão
     interface.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento['command'] = main
 
     # Limpa a tela
@@ -568,8 +577,44 @@ def partidasSalvas():
     # Mostra a tela de carregamento
     interface.telaDeCarregamento(dadosDasPartidasSalvas)
 
+    # Define os eventos dos botões com as partidas salvas
+    for i in range(len(interface.partidasSalvas.winfo_children())):
+        interface.partidasSalvas.winfo_children()[i]['command'] = lambda indiceDaPartidaSalva = i: carregarJogo(dadosDasPartidasSalvas, indiceDaPartidaSalva)
+
     # Loop do tkinter
     interface.janela.mainloop()
+
+def carregarJogo(dadosDasPartidasSalvas, indiceDaPartidaSalva):
+    '''
+    Função que, dado a lista com os dados das partidas salvas e o índice
+    da partida salva, reinicia o loop do jogo com os dados salvos.
+
+    list[str], int -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Converte o índice da partida salva passado para o índice da lista com o conteúdo do arquivo
+    indiceDaPartidaSalva *= 5
+
+    # Atualiza as variáveis de configuração com os dados da partida salva
+    tamanhoDoTabuleiro = int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 1])
+    objetivo = int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 2])
+
+    # Reinicia a instância da mecânica do jogo
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+    # Atualiza o tabuleiro e o score com os dados da partida salva
+    mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
+
+    # Reinicia o loop do jogo
+    iniciaLoopDoJogo()
 
 if __name__ == '__main__':
     main()

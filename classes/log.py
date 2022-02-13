@@ -278,13 +278,13 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-        # Converte o índice passado para o índice da lista do conteúdo do arquivo
-        indiceDoConteudoDoArquivo = (indiceDaPartidaSalva - 1) * 5
+        # Converte o índice da partida salva passado para o índice da lista do conteúdo do arquivo
+        indiceDoConteudoDoArquivo = indiceDaPartidaSalva * 5
 
         # Verifica se o índice passado é válido
         if indiceDoConteudoDoArquivo < 0 or indiceDoConteudoDoArquivo >= len(conteudoDoArquivo):
             # Se não for, gera um erro
-            raise ValueError('Nao existe partida salva com o numero inserido')
+            raise ValueError('Nao existe partida salva com o numero passado')
 
         # Remove os dados da partida salva
         conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
