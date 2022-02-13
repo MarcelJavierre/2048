@@ -304,14 +304,8 @@ def loopDoJogo(direcao):
     # Caso houve alguma mudança no tabuleiro, continua o loop do jogo
     if houveMudanca == True:
         # Verifica se o alguma peça atingiu o objetivo
-        # Se sim, atualiza as estatísticas e encerra o loop do jogo
+        # Se sim, encerra o loop do jogo
         if mecanica.venceuOJogo() == True:
-            # Atualiza a estatística de peças com o objetivo atingido
-            log.estatisticasDePecas(objetivo)
-
-            # Atualiza a estatística de score com o score da partida
-            log.estatisticasDeScore(mecanica.getScore())
-
             # Encerra o loop do jogo e mostra a tela de fim de jogo
             fimDeJogo(True)
 
@@ -329,14 +323,8 @@ def loopDoJogo(direcao):
         interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
         # Verifica se ainda tem jogadas válidas
-        # Se não possuir, atualiza as estatísticas e encerra o loop do jogo
+        # Se não possuir, encerra o loop do jogo
         if mecanica.possuiMovimentosVailidos() == False:
-            # Atualiza a estatística de peças com a maior peça no tabuleiro
-            log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
-
-            # Atualiza a estatística de score com o score da partida
-            log.estatisticasDeScore(mecanica.getScore())
-
             # Encerra o loop do jogo e mostra a tela de fim de jogo
             fimDeJogo(False)
 
@@ -361,6 +349,12 @@ def fimDeJogo(venceuOJogo):
     interface.removeEvento(interface.janela, '<Left>')
     interface.removeEvento(interface.janela, '<Right>')
     interface.removeEvento(interface.janela, '<Escape>')
+
+    # Atualiza a estatística de peças com a maior peça no tabuleiro
+    log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
+
+    # Atualiza a estatística de score com o score da partida
+    log.estatisticasDeScore(mecanica.getScore())
 
     # Mostra a tela de fim de jogo
     interface.pausa(interface.janela, 1500)
