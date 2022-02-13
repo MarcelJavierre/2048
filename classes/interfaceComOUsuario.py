@@ -334,8 +334,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             master = self.quadroDaTelaDeCarregamento,
             text = 'Voltar ao Menu Principal',
             font = FONTE_TAMANHO_14,
-            fg = AZUL,
-            activeforeground = AZUL_CLARO,
+            fg = CIANO,
+            activeforeground = CIANO_CLARO,
             bg = COR_DO_FUNDO,
             activebackground = CINZA,
             relief = 'flat',
@@ -344,6 +344,91 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.grid(row = 2, column = 0, pady = 20) # Insere o botão no quadro
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        # Atributos com os componentes da tela de Opções
+        self.quadroDaTelaDeOpcoes = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de opções
+
+        self.opcoes = Label( # Atributo com a "Label" do título da tela de opções
+            master = self.quadroDaTelaDeOpcoes,
+            text = 'Opções',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = AZUL,
+            bg = COR_DO_FUNDO
+        )
+        self.opcoes.grid(row = 0, column = 0, pady = 20)
+
+        self.tamanhoDoTabuleiro = StringVar()
+        self.objetivoDaPartida = StringVar()
+
+        self.titulotamanhoDoTabuleiro = Label(
+            master = self.quadroDaTelaDeOpcoes,
+            font = FONTE_TAMANHO_16,
+            fg = AZUL,
+            bg = COR_DO_FUNDO
+        )
+        self.titulotamanhoDoTabuleiro.grid(row = 1, column = 0)
+
+        self.entradaDoTamanhoDoTabuleiro = Entry(master = self.quadroDaTelaDeOpcoes, textvariable = self.tamanhoDoTabuleiro, font = FONTE_TAMANHO_14)
+        self.entradaDoTamanhoDoTabuleiro.grid(row = 2, column = 0, pady = 5)
+
+        self.botaoAlterarTamanho = Button(
+            master = self.quadroDaTelaDeOpcoes,
+            text = 'Alterar Tamanho',
+            font = FONTE_TAMANHO_14,
+            fg = AZUL,
+            activeforeground = AZUL_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoAlterarTamanho.grid(row = 3, column = 0) # Insere o botão no quadro
+        self.botaoAlterarTamanho.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoAlterarTamanho.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
+        self.espacoEntreAsOpcoes = Frame(master = self.quadroDaTelaDeOpcoes, bg = COR_DO_FUNDO)
+        self.espacoEntreAsOpcoes.grid(row = 4, column = 0, pady = 20)
+
+        self.tituloObjetivo = Label(
+            master = self.quadroDaTelaDeOpcoes,
+            font = FONTE_TAMANHO_16,
+            fg = AZUL,
+            bg = COR_DO_FUNDO
+        )
+        self.tituloObjetivo.grid(row = 5, column = 0)
+
+        self.entradaDoObjetivo = Entry(master = self.quadroDaTelaDeOpcoes, textvariable = self.objetivoDaPartida, font = FONTE_TAMANHO_14)
+        self.entradaDoObjetivo.grid(row = 6, column = 0, pady = 5)
+
+        self.botaoAlterarObjetivo = Button(
+            master = self.quadroDaTelaDeOpcoes,
+            text = 'Alterar Objetivo',
+            font = FONTE_TAMANHO_14,
+            fg = AZUL,
+            activeforeground = AZUL_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoAlterarObjetivo.grid(row = 7, column = 0) # Insere o botão no quadro
+        self.botaoAlterarObjetivo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarObjetivo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoAlterarObjetivo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarObjetivo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+        
+        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de opções
+            master = self.quadroDaTelaDeOpcoes,
+            text = 'Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_14,
+            fg = AZUL,
+            activeforeground = AZUL_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.grid(row = 8, column = 0, pady = 20) # Insere o botão no quadro
+        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -633,37 +718,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, int, int -> None
         '''
-        print('\n' * (int((get_terminal_size().lines - 24) / 2)), end = '') # Centraliza verticalmente a tela de opções
-        print('\x1b[0;34m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ O │ P │ Ç │ Õ │ E │ S │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('')
+        # Atualiza o texto dos títulos para os valores atuais de tamanho e objetivo
+        self.titulotamanhoDoTabuleiro['text'] = f'Tamanho do Tabuleiro:\n{tamanhoDoTabuleiro}'
+        self.tituloObjetivo['text'] = f'Objetivo:\n{objetivo}'
 
-        print('\x1b[0;94m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ T │ A │ M │ A │ N │ H │ O │   │ D │ O │   │ T │ A │ B │ U │ L │ E │ I │ R │ O │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print(f'{tamanhoDoTabuleiro}X{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
-        print('─────────────────────────────────────────────────'.center(get_terminal_size().columns))
-        print('')
-
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│   │   │ O │ B │ J │ E │ T │ I │ V │ O │   │ D │ O │   │ J │ O │ G │ O │   │   │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print(f'{objetivo}'.center(get_terminal_size().columns))
-        print('─────────────────────────────────────────────────'.center(get_terminal_size().columns))
-        print('')
-
-        print('\x1b[0;34m', end = '')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│ 1 │   │ A │ L │ T │ E │ R │ A │ R │   │ T │ A │ M │ A │ N │ H │ O │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 2 │   │ A │ L │ T │ E │ R │ A │ R │   │ O │ B │ J │ E │ T │ I │ V │ O │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │   │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m')
+        # Mostra a tela de opções
+        self.quadroDaTelaDeOpcoes.grid()
 
     def telaDoManual(self):
         '''

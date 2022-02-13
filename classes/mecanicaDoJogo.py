@@ -28,7 +28,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         # Verifica se o tamanho do tabuleiro passado é válido
         if tamanhoDoTabuleiro <= 1:
             # Se não for, retorna um "ValueError"
-            raise ValueError(f'Nao e possivel gerar um tabuleiro com o tamanho {tamanhoDoTabuleiro}X{tamanhoDoTabuleiro}')
+            raise ValueError(f'Nao e possivel gerar um tabuleiro com o tamanho {tamanhoDoTabuleiro}')
 
         # Verifica se o objetivo passado é válido
         if (objetivo <= 1) or (not log2(objetivo).is_integer()):

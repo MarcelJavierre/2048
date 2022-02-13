@@ -74,6 +74,7 @@ def main():
     # Configura o comando de cada botão
     interface.botaoNovoJogo['command'] = iniciaLoopDoJogo
     interface.botaoCarregarJogo['command'] = partidasSalvas
+    interface.botaoOpcoes['command'] = opcoes
 
     # Loop do tkinter
     interface.janela.mainloop()
@@ -81,108 +82,8 @@ def main():
     # Recebendo a entrada do usuário
     entrada = interface.entradaDoUsuario()
 
-    # Opções
-    if entrada == '3':
-        # Loop para receber a entrada do usuário da tela de opções
-        while True:
-            # Limpa a tela
-            interface.limpaTela(interface.janela)
-
-            # Mostra a tela de opções
-            interface.telaDeOpcoes(tamanhoDoTabuleiro, objetivo)
-            
-            # Espera a entrada do usuário
-            entrada = interface.entradaDoUsuario()
-
-            # Seleciona uma ação de acordo com a entrada do usuário
-            # Alterar o tamanho do tabuleiro
-            if entrada == '1':
-                # Variável para armazenar o tamanho antigo do tabuleiro
-                tamanhoDoTabuleiroAntigo = tamanhoDoTabuleiro
-
-                # Loop para receber a entrada do usuário na alteração do tamanho do tabuleiro
-                while True:
-                    # Espera a entrada do usuário
-                    entrada = interface.entradaDoUsuario('Insira o novo tamanho do tabuleiro ou "c" para cancelar:\n')
-
-                    # Caso o usuário tenha inserido "c", quebra o loop
-                    if entrada == 'c' or entrada == 'C':
-                        # Se o usuário cancelar a mudança, muda de volta para o tamanho do tabuleiro antigo
-                        tamanhoDoTabuleiro = tamanhoDoTabuleiroAntigo
-
-                        # Quebra o loop
-                        break
-
-                    # Tenta converter a entrada para int
-                    try:
-                        # Muda a variável com o novo tamanho do tabuleiro
-                        tamanhoDoTabuleiro = int(entrada)
-
-                        # Tenta reiniciar a instância da mecânica do jogo com o valor inserido
-                        try:
-                            # Reinicia a instância da mecânica do jogo com o novo parâmetro
-                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
-
-                            # Quebra o loop
-                            break
-
-                        # Caso o número inserido não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
-                        except ValueError as mensagemDeErro:
-                            log.relatorioDeErro(repr(mensagemDeErro))
-                            print(mensagemDeErro)
-
-                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
-                    except ValueError as mensagemDeErro:
-                        log.relatorioDeErro(repr(mensagemDeErro))
-                        print('Entrada inválida')
-
-            # Alterar o objetivo da partida
-            elif entrada == '2':
-                # Variável para armazenar o objetivo da partida antigo
-                objetivoAntigo = objetivo
-
-                # Loop para receber a entrada do usuário na alteração do objetivo da partida
-                while True:
-                    # Espera a entrada do usuário
-                    entrada = interface.entradaDoUsuario('Insira o novo valor do objetivo ou "c" para cancelar:\n')
-
-                    # Caso o usuário tenha inserido "c", quebra o loop
-                    if entrada == 'c' or entrada == 'C':
-                        # Se o usuário cancelar a mudança, muda de volta para o tamanho do tabuleiro antigo
-                        objetivo = objetivoAntigo
-
-                        # Quebra o loop
-                        break
-
-                    # Tenta converter a entrada para int
-                    try:
-                        # Muda a variável com o novo objetivo
-                        objetivo = int(entrada)
-
-                        # Tenta reiniciar a instância da mecânica do jogo com o valor inserido
-                        try:
-                            # Reinicia a instância da mecânica do jogo com o novo parâmetro
-                            mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
-
-                            # Quebra o loop
-                            break
-
-                        # Caso o número inserido não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete o loop
-                        except ValueError as mensagemDeErro:
-                            log.relatorioDeErro(repr(mensagemDeErro))
-                            print(mensagemDeErro)
-
-                    # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro e repete o loop
-                    except ValueError as mensagemDeErro:
-                        log.relatorioDeErro(repr(mensagemDeErro))
-                        print('Entrada inválida')
-
-            # Voltar ao menu principal
-            elif entrada == '3':
-                main()
-
     # Estatísticas
-    elif entrada == '4':
+    if entrada == '4':
         # Limpa a tela
         interface.limpaTela(interface.janela)
 
@@ -534,6 +435,116 @@ def apagarPartidaSalva(indiceDaPartidaSalva):
 
     # Volta para a tela de partidas salvas
     partidasSalvas()
+
+def opcoes():
+    '''
+    Função para trocar as opções.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Define os comandos dos botões
+    interface.botaoAlterarTamanho['command'] = lambda: atualizaConfiguracao('tamanho')
+    interface.botaoAlterarObjetivo['command'] = lambda: atualizaConfiguracao('objetivo')
+    interface.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes['command'] = main
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra a tela de opções
+    interface.telaDeOpcoes(tamanhoDoTabuleiro, objetivo)
+
+    # Loop do tkinter
+    interface.janela.mainloop()
+
+def atualizaConfiguracao(opcao):
+    '''
+    Função que atualiza as variáveis globais de configuração.
+
+    str -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Verifica qual parâmetro é para ser atualizado
+    if opcao == 'tamanho':
+        # Armazena o valor do tamanho anterior
+        tamanhoDoTabuleiroAntigo = tamanhoDoTabuleiro
+
+        try:
+            # Recebe o novo valor do tamanho e atualiza a variável global
+            tamanhoDoTabuleiro = int(interface.tamanhoDoTabuleiro.get())
+
+            try:
+                # Reinicia a instância da mecânica do jogo com o novo parâmetro
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+            # Caso o número passado não seja válido (<= 1), gera um relatório de erro
+            except ValueError as mensagemDeErro:
+                # Gera o relatório de erro
+                log.relatorioDeErro(repr(mensagemDeErro))
+
+                # Restaura o valor anterior do tamanho do tabuleiro
+                tamanhoDoTabuleiro = tamanhoDoTabuleiroAntigo
+
+        # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro
+        except ValueError as mensagemDeErro:
+            # Gera o relatório de erro
+            log.relatorioDeErro(repr(mensagemDeErro))
+
+            # Restaura o valor anterior do tamanho do tabuleiro
+            tamanhoDoTabuleiro = tamanhoDoTabuleiroAntigo
+    
+        # Apaga o texto na caixa de entrada
+        interface.entradaDoTamanhoDoTabuleiro.delete(0, 'end')
+
+    else:
+        # Armazena o valor do objetivo anterior
+        objetivoAntigo = objetivo
+
+        try:
+            # Recebe o novo valor do objetivo e atualiza a variável global
+            objetivo = int(interface.objetivoDaPartida.get())
+
+            try:
+                # Reinicia a instância da mecânica do jogo com o novo parâmetro
+                mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+            # Caso o número passado não seja válido, gera um relatório de erro
+            except ValueError as mensagemDeErro:
+                # Gera o relatório de erro
+                log.relatorioDeErro(repr(mensagemDeErro))
+
+                # Restaura o valor anterior do objetivo
+                objetivo = objetivoAntigo
+
+        # Caso o usuário tenha inserido algo diferente de um número, gera um relatório de erro
+        except ValueError as mensagemDeErro:
+            # Gera o relatório de erro
+            log.relatorioDeErro(repr(mensagemDeErro))
+
+            # Restaura o valor anterior do objetivo
+            objetivo = objetivoAntigo
+
+        # Apaga o texto na caixa de entrada
+        interface.entradaDoObjetivo.delete(0, 'end')
+
+    # Volta para a tela de opções
+    opcoes()
 
 if __name__ == '__main__':
     main()
