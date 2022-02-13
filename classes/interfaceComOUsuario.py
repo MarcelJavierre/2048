@@ -40,6 +40,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.janela.rowconfigure(0, weight = 1) # Configura o posicionamento da linha com o redimensionamento da janela
         self.janela.columnconfigure(0, weight = 1) # Configura o posicionamento da coluna com o redimensionamento da janela
 
+        # Atributo com a barra de rolagem
+        self.barraDeRolagem = Scrollbar(master = self.janela)
+
         # Atributos com os componentes do menu principal
         self.quadroDoMenuPrincipal = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo do menu principal
 
@@ -183,7 +186,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.scoreDaTelaDeVitoria = Label( # Atributo com a "Label" do score da tela de vitória
             master = self.quadroDaTelaDeVitoria,
             font = FONTE_TAMANHO_16,
-            fg = CIANO,
+            fg = AMARELO,
             bg = COR_DO_FUNDO
         )
         self.scoreDaTelaDeVitoria.grid(row = 1, column = 0)
@@ -192,7 +195,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             master = self.quadroDaTelaDeVitoria,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
             font = FONTE_TAMANHO_16,
-            fg = ROXO,
+            fg = AMARELO,
             bg = COR_DO_FUNDO
         )
         self.voltarAoMenuPrincipalDaTelaDeVitoria.grid(row = 2, column = 0, pady = 20)
@@ -209,7 +212,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.scoreDaTelaDeDerrota = Label( # Atributo com a "Label" do score da tela de derrota
             master = self.quadroDaTelaDeDerrota,
             font = FONTE_TAMANHO_16,
-            fg = VERDE,
+            fg = VERMELHO,
             bg = COR_DO_FUNDO
         )
         self.scoreDaTelaDeDerrota.grid(row = 1, column = 0)
@@ -218,7 +221,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             master = self.quadroDaTelaDeDerrota,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
             font = FONTE_TAMANHO_16,
-            fg = AZUL,
+            fg = VERMELHO,
             bg = COR_DO_FUNDO
         )
         self.voltarAoMenuPrincipalDaTelaDeDerrota.grid(row = 2, column = 0, pady = 20)
@@ -265,7 +268,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoSalvarOJogo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSalvarOJogo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoSalvarOJogo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoSalvarOJogo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
-        self.botaoVoltarAoMenuPrincipalDaTelaDePause = Button( # Atributo com o botão "Voltar ao Menu Principal"
+        self.botaoVoltarAoMenuPrincipalDaTelaDePause = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de pause
             master = self.quadroDaTelaDePause,
             text = 'Voltar ao Menu Principal',
             font = FONTE_TAMANHO_14,
@@ -293,16 +296,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.jogoSalvo.grid(row = 0, column = 0)
 
         # Atributos com os componentes da tela de carregamento
-        self.barraDeRolagem = Scrollbar(master = self.janela) # Atributo com a barra de rolagem
-
         self.canvasDaTelaDeCarregamento = Canvas( # Atributo com o "Canvas" da tela de carregamento
             master = self.janela,
             bg = COR_DO_FUNDO,
             highlightthickness = 0,
             yscrollcommand = self.barraDeRolagem.set
         )
-        
-        self.barraDeRolagem.config(command = self.canvasDaTelaDeCarregamento.yview) # Configura a barra de rolagem para ser utilizado com o atributo "self.canvasDaTelaDeCarregamento"
 
         self.quadroDaTelaDeCarregamento = Frame(master = self.canvasDaTelaDeCarregamento, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de carregamento
         self.canvasDaTelaDeCarregamento.create_window( # Adiciona o quadro da tela de carregamento no "Canvas" da tela de carregamento
@@ -331,7 +330,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             bg = COR_DO_FUNDO
         )
 
-        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento = Button(
+        self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de carregamento
             master = self.quadroDaTelaDeCarregamento,
             text = 'Voltar ao Menu Principal',
             font = FONTE_TAMANHO_14,
@@ -349,6 +348,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
+            'self.barraDeRolagem',
             'self.quadroDoMenuPrincipal',
             'self.logo',
             'self.titulo',
@@ -377,6 +377,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoVoltarAoMenuPrincipalDaTelaDePause',
             'self.quadroDaTelaDeSalvamento',
             'self.jogoSalvo',
+            'self.canvasDaTelaDeCarregamento',
+            'self.quadroDaTelaDeCarregamento',
+            'self.tituloDaTelaDeCarregamento',
+            'self.partidasSalvas',
+            'self.naoHaPartidasSalvas',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento',
             'self.__atributos',
             'self.__metodos'
         }
@@ -451,6 +457,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         '''
         return {
             'self.janela': 'Atributo com a janela do jogo.',
+            'self.barraDeRolagem': 'Atributo com a barra de rolagem.',
             'self.quadroDoMenuPrincipal': 'Atributo com o quadro para armazenar o conteúdo do menu principal.',
             'self.logo': 'Atributo com a imagem da logo.',
             'self.titulo': 'Atributo com o título do menu principal.',
@@ -476,9 +483,15 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.pause': 'Atributo com a "Label" do título da tela de pause.',
             'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
             'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
-            'self.botaoVoltarAoMenuPrincipalDaTelaDePause': 'Atributo com o botão "Voltar ao Menu Principal".',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDePause': 'Atributo com o botão "Voltar ao Menu Principal" da tela de pause.',
             'self.quadroDaTelaDeSalvamento': 'Atributo com o quadro para armazenar o conteúdo da tela de salvamento.',
             'self.jogoSalvo': 'Atributo com o título da tela de salvamento.',
+            'self.canvasDaTelaDeCarregamento': 'Atributo com o "Canvas" da tela de carregamento.',
+            'self.quadroDaTelaDeCarregamento': 'Atributo com o quadro para armazenar o conteúdo da tela de carregamento.',
+            'self.tituloDaTelaDeCarregamento': 'Atributo com o título da tela de carregamento.',
+            'self.partidasSalvas': 'Atributo com o "Frame" das partidas salvas.',
+            'self.naoHaPartidasSalvas': 'Atributo com o texto indicando que não há partidas salvas.',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento': 'Atributo com o botão "Voltar ao Menu Principal" da tela de carregamento.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -537,6 +550,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, list[str] -> None
         '''
+        # Configura a barra de rolagem para ser utilizada com a tela de carregamento
+        self.barraDeRolagem.config(command = self.canvasDaTelaDeCarregamento.yview)
+
         # Passa por todos os botões contidos no "Frame" das partidas salvas
         for botao in self.partidasSalvas.winfo_children():
             # Remove o botão do "Frame" das partidas salvas

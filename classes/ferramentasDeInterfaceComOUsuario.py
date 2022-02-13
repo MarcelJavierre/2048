@@ -128,13 +128,13 @@ class FerramentasDeInterfaceComOUsuario:
         Método para pausar a execução do código por um dado tempo em
         milissegundos.
 
-        Self, tkinter.Tk, float -> None
+        Self, tkinter.Tk, int -> None
         '''
         tela.after(tempo)
 
     def mudaCorDeFundoDoBotao(self, botao, cor):
         '''
-        Método que altera a cor do fundo botão passado.
+        Método que altera a cor de fundo do botão passado.
 
         Self, tkinter.Button, str -> None
         '''
