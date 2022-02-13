@@ -293,7 +293,24 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.jogoSalvo.grid(row = 0, column = 0)
 
         # Atributos com os componentes da tela de carregamento
-        self.quadroDaTelaDeCarregamento = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de carregamento
+        self.barraDeRolagem = Scrollbar(master = self.janela) # Atributo com a barra de rolagem
+
+        self.canvasDaTelaDeCarregamento = Canvas( # Atributo com o "Canvas" da tela de carregamento
+            master = self.janela,
+            bg = COR_DO_FUNDO,
+            highlightthickness = 0,
+            yscrollcommand = self.barraDeRolagem.set
+        )
+        
+        self.barraDeRolagem.config(command = self.canvasDaTelaDeCarregamento.yview) # Configura a barra de rolagem para ser utilizado com o atributo "self.canvasDaTelaDeCarregamento"
+
+        self.quadroDaTelaDeCarregamento = Frame(master = self.canvasDaTelaDeCarregamento, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de carregamento
+        self.canvasDaTelaDeCarregamento.create_window( # Adiciona o quadro da tela de carregamento no "Canvas" da tela de carregamento
+            0,
+            0,
+            window = self.quadroDaTelaDeCarregamento,
+            anchor = 'nw'
+        )
 
         self.tituloDaTelaDeCarregamento = Label( # Atributo com o título da tela de carregamento
             master = self.quadroDaTelaDeCarregamento,
@@ -328,7 +345,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.grid(row = 2, column = 0, pady = 20) # Insere o botão no quadro
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
-        
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -582,8 +599,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             self.partidasSalvas.grid_forget()
             self.naoHaPartidasSalvas.grid(row = 1, column = 0)
 
-        # Mostra a tela de carregamento
-        self.quadroDaTelaDeCarregamento.grid()
+        # Mostra a tela de carregamento junto com a barra de rolagem
+        self.barraDeRolagem.pack(fill = 'y', side = 'right')
+        self.canvasDaTelaDeCarregamento.pack(expand = True, fill = 'y')
+
+        # Atualiza a área de rolagem
+        self.canvasDaTelaDeCarregamento.configure(scrollregion = self.canvasDaTelaDeCarregamento.bbox('all'))
 
     def telaDeOpcoes(self, tamanhoDoTabuleiro, objetivo):
         '''

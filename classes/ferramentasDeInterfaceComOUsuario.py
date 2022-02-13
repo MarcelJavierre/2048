@@ -113,6 +113,7 @@ class FerramentasDeInterfaceComOUsuario:
         for componente in tela.winfo_children():
             # Esquece os componentes na tela
             componente.grid_forget()
+            componente.pack_forget()
 
     def removeEvento(self, tela, evento):
         '''
