@@ -115,22 +115,22 @@ class FerramentasDeInterfaceComOUsuario:
             componente.grid_forget()
             componente.pack_forget()
 
-    def removeEvento(self, tela, evento):
+    def removeEvento(self, janela, evento):
         '''
-        Função para remover um evento da tela.
+        Função para remover um evento da janela.
 
         Self, tkinter.Tk, str -> None
         '''
-        tela.unbind(evento)
+        janela.unbind(evento)
 
-    def pausa(self, tela, tempo):
+    def pausa(self, janela, tempo):
         '''
         Método para pausar a execução do código por um dado tempo em
         milissegundos.
 
         Self, tkinter.Tk, int -> None
         '''
-        tela.after(tempo)
+        janela.after(tempo)
 
     def mudaCorDeFundoDoBotao(self, botao, cor):
         '''

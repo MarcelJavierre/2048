@@ -151,30 +151,30 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atributos com os componentes da tela do tabuleiro
         self.quadroDaTelaDoTabuleiro = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro
 
-        self.score = Label( # Atributo com a "Label" do score
+        self.score = Label( # Atributo com o score da partida na tela do tabuleiro
             master = self.quadroDaTelaDoTabuleiro,
             font = FONTE_TAMANHO_18,
-            fg = VERDE,
+            fg = BRANCO,
             bg = COR_DO_FUNDO
         )
         self.score.grid(row = 0, column = 0)
 
-        self.objetivo = Label( # Atributo com a "Label" do objetivo
+        self.objetivo = Label( # Atributo com o objetivo da partida na tela do tabuleiro
             master = self.quadroDaTelaDoTabuleiro,
             font = FONTE_TAMANHO_18,
-            fg = VERDE,
+            fg = BRANCO,
             bg = COR_DO_FUNDO
         )
         self.objetivo.grid(row = 1, column = 0)
 
-        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = COR_DA_BORDA_DO_TABULEIRO, borderwidth = 5) # Atributo com o "Frame" do tabuleiro
+        self.tabuleiro = Frame(master = self.quadroDaTelaDoTabuleiro, bg = COR_DA_BORDA_DO_TABULEIRO, borderwidth = 5) # Atributo com o quadro do tabuleiro
         self.tabuleiro.grid(row = 2, column = 0, pady = 20)
 
         # Atributos com os componentes da tela de fim de jogo
         self.quadroDaTelaDeVitoria = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de vitória
         self.quadroDaTelaDeDerrota = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de derrota
 
-        self.vitoria = Label( # Atributo com a "Label" do título da tela de vitória
+        self.vitoria = Label( # Atributo com o título da tela de vitória
             master = self.quadroDaTelaDeVitoria,
             text = 'Você Venceu!',
             font = FONTE_TAMANHO_32_EM_NEGRITO,
@@ -183,7 +183,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.vitoria.grid(row = 0, column = 0, pady = 20)
 
-        self.scoreDaTelaDeVitoria = Label( # Atributo com a "Label" do score da tela de vitória
+        self.scoreDaTelaDeVitoria = Label( # Atributo com o texto do score da tela de vitória
             master = self.quadroDaTelaDeVitoria,
             font = FONTE_TAMANHO_16,
             fg = AMARELO,
@@ -191,7 +191,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.scoreDaTelaDeVitoria.grid(row = 1, column = 0)
 
-        self.voltarAoMenuPrincipalDaTelaDeVitoria = Label( # Atributo com a "Label" da tela de vitória para voltar ao menu principal
+        self.voltarAoMenuPrincipalDaTelaDeVitoria = Label( # Atributo com o texto da tela de vitória para voltar ao menu principal
             master = self.quadroDaTelaDeVitoria,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
             font = FONTE_TAMANHO_16,
@@ -200,7 +200,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.voltarAoMenuPrincipalDaTelaDeVitoria.grid(row = 2, column = 0, pady = 20)
 
-        self.derrota = Label( # Atributo com a "Label" do título da tela de derrota
+        self.derrota = Label( # Atributo com o título da tela de derrota
             master = self.quadroDaTelaDeDerrota,
             text = 'Você Perdeu!',
             font = FONTE_TAMANHO_32_EM_NEGRITO,
@@ -209,7 +209,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.derrota.grid(row = 0, column = 0, pady = 20)
 
-        self.scoreDaTelaDeDerrota = Label( # Atributo com a "Label" do score da tela de derrota
+        self.scoreDaTelaDeDerrota = Label( # Atributo com o texto do score da tela de derrota
             master = self.quadroDaTelaDeDerrota,
             font = FONTE_TAMANHO_16,
             fg = VERMELHO,
@@ -217,7 +217,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.scoreDaTelaDeDerrota.grid(row = 1, column = 0)
 
-        self.voltarAoMenuPrincipalDaTelaDeDerrota = Label( # Atributo com a "Label" da tela de derrota para voltar ao menu principal
+        self.voltarAoMenuPrincipalDaTelaDeDerrota = Label( # Atributo com o texto da tela de derrota para voltar ao menu principal
             master = self.quadroDaTelaDeDerrota,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
             font = FONTE_TAMANHO_16,
@@ -229,7 +229,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atributos com os componentes da tela de pause
         self.quadroDaTelaDePause = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de pause
 
-        self.pause = Label( # Atributo com a "Label" do título da tela de pause
+        self.pause = Label( # Atributo com o título da tela de pause
             master = self.quadroDaTelaDePause,
             text = 'Pause',
             font = FONTE_TAMANHO_32_EM_NEGRITO,
@@ -320,7 +320,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.tituloDaTelaDeCarregamento.grid(row = 0, column = 0, pady = 20)
 
-        self.partidasSalvas = Frame(master = self.quadroDaTelaDeCarregamento, bg = COR_DO_FUNDO) # Atributo com o "Frame" das partidas salvas
+        self.partidasSalvas = Frame(master = self.quadroDaTelaDeCarregamento, bg = COR_DO_FUNDO) # Atributo com o quadro das partidas salvas
 
         self.naoHaPartidasSalvas = Label( # Atributo com o texto indicando que não há partidas salvas
             master = self.quadroDaTelaDeCarregamento,
@@ -348,7 +348,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atributos com os componentes da tela de Opções
         self.quadroDaTelaDeOpcoes = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de opções
 
-        self.opcoes = Label( # Atributo com a "Label" do título da tela de opções
+        self.opcoes = Label( # Atributo com o título da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             text = 'Opções',
             font = FONTE_TAMANHO_32_EM_NEGRITO,
@@ -357,21 +357,26 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.opcoes.grid(row = 0, column = 0, pady = 20)
 
-        self.tamanhoDoTabuleiro = StringVar()
-        self.objetivoDaPartida = StringVar()
+        self.tamanhoDoTabuleiro = StringVar() # Atributo para armazenar a entrada do usuário na seleção do tamanho do tabuleiro
+        self.objetivoDaPartida = StringVar() # Atributo para armazenar a entrada do usuário na seleção do objetivo da partida
 
-        self.titulotamanhoDoTabuleiro = Label(
+        self.textoDoTamanhoDoTabuleiro = Label( # Atributo com o texto do tamanho do tabuleiro da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             font = FONTE_TAMANHO_16,
             fg = AZUL,
             bg = COR_DO_FUNDO
         )
-        self.titulotamanhoDoTabuleiro.grid(row = 1, column = 0)
+        self.textoDoTamanhoDoTabuleiro.grid(row = 1, column = 0)
 
-        self.entradaDoTamanhoDoTabuleiro = Entry(master = self.quadroDaTelaDeOpcoes, textvariable = self.tamanhoDoTabuleiro, font = FONTE_TAMANHO_14)
+        self.entradaDoTamanhoDoTabuleiro = Entry( # Atributo com a entrada do tamanho do tabuleiro
+            master = self.quadroDaTelaDeOpcoes,
+            textvariable = self.tamanhoDoTabuleiro,
+            font = FONTE_TAMANHO_14,
+            fg = AZUL
+        )
         self.entradaDoTamanhoDoTabuleiro.grid(row = 2, column = 0, pady = 5)
 
-        self.botaoAlterarTamanho = Button(
+        self.botaoAlterarTamanho = Button( # Atributo com o botão "Alterar Tamanho" da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             text = 'Alterar Tamanho',
             font = FONTE_TAMANHO_14,
@@ -386,21 +391,26 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoAlterarTamanho.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoAlterarTamanho.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
-        self.espacoEntreAsOpcoes = Frame(master = self.quadroDaTelaDeOpcoes, bg = COR_DO_FUNDO)
+        self.espacoEntreAsOpcoes = Frame(master = self.quadroDaTelaDeOpcoes, bg = COR_DO_FUNDO) # Atributo com o quadro para espaçar as opções na tela de opções
         self.espacoEntreAsOpcoes.grid(row = 4, column = 0, pady = 20)
 
-        self.tituloObjetivo = Label(
+        self.textoDoObjetivo = Label( # Atributo com o texto do objetivo da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             font = FONTE_TAMANHO_16,
             fg = AZUL,
             bg = COR_DO_FUNDO
         )
-        self.tituloObjetivo.grid(row = 5, column = 0)
+        self.textoDoObjetivo.grid(row = 5, column = 0)
 
-        self.entradaDoObjetivo = Entry(master = self.quadroDaTelaDeOpcoes, textvariable = self.objetivoDaPartida, font = FONTE_TAMANHO_14)
+        self.entradaDoObjetivo = Entry( # Atributo com a entrada do objetivo
+            master = self.quadroDaTelaDeOpcoes,
+            textvariable = self.objetivoDaPartida,
+            font = FONTE_TAMANHO_14,
+            fg = AZUL
+        )
         self.entradaDoObjetivo.grid(row = 6, column = 0, pady = 5)
 
-        self.botaoAlterarObjetivo = Button(
+        self.botaoAlterarObjetivo = Button( # Atributo com o botão "Alterar Objetivo" da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             text = 'Alterar Objetivo',
             font = FONTE_TAMANHO_14,
@@ -468,6 +478,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.partidasSalvas',
             'self.naoHaPartidasSalvas',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento',
+            'self.quadroDaTelaDeOpcoes',
+            'self.opcoes',
+            'self.tamanhoDoTabuleiro',
+            'self.objetivoDaPartida',
+            'self.textoDoTamanhoDoTabuleiro',
+            'self.entradaDoTamanhoDoTabuleiro',
+            'self.botaoAlterarTamanho',
+            'self.espacoEntreAsOpcoes',
+            'self.textoDoObjetivo',
+            'self.entradaDoObjetivo',
+            'self.botaoAlterarObjetivo',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes',
             'self.__atributos',
             'self.__metodos'
         }
@@ -553,19 +575,19 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoManualDoDesenvolvedor': 'Atributo com o botão "Manual do Desenvolvedor".',
             'self.botaoSairDoJogo': 'Atributo com o botão "Sair do Jogo".',
             'self.quadroDaTelaDoTabuleiro': 'Atributo com o quadro para armazenar o conteúdo da tela do tabuleiro.',
-            'self.score': 'Atributo com a "Label" do score.',
-            'self.objetivo': 'Atributo com a "Label" do objetivo.',
-            'self.tabuleiro': 'Atributo com o "Frame" do tabuleiro.',
+            'self.score': 'Atributo com o score da partida na tela do tabuleiro.',
+            'self.objetivo': 'Atributo com o objetivo da partida na tela do tabuleiro.',
+            'self.tabuleiro': 'Atributo com o quadro do tabuleiro.',
             'self.quadroDaTelaDeVitoria': 'Atributo com o quadro para armazenar o conteúdo da tela de vitória.',
             'self.quadroDaTelaDeDerrota': 'Atributo com o quadro para armazenar o conteúdo da tela de derrota.',
-            'self.vitoria': 'Atributo com a "Label" do título da tela de vitória.',
-            'self.scoreDaTelaDeVitoria': 'Atributo com a "Label" do score da tela de vitória.',
-            'self.voltarAoMenuPrincipalDaTelaDeVitoria': 'Atributo com a "Label" da tela de vitória para voltar ao menu principal.',
-            'self.derrota': 'Atributo com a "Label" do título da tela de derrota.',
-            'self.scoreDaTelaDeDerrota': 'Atributo com a "Label" do score da tela de derrota.',
-            'self.voltarAoMenuPrincipalDaTelaDeDerrota': 'Atributo com a "Label" da tela de derrota para voltar ao menu principal.',
+            'self.vitoria': 'Atributo com o título da tela de vitória.',
+            'self.scoreDaTelaDeVitoria': 'Atributo com o texto do score da tela de vitória.',
+            'self.voltarAoMenuPrincipalDaTelaDeVitoria': 'Atributo com o texto da tela de vitória para voltar ao menu principal.',
+            'self.derrota': 'Atributo com o título da tela de derrota.',
+            'self.scoreDaTelaDeDerrota': 'Atributo com o texto do score da tela de derrota.',
+            'self.voltarAoMenuPrincipalDaTelaDeDerrota': 'Atributo com o texto da tela de derrota para voltar ao menu principal.',
             'self.quadroDaTelaDePause': 'Atributo com o quadro para armazenar o conteúdo da tela de pause.',
-            'self.pause': 'Atributo com a "Label" do título da tela de pause.',
+            'self.pause': 'Atributo com o título da tela de pause.',
             'self.botaoVoltarAoJogo': 'Atributo com o botão "Voltar ao Jogo".',
             'self.botaoSalvarOJogo': 'Atributo com o botão "Salvar o Jogo".',
             'self.botaoVoltarAoMenuPrincipalDaTelaDePause': 'Atributo com o botão "Voltar ao Menu Principal" da tela de pause.',
@@ -574,9 +596,21 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.canvasDaTelaDeCarregamento': 'Atributo com o "Canvas" da tela de carregamento.',
             'self.quadroDaTelaDeCarregamento': 'Atributo com o quadro para armazenar o conteúdo da tela de carregamento.',
             'self.tituloDaTelaDeCarregamento': 'Atributo com o título da tela de carregamento.',
-            'self.partidasSalvas': 'Atributo com o "Frame" das partidas salvas.',
+            'self.partidasSalvas': 'Atributo com o quadro das partidas salvas.',
             'self.naoHaPartidasSalvas': 'Atributo com o texto indicando que não há partidas salvas.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeCarregamento': 'Atributo com o botão "Voltar ao Menu Principal" da tela de carregamento.',
+            'self.quadroDaTelaDeOpcoes': 'Atributo com o quadro para armazenar o conteúdo da tela de opções.',
+            'self.opcoes': 'Atributo com o título da tela de opções.',
+            'self.tamanhoDoTabuleiro': 'Atributo para armazenar a entrada do usuário na seleção do tamanho do tabuleiro.',
+            'self.objetivoDaPartida': 'Atributo para armazenar a entrada do usuário na seleção do objetivo da partida.',
+            'self.textoDoTamanhoDoTabuleiro': 'Atributo com o texto do tamanho do tabuleiro da tela de opções.',
+            'self.entradaDoTamanhoDoTabuleiro': 'Atributo com a entrada do tamanho do tabuleiro.',
+            'self.botaoAlterarTamanho': 'Atributo com o botão "Alterar Tamanho" da tela de opções.',
+            'self.espacoEntreAsOpcoes': 'Atributo com o quadro para espaçar as opções na tela de opções.',
+            'self.textoDoObjetivo': 'Atributo com o texto do objetivo da tela de opções.',
+            'self.entradaDoObjetivo': 'Atributo com a entrada do objetivo.',
+            'self.botaoAlterarObjetivo': 'Atributo com o botão "Alterar Objetivo" da tela de opções.',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes': 'Atributo com o botão "Voltar ao Menu Principal" da tela de opções.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -719,8 +753,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Self, int, int -> None
         '''
         # Atualiza o texto dos títulos para os valores atuais de tamanho e objetivo
-        self.titulotamanhoDoTabuleiro['text'] = f'Tamanho do Tabuleiro:\n{tamanhoDoTabuleiro}'
-        self.tituloObjetivo['text'] = f'Objetivo:\n{objetivo}'
+        self.textoDoTamanhoDoTabuleiro['text'] = f'Tamanho do Tabuleiro:\n{tamanhoDoTabuleiro}'
+        self.textoDoObjetivo['text'] = f'Objetivo:\n{objetivo}'
 
         # Mostra a tela de opções
         self.quadroDaTelaDeOpcoes.grid()
