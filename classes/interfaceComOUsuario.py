@@ -4,6 +4,9 @@ from os import get_terminal_size
 # Importando o módulo "matplotlib.pyplot" com o apelido "plt"
 import matplotlib.pyplot as plt
 
+# Importando a classe FigureCanvasTkAgg do modulo matplotlib.backends.backend_tkagg que integra o matplotlib com o tkinter
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 # Importando a super classe "FerramentasDeInterfaceComOUsuario" com os métodos genéricos associados com a comunicação com o usuário
 if __name__ == '__main__':
     from ferramentasDeInterfaceComOUsuario import *
@@ -440,6 +443,28 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        self.estatisticas = Label( # Atributo com o título da tela de estatísticas
+            master = self.janela,
+            text = 'Estatísticas',
+            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            fg = ROXO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas
+            master = self.janela,
+            text = 'Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_14,
+            fg = ROXO,
+            activeforeground = ROXO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -490,6 +515,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.entradaDoObjetivo',
             'self.botaoAlterarObjetivo',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes',
+            'self.estatisticas',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas',
             'self.__atributos',
             'self.__metodos'
         }
@@ -611,6 +638,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.entradaDoObjetivo': 'Atributo com a entrada do objetivo.',
             'self.botaoAlterarObjetivo': 'Atributo com o botão "Alterar Objetivo" da tela de opções.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes': 'Atributo com o botão "Voltar ao Menu Principal" da tela de opções.',
+            'self.estatisticas': 'Atributo com o título da tela de estatísticas.',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas': 'Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -785,35 +814,47 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Define o estilo do gráfico
         plt.style.use('dark_background')
 
-        # Define a organização dos gráficos com um "grid" no formato 2x2
-        grid = (2, 2)
+        # Define o formato 2x2 para a organização dos gráficos
+        FORMATO = (2, 2)
 
         # Define a figura
-        fig = plt.figure('2048 - Estatísticas', (15, 8))
+        figura = plt.figure()
 
         # Define os eixos
-        eixoDasEstatisticasDeJogadas = plt.subplot2grid(grid, (0, 0))
-        eixoDasEstatisticasDePecas = plt.subplot2grid(grid, (0, 1))
-        eixoDasEstatisticasDeScore = plt.subplot2grid(grid, (1, 0), colspan = 2)
+        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = figura)
+        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = figura)
+        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = figura)
 
         # Gráfico das estatísticas de jogadas
-        eixoDasEstatisticasDeJogadas.pie(estatisticasDeJogadas[1], labels = estatisticasDeJogadas[0], colors = ('red', 'green', 'blue', 'purple'), autopct = '%1.1f%%')
-        eixoDasEstatisticasDeJogadas.set_title('Estatísticas de Jogadas')
+        eixoDasEstatisticasDeJogadas.pie(
+            estatisticasDeJogadas[1],
+            labels = estatisticasDeJogadas[0],
+            colors = (VERMELHO, VERDE, AZUL, ROXO),
+            autopct = lambda porcentagem: f'{porcentagem: .2f}%'
+        )
+        eixoDasEstatisticasDeJogadas.set_title('Jogadas')
 
         # Gráfico das estatísticas de peças
-        eixoDasEstatisticasDePecas.bar(estatisticasDePecas[0], estatisticasDePecas[1], color = 'yellow')
+        eixoDasEstatisticasDePecas.bar(estatisticasDePecas[0], estatisticasDePecas[1], color = AMARELO)
         eixoDasEstatisticasDePecas.set_xlabel('Peça')
         eixoDasEstatisticasDePecas.set_ylabel('Quantidade')
-        eixoDasEstatisticasDePecas.set_title('Estatísticas da Maior Peça de Cada Partida')
+        eixoDasEstatisticasDePecas.set_title('Maior Peça de Cada Partida')
 
         # Gráfico das estatísticas de scores
-        eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], 'cyan')
+        eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], CIANO)
         eixoDasEstatisticasDeScore.set_xlabel('Partidas')
         eixoDasEstatisticasDeScore.set_ylabel('Score')
-        eixoDasEstatisticasDeScore.set_title('Estatísticas de Score')
+        eixoDasEstatisticasDeScore.set_title('Histórico de Score')
 
-        # Mostra o gráfico
-        plt.show()
+        # Adiciona o título na janela
+        self.estatisticas.pack(pady = (20, 0))
+
+        # Adiciona a figura na janela
+        estatisticas = FigureCanvasTkAgg(figura, self.janela)
+        estatisticas.get_tk_widget().pack(expand = True, fill = 'both')
+
+        # Adiciona o botão para voltar ao menu principal na janela
+        self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.pack(pady = (0, 20))
 
     def telaDoTabuleiro(self, tabuleiro, score, objetivo):
         '''

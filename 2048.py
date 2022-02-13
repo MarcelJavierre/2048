@@ -75,6 +75,7 @@ def main():
     interface.botaoNovoJogo['command'] = iniciaLoopDoJogo
     interface.botaoCarregarJogo['command'] = partidasSalvas
     interface.botaoOpcoes['command'] = opcoes
+    interface.botaoEstatisticas['command'] = estatisticas
 
     # Loop do tkinter
     interface.janela.mainloop()
@@ -82,19 +83,8 @@ def main():
     # Recebendo a entrada do usuário
     entrada = interface.entradaDoUsuario()
 
-    # Estatísticas
-    if entrada == '4':
-        # Limpa a tela
-        interface.limpaTela(interface.janela)
-
-        # Mostra a tela das estatísticas
-        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
-
-        # Volta para o menu principal
-        main()
-
     # Manual do Desenvolvedor
-    elif entrada == '5':
+    if entrada == '5':
         # Limpa a tela
         interface.limpaTela(interface.janela)
 
@@ -545,6 +535,33 @@ def atualizaConfiguracao(opcao):
 
     # Volta para a tela de opções
     opcoes()
+
+def estatisticas():
+    '''
+    Função para mostrar as estatísticas.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Define o comando do botão
+    interface.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas['command'] = main
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra a tela das estatísticas
+    interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+
+    # Loop do tkinter
+    interface.janela.mainloop()
 
 if __name__ == '__main__':
     main()
