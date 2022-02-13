@@ -268,6 +268,13 @@ def loopDoJogo(direcao):
     global mecanica
     global log
 
+    # Remove os eventos da tela do tabuleiro
+    interface.removeEvento(interface.janela, '<Up>')
+    interface.removeEvento(interface.janela, '<Down>')
+    interface.removeEvento(interface.janela, '<Left>')
+    interface.removeEvento(interface.janela, '<Right>')
+    interface.removeEvento(interface.janela, '<Escape>')
+
     # Atualiza a estatística de jogadas
     log.estatisticasDeJogadas(direcao)
 
@@ -327,6 +334,8 @@ def loopDoJogo(direcao):
         if mecanica.possuiMovimentosVailidos() == False:
             # Encerra o loop do jogo e mostra a tela de fim de jogo
             fimDeJogo(False)
+
+    iniciaLoopDoJogo()
 
 def fimDeJogo(venceuOJogo):
     '''
