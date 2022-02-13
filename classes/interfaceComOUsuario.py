@@ -537,7 +537,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, list[str] -> None
         '''
-        # Passa por todas os botões contidos no "Frame" das partidas salvas
+        # Passa por todos os botões contidos no "Frame" das partidas salvas
         for botao in self.partidasSalvas.winfo_children():
             # Remove o botão do "Frame" das partidas salvas
             botao.destroy()
