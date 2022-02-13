@@ -590,6 +590,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
                     relief = 'flat',
                     borderwidth = 0
                 ).grid(column = 0, pady = 5)
+
+            # Adiciona os eventos para mudar a cor dos botões ao passar o mouse por cima
+            for i in range(len(self.partidasSalvas.winfo_children())):
+                self.partidasSalvas.winfo_children()[i].bind('<Enter>', lambda evento, botao = self.partidasSalvas.winfo_children()[i]: self.mudaCorDeFundoDoBotao(botao, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+                self.partidasSalvas.winfo_children()[i].bind('<Leave>', lambda evento, botao = self.partidasSalvas.winfo_children()[i]: self.mudaCorDeFundoDoBotao(botao, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
                 
             # Atualiza a janela
             self.janela.update()
