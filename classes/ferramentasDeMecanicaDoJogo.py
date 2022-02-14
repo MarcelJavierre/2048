@@ -1,4 +1,4 @@
-# Importando o módulo "numpy" com o apelido "np"
+# Importando o módulo numpy com o apelido np
 import numpy as np
 
 class FerramentasDeMecanicaDoJogo:

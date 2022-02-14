@@ -1,12 +1,8 @@
-# Importando a função "log2" do módulo "math" para calcular logaritmos na base 2
+# Importando a função log2 do módulo math para calcular logaritmos na base 2
 from math import log2
 
-# Importando a super classe "FerramentasDeMecanicaDoJogo" com os métodos genéricos associados com a mecânica do jogo
-if __name__ == '__main__':
-    from ferramentasDeMecanicaDoJogo import *
-
-else:
-    from classes.ferramentasDeMecanicaDoJogo import *
+# Importando a super classe FerramentasDeMecanicaDoJogo com os métodos genéricos associados com a mecânica do jogo
+from classes.ferramentasDeMecanicaDoJogo import *
 
 # Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):

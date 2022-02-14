@@ -1,15 +1,11 @@
-# Importando o módulo "matplotlib.pyplot" com o apelido "plt"
+# Importando o módulo matplotlib.pyplot com o apelido plt
 import matplotlib.pyplot as plt
 
 # Importando a classe FigureCanvasTkAgg do modulo matplotlib.backends.backend_tkagg que integra o matplotlib com o tkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Importando a super classe "FerramentasDeInterfaceComOUsuario" com os métodos genéricos associados com a comunicação com o usuário
-if __name__ == '__main__':
-    from ferramentasDeInterfaceComOUsuario import *
-
-else:
-    from classes.ferramentasDeInterfaceComOUsuario import *
+# Importando a super classe FerramentasDeInterfaceComOUsuario com os métodos genéricos associados com a comunicação com o usuário
+from classes.ferramentasDeInterfaceComOUsuario import *
 
 # Importando as definições das cores utilizadas
 from configuracoes.cores import *

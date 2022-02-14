@@ -1,4 +1,4 @@
-# Importando o módulo "tkinter"
+# Importando o módulo tkinter
 from tkinter import *
 
 class FerramentasDeInterfaceComOUsuario:

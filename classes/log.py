@@ -1,7 +1,7 @@
-# Importando a função "localtime" do módulo "time" que retorna a data e a hora
+# Importando a função localtime do módulo time que retorna a data e a hora
 from time import localtime
 
-# Importando a função "mkdir" do módulo "os" que permite criar uma pasta
+# Importando a função mkdir do módulo os que permite criar uma pasta
 from os import mkdir
 
 # Classe da seção log
