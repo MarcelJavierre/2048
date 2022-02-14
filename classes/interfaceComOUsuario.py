@@ -180,10 +180,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def telaDePause(self):
         '''
-        Método para exibir ao usuário a tela de pause do jogo.
+        Método para exibir ao usuário a tela de pause do jogo. Retorna a
+        entrada do usuário. Gera um ErroDeComando caso entrada não seja
+        válida.
 
-        Self -> None
+        Self -> str
         '''
+        # Mostra a tela de pause
         print('\n' * (int((get_terminal_size().lines - 10) / 2)), end = '') # Centraliza verticalmente a tela de pause
         print('\x1b[0;33m', end = '')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
@@ -196,6 +199,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m')
+
+        # Recebe a entrada do usuário
+        entrada = self.entradaDoUsuario()
+
+        # Verifica se a entrada é válida
+        if entrada not in ('1', '2', '3'):
+            # Se não for, gera o erro "ErroDeComando"
+            raise ErroDeComando(f'A entrada "{entrada}" nao e valida')
+
+        else:
+            # Se for, retorna a entrada
+            return entrada
 
     def telaDeSalvamento(self):
         '''

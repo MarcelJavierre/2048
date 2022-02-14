@@ -361,8 +361,13 @@ def iniciaLoopDoJogo():
         # Retorna ao início do loop do jogo
         iniciaLoopDoJogo()
 
-    # Realiza o loop do jogo
-    loopDoJogo(entrada)
+    # Caso a entrada do usuário tenha sido 'p', pausa a partida
+    if entrada == 'p':
+        pause()
+
+    # Caso contrário, realiza o loop do jogo
+    else:
+        loopDoJogo(entrada)
 
 def loopDoJogo(direcao):
     '''
@@ -379,7 +384,6 @@ def loopDoJogo(direcao):
     global interface
     global mecanica
     global log
-
 
     # Variável para indicar se alguma ação foi realizada
     houveMudanca = False
@@ -491,6 +495,40 @@ def pause():
     global mecanica
     global log
 
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Mostra a tela de pause
+    try:
+        entrada = interface.telaDePause()
+
+    # Caso a entrada não seja válida, gera o relatório de erro e retorna a tela de pause
+    except ErroDeComando as mensagemDeErro:
+        # Gera o relatório de erro
+        log.relatorioDeErro(repr(mensagemDeErro))
+
+        # Retorna a tela de pause
+        pause()
+
+    # Verifica qual opção o usuário escolheu
+    # Opção "Voltar ao Jogo"
+    if entrada == '1':
+        # Retorna ao início do loop do jogo
+        iniciaLoopDoJogo()
+
+    # Opção "Salvar o Jogo"
+    elif entrada == '2':
+        # Salva a partida
+        salvarOJogo()
+
+    # Opção "Voltar ao Menu"
+    else:
+        # Reinicia a instância da mecânica do jogo
+        mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+        # Volta ao menu principal
+        main()
+
 def salvarOJogo():
     '''
     Função para salvar o jogo.
@@ -505,6 +543,21 @@ def salvarOJogo():
     global interface
     global mecanica
     global log
+
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Mostra a tela de salvamento
+    interface.telaDeSalvamento()
+
+    # Salva o jogo
+    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
+
+    # Espera 1 segundo
+    interface.pausa(1)
+
+    # Volta para a tela de pause
+    pause()
 
 def partidasSalvas():
     '''
