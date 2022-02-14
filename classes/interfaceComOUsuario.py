@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 # Importando a super classe FerramentasDeInterfaceComOUsuario com os métodos genéricos associados com a comunicação com o usuário
 from classes.ferramentasDeInterfaceComOUsuario import *
 
+# Importando a exceção ErroDeComando
+from excecoes.erroDeComando import *
+
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''
@@ -119,10 +122,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def menuPrincipal(self):
         '''
-        Método para exibir ao usuário o menu principal do jogo.
+        Método para exibir ao usuário o menu principal do jogo. Retorna
+        a entrada do usuário. Gera um ErroDeComando caso entrada não
+        seja válida.
 
-        Self -> None
+        Self -> str
         '''
+        # Mostra a tela do menu principal
         print('\n' * (int((get_terminal_size().lines - 28) / 2)), end = '') # Centraliza verticalmente a tela do menu principal
         print('\x1b[0;33m', end = '')
         print("┌──────────────────┐┌──────────────────┐┌──────────────────┐┌──────────────────┐".center(get_terminal_size().columns))
@@ -138,7 +144,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print("└──────────────────┘└──────────────────┘└──────────────────┘└──────────────────┘".center(get_terminal_size().columns))
         print('')
         print('')
-
         print('\x1b[0;32m', end = '')
         print('┌───┬─────────────────────────┐'.center(get_terminal_size().columns))
         print('│ 1 │         Novo Jogo       │'.center(get_terminal_size().columns))
@@ -160,6 +165,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('└───┴─────────────────────────┘'.center(get_terminal_size().columns))
         print('')
         print('\x1b[0;0m')
+
+        # Recebe a entrada do usuário
+        entrada = self.entradaDoUsuario()
+
+        # Verifica se a entrada é válida
+        if entrada not in ('1', '2', '3', '4', '5', '6'):
+            # Se não for, gera o erro "ErroDeComando"
+            raise ErroDeComando(f'A entrada "{entrada}" nao e valida')
+
+        else:
+            # Se for, retorna a entrada
+            return entrada
 
     def telaDePause(self):
         '''
@@ -382,11 +399,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Mostra o gráfico
         plt.show()
 
-    def telaDoTabuleiro(self, tabuleiro, score, objetivo):
+    def telaDoTabuleiro(self, tabuleiro, score, objetivo, recebeEntradaDoUsuario = False):
         '''
-        Método para exibir a tela do tabuleiro do jogo.
+        Método para exibir a tela do tabuleiro do jogo. Caso o parâmetro
+        "recebeEntradaDoUsuario" for "True", retorna a entrada do
+        usuário. Gera um ErroDeComando caso entrada não seja válida.
 
-        Self, numpy.ndarray[int], int, int -> None
+        Self, numpy.ndarray[int], int, int, bool -> str | None
         '''
 
         # Strings com as bordas do tabuleiro
@@ -458,6 +477,24 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Escreve na tela o fundo da borda do tabuleiro
         print(' ' * margem, end = '')
         print(fundoDaBordaDoTabuleiro)
+
+        # Caso o parâmentro "recebeEntradaDoUsuario" for "True", recebe a entrada do usuário
+        if recebeEntradaDoUsuario == True:
+            # Recebe a entrada do usuário
+            entrada = self.entradaDoUsuario()
+
+            # Verifica se a entrada é válida
+            if entrada not in ('w', 'a', 's', 'd', 'p'):
+                # Se não for, gera o erro "ErroDeComando"
+                raise ErroDeComando(f'A entrada "{entrada}" nao e valida')
+
+            else:
+                # Se for, retorna a entrada
+                return entrada
+
+        # Caso contrário, retorna "None"
+        else:
+            return None
 
     def telaDeFimDeJogo(self, foiVencedor, score):
         '''

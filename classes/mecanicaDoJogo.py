@@ -180,15 +180,15 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Método que move todas as peças do tabuleiro de acordo com a
         entrada do usuário. Retorna "True" se alguma peça foi deslocada
         ou "False" se não. O parâmetro "entradaDoUsuario" precisa ser
-        "cima", "baixo", "esquerda" ou "direita".
+        "w", "a", "s" ou "d".
 
         Self, str -> bool
         '''
         # Variável para indicar se alguma peça foi movida
         pecaFoiMovida = False
 
-        # Caso a entrada do usuário for "cima"
-        if entradaDoUsuario == 'cima':
+        # Caso a entrada do usuário for para cima
+        if entradaDoUsuario == 'w':
             # Passa da segunda até a última linha
             for i in range(1, self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas
@@ -202,8 +202,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-        # Caso a entrada do usuário for "baixo"
-        elif entradaDoUsuario == 'baixo':
+        # Caso a entrada do usuário for para baixo
+        elif entradaDoUsuario == 's':
             # Passa da penúltima até a primeira linha
             for i in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                 # Passa por todas as colunas
@@ -217,8 +217,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-        # Caso a entrada do usuário for "esquerda"
-        elif entradaDoUsuario == 'esquerda':
+        # Caso a entrada do usuário for para a esquerda
+        elif entradaDoUsuario == 'a':
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
                 # Passa da segunda até a última coluna
@@ -232,7 +232,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.tabuleiro[i][j] = 0
                             pecaFoiMovida = True
 
-        # Caso a entrada do usuário for "direita"
+        # Caso a entrada do usuário for para a direita
         else:
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
@@ -255,15 +255,15 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Método que junta todas as peças vizinhas iguais do tabuleiro de
         acordo com a entrada do usuário. Retorna "True" se alguma peça
         foi juntada ou "False" se não. O parâmetro "entradaDoUsuario"
-        precisa ser "cima", "baixo", "esquerda" ou "direita".
+        precisa ser "w", "a", "s" ou "d".
 
         Self, str -> bool
         '''
         # Variável para indicar se alguma peça foi movida
         pecaFoiJuntada = False
 
-        # Caso a entrada do usuário for "cima"
-        if entradaDoUsuario == 'cima':
+        # Caso a entrada do usuário for para cima
+        if entradaDoUsuario == 'w':
             # Passa da primeira até a penúltima linha
             for i in range(self.tamanhoDoTabuleiro - 1):
                 # Passa por todas as colunas
@@ -279,8 +279,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.score += self.tabuleiro[i][j]
                             pecaFoiJuntada = True
 
-        # Caso a entrada do usuário for "baixo"
-        elif entradaDoUsuario == 'baixo':
+        # Caso a entrada do usuário for para baixo
+        elif entradaDoUsuario == 's':
             # Passa da última até a segunda linha
             for i in range(self.tamanhoDoTabuleiro - 1, 0, - 1):
                 # Passa por todas as colunas
@@ -296,8 +296,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.score += self.tabuleiro[i][j]
                             pecaFoiJuntada = True
 
-        # Caso a entrada do usuário for "esquerda"
-        elif entradaDoUsuario == 'esquerda':
+        # Caso a entrada do usuário for para a esquerda
+        elif entradaDoUsuario == 'a':
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
                 # Passa da primeira até a penúltima coluna
@@ -313,7 +313,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             self.score += self.tabuleiro[i][j]
                             pecaFoiJuntada = True
 
-        # Caso a entrada do usuário for "direita"
+        # Caso a entrada do usuário for para a direita
         else:
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
