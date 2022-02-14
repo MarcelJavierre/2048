@@ -835,7 +835,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.barraDeRolagem.config(command = self.textoDoManualDoDesenvolvedor.yview)
 
         # Insere o título na tela
-        self.manualDoDesenvolvedor.pack()
+        self.manualDoDesenvolvedor.pack(pady = 20)
 
         # Insere a barra de rolagem na tela
         self.barraDeRolagem.pack(fill = 'y', side = 'right')
@@ -844,7 +844,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.textoDoManualDoDesenvolvedor.pack(expand = True, fill = 'both')
 
         # Insere o botão na tela
-        self.botaoVoltarAoMenuPrincipalDaTelaDoManual.pack()
+        self.botaoVoltarAoMenuPrincipalDaTelaDoManual.pack(pady = 20)
 
     def telaDasEstatisticas(self, estatisticasDeJogadas, estatisticasDePecas, estatisticasDeScore):
         '''
