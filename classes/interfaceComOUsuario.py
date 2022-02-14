@@ -853,6 +853,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Adiciona o botão para voltar ao menu principal na janela
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.pack(pady = (0, 20))
 
+        # Atualiza os gráficos
+        self.figura.canvas.draw()
+        self.figura.canvas.flush_events()
+
     def telaDoTabuleiro(self, tabuleiro, score, objetivo):
         '''
         Método para exibir a tela do tabuleiro do jogo.
