@@ -230,7 +230,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela de carregamento das
         partidas salvas.
 
-        Self, list[str] -> None
+        Self, list[str] -> str
         '''
         print('\x1b[0;96m')
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
@@ -314,11 +314,25 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
             print('\x1b[0;0m')
 
+            # Recebe a entrada do usuário
+            entrada = self.entradaDoUsuario()
+
+            # Verifica se a entrada é válida
+            if entrada not in ('1', '2', '3'):
+                # Se não for, gera o erro "ErroDeComando"
+                raise ErroDeComando(f'A entrada "{entrada}" nao e valida')
+
+            else:
+                # Se for, retorna a entrada
+                return entrada
+
         # Se não possuir, mostra uma tela diferente
         else:
             print('Não há partidas salvas!'.center(get_terminal_size().columns))
             print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
             print('\x1b[0;0m')
+
+            return self.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
 
     def telaDeOpcoes(self, tamanhoDoTabuleiro, objetivo):
         '''
