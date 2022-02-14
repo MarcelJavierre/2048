@@ -235,7 +235,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.pause = Label( # Atributo com o título da tela de pause
             master = self.quadroDaTelaDePause,
             text = 'Pause',
-            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
             fg = AMARELO,
             bg = COR_DO_FUNDO
         )
@@ -317,7 +317,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.tituloDaTelaDeCarregamento = Label( # Atributo com o título da tela de carregamento
             master = self.quadroDaTelaDeCarregamento,
             text = 'Partidas Salvas',
-            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
             fg = CIANO,
             bg = COR_DO_FUNDO
         )
@@ -354,7 +354,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.opcoes = Label( # Atributo com o título da tela de opções
             master = self.quadroDaTelaDeOpcoes,
             text = 'Opções',
-            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
             fg = AZUL,
             bg = COR_DO_FUNDO
         )
@@ -390,12 +390,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             relief = 'flat',
             borderwidth = 0
         )
-        self.botaoAlterarTamanho.grid(row = 3, column = 0) # Insere o botão no quadro
+        self.botaoAlterarTamanho.grid(row = 3, column = 0, pady = (0, 20)) # Insere o botão no quadro
         self.botaoAlterarTamanho.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoAlterarTamanho.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarTamanho, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
-
-        self.espacoEntreAsOpcoes = Frame(master = self.quadroDaTelaDeOpcoes, bg = COR_DO_FUNDO) # Atributo com o quadro para espaçar as opções na tela de opções
-        self.espacoEntreAsOpcoes.grid(row = 4, column = 0, pady = 20)
 
         self.textoDoObjetivo = Label( # Atributo com o texto do objetivo da tela de opções
             master = self.quadroDaTelaDeOpcoes,
@@ -403,7 +400,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             fg = AZUL,
             bg = COR_DO_FUNDO
         )
-        self.textoDoObjetivo.grid(row = 5, column = 0)
+        self.textoDoObjetivo.grid(row = 4, column = 0)
 
         self.entradaDoObjetivo = Entry( # Atributo com a entrada do objetivo
             master = self.quadroDaTelaDeOpcoes,
@@ -411,7 +408,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             font = FONTE_TAMANHO_14,
             fg = AZUL
         )
-        self.entradaDoObjetivo.grid(row = 6, column = 0, pady = 5)
+        self.entradaDoObjetivo.grid(row = 5, column = 0, pady = 5)
 
         self.botaoAlterarObjetivo = Button( # Atributo com o botão "Alterar Objetivo" da tela de opções
             master = self.quadroDaTelaDeOpcoes,
@@ -424,7 +421,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             relief = 'flat',
             borderwidth = 0
         )
-        self.botaoAlterarObjetivo.grid(row = 7, column = 0) # Insere o botão no quadro
+        self.botaoAlterarObjetivo.grid(row = 6, column = 0) # Insere o botão no quadro
         self.botaoAlterarObjetivo.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarObjetivo, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoAlterarObjetivo.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoAlterarObjetivo, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
         
@@ -439,17 +436,22 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             relief = 'flat',
             borderwidth = 0
         )
-        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.grid(row = 8, column = 0, pady = 20) # Insere o botão no quadro
+        self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.grid(row = 7, column = 0, pady = 20) # Insere o botão no quadro
         self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        # Atributos com os componentes da tela de estatísticas
         self.estatisticas = Label( # Atributo com o título da tela de estatísticas
             master = self.janela,
             text = 'Estatísticas',
-            font = FONTE_TAMANHO_32_EM_NEGRITO,
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
             fg = ROXO,
             bg = COR_DO_FUNDO
         )
+
+        plt.style.use('dark_background') # Define o estilo dos gráficos
+        self.figura = plt.figure() # Atributo com a figura dos gráficos
+        self.graficosDasEstatisticas = FigureCanvasTkAgg(self.figura, self.janela) # Atributo com a figura dos gráficos inserido em um componente do tkinter
 
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas
             master = self.janela,
@@ -510,12 +512,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.textoDoTamanhoDoTabuleiro',
             'self.entradaDoTamanhoDoTabuleiro',
             'self.botaoAlterarTamanho',
-            'self.espacoEntreAsOpcoes',
             'self.textoDoObjetivo',
             'self.entradaDoObjetivo',
             'self.botaoAlterarObjetivo',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes',
             'self.estatisticas',
+            'self.figura',
+            'self.graficosDasEstatisticas',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas',
             'self.__atributos',
             'self.__metodos'
@@ -633,12 +636,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.textoDoTamanhoDoTabuleiro': 'Atributo com o texto do tamanho do tabuleiro da tela de opções.',
             'self.entradaDoTamanhoDoTabuleiro': 'Atributo com a entrada do tamanho do tabuleiro.',
             'self.botaoAlterarTamanho': 'Atributo com o botão "Alterar Tamanho" da tela de opções.',
-            'self.espacoEntreAsOpcoes': 'Atributo com o quadro para espaçar as opções na tela de opções.',
             'self.textoDoObjetivo': 'Atributo com o texto do objetivo da tela de opções.',
             'self.entradaDoObjetivo': 'Atributo com a entrada do objetivo.',
             'self.botaoAlterarObjetivo': 'Atributo com o botão "Alterar Objetivo" da tela de opções.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes': 'Atributo com o botão "Voltar ao Menu Principal" da tela de opções.',
             'self.estatisticas': 'Atributo com o título da tela de estatísticas.',
+            'self.figura': 'Atributo com a figura dos gráficos.',
+            'self.graficosDasEstatisticas': 'Atributo com a figura dos gráficos inserido em um componente do tkinter.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas': 'Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
@@ -811,19 +815,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         tuple[list[str], list[int]],
         tuple[list[int]] -> None
         '''
-        # Define o estilo do gráfico
-        plt.style.use('dark_background')
-
         # Define o formato 2x2 para a organização dos gráficos
         FORMATO = (2, 2)
 
-        # Define a figura
-        figura = plt.figure()
-
         # Define os eixos
-        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = figura)
-        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = figura)
-        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = figura)
+        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = self.figura)
+        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = self.figura)
+        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = self.figura)
 
         # Gráfico das estatísticas de jogadas
         eixoDasEstatisticasDeJogadas.pie(
@@ -850,8 +848,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.estatisticas.pack(pady = (20, 0))
 
         # Adiciona a figura na janela
-        estatisticas = FigureCanvasTkAgg(figura, self.janela)
-        estatisticas.get_tk_widget().pack(expand = True, fill = 'both')
+        self.graficosDasEstatisticas.get_tk_widget().pack(expand = True, fill = 'both')
 
         # Adiciona o botão para voltar ao menu principal na janela
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.pack(pady = (0, 20))
