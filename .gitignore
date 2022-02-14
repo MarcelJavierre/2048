@@ -131,8 +131,8 @@ dmypy.json
 # Estatísticas
 estatisticas/
 
-# Partidas salvas
-partidas-salvas/
+# Partidas Salvas
+partidasSalvas/
 
-# Relatórios de Erros
-relatorios-de-erros/
+# Relatório de Erros
+relatorioDeErros/
