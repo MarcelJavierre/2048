@@ -42,17 +42,17 @@ class FerramentasDeInterfaceComOUsuario:
         Self -> str
         '''
 
-        string = f'Classe FerramentasDeInterfaceComOUsuario:\n{FerramentasDeInterfaceComOUsuario.__doc__}\n\nAtributos:\n'
+        string = f'Classe FerramentasDeInterfaceComOUsuario:\n{FerramentasDeInterfaceComOUsuario.__doc__}\n\nAtributos:\n\n'
 
         # Passa por todos os atributos e insere na string
         for i in self.__atributos:
-            string += '\t' + i + ': ' + self.manual()[i] + '\n'
+            string += '        ' + i + ': ' + self.manual()[i] + '\n'
 
-        string += '\nMétodos:\n'
+        string += '\nMétodos:\n\n'
 
         # Passa por todos os métodos e insere na string
         for i in self.__metodos:
-            string += '\t' + i + ': ' + self.manual()[i] + '\n'
+            string += '        ' + i + ': ' + self.manual()[i] + '\n'
 
         return string
 
