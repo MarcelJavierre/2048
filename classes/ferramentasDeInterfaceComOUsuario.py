@@ -1,10 +1,10 @@
-# Importando a variável "platform" do módulo "sys" que indica qual sistema operacional está executando o código
+# Importando a variável platform do módulo sys que indica qual sistema operacional está executando o código
 from sys import platform
 
-# Importando a função "system" do módulo "os" que permite utilizar comandos do terminal
+# Importando a função system do módulo os que permite utilizar comandos do terminal
 from os import system
 
-# Importando a função "sleep" do módulo "time" que pausa a execução do código por um dado tempo
+# Importando a função sleep do módulo time que pausa a execução do código por um dado tempo
 from time import sleep
 
 class FerramentasDeInterfaceComOUsuario:

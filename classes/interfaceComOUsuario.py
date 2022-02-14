@@ -1,15 +1,11 @@
-# Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
+# Importando a função get_terminal_size do módulo os que retorna as dimensões do terminal
 from os import get_terminal_size
 
-# Importando o módulo "matplotlib.pyplot" com o apelido "plt"
+# Importando o módulo matplotlib.pyplot com o apelido plt
 import matplotlib.pyplot as plt
 
-# Importando a super classe "FerramentasDeInterfaceComOUsuario" com os métodos genéricos associados com a comunicação com o usuário
-if __name__ == '__main__':
-    from ferramentasDeInterfaceComOUsuario import *
-
-else:
-    from classes.ferramentasDeInterfaceComOUsuario import *
+# Importando a super classe FerramentasDeInterfaceComOUsuario com os métodos genéricos associados com a comunicação com o usuário
+from classes.ferramentasDeInterfaceComOUsuario import *
 
 # Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
