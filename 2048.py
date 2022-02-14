@@ -114,7 +114,7 @@ def loopDoJogo(direcao):
     Função do loop do jogo. Move as peças do tabuleiro, insere novas
     peças e verifica se o jogador venceu ou perdeu a partida.
 
-    str -> bool
+    str -> None
     '''
     # Definindo a utilização das variáveis de configuração globais
     global tamanhoDoTabuleiro
@@ -132,8 +132,6 @@ def loopDoJogo(direcao):
     interface.removeEvento(interface.janela, '<Right>')
     interface.removeEvento(interface.janela, '<Escape>')
 
-    # Atualiza a estatística de jogadas
-    log.estatisticasDeJogadas(direcao)
 
     # Variável para indicar se alguma ação foi realizada
     houveMudanca = False
@@ -167,6 +165,9 @@ def loopDoJogo(direcao):
 
     # Caso houve alguma mudança no tabuleiro, continua o loop do jogo
     if houveMudanca == True:
+        # Atualiza a estatística de jogadas
+        log.estatisticasDeJogadas(direcao)
+        
         # Verifica se o alguma peça atingiu o objetivo
         # Se sim, encerra o loop do jogo
         if mecanica.venceuOJogo() == True:
