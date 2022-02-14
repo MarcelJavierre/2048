@@ -87,21 +87,11 @@ class FerramentasDeInterfaceComOUsuario:
             'getAtributos': self.getAtributos.__doc__,
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
-            'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
             'removeEvento': self.removeEvento.__doc__,
             'pausa': self.pausa.__doc__,
             'mudaCorDeFundoDoBotao': self.mudaCorDeFundoDoBotao.__doc__
         }
-
-    def entradaDoUsuario(self, mensagem = ''):
-        '''
-        Método para receber o comando do usuário. Retorna uma string com
-        a entrada do usuário.
-
-        Self, str -> str
-        '''
-        return input(mensagem)
 
     def limpaTela(self, tela):
         '''

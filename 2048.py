@@ -62,9 +62,6 @@ def main():
     global mecanica
     global log
 
-    # Reinicia a instância da mecânica do jogo
-    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
-
     # Limpa a tela
     interface.limpaTela(interface.janela)
 
@@ -76,41 +73,10 @@ def main():
     interface.botaoCarregarJogo['command'] = partidasSalvas
     interface.botaoOpcoes['command'] = opcoes
     interface.botaoEstatisticas['command'] = estatisticas
+    interface.botaoManualDoDesenvolvedor['command'] = manual
 
     # Loop do tkinter
     interface.janela.mainloop()
-
-    # Recebendo a entrada do usuário
-    entrada = interface.entradaDoUsuario()
-
-    # Manual do Desenvolvedor
-    if entrada == '5':
-        # Limpa a tela
-        interface.limpaTela(interface.janela)
-
-        # Mostra o título da tela
-        interface.telaDoManual()
-
-        # Escreve na tela a documentação de todas as classes do jogo
-        print(interface, end = '')
-        print(mecanica, end = '')
-        print(log, end = '')
-
-        # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
-        main()
-
-    # Sair do Jogo
-    elif entrada == '6':
-        # Limpa a tela
-        interface.limpaTela(interface.janela)
-
-        # Sai do jogo
-        quit()
-
-    # Caso o usuário insira qualquer outra coisa diferente do pedido, exibe novamente o menu principal
-    else:
-        main()
 
 def iniciaLoopDoJogo():
     '''
@@ -260,6 +226,9 @@ def fimDeJogo(venceuOJogo):
     interface.pausa(interface.janela, 1500)
     interface.limpaTela(interface.janela)
     interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
+
+    # Reinicia a instância da mecânica do jogo
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
     # Volta para o menu principal
     interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
@@ -559,6 +528,38 @@ def estatisticas():
 
     # Mostra a tela das estatísticas
     interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+
+    # Loop do tkinter
+    interface.janela.mainloop()
+
+def manual():
+    '''
+    Função para mostrar o manual do desenvolvedor.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Define o comando do botão
+    interface.botaoVoltarAoMenuPrincipalDaTelaDoManual['command'] = main
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra o título da tela
+    interface.telaDoManual()
+
+    # Insere na tela a documentação de todas as classes do jogo
+    interface.textoDoManualDoDesenvolvedor.insert('end', interface.__str__())
+    interface.textoDoManualDoDesenvolvedor.insert('end', mecanica.__str__())
+    interface.textoDoManualDoDesenvolvedor.insert('end', log.__str__())
 
     # Loop do tkinter
     interface.janela.mainloop()

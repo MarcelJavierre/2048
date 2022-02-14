@@ -1,6 +1,3 @@
-# Importando a função "get_terminal_size" do módulo "os" que retorna as dimensões do terminal
-from os import get_terminal_size
-
 # Importando o módulo "matplotlib.pyplot" com o apelido "plt"
 import matplotlib.pyplot as plt
 
@@ -467,6 +464,38 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        # Atributos com os componentes da tela do manual do desenvolvedor
+        self.manualDoDesenvolvedor = Label( # Atributo com o título da tela do manual do desenvolvedor
+            master = self.janela,
+            text = 'Manual do Desenvolvedor',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = VERMELHO,
+            bg = COR_DO_FUNDO
+        )
+
+        self.textoDoManualDoDesenvolvedor = Text( # Atributo com o conteúdo do manual do desenvolvedor
+            master = self.janela,
+            font = FONTE_TAMANHO_12,
+            fg = BRANCO,
+            bg = COR_DO_FUNDO,
+            borderwidth = 0,
+            yscrollcommand = self.barraDeRolagem.set
+        )
+
+        self.botaoVoltarAoMenuPrincipalDaTelaDoManual = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela do manual do desenvolvedor
+            master = self.janela,
+            text = 'Voltar ao Menu Principal',
+            font = FONTE_TAMANHO_14,
+            fg = VERMELHO,
+            activeforeground = VERMELHO_CLARO,
+            bg = COR_DO_FUNDO,
+            activebackground = CINZA,
+            relief = 'flat',
+            borderwidth = 0
+        )
+        self.botaoVoltarAoMenuPrincipalDaTelaDoManual.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDoManual, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
+        self.botaoVoltarAoMenuPrincipalDaTelaDoManual.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDoManual, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -520,6 +549,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.figura',
             'self.graficosDasEstatisticas',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas',
+            'self.manualDoDesenvolvedor',
+            'self.textoDoManualDoDesenvolvedor',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDoManual',
             'self.__atributos',
             'self.__metodos'
         }
@@ -531,7 +563,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'getAtributos',
             'getMetodos',
             'manual',
-            'entradaDoUsuario',
             'limpaTela',
             'removeEvento',
             'pausa',
@@ -644,6 +675,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.figura': 'Atributo com a figura dos gráficos.',
             'self.graficosDasEstatisticas': 'Atributo com a figura dos gráficos inserido em um componente do tkinter.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas': 'Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas.',
+            'self.manualDoDesenvolvedor': 'Atributo com o título da tela do manual do desenvolvedor.',
+            'self.textoDoManualDoDesenvolvedor': 'Atributo com o conteúdo do manual do desenvolvedor.',
+            'self.botaoVoltarAoMenuPrincipalDaTelaDoManual': 'Atributo com o botão "Voltar ao Menu Principal" da tela do manual do desenvolvedor.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -651,7 +685,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'getAtributos': self.getAtributos.__doc__,
             'getMetodos': self.getMetodos.__doc__,
             'manual': self.manual.__doc__,
-            'entradaDoUsuario': self.entradaDoUsuario.__doc__,
             'limpaTela': self.limpaTela.__doc__,
             'removeEvento': self.removeEvento.__doc__,
             'pausa': self.pausa.__doc__,
@@ -798,13 +831,20 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
-        print('\x1b[0;31m')
-        print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
-        print('│   │   │ M │ A │ N │ U │ A │ L │   │ D │ O │   │   │'.center(get_terminal_size().columns))
-        print('├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤'.center(get_terminal_size().columns))
-        print('│ D │ E │ S │ E │ N │ V │ O │ L │ V │ E │ D │ O │ R │'.center(get_terminal_size().columns))
-        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print('\x1b[0;0m')
+        # Configura a barra de rolagem para ser utilizada com a tela do manual
+        self.barraDeRolagem.config(command = self.textoDoManualDoDesenvolvedor.yview)
+
+        # Insere o título na tela
+        self.manualDoDesenvolvedor.pack()
+
+        # Insere a barra de rolagem na tela
+        self.barraDeRolagem.pack(fill = 'y', side = 'right')
+
+        # Insere o texto na tela
+        self.textoDoManualDoDesenvolvedor.pack(expand = True, fill = 'both')
+
+        # Insere o botão na tela
+        self.botaoVoltarAoMenuPrincipalDaTelaDoManual.pack()
 
     def telaDasEstatisticas(self, estatisticasDeJogadas, estatisticasDePecas, estatisticasDeScore):
         '''
