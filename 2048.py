@@ -558,7 +558,8 @@ def salvarOJogo():
 
 def voltarAoMenuPrincipal():
     '''
-    Função que reinicia a instância da mecânica do jogo e retorna ao menu principal.
+    Função que reinicia a instância da mecânica do jogo e retorna ao
+    menu principal.
 
     () -> None
     '''
