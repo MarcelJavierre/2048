@@ -28,6 +28,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Verifica se o objetivo passado é válido
         if (objetivo <= 1) or (not log2(objetivo).is_integer()):
+            # Se não for, retorna um "ValueError"
             raise ValueError(f'O valor {objetivo} nao e um objetivo valido')
 
         # Atributo que armazena o tamanho do tabuleiro
