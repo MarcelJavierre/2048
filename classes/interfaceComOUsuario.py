@@ -336,10 +336,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
     def telaDeOpcoes(self, tamanhoDoTabuleiro, objetivo):
         '''
-        Método para exibir ao usuário a tela de opções do jogo.
+        Método para exibir ao usuário a tela de opções do jogo. Retorna
+        a entrada do usuário. Gera um ErroDeComando caso entrada não
+        seja válida.
 
-        Self, int, int -> None
+        Self, int, int -> str
         '''
+        # Mostra a tela de opções
         print('\n' * (int((get_terminal_size().lines - 24) / 2)), end = '') # Centraliza verticalmente a tela de opções
         print('\x1b[0;34m', end = '')
         print('┌───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
@@ -351,7 +354,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
         print('│ T │ A │ M │ A │ N │ H │ O │   │ D │ O │   │ T │ A │ B │ U │ L │ E │ I │ R │ O │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-        print(f'{tamanhoDoTabuleiro}X{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
+        print(f'{tamanhoDoTabuleiro}'.center(get_terminal_size().columns))
         print('─────────────────────────────────────────────────'.center(get_terminal_size().columns))
         print('')
 
@@ -371,6 +374,18 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('│ 3 │   │ V │ O │ L │ T │ A │ R │   │ A │ O │   │ M │ E │ N │ U │   │   │'.center(get_terminal_size().columns))
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m')
+
+        # Recebe a entrada do usuário
+        entrada = self.entradaDoUsuario()
+
+        # Verifica se a entrada é válida
+        if entrada not in ('1', '2', '3'):
+            # Se não for, gera o erro "ErroDeComando"
+            raise ErroDeComando(f'A entrada "{entrada}" nao e valida')
+
+        else:
+            # Se for, retorna a entrada
+            return entrada
 
     def telaDoManual(self):
         '''
