@@ -523,11 +523,8 @@ def pause():
 
     # Opção "Voltar ao Menu"
     else:
-        # Reinicia a instância da mecânica do jogo
-        mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
-
         # Volta ao menu principal
-        main()
+        voltarAoMenuPrincipal()
 
 def salvarOJogo():
     '''
@@ -558,6 +555,27 @@ def salvarOJogo():
 
     # Volta para a tela de pause
     pause()
+
+def voltarAoMenuPrincipal():
+    '''
+    Função que reinicia a instância da mecânica do jogo e retorna ao menu principal.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Reinicia a instância da mecânica do jogo
+    mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+    # Volta ao menu principal
+    main()
 
 def partidasSalvas():
     '''
