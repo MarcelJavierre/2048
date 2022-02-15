@@ -1,3 +1,8 @@
+'''
+Módulo com a definição da classe FerramentasDeInterfaceComOUsuario que
+contém os métodos genéricos associados com a comunicação com o usuário.
+'''
+
 # Importando a variável platform do módulo sys que indica qual sistema operacional está executando o código
 from sys import platform
 

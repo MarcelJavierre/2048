@@ -1,9 +1,14 @@
+'''
+Módulo com a definição da classe FerramentasDeMecanicaDoJogo que contém
+os métodos genéricos associados com a mecânica do jogo.
+'''
+
 # Importando o módulo numpy com o apelido np
 import numpy as np
 
 class FerramentasDeMecanicaDoJogo:
     '''
-    Super classe com métodos genéricos associados com a mecânica do
+    Super classe com os métodos genéricos associados com a mecânica do
     jogo.
     '''
 

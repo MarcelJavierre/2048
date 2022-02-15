@@ -1,3 +1,8 @@
+'''
+Módulo com a definição da classe InterfaceComOUsuario responsável pela
+seção interface com o usuário.
+'''
+
 # Importando a função get_terminal_size do módulo os que retorna as dimensões do terminal
 from os import get_terminal_size
 
@@ -10,7 +15,6 @@ from ferramentas.ferramentasDeInterfaceComOUsuario import *
 # Importando a exceção ErroDeComando
 from excecoes.erroDeComando import *
 
-# Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''
     Classe responsável por toda a interação com o usuário. Tudo que é

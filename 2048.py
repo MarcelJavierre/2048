@@ -2,8 +2,19 @@
 2048
 ====
 
-Sobre o jogo:
--------------
+Introdução
+----------
+
+O objetivo deste projeto é o desenvolvimento do jogo 2048 em Python.
+
+Finalidade
+----------
+
+A finalidade é deste projeto é ser utilizado como avaliação para a
+disciplina de Computação II da Universidade Federal do Rio de Janeiro.
+
+Sobre o jogo
+------------
 
 2048 é jogado em um tabuleiro de 4X4, com peças numéricas que deslizam
 suavemente quando o jogador as move em um dos quatro sentidos
