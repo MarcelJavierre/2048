@@ -26,6 +26,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
+        # Define o estilo dos gráficos
+        plt.style.use('dark_background')
+        
         # Atributo com a janela do jogo
         self.janela = Tk()
 
@@ -442,10 +445,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             bg = COR_DO_FUNDO
         )
 
-        plt.style.use('dark_background') # Define o estilo dos gráficos
-        self.figura = plt.figure() # Atributo com a figura dos gráficos
-        self.graficosDasEstatisticas = FigureCanvasTkAgg(self.figura, self.janela) # Atributo com a figura dos gráficos inserido em um componente do tkinter
-
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas = Button( # Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas
             master = self.janela,
             text = 'Voltar ao Menu Principal',
@@ -542,8 +541,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoAlterarObjetivo',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes',
             'self.estatisticas',
-            'self.figura',
-            'self.graficosDasEstatisticas',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas',
             'self.manualDoDesenvolvedor',
             'self.textoDoManualDoDesenvolvedor',
@@ -668,8 +665,6 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.botaoAlterarObjetivo': 'Atributo com o botão "Alterar Objetivo" da tela de opções.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeOpcoes': 'Atributo com o botão "Voltar ao Menu Principal" da tela de opções.',
             'self.estatisticas': 'Atributo com o título da tela de estatísticas.',
-            'self.figura': 'Atributo com a figura dos gráficos.',
-            'self.graficosDasEstatisticas': 'Atributo com a figura dos gráficos inserido em um componente do tkinter.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas': 'Atributo com o botão "Voltar ao Menu Principal" da tela de estatísticas.',
             'self.manualDoDesenvolvedor': 'Atributo com o título da tela do manual do desenvolvedor.',
             'self.textoDoManualDoDesenvolvedor': 'Atributo com o conteúdo do manual do desenvolvedor.',
@@ -854,10 +849,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Define o formato 2x2 para a organização dos gráficos
         FORMATO = (2, 2)
 
+        # Define a figura dos gráficos
+        figura = plt.figure()
+
+        # Define um "Canvas" do tkinter com a figura dos gráficos inserida
+        graficosDasEstatisticas = FigureCanvasTkAgg(figura, self.janela)
+
         # Define os eixos
-        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = self.figura)
-        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = self.figura)
-        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = self.figura)
+        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = figura)
+        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = figura)
+        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = figura)
 
         # Gráfico das estatísticas de jogadas
         eixoDasEstatisticasDeJogadas.pie(
@@ -883,15 +884,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Adiciona o título na janela
         self.estatisticas.pack(pady = (20, 0))
 
-        # Adiciona a figura na janela
-        self.graficosDasEstatisticas.get_tk_widget().pack(expand = True, fill = 'both')
+        # Adiciona a figura dos gráficos na janela
+        graficosDasEstatisticas.get_tk_widget().pack(expand = True, fill = 'both')
 
         # Adiciona o botão para voltar ao menu principal na janela
         self.botaoVoltarAoMenuPrincipalDaTelaDeEstatisticas.pack(pady = (0, 20))
-
-        # Atualiza os gráficos
-        self.figura.canvas.draw()
-        self.figura.canvas.flush_events()
 
     def telaDoTabuleiro(self, tabuleiro, score, objetivo):
         '''
