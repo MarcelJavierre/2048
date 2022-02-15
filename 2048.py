@@ -34,9 +34,9 @@ __email__ = 'javierremarcel@poli.ufrj.br'
 __status__ = 'Production'
 
 # Importando as classes de cada seção
-from classes.interfaceComOUsuario import *
-from classes.mecanicaDoJogo import *
-from classes.log import *
+from secoes.interfaceComOUsuario import *
+from secoes.mecanicaDoJogo import *
+from secoes.log import *
 
 # Definindo as configurações padrão do jogo
 tamanhoDoTabuleiro = 4

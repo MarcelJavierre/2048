@@ -5,7 +5,7 @@ from os import get_terminal_size
 import matplotlib.pyplot as plt
 
 # Importando a super classe FerramentasDeInterfaceComOUsuario com os métodos genéricos associados com a comunicação com o usuário
-from classes.ferramentasDeInterfaceComOUsuario import *
+from ferramentas.ferramentasDeInterfaceComOUsuario import *
 
 # Importando a exceção ErroDeComando
 from excecoes.erroDeComando import *

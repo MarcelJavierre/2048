@@ -2,7 +2,7 @@
 from math import log2
 
 # Importando a super classe FerramentasDeMecanicaDoJogo com os métodos genéricos associados com a mecânica do jogo
-from classes.ferramentasDeMecanicaDoJogo import *
+from ferramentas.ferramentasDeMecanicaDoJogo import *
 
 # Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
