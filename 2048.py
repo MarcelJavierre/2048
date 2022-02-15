@@ -98,16 +98,9 @@ def main():
         # Mostra a tela com as partidas salvas
         opcoes()
 
-    # Estatísticas
+    # Opção "Estatísticas"
     elif entrada == '4':
-        # Limpa a tela
-        interface.limpaTela()
-
-        # Mostra a tela das estatísticas
-        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
-
-        # Volta para o menu principal
-        main()
+        estatisticas()
 
     # Manual do Desenvolvedor
     elif entrada == '5':
@@ -723,6 +716,15 @@ def estatisticas():
     global interface
     global mecanica
     global log
+
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Mostra a tela das estatísticas
+    interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+
+    # Volta para o menu principal
+    main()
 
 def manual():
     '''
