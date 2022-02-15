@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # Importando a super classe FerramentasDeInterfaceComOUsuario com os métodos genéricos associados com a comunicação com o usuário
-from classes.ferramentasDeInterfaceComOUsuario import *
+from ferramentas.ferramentasDeInterfaceComOUsuario import *
 
 # Importando as definições das cores utilizadas
 from configuracoes.cores import *
