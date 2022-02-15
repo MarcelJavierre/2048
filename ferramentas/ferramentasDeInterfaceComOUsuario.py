@@ -1,3 +1,8 @@
+'''
+Módulo com a definição da classe FerramentasDeInterfaceComOUsuario que
+contém os métodos genéricos associados com a comunicação com o usuário.
+'''
+
 # Importando o módulo tkinter
 from tkinter import *
 

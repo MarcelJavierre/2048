@@ -1,10 +1,13 @@
+'''
+Módulo com a definição da classe Log responsável pela seção log.
+'''
+
 # Importando a função localtime do módulo time que retorna a data e a hora
 from time import localtime
 
 # Importando a função mkdir do módulo os que permite criar uma pasta
 from os import mkdir
 
-# Classe da seção log
 class Log:
     '''
     Esta classe trata do armazenamento em arquivos de todos os dados que

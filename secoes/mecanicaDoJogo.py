@@ -1,10 +1,14 @@
+'''
+Módulo com a definição da classe MecanicaDoJogo responsável pela seção
+mecânica do jogo.
+'''
+
 # Importando a função log2 do módulo math para calcular logaritmos na base 2
 from math import log2
 
 # Importando a super classe FerramentasDeMecanicaDoJogo com os métodos genéricos associados com a mecânica do jogo
 from ferramentas.ferramentasDeMecanicaDoJogo import *
 
-# Classe da seção mecânica do jogo
 class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
     '''
     Esta classe contém todos os métodos responsável por alterar a tela e

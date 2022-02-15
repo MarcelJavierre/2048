@@ -1,3 +1,8 @@
+'''
+Módulo com a definição da classe InterfaceComOUsuario responsável pela
+seção interface com o usuário.
+'''
+
 # Importando o módulo matplotlib.pyplot com o apelido plt
 import matplotlib.pyplot as plt
 
@@ -13,7 +18,6 @@ from configuracoes.cores import *
 # Importando as definições das fontes utilizadas
 from configuracoes.fontes import *
 
-# Classe da seção interface com o usuário
 class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     '''
     Classe responsável por toda a interação com o usuário. Tudo que é
