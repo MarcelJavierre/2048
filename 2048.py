@@ -102,34 +102,17 @@ def main():
     elif entrada == '4':
         estatisticas()
 
-    # Manual do Desenvolvedor
+    # Opção "Manual do Desenvolvedor"
     elif entrada == '5':
-        # Limpa a tela
-        interface.limpaTela()
+        manual()
 
-        # Mostra o título da tela
-        interface.telaDoManual()
-
-        # Escreve na tela a documentação de todas as classes do jogo
-        print(interface, end = '')
-        print(mecanica, end = '')
-        print(log, end = '')
-
-        # Volta para o menu principal
-        interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
-        main()
-
-    # Sair do Jogo
-    elif entrada == '6':
+    # Opção "Sair do Jogo"
+    else:
         # Limpa a tela
         interface.limpaTela()
 
         # Sai do jogo
         quit()
-
-    # Caso o usuário insira qualquer outra coisa diferente do pedido, exibe novamente o menu principal
-    else:
-        main()
 
 def iniciaLoopDoJogo():
     '''
@@ -740,6 +723,21 @@ def manual():
     global interface
     global mecanica
     global log
+
+    # Limpa a tela
+    interface.limpaTela()
+
+    # Mostra o título da tela
+    interface.telaDoManual()
+
+    # Escreve na tela a documentação de todas as classes do jogo
+    print(interface, end = '')
+    print(mecanica, end = '')
+    print(log, end = '')
+
+    # Volta para o menu principal
+    interface.entradaDoUsuario('Aperte Enter para Voltar ao Menu Principal\n')
+    main()
 
 if __name__ == '__main__':
     main()
