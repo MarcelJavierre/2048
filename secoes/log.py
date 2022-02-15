@@ -47,23 +47,23 @@ class Log:
         except FileExistsError:
             pass
 
-        # Cria o arquivo "partidasSalvas" dentro da pasta "partidasSalvas"
+        # Cria o arquivo "partidasSalvas.txt" dentro da pasta "partidasSalvas"
         try:
-            arquivo = open('partidasSalvas/partidasSalvas', 'x')
+            arquivo = open('partidasSalvas/partidasSalvas.txt', 'x')
             arquivo.close()
 
         # Caso o arquivo já exista, não faz nada
         except FileExistsError:
             pass
 
-        # Cria o arquivo "estatisticasDeJogadas" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
+        # Cria o arquivo "estatisticasDeJogadas.txt" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
         try:
             # Cria o arquivo
-            arquivo = open('estatisticas/estatisticasDeJogadas', 'x')
+            arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'x')
             arquivo.close()
 
             # Abre novamente o arquivo e escreve nele a estrutura para armazenar os dados
-            arquivo = open('estatisticas/estatisticasDeJogadas', 'w')
+            arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'w')
             arquivo.write('Cima:\n')
             arquivo.write('0\n')
             arquivo.write('Baixo:\n')
@@ -78,14 +78,14 @@ class Log:
         except FileExistsError:
             pass
 
-        # Cria o arquivo "estatisticasDePecas" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
+        # Cria o arquivo "estatisticasDePecas.txt" dentro da pasta "estatisticas" com a estrutura para armazenar os dados
         try:
             # Cria o arquivo
-            arquivo = open('estatisticas/estatisticasDePecas', 'x')
+            arquivo = open('estatisticas/estatisticasDePecas.txt', 'x')
             arquivo.close()
 
             # Abre novamente o arquivo e escreve nele a estrutura para armazenar os dados
-            arquivo = open('estatisticas/estatisticasDePecas', 'w')
+            arquivo = open('estatisticas/estatisticasDePecas.txt', 'w')
             arquivo.write('2:\n')
             arquivo.write('0\n')
             arquivo.write('4:\n')
@@ -116,9 +116,9 @@ class Log:
         except FileExistsError:
             pass
 
-        # Cria o arquivo "estatisticasDeScore" dentro da pasta "estatisticas"
+        # Cria o arquivo "estatisticasDeScore.txt" dentro da pasta "estatisticas"
         try:
-            arquivo = open('estatisticas/estatisticasDeScore', 'x')
+            arquivo = open('estatisticas/estatisticasDeScore.txt', 'x')
             arquivo.close()
 
         # Caso o arquivo já exista, não faz nada
@@ -219,7 +219,7 @@ class Log:
         '''
         Método que armazena em um arquivo o estado atual do jogo. O
         arquivo de salvamento se encontra em
-        "partidasSalvas/partidasSalvas". Cada partida salva ocupa 5
+        "partidasSalvas/partidasSalvas.txt". Cada partida salva ocupa 5
         linhas no arquivo, sendo elas:
 
         * 1ª Linha: Data e Hora do Salvamento;
@@ -231,7 +231,7 @@ class Log:
         Self, int, int, list[int], int -> None
         '''
         # Abre o arquivo
-        arquivo = open('partidasSalvas/partidasSalvas', 'a')
+        arquivo = open('partidasSalvas/partidasSalvas.txt', 'a')
 
         # Escreve no arquivo o conteúdo da partida
         arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{objetivo}\n{tabuleiro}\n{score}\n')
@@ -253,7 +253,7 @@ class Log:
         Self -> list[str]
         '''
         # Abre o arquivo
-        arquivo = open('partidasSalvas/partidasSalvas', 'r')
+        arquivo = open('partidasSalvas/partidasSalvas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -273,7 +273,7 @@ class Log:
         Self, int -> None
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('partidasSalvas/partidasSalvas', 'r')
+        arquivo = open('partidasSalvas/partidasSalvas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -297,7 +297,7 @@ class Log:
         conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
 
         # Abre o arquivo no modo sobrescrever
-        arquivo = open('partidasSalvas/partidasSalvas', 'w')
+        arquivo = open('partidasSalvas/partidasSalvas.txt', 'w')
 
         # Escreve o conteúdo de volta no arquivo
         for i in range(len(conteudoDoArquivo)):
@@ -323,7 +323,7 @@ class Log:
         Self, str -> None
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDeJogadas', 'r')
+        arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -332,7 +332,7 @@ class Log:
         arquivo.close()
 
         # Abre o arquivo no modo sobrescrever
-        arquivo = open('estatisticas/estatisticasDeJogadas', 'w')
+        arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'w')
 
         # Verifica qual jogada foi realizada e insere mais 1 na quantidade de jogadas realizadas para aquela direção
         if jogada == 'cima':
@@ -377,7 +377,7 @@ class Log:
         Self, int -> None
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+        arquivo = open('estatisticas/estatisticasDePecas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -386,7 +386,7 @@ class Log:
         arquivo.close()
 
         # Abre o arquivo no modo sobrescrever
-        arquivo = open('estatisticas/estatisticasDePecas', 'w')
+        arquivo = open('estatisticas/estatisticasDePecas.txt', 'w')
 
         # Caso o valor da maior peça seja maior que 2048, muda seu valor para "Outros"
         if maiorPecaNoTabuleiro > 2048:
@@ -414,7 +414,7 @@ class Log:
         Self, int -> None
         '''
         # Abre o arquivo
-        arquivo = open('estatisticas/estatisticasDeScore', 'a')
+        arquivo = open('estatisticas/estatisticasDeScore.txt', 'a')
 
         # Insere o score no final do arquivo
         arquivo.write(f'{score}\n')
@@ -431,7 +431,7 @@ class Log:
         Self -> tuple[list[str], list[int]]
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDeJogadas', 'r')
+        arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -462,7 +462,7 @@ class Log:
         Self -> tuple[list[str], list[int]]
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDePecas', 'r')
+        arquivo = open('estatisticas/estatisticasDePecas.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -493,7 +493,7 @@ class Log:
         Self -> tuple[list[int]]
         '''
         # Abre o arquivo no modo leitura
-        arquivo = open('estatisticas/estatisticasDeScore', 'r')
+        arquivo = open('estatisticas/estatisticasDeScore.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
@@ -517,17 +517,22 @@ class Log:
     
     def relatorioDeErro(self, mensagemDeErro):
         '''
-        Método que cria um arquivo de relatório sobre um possível erro
-        que ocorra durante a execução do código. O nome do arquivo
-        gerado é "relatorio-de-erro-AAAA-MM-DD-HH-MM-SS.txt".
+        Método que cria e atualiza um arquivo de relatório sobre erros
+        que possam ocorrer durante a execução do código.
 
         Self, str -> None
         '''
-        # Cria o arquivo dentro da pasta "relatorioDeErros"
-        arquivo = open(f'relatorioDeErros/relatorio-de-erro-{localtime()[0]}-{localtime()[1]:02d}-{localtime()[2]:02d}-{localtime()[3]:02d}-{localtime()[4]:02d}-{localtime()[5]:02d}.txt', 'w')
+        # Cria o arquivo "relatorioDeErros" dentro da pasta "relatorioDeErros"
+        arquivo = open(f'relatorioDeErros/relatorioDeErros.txt', 'a')
 
+        # Escreve no arquivo a data e hora
+        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}:{localtime()[5]:02d}\n')
+        
         # Escreve no arquivo a mensagem de erro
         arquivo.write(mensagemDeErro)
+
+        # Pula linha no arquivo
+        arquivo.write('\n\n')
 
         # Fecha o arquivo
         arquivo.close()
