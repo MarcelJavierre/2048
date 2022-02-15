@@ -23,6 +23,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self -> None
         '''
+        # Define o estilo dos gráficos
+        plt.style.use('dark_background')
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
@@ -410,35 +412,37 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         tuple[list[str], list[int]],
         tuple[list[int]] -> None
         '''
-        # Define o estilo do gráfico
-        plt.style.use('dark_background')
+        # Define o formato 2x2 para a organização dos gráficos
+        FORMATO = (2, 2)
 
-        # Define a organização dos gráficos com um "grid" no formato 2x2
-        grid = (2, 2)
-
-        # Define a figura
-        fig = plt.figure('2048 - Estatísticas', (15, 8))
+        # Define a figura dos gráficos
+        figura = plt.figure('2048 - Estatísticas', (15, 8))
 
         # Define os eixos
-        eixoDasEstatisticasDeJogadas = plt.subplot2grid(grid, (0, 0))
-        eixoDasEstatisticasDePecas = plt.subplot2grid(grid, (0, 1))
-        eixoDasEstatisticasDeScore = plt.subplot2grid(grid, (1, 0), colspan = 2)
+        eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = figura)
+        eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = figura)
+        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = figura)
 
         # Gráfico das estatísticas de jogadas
-        eixoDasEstatisticasDeJogadas.pie(estatisticasDeJogadas[1], labels = estatisticasDeJogadas[0], colors = ('red', 'green', 'blue', 'purple'), autopct = '%1.1f%%')
-        eixoDasEstatisticasDeJogadas.set_title('Estatísticas de Jogadas')
+        eixoDasEstatisticasDeJogadas.pie(
+            estatisticasDeJogadas[1],
+            labels = estatisticasDeJogadas[0],
+            colors = ('red', 'green', 'blue', 'purple'),
+            autopct = lambda porcentagem: f'{porcentagem: .2f}%'
+        )
+        eixoDasEstatisticasDeJogadas.set_title('Jogadas')
 
         # Gráfico das estatísticas de peças
         eixoDasEstatisticasDePecas.bar(estatisticasDePecas[0], estatisticasDePecas[1], color = 'yellow')
         eixoDasEstatisticasDePecas.set_xlabel('Peça')
         eixoDasEstatisticasDePecas.set_ylabel('Quantidade')
-        eixoDasEstatisticasDePecas.set_title('Estatísticas da Maior Peça de Cada Partida')
+        eixoDasEstatisticasDePecas.set_title('Maior Peça de Cada Partida')
 
         # Gráfico das estatísticas de scores
         eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], 'cyan')
         eixoDasEstatisticasDeScore.set_xlabel('Partidas')
         eixoDasEstatisticasDeScore.set_ylabel('Score')
-        eixoDasEstatisticasDeScore.set_title('Estatísticas de Score')
+        eixoDasEstatisticasDeScore.set_title('Histórico de Score')
 
         # Mostra o gráfico
         plt.show()
