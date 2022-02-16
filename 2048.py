@@ -714,8 +714,14 @@ def estatisticas():
     # Limpa a tela
     interface.limpaTela()
 
-    # Mostra a tela das estatísticas
-    interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+    try:
+        # Mostra a tela das estatísticas
+        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+
+    # Caso não possua estatísticas, gera um relatório de erro e retorna ao menu principal
+    except ErroDeEstatistica as mensagemDeErro:
+        # Gera o relatório de erro
+        log.relatorioDeErro(repr(mensagemDeErro))
 
     # Volta para o menu principal
     main()
