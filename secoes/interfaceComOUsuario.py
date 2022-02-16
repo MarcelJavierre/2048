@@ -841,7 +841,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Insere o botão na tela
         self.botaoVoltarAoMenuPrincipalDaTelaDoManual.pack(pady = 20)
 
-    def telaDasEstatisticas(self, estatisticasDeJogadas, estatisticasDePecas, estatisticasDeScore):
+    def telaDasEstatisticas(self, estatisticasDeJogadas, estatisticasDePecas, estatisticasDeScore, estatisticasDeFusoes):
         '''
         Método para exibir ao usuário a tela de estatísticas do jogo.
 
@@ -862,7 +862,8 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Define os eixos
         eixoDasEstatisticasDeJogadas = plt.subplot2grid(FORMATO, (0, 0), fig = figura)
         eixoDasEstatisticasDePecas = plt.subplot2grid(FORMATO, (0, 1), fig = figura)
-        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), colspan = 2, fig = figura)
+        eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), fig = figura)
+        eixoDasEstatisticasDeFusoes = plt.subplot2grid(FORMATO, (1, 1), fig = figura)
 
         # Gráfico das estatísticas de jogadas
         eixoDasEstatisticasDeJogadas.pie(
@@ -880,10 +881,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         eixoDasEstatisticasDePecas.set_title('Maior Peça de Cada Partida')
 
         # Gráfico das estatísticas de scores
-        eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], CIANO)
+        eixoDasEstatisticasDeScore.plot(estatisticasDeScore[0], estatisticasDeScore[1], LARANJA)
         eixoDasEstatisticasDeScore.set_xlabel('Partidas')
         eixoDasEstatisticasDeScore.set_ylabel('Score')
         eixoDasEstatisticasDeScore.set_title('Histórico de Score')
+
+        # Gráfico das estatísticas de fusões
+        eixoDasEstatisticasDeFusoes.plot(estatisticasDeFusoes[0], estatisticasDeFusoes[1], color = CIANO)
+        eixoDasEstatisticasDeFusoes.set_xlabel('Partidas')
+        eixoDasEstatisticasDeFusoes.set_ylabel('Fusões')
+        eixoDasEstatisticasDeFusoes.set_title('Total de Fusões')
 
         # Adiciona o título na janela
         self.estatisticas.pack(pady = (20, 0))
