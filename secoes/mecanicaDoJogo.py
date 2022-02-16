@@ -92,6 +92,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getTabuleiro',
             'getScore',
             'getValorDaMaiorPeca',
+            'getQuantidadeDeFusoes',
             'carregarJogo'
         }
 
@@ -166,6 +167,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getTabuleiro': self.getTabuleiro.__doc__,
             'getScore': self.getScore.__doc__,
             'getValorDaMaiorPeca': self.getValorDaMaiorPeca.__doc__,
+            'getQuantidadeDeFusoes': self.getQuantidadeDeFusoes.__doc__,
             'carregarJogo': self.carregarJogo.__doc__
         }
 
@@ -446,6 +448,14 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         Self -> int
         '''
         return np.max(self.tabuleiro)
+
+    def getQuantidadeDeFusoes(self):
+        '''
+        Método que retorna o valor da quantidade de fusões.
+
+        Self -> int
+        '''
+        return self.quantidadeDeFusoes
 
     def carregarJogo(self, tabuleiro, score):
         '''
