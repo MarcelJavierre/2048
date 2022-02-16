@@ -434,6 +434,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         eixoDasEstatisticasDeScore = plt.subplot2grid(FORMATO, (1, 0), fig = figura)
         eixoDasEstatisticasDeFusoes = plt.subplot2grid(FORMATO, (1, 1), fig = figura)
 
+        # Ajusta o espaçamento entre os gráficos
+        plt.subplots_adjust(hspace = 0.5)
+
         # Gráfico das estatísticas de jogadas
         eixoDasEstatisticasDeJogadas.pie(
             estatisticasDeJogadas[1],
