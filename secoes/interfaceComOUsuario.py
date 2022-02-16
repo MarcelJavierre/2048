@@ -412,9 +412,9 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         Método para exibir ao usuário a tela de estatísticas do jogo.
 
         Self,
-        tuple[list[str], list[int]],
-        tuple[list[str], list[int]],
-        tuple[list[int]] -> None
+        tuple[numpy.ndarray[str], numpy.ndarray[int]],
+        tuple[numpy.ndarray[str], numpy.ndarray[int]],
+        tuple[numpy.ndarray[int]] -> None
         '''
         # Define o formato 2x2 para a organização dos gráficos
         FORMATO = (2, 2)

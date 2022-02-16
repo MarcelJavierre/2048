@@ -2,11 +2,17 @@
 Módulo com a definição da classe Log responsável pela seção log.
 '''
 
+# Importando a função mkdir do módulo os que permite criar uma pasta
+from os import mkdir
+
 # Importando a função localtime do módulo time que retorna a data e a hora
 from time import localtime
 
-# Importando a função mkdir do módulo os que permite criar uma pasta
-from os import mkdir
+# Importando o módulo numpy com o apelido np
+import numpy as np
+
+# Importando a exceção ErroDeComando
+from excecoes.erroDeEstatistica import *
 
 class Log:
     '''
@@ -424,11 +430,12 @@ class Log:
 
     def getEstatisticasDeJogadas(self):
         '''
-        Método que retorna uma tupla na qual a primeira posição é uma
-        lista com as direções (eixo x) e a segunda é uma lista com a
-        quantidade (eixo y).
+        Método que retorna uma tupla na qual a primeira posição é um
+        vetor com as direções (eixo x) e a segunda é um vetor com a
+        quantidade (eixo y). Caso todas as estatísticas forem 0, gera o
+        erro ErroDeEstatistica.
 
-        Self -> tuple[list[str], list[int]]
+        Self -> tuple[numpy.ndarray[str], numpy.ndarray[int]]
         '''
         # Abre o arquivo no modo leitura
         arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'r')
@@ -439,27 +446,23 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-        # Lista para armazenar as estatísticas
-        eixoX = []
-        eixoY = []
+        # Vetores para armazenar as estatísticas
+        eixoX = np.array([i[: - 2] for i in conteudoDoArquivo[::2]], str) # Seleciona somente os textos e remove o ":" e "\n"
+        eixoY = np.array(conteudoDoArquivo[1::2], int) # Seleciona somente os valores e converte para int
 
-        # Passa por todas as linhas do arquivo
-        for i in range(0, len(conteudoDoArquivo) - 1, 2):
-            # Remove os caracteres ":" e "\n" e armazena na lista
-            eixoX.append(conteudoDoArquivo[i][: - 2])
-
-            # Remove o caractere "\n", converte para int e armazena na lista
-            eixoY.append(int(conteudoDoArquivo[i + 1][: - 1]))
+        # Caso todas as estatísticas forem 0, gera o erro "ErroDeEstatistica"
+        if eixoY.sum() == 0:
+            raise ErroDeEstatistica('Nao ha estatisticas. Va jogar umas partidas!')
 
         return eixoX, eixoY
 
     def getEstatisticasDePecas(self):
         '''
-        Método que retorna uma tupla na qual a primeira posição é uma
-        lista com o valor das peças (eixo x) e a segunda é uma lista com
+        Método que retorna uma tupla na qual a primeira posição é um
+        vetor com o valor das peças (eixo x) e a segunda é um vetor com
         a quantidade (eixo y).
 
-        Self -> tuple[list[str], list[int]]
+        Self -> tuple[numpy.ndarray[str], numpy.ndarray[int]]
         '''
         # Abre o arquivo no modo leitura
         arquivo = open('estatisticas/estatisticasDePecas.txt', 'r')
@@ -470,27 +473,19 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-        # Lista para armazenar as estatísticas
-        eixoX = []
-        eixoY = []
-
-        # Passa por todas as linhas do arquivo
-        for i in range(0, len(conteudoDoArquivo) - 1, 2):
-            # Remove os caracteres ":" e "\n" e armazena na lista
-            eixoX.append(conteudoDoArquivo[i][: - 2])
-
-            # Remove o caractere "\n", converte para int e armazena na lista
-            eixoY.append(int(conteudoDoArquivo[i + 1][: - 1]))
+        # Vetores para armazenar as estatísticas
+        eixoX = np.array([i[: - 2] for i in conteudoDoArquivo[::2]], str) # Seleciona somente os textos e remove o ":" e "\n"
+        eixoY = np.array(conteudoDoArquivo[1::2], int) # Seleciona somente os valores e converte para int
 
         return eixoX, eixoY
 
     def getEstatisticasDeScore(self):
         '''
-        Método que retorna uma tupla na qual a primeira posição é uma
-        lista com a quantidade de partidas (eixo x) e a segunda é uma
-        lista com os scores (eixo y).
+        Método que retorna uma tupla na qual a primeira posição é um
+        vetor com a quantidade de partidas (eixo x) e a segunda é um
+        vetor com os scores (eixo y).
 
-        Self -> tuple[list[int]]
+        Self -> tuple[numpy.ndarray[int]]
         '''
         # Abre o arquivo no modo leitura
         arquivo = open('estatisticas/estatisticasDeScore.txt', 'r')
@@ -501,17 +496,9 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
-        # Lista para armazenar as estatísticas
-        eixoX = []
-        eixoY = []
-
-        # Passa por todas as linhas do arquivo
-        for i in range(len(conteudoDoArquivo)):
-            # Adiciona na lista o número da partida
-            eixoX.append(i + 1)
-
-            # Remove o caractere "\n", converte para int e armazena na lista
-            eixoY.append(int(conteudoDoArquivo[i][: - 1]))
+        # Vetores para armazenar as estatísticas
+        eixoX = np.arange(1, len(conteudoDoArquivo) + 1, 1, int) # Cria um vetor com o índice das partidas
+        eixoY = np.array(conteudoDoArquivo, int) # Converte todos os dados para int e insere no vetor
 
         return eixoX, eixoY
     
