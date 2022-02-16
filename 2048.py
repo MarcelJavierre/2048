@@ -728,7 +728,7 @@ def estatisticas():
 
     try:
         # Mostra a tela das estatísticas
-        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore())
+        interface.telaDasEstatisticas(log.getEstatisticasDeJogadas(), log.getEstatisticasDePecas(), log.getEstatisticasDeScore(), log.getEstatisticasDeFusoes())
 
     # Caso não possua estatísticas, gera um relatório de erro e retorna ao menu principal
     except ErroDeEstatistica as mensagemDeErro:
