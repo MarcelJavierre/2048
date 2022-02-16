@@ -131,6 +131,15 @@ class Log:
         except FileExistsError:
             pass
 
+        # Cria o arquivo "estatisticasDeFusoes.txt" dentro da pasta "estatisticas"
+        try:
+            arquivo = open('estatisticas/estatisticasDeFusoes.txt', 'x')
+            arquivo.close()
+
+        # Caso o arquivo já exista, não faz nada
+        except FileExistsError:
+            pass
+
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
@@ -415,7 +424,7 @@ class Log:
         '''
         Método que armazena em um arquivo o histórico de score das
         partidas. A estrutura do arquivo consiste em cada linha conter o
-        score de uma partida.
+        score de cada partida.
 
         Self, int -> None
         '''
@@ -424,6 +433,21 @@ class Log:
 
         # Insere o score no final do arquivo
         arquivo.write(f'{score}\n')
+
+        # Fecha o arquivo
+        arquivo.close()
+
+    def estatisticasDeFusoes(self, quantidadeDeFusoes):
+        '''
+        Método que armazena em um arquivo a quantidade de fusões de duas
+        peças. A estrutura do arquivo consiste em cada linha conter a
+        quantidade de cada partida.
+        '''
+        # Abre o arquivo
+        arquivo = open('estatisticas/estatisticasDeFusoes.txt', 'a')
+
+        # Insere o score no final do arquivo
+        arquivo.write(f'{quantidadeDeFusoes}\n')
 
         # Fecha o arquivo
         arquivo.close()
@@ -489,6 +513,29 @@ class Log:
         '''
         # Abre o arquivo no modo leitura
         arquivo = open('estatisticas/estatisticasDeScore.txt', 'r')
+
+        # Lê o conteúdo do arquivo
+        conteudoDoArquivo = arquivo.readlines()
+
+        # Fecha o arquivo
+        arquivo.close()
+
+        # Vetores para armazenar as estatísticas
+        eixoX = np.arange(1, len(conteudoDoArquivo) + 1, 1, int) # Cria um vetor com o índice das partidas
+        eixoY = np.array(conteudoDoArquivo, int) # Converte todos os dados para int e insere no vetor
+
+        return eixoX, eixoY
+
+    def getEstatisticasDeFusoes(self):
+        '''
+        Método que retorna uma tupla na qual a primeira posição é um
+        vetor com a quantidade de partidas (eixo x) e a segunda é um
+        vetor com a quantidade de fusões (eixo y).
+
+        Self -> tuple[numpy.ndarray[int]]
+        '''
+        # Abre o arquivo no modo leitura
+        arquivo = open('estatisticas/estatisticasDeFusoes.txt', 'r')
 
         # Lê o conteúdo do arquivo
         conteudoDoArquivo = arquivo.readlines()
