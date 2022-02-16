@@ -297,8 +297,14 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
                         elif len(str(tabuleiro[i][j])) == 3:
                             linhaComOValorDasPecas += f'│ {tabuleiro[i][j]}  '
 
-                        else:
+                        elif len(str(tabuleiro[i][j])) == 4:
                             linhaComOValorDasPecas += f'│ {tabuleiro[i][j]} '
+
+                        elif len(str(tabuleiro[i][j])) == 5:
+                            linhaComOValorDasPecas += f'│{tabuleiro[i][j]} '
+
+                        else:
+                            linhaComOValorDasPecas += f'│{tabuleiro[i][j]}'
 
                     linhaComOValorDasPecas += '│'
 
@@ -467,11 +473,10 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
 
         # Escreve na tela o score
-        print('\x1b[0;32m')
+        print('\x1b[0;0m')
         print(f'OBJETIVO:    {objetivo}'.center(get_terminal_size().columns))
         print(f'SCORE:    {score}'.center(get_terminal_size().columns))
         print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
-        print('\x1b[0;0m')
 
         # Escreve na tela o tabuleiro
         # Centraliza o tabuleiro
@@ -508,8 +513,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
                 elif len(str(tabuleiro[i][j])) == 4:
                     linhaComOValorDasPecas += f'│ \x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m '
 
+                elif len(str(tabuleiro[i][j])) == 5:
+                    linhaComOValorDasPecas += f'│\x1b[0;32m{tabuleiro[i][j]}\x1b[0;0m '
+
                 else:
-                    linhaComOValorDasPecas += f'│\x1b[0;33m{tabuleiro[i][j]}\x1b[0;0m'
+                    linhaComOValorDasPecas += f'│\x1b[0;34m{tabuleiro[i][j]}\x1b[0;0m'
 
             linhaComOValorDasPecas += '│'
 
