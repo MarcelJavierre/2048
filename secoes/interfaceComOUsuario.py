@@ -432,7 +432,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             estatisticasDeJogadas[1],
             labels = estatisticasDeJogadas[0],
             colors = ('red', 'green', 'blue', 'purple'),
-            autopct = lambda porcentagem: f'{porcentagem: .2f}%'
+            autopct = lambda porcentagem: f'{porcentagem: .2f}%' if porcentagem > 0 else ''
         )
         eixoDasEstatisticasDeJogadas.set_title('Jogadas')
 
