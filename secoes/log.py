@@ -545,7 +545,7 @@ class Log:
 
         # Vetores para armazenar as estatísticas
         eixoX = np.arange(1, len(conteudoDoArquivo) + 1, 1, int) # Cria um vetor com o índice das partidas
-        eixoY = np.array(conteudoDoArquivo, int) # Converte todos os dados para int e insere no vetor
+        eixoY = np.cumsum(conteudoDoArquivo, dtype = int) # Converte todos os dados para int e insere a soma cumulativa no vetor
 
         return eixoX, eixoY
     
