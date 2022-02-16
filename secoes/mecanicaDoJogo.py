@@ -31,7 +31,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             raise ValueError(f'Nao e possivel gerar um tabuleiro com o tamanho {tamanhoDoTabuleiro}')
 
         # Verifica se o objetivo passado é válido
-        if (objetivo <= 1) or (not log2(objetivo).is_integer()):
+        if (objetivo <= 1) or (objetivo > 524288) or (not log2(objetivo).is_integer()):
             # Se não for, retorna um "ValueError"
             raise ValueError(f'O valor {objetivo} nao e um objetivo valido')
 
