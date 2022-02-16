@@ -55,7 +55,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         self.probabilidade = np.array((0.9, 0.1), float)
 
         # Atributo que armazena a quantidade de vezes que duas peças foram fundidas durante a partida
-        self.quantidadeDeVezesQueDuasPecasForamFundidas = 0
+        self.quantidadeDeFusoes = 0
         
         # Inicia o tabuleiro com 2 peças
         self.inserePeca(self.getCasasVazias())
@@ -71,7 +71,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.objetivo',
             'self.numerosParaSeremSorteados',
             'self.probabilidade',
-            'self.quantidadeDeVezesQueDuasPecasForamFundidas'
+            'self.quantidadeDeFusoes'
         }
 
         # Conjunto com todos os métodos da classe
@@ -149,7 +149,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.objetivo': 'Atributo com o valor da peça do objetivo do jogo',
             'self.numerosParaSeremSorteados': 'Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
             'self.probabilidade': 'Atributo que armazena o vetor com a probabilidade do sorteio',
-            'self.quantidadeDeVezesQueDuasPecasForamFundidas': 'Atributo que armazena a quantidade de vezes que duas peças foram fundidas durante a partida.',
+            'self.quantidadeDeFusoes': 'Atributo que armazena a quantidade de vezes que duas peças foram fundidas durante a partida.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
@@ -288,8 +288,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j]
 
-                            # Adiciona + 1 na quantidade de vezes que duas peças foram fundidas
-                            self.quantidadeDeVezesQueDuasPecasForamFundidas += 1
+                            # Adiciona + 1 no contador de fusões
+                            self.quantidadeDeFusoes += 1
 
                             pecaFoiJuntada = True
 
@@ -310,8 +310,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j]
 
-                            # Adiciona + 1 na quantidade de vezes que duas peças foram fundidas
-                            self.quantidadeDeVezesQueDuasPecasForamFundidas += 1
+                            # Adiciona + 1 no contador de fusões
+                            self.quantidadeDeFusoes += 1
 
                             pecaFoiJuntada = True
 
@@ -332,8 +332,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j]
 
-                            # Adiciona + 1 na quantidade de vezes que duas peças foram fundidas
-                            self.quantidadeDeVezesQueDuasPecasForamFundidas += 1
+                            # Adiciona + 1 no contador de fusões
+                            self.quantidadeDeFusoes += 1
 
                             pecaFoiJuntada = True
 
@@ -354,8 +354,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             # Adiciona o valor da nova peça ao score
                             self.score += self.tabuleiro[i][j]
 
-                            # Adiciona + 1 na quantidade de vezes que duas peças foram fundidas
-                            self.quantidadeDeVezesQueDuasPecasForamFundidas += 1
+                            # Adiciona + 1 no contador de fusões
+                            self.quantidadeDeFusoes += 1
 
                             pecaFoiJuntada = True
 
