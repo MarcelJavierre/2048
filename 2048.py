@@ -86,9 +86,6 @@ def main():
     interface.botaoEstatisticas['command'] = estatisticas
     interface.botaoManualDoDesenvolvedor['command'] = manual
 
-    # Loop do tkinter
-    interface.janela.mainloop()
-
 def iniciaLoopDoJogo():
     '''
     Função que define os eventos da tela do tabuleiro.
@@ -116,9 +113,6 @@ def iniciaLoopDoJogo():
 
     # Mostra o tabuleiro
     interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
-
-    # Loop do tkinter
-    interface.janela.mainloop()
 
 def loopDoJogo(direcao):
     '''
@@ -185,26 +179,34 @@ def loopDoJogo(direcao):
             # Encerra o loop do jogo e mostra a tela de fim de jogo
             fimDeJogo(True)
 
-        # Verifica quais são as casas vazias do tabuleiro
-        casasVazias = mecanica.getCasasVazias()
+        # Se nenhuma peça atingiu o objetivo, continua o loop do jogo
+        else:
+            # Verifica quais são as casas vazias do tabuleiro
+            casasVazias = mecanica.getCasasVazias()
 
-        # Caso o tabuleiro possua casas vazias, insere um nova peça
-        if len(casasVazias) != 0:
-            mecanica.inserePeca(casasVazias)
+            # Caso o tabuleiro possua casas vazias, insere um nova peça
+            if len(casasVazias) != 0:
+                mecanica.inserePeca(casasVazias)
 
-        # Limpa a tela
-        interface.limpaTela(interface.janela)
+            # Limpa a tela
+            interface.limpaTela(interface.janela)
 
-        # Mostra o tabuleiro
-        interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
+            # Mostra o tabuleiro
+            interface.telaDoTabuleiro(mecanica.getTabuleiro(), mecanica.getScore(), objetivo)
 
-        # Verifica se ainda tem jogadas válidas
-        # Se não possuir, encerra o loop do jogo
-        if mecanica.possuiMovimentosVailidos() == False:
-            # Encerra o loop do jogo e mostra a tela de fim de jogo
-            fimDeJogo(False)
+            # Verifica se ainda tem jogadas válidas
+            # Se não possuir, encerra o loop do jogo
+            if mecanica.possuiMovimentosVailidos() == False:
+                # Encerra o loop do jogo e mostra a tela de fim de jogo
+                fimDeJogo(False)
 
-    iniciaLoopDoJogo()
+            # Se possuir, volta para a definição dos eventos
+            else:
+                iniciaLoopDoJogo()
+
+    # Caso não houve mudança, volta para a definição dos eventos
+    else:
+        iniciaLoopDoJogo()
 
 def fimDeJogo(venceuOJogo):
     '''
@@ -246,9 +248,6 @@ def fimDeJogo(venceuOJogo):
     interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
     interface.janela.bind('<KeyRelease>', lambda evento: main(), '+')
 
-    # Loop do tkinter
-    interface.janela.mainloop()
-
 def pause():
     '''
     Função para mostrar a tela de pause.
@@ -281,9 +280,6 @@ def pause():
 
     # Mostra a tela de pause
     interface.telaDePause()
-
-    # Loop do tkinter
-    interface.janela.mainloop()
 
 def salvarOJogo():
     '''
@@ -373,9 +369,6 @@ def partidasSalvas():
         # Botão direito do mouse apaga a partida salva
         interface.partidasSalvas.winfo_children()[i].bind('<Button-3>', lambda evento, indiceDaPartidaSalva = i: apagarPartidaSalva(indiceDaPartidaSalva))
 
-    # Loop do tkinter
-    interface.janela.mainloop()
-
 def carregarJogo(dadosDasPartidasSalvas, indiceDaPartidaSalva):
     '''
     Função que, dado a lista com os dados das partidas salvas e o índice
@@ -454,9 +447,6 @@ def opcoes():
 
     # Mostra a tela de opções
     interface.telaDeOpcoes(tamanhoDoTabuleiro, objetivo)
-
-    # Loop do tkinter
-    interface.janela.mainloop()
 
 def atualizaConfiguracao(opcao):
     '''
@@ -572,9 +562,6 @@ def estatisticas():
         # Volta ao menu principal
         main()
 
-    # Loop do tkinter
-    interface.janela.mainloop()
-
 def manual():
     '''
     Função para mostrar o manual do desenvolvedor.
@@ -604,8 +591,8 @@ def manual():
     interface.textoDoManualDoDesenvolvedor.insert('end', mecanica.__str__())
     interface.textoDoManualDoDesenvolvedor.insert('end', log.__str__())
 
-    # Loop do tkinter
-    interface.janela.mainloop()
-
 if __name__ == '__main__':
     main()
+
+# Loop do tkinter
+interface.janela.mainloop()
