@@ -236,6 +236,9 @@ def fimDeJogo(venceuOJogo):
     # Atualiza a estatística de score com o score da partida
     log.estatisticasDeScore(mecanica.getScore())
 
+    # Atualiza a estatística de fusões com a quantidade de fusões da partida
+    log.estatisticasDeFusoes(mecanica.getQuantidadeDeFusoes())
+
     # Mostra a tela de fim de jogo
     interface.pausa(interface.janela, 1500)
     interface.limpaTela(interface.janela)
