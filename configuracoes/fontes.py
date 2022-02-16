@@ -21,6 +21,9 @@ FONTE_TAMANHO_24 = ('Helvetica', 24)
 # Fonte tamanho 32
 FONTE_TAMANHO_32 = ('Helvetica', 32)
 
+# Fonte tamanho 18 em Negrito
+FONTE_TAMANHO_18_EM_NEGRITO = ('Helvetica', 18, 'bold')
+
 # Fonte tamanho 24 em Negrito
 FONTE_TAMANHO_24_EM_NEGRITO = ('Helvetica', 24, 'bold')
 

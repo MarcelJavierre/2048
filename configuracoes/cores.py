@@ -28,16 +28,16 @@ AZUL = '#0037da'
 ROXO = '#881798'
 
 # Vermelho Claro
-VERMELHO_CLARO = '#e74856'
+VERMELHO_CLARO = '#fabed4'
 
 # Laranja Claro
-LARANJA_CLARO = '#ffc706'
+LARANJA_CLARO = '#ffd8b1'
 
 # Amarelo Claro
-AMARELO_CLARO = '#f9f1a5'
+AMARELO_CLARO = '#fffac8'
 
 # Verde Claro
-VERDE_CLARO = '#16c60c'
+VERDE_CLARO = '#aaffc3'
 
 # Ciano Claro
 CIANO_CLARO = '#61d6d6'
@@ -46,7 +46,7 @@ CIANO_CLARO = '#61d6d6'
 AZUL_CLARO = '#3b78ff'
 
 # Roxo Claro
-ROXO_CLARO = '#ff00ff'
+ROXO_CLARO = '#dcbeff'
 
 # Branco
 BRANCO = '#ffffff'
@@ -71,7 +71,13 @@ COR_DO_NUMERO_DAS_PECAS = {
     1024: '#ffffff',
     2048: '#ffffff',
     4096: '#ffffff',
-    8192: '#ffffff'
+    8192: '#ffffff',
+    16384: '#ffffff',
+    32768: '#ffffff',
+    65536: '#ffffff',
+    131072: '#ffffff',
+    262144: '#ffffff',
+    524288: '#ffffff'
 }
 
 COR_DO_FUNDO_DAS_PECAS = {
@@ -82,11 +88,17 @@ COR_DO_FUNDO_DAS_PECAS = {
     16: '#f29446',
     32: '#ff775c',
     64: '#e64c2e',
-    128: '#ede291',
-    256: '#fce130',
-    512: '#ffdb4a',
-    1024: '#f0b922',
-    2048: '#fad74d',
-    4096: '#fad74d',
-    8192: '#fad74d'
+    128: '#edcf72',
+    256: '#edcc61',
+    512: '#edc850',
+    1024: '#edc53f',
+    2048: '#edc22e',
+    4096: '#00ff00',
+    8192: '#00bf00',
+    16384: '#009900',
+    32768: '#004f00',
+    65536: '#858fff',
+    131072: '#5959ff',
+    262144: '#0000ff',
+    524288: '#000020'
 }
