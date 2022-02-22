@@ -159,9 +159,12 @@ class Log:
             'estatisticasDeJogadas',
             'estatisticasDePecas',
             'estatisticasDeScore',
+            'estatisticasDeFusoes',
+            'estatisticasDaPartida',
             'getEstatisticasDeJogadas',
             'getEstatisticasDePecas',
             'getEstatisticasDeScore',
+            'getEstatisticasDeFusoes',
             'relatorioDeErro'
         }
 
@@ -224,9 +227,12 @@ class Log:
             'estatisticasDeJogadas': self.estatisticasDeJogadas.__doc__,
             'estatisticasDePecas': self.estatisticasDePecas.__doc__,
             'estatisticasDeScore': self.estatisticasDeScore.__doc__,
+            'estatisticasDeFusoes': self.estatisticasDeFusoes.__doc__,
+            'estatisticasDaPartida': self.estatisticasDaPartida.__doc__,
             'getEstatisticasDeJogadas': self.getEstatisticasDeJogadas.__doc__,
             'getEstatisticasDePecas': self.getEstatisticasDePecas.__doc__,
             'getEstatisticasDeScore': self.getEstatisticasDeScore.__doc__,
+            'getEstatisticasDeFusoes': self.getEstatisticasDeFusoes.__doc__,
             'relatorioDeErro': self.relatorioDeErro.__doc__
         }
 
@@ -447,6 +453,30 @@ class Log:
         arquivo = open('estatisticas/estatisticasDeFusoes.txt', 'a')
 
         # Insere o score no final do arquivo
+        arquivo.write(f'{quantidadeDeFusoes}\n')
+
+        # Fecha o arquivo
+        arquivo.close()
+
+    def estatisticasDaPartida(self, maiorPecaNoTabuleiro, score, quantidadeDeFusoes):
+        '''
+        Método que armazena em um arquivo as estatísticas de cada
+        partida. O arquivo gerado se encontra na pasta "estatisticas"
+        com o nome "partida_AAAA_MM_DD_HH_MM_SS.txt".
+
+        Self, int, int, int -> None
+        '''
+        # Cria o arquivo dentro da pasta "estatisticas"
+        arquivo = open(f'estatisticas/partida_{localtime()[0]}_{localtime()[1]:02d}_{localtime()[2]:02d}_{localtime()[3]:02d}_{localtime()[4]:02d}_{localtime()[5]:02d}.txt', 'w')
+
+        # Escreve as estatísticas no arquivo
+        arquivo.write('Maior peca no tabuleiro:\n')
+        arquivo.write(f'{maiorPecaNoTabuleiro}\n\n')
+
+        arquivo.write('Score:\n')
+        arquivo.write(f'{score}\n\n')
+
+        arquivo.write('Quantidade de fusoes:\n')
         arquivo.write(f'{quantidadeDeFusoes}\n')
 
         # Fecha o arquivo
