@@ -573,9 +573,11 @@ class Log:
         # Fecha o arquivo
         arquivo.close()
 
+        conteudoDoArquivo = list(map(int, conteudoDoArquivo)) # Converte o conteúdo do arquivo de string para int
+
         # Vetores para armazenar as estatísticas
         eixoX = np.arange(1, len(conteudoDoArquivo) + 1, 1, int) # Cria um vetor com o índice das partidas
-        eixoY = np.cumsum(conteudoDoArquivo, dtype = int) # Converte todos os dados para int e insere a soma cumulativa no vetor
+        eixoY = np.cumsum(conteudoDoArquivo, dtype = int) # Gera um vetor com a soma cumulativa do conteúdo do arquivo
 
         return eixoX, eixoY
     
