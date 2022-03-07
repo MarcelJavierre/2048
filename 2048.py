@@ -354,7 +354,7 @@ def salvarOJogo():
     interface.telaDeSalvamento()
 
     # Salva o jogo
-    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
+    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore(), mecanica.getQuantidadeDeFusoes(), mecanica.getHistoricoDeJogadas())
 
     # Espera 1 segundo
     interface.pausa(1)
@@ -461,7 +461,7 @@ def carregarJogo(dadosDasPartidasSalvas):
 
     try:
         # Converte a entrada para o índice da partida salva
-        indiceDaPartidaSalva = (int(entrada) - 1) * 5
+        indiceDaPartidaSalva = (int(entrada) - 1) * 7
 
         try:
             # Se o índice inserido não é válido, gera um erro
@@ -476,7 +476,7 @@ def carregarJogo(dadosDasPartidasSalvas):
             mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
             # Atualiza o tabuleiro e o score com os dados da partida salva
-            mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
+            mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 5]), eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 6]))
 
             # Reinicia o loop do jogo
             iniciaLoopDoJogo()
