@@ -56,6 +56,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
 
         # Atributo que armazena a quantidade de vezes que duas peças foram fundidas durante a partida
         self.quantidadeDeFusoes = 0
+
+        # Atributo que armazena o histórico de jogadas
+        self.historicoDeJogadas = []
         
         # Inicia o tabuleiro com 2 peças
         self.inserePeca(self.getCasasVazias())
@@ -71,7 +74,8 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.objetivo',
             'self.numerosParaSeremSorteados',
             'self.probabilidade',
-            'self.quantidadeDeFusoes'
+            'self.quantidadeDeFusoes',
+            'self.historicoDeJogadas'
         }
 
         # Conjunto com todos os métodos da classe
@@ -93,7 +97,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getScore',
             'getValorDaMaiorPeca',
             'getQuantidadeDeFusoes',
-            'carregarJogo'
+            'carregarJogo',
+            'setHistoricoDeJogadas',
+            'getHistoricoDeJogadas'
         }
 
     def __str__(self):
@@ -151,6 +157,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'self.numerosParaSeremSorteados': 'Atributo que armazena o vetor com os números para serem sorteados e inseridos no tabuleiro a cada nova rodada.',
             'self.probabilidade': 'Atributo que armazena o vetor com a probabilidade do sorteio',
             'self.quantidadeDeFusoes': 'Atributo que armazena a quantidade de vezes que duas peças foram fundidas durante a partida.',
+            'self.historicoDeJogadas': 'Atributo que armazena o histórico de jogadas.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
@@ -168,7 +175,9 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
             'getScore': self.getScore.__doc__,
             'getValorDaMaiorPeca': self.getValorDaMaiorPeca.__doc__,
             'getQuantidadeDeFusoes': self.getQuantidadeDeFusoes.__doc__,
-            'carregarJogo': self.carregarJogo.__doc__
+            'carregarJogo': self.carregarJogo.__doc__,
+            'setHistoricoDeJogadas': self.setHistoricoDeJogadas.__doc__,
+            'getHistoricoDeJogadas': self.getHistoricoDeJogadas.__doc__
         }
 
     def inserePeca(self, casasVazias):
@@ -465,3 +474,20 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         self.tabuleiro = np.array(tabuleiro, int)
         self.score = score
+
+    def setHistoricoDeJogadas(self, jogada):
+        '''
+        Método que atualiza o histórico de jogadas.
+
+        Self, str -> None
+        '''
+        self.historicoDeJogadas.append(jogada)
+
+    def getHistoricoDeJogadas(self):
+        '''
+        Método que retorna a lista com o histórico de jogadas da
+        partida.
+
+        Self -> list[str]
+        '''
+        return self.historicoDeJogadas
