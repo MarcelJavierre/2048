@@ -53,6 +53,14 @@ class Log:
         except FileExistsError:
             pass
 
+        # Cria a pasta "dadosDeCadaPartida"
+        try:
+            mkdir('dadosDeCadaPartida')
+
+        # Caso a pasta já exista, não faz nada
+        except FileExistsError:
+            pass
+
         # Cria o arquivo "partidasSalvas.txt" dentro da pasta "partidasSalvas"
         try:
             arquivo = open('partidasSalvas/partidasSalvas.txt', 'x')
@@ -161,6 +169,7 @@ class Log:
             'estatisticasDeScore',
             'estatisticasDeFusoes',
             'estatisticasDaPartida',
+            'jogadasDaPartida',
             'getEstatisticasDeJogadas',
             'getEstatisticasDePecas',
             'getEstatisticasDeScore',
@@ -229,6 +238,7 @@ class Log:
             'estatisticasDeScore': self.estatisticasDeScore.__doc__,
             'estatisticasDeFusoes': self.estatisticasDeFusoes.__doc__,
             'estatisticasDaPartida': self.estatisticasDaPartida.__doc__,
+            'jogadasDaPartida': self.jogadasDaPartida.__doc__,
             'getEstatisticasDeJogadas': self.getEstatisticasDeJogadas.__doc__,
             'getEstatisticasDePecas': self.getEstatisticasDePecas.__doc__,
             'getEstatisticasDeScore': self.getEstatisticasDeScore.__doc__,
@@ -461,13 +471,14 @@ class Log:
     def estatisticasDaPartida(self, maiorPecaNoTabuleiro, score, quantidadeDeFusoes):
         '''
         Método que armazena em um arquivo as estatísticas de cada
-        partida. O arquivo gerado se encontra na pasta "estatisticas"
-        com o nome "partida_AAAA_MM_DD_HH_MM_SS.txt".
+        partida. O arquivo gerado se encontra na pasta
+        "dadosDeCadaPartida" com o nome
+        "partida_AAAA_MM_DD_HH_MM_estatisticas.txt".
 
         Self, int, int, int -> None
         '''
-        # Cria o arquivo dentro da pasta "estatisticas"
-        arquivo = open(f'estatisticas/partida_{localtime()[0]}_{localtime()[1]:02d}_{localtime()[2]:02d}_{localtime()[3]:02d}_{localtime()[4]:02d}_{localtime()[5]:02d}.txt', 'w')
+        # Cria o arquivo dentro da pasta "dadosDeCadaPartida"
+        arquivo = open(f'dadosDeCadaPartida/partida_{localtime()[0]}_{localtime()[1]:02d}_{localtime()[2]:02d}_{localtime()[3]:02d}_{localtime()[4]:02d}_estatisticas.txt', 'w')
 
         # Escreve as estatísticas no arquivo
         arquivo.write('Maior peca no tabuleiro:\n')
@@ -478,6 +489,25 @@ class Log:
 
         arquivo.write('Quantidade de fusoes:\n')
         arquivo.write(f'{quantidadeDeFusoes}\n')
+
+        # Fecha o arquivo
+        arquivo.close()
+
+    def jogadasDaPartida(self, historicoDeJogadas):
+        '''
+        Método que armazena em um arquivo o histórico de jogadas de cada
+        partida. O arquivo gerado se encontra na pasta
+        "dadosDeCadaPartida" com o nome
+        "partida_AAAA_MM_DD_HH_MM_historico_de_jogadas.txt".
+
+        Self, list[str] -> None
+        '''
+        # Cria o arquivo dentro da pasta "dadosDeCadaPartida"
+        arquivo = open(f'dadosDeCadaPartida/partida_{localtime()[0]}_{localtime()[1]:02d}_{localtime()[2]:02d}_{localtime()[3]:02d}_{localtime()[4]:02d}_historico_de_jogadas.txt', 'w')
+
+        # Escreve o histórico no arquivo
+        for i in historicoDeJogadas:
+            arquivo.write(f'{i}\n')
 
         # Fecha o arquivo
         arquivo.close()
