@@ -378,15 +378,6 @@ def voltarAoMenuPrincipal():
     global mecanica
     global log
 
-    # Atualiza a estatística de peças com a maior peça no tabuleiro
-    log.estatisticasDePecas(mecanica.getValorDaMaiorPeca())
-
-    # Atualiza a estatística de score com o score da partida
-    log.estatisticasDeScore(mecanica.getScore())
-
-    # Atualiza a estatística de fusões com a quantidade de fusões da partida
-    log.estatisticasDeFusoes(mecanica.getQuantidadeDeFusoes())
-
     # Reinicia a instância da mecânica do jogo
     mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
