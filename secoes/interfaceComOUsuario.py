@@ -231,7 +231,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;0m', end = '')
 
-    def telaDeCarregamento(self, listaComOsDadosDasPartidasSalvas):
+    def telaDeCarregamento(self, dadosDasPartidasSalvas):
         '''
         Método para exibir ao usuário a tela de carregamento das
         partidas salvas.
@@ -246,26 +246,26 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         # Verifica se possui alguma partida salva
         # Caso possua, escreve na tela uma lista com todas as partidas salvas
-        if listaComOsDadosDasPartidasSalvas != []:
+        if dadosDasPartidasSalvas != []:
             # Passa por todas as partidas salvas
-            # De 5 em 5 por causa da quantidade de linhas que cada partida salva ocupa
-            for x in range(0, len(listaComOsDadosDasPartidasSalvas), 5):
+            # De 7 em 7 por causa da quantidade de linhas que cada partida salva ocupa
+            for x in range(0, len(dadosDasPartidasSalvas), 7):
                 # Escreve na tela o índice da partida salva
                 print(f'{int(x / 5 + 1)}'.center(get_terminal_size().columns))
                 print('─────────────────────────────────────────────'.center(get_terminal_size().columns))
 
                 # Escreve na tela a data e hora da partida salva
-                print(listaComOsDadosDasPartidasSalvas[x][: - 1].center(get_terminal_size().columns))
+                print(dadosDasPartidasSalvas[x][: - 1].center(get_terminal_size().columns))
 
                 # Escreve na tela o objetivo da partida salva
-                print(f'OBJETIVO:    {listaComOsDadosDasPartidasSalvas[x + 2][: - 1]}'.center(get_terminal_size().columns))
+                print(f'OBJETIVO:    {dadosDasPartidasSalvas[x + 2][: - 1]}'.center(get_terminal_size().columns))
 
                 # Escreve na tela o score da partida salva
-                print(f'SCORE:    {listaComOsDadosDasPartidasSalvas[x + 4][: - 1]}'.center(get_terminal_size().columns))
+                print(f'SCORE:    {dadosDasPartidasSalvas[x + 4][: - 1]}'.center(get_terminal_size().columns))
 
                 # Escreve na tela o tabuleiro da partida salva
                 # Converte a string do tabuleiro de volta para lista
-                tabuleiro = eval(listaComOsDadosDasPartidasSalvas[x + 3][: - 1])
+                tabuleiro = eval(dadosDasPartidasSalvas[x + 3][: - 1])
 
                 # Strings com as bordas do tabuleiro
                 topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
