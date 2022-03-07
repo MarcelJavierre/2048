@@ -745,7 +745,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             self.partidasSalvas.grid(row = 1, column = 0)
 
             # Passa por todas as partidas salvas
-            for i in range(0, len(dadosDasPartidasSalvas), 5):
+            for i in range(0, len(dadosDasPartidasSalvas), 7):
                 # Converte o tabuleiro de string para list
                 tabuleiro = eval(dadosDasPartidasSalvas[i + 3][: - 1])
 
