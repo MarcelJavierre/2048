@@ -560,7 +560,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
             else:
                 # Se for, retorna a entrada
-                return entrada
+                if entrada == 'w':
+                    return 'cima'
+                elif entrada == 'a':
+                    return 'esquerda'
+                elif entrada == 's':
+                    return 'baixo'
+                elif entrada == 'd':
+                    return 'direita'
+                else:
+                    return entrada
 
         # Caso contrário, retorna "None"
         else:

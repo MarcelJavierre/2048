@@ -366,11 +366,11 @@ class Log:
         arquivo = open('estatisticas/estatisticasDeJogadas.txt', 'w')
 
         # Verifica qual jogada foi realizada e insere mais 1 na quantidade de jogadas realizadas para aquela direção
-        if jogada == 'w':
+        if jogada == 'cima':
             conteudoDoArquivo[1] = f'{int(conteudoDoArquivo[1][: - 1]) + 1}\n'
-        elif jogada == 's':
+        elif jogada == 'baixo':
             conteudoDoArquivo[3] = f'{int(conteudoDoArquivo[3][: - 1]) + 1}\n'
-        elif jogada == 'a':
+        elif jogada == 'esquerda':
             conteudoDoArquivo[5] = f'{int(conteudoDoArquivo[5][: - 1]) + 1}\n'
         else:
             conteudoDoArquivo[7] = f'{int(conteudoDoArquivo[7][: - 1]) + 1}\n'

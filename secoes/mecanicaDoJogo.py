@@ -208,7 +208,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         pecaFoiMovida = False
 
         # Caso a entrada do usuário for para cima
-        if entradaDoUsuario == 'w':
+        if entradaDoUsuario == 'cima':
             # Passa da segunda até a última linha
             for i in range(1, self.tamanhoDoTabuleiro):
                 # Passa por todas as colunas
@@ -223,7 +223,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             pecaFoiMovida = True
 
         # Caso a entrada do usuário for para baixo
-        elif entradaDoUsuario == 's':
+        elif entradaDoUsuario == 'baixo':
             # Passa da penúltima até a primeira linha
             for i in range(self.tamanhoDoTabuleiro - 2, - 1, - 1):
                 # Passa por todas as colunas
@@ -238,7 +238,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             pecaFoiMovida = True
 
         # Caso a entrada do usuário for para a esquerda
-        elif entradaDoUsuario == 'a':
+        elif entradaDoUsuario == 'esquerda':
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
                 # Passa da segunda até a última coluna
@@ -283,7 +283,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         pecaFoiJuntada = False
 
         # Caso a entrada do usuário for para cima
-        if entradaDoUsuario == 'w':
+        if entradaDoUsuario == 'cima':
             # Passa da primeira até a penúltima linha
             for i in range(self.tamanhoDoTabuleiro - 1):
                 # Passa por todas as colunas
@@ -305,7 +305,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             pecaFoiJuntada = True
 
         # Caso a entrada do usuário for para baixo
-        elif entradaDoUsuario == 's':
+        elif entradaDoUsuario == 'baixo':
             # Passa da última até a segunda linha
             for i in range(self.tamanhoDoTabuleiro - 1, 0, - 1):
                 # Passa por todas as colunas
@@ -327,7 +327,7 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
                             pecaFoiJuntada = True
 
         # Caso a entrada do usuário for para a esquerda
-        elif entradaDoUsuario == 'a':
+        elif entradaDoUsuario == 'esquerda':
             # Passa por todas as linhas
             for i in range(self.tamanhoDoTabuleiro):
                 # Passa da primeira até a penúltima coluna
