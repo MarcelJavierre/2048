@@ -466,14 +466,16 @@ class MecanicaDoJogo(FerramentasDeMecanicaDoJogo):
         '''
         return self.quantidadeDeFusoes
 
-    def carregarJogo(self, tabuleiro, score):
+    def carregarJogo(self, tabuleiro, score, quantidadeDeFusoes, historicoDeJogadas):
         '''
         Método que atualiza os atributos com os dados do jogo salvo.
 
-        Self, list[int], int -> None
+        Self, list[int], int, int, list[str] -> None
         '''
         self.tabuleiro = np.array(tabuleiro, int)
         self.score = score
+        self.quantidadeDeFusoes = quantidadeDeFusoes
+        self.historicoDeJogadas = historicoDeJogadas
 
     def setHistoricoDeJogadas(self, jogada):
         '''

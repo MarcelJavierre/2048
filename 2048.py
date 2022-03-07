@@ -315,7 +315,7 @@ def salvarOJogo():
     interface.telaDeSalvamento()
 
     # Salva o jogo
-    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore())
+    log.savarJogo(tamanhoDoTabuleiro, objetivo, mecanica.getTabuleiro().tolist(), mecanica.getScore(), mecanica.getQuantidadeDeFusoes(), mecanica.getHistoricoDeJogadas())
 
     # Espera 1 segundo
     interface.pausa(interface.janela, 1000)
@@ -398,7 +398,7 @@ def carregarJogo(dadosDasPartidasSalvas, indiceDaPartidaSalva):
     global log
 
     # Converte o índice da partida salva passado para o índice da lista com o conteúdo do arquivo
-    indiceDaPartidaSalva *= 5
+    indiceDaPartidaSalva *= 7
 
     # Atualiza as variáveis de configuração com os dados da partida salva
     tamanhoDoTabuleiro = int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 1])
@@ -408,7 +408,7 @@ def carregarJogo(dadosDasPartidasSalvas, indiceDaPartidaSalva):
     mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
     # Atualiza o tabuleiro e o score com os dados da partida salva
-    mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]))
+    mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 5]), eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 6]))
 
     # Reinicia o loop do jogo
     iniciaLoopDoJogo()

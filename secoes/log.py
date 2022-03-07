@@ -246,7 +246,7 @@ class Log:
             'relatorioDeErro': self.relatorioDeErro.__doc__
         }
 
-    def savarJogo(self, tamanhoDoTabuleiro, objetivo, tabuleiro, score):
+    def savarJogo(self, tamanhoDoTabuleiro, objetivo, tabuleiro, score, quantidadeDeFusoes, historicoDeJogadas):
         '''
         Método que armazena em um arquivo o estado atual do jogo. O
         arquivo de salvamento se encontra em
@@ -257,15 +257,17 @@ class Log:
         * 2ª Linha: Tamanho do Tabuleiro;
         * 3ª Linha: Objetivo da Partida;
         * 4ª Linha: Matriz do Tabuleiro;
-        * 5ª Linha: Score.
+        * 5ª Linha: Score;
+        * 6º Linha: Quantidade de Fusões;
+        * 7º Linha: Histórico de Jogadas.
 
-        Self, int, int, list[int], int -> None
+        Self, int, int, list[int], int, int, list[str] -> None
         '''
         # Abre o arquivo
         arquivo = open('partidasSalvas/partidasSalvas.txt', 'a')
 
         # Escreve no arquivo o conteúdo da partida
-        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{objetivo}\n{tabuleiro}\n{score}\n')
+        arquivo.write(f'{localtime()[2]:02d}/{localtime()[1]:02d}/{localtime()[0]}    {localtime()[3]:02d}:{localtime()[4]:02d}\n{tamanhoDoTabuleiro}\n{objetivo}\n{tabuleiro}\n{score}\n{quantidadeDeFusoes}\n{historicoDeJogadas}\n')
         
         # Fecha o arquivo
         arquivo.close()
@@ -275,11 +277,13 @@ class Log:
         Método que carrega de um arquivo o jogo salvo. Retorna uma lista
         com o seguinte conteúdo:
 
-        * 1ª índice [0]: Data e Hora do Salvamento;
-        * 2ª índice [1]: Tamanho do Tabuleiro;
-        * 3ª índice [2]: Objetivo da Partida;
-        * 4ª índice [3]: Matriz do Tabuleiro;
-        * 5ª índice [4]: Score.
+        * 1º índice [0]: Data e Hora do Salvamento;
+        * 2º índice [1]: Tamanho do Tabuleiro;
+        * 3º índice [2]: Objetivo da Partida;
+        * 4º índice [3]: Matriz do Tabuleiro;
+        * 5º índice [4]: Score;
+        * 6º índice [5]: Quantidade de Fusões;
+        * 7º índice [6]: Histórico de Jogadas.
 
         Self -> list[str]
         '''
@@ -313,7 +317,7 @@ class Log:
         arquivo.close()
 
         # Converte o índice da partida salva passado para o índice da lista do conteúdo do arquivo
-        indiceDoConteudoDoArquivo = indiceDaPartidaSalva * 5
+        indiceDoConteudoDoArquivo = indiceDaPartidaSalva * 7
 
         # Verifica se o índice passado é válido
         if indiceDoConteudoDoArquivo < 0 or indiceDoConteudoDoArquivo >= len(conteudoDoArquivo):
@@ -321,6 +325,8 @@ class Log:
             raise ValueError('Nao existe partida salva com o numero passado')
 
         # Remove os dados da partida salva
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
+        conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
         conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
         conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
         conteudoDoArquivo.pop(indiceDoConteudoDoArquivo)
