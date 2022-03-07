@@ -172,7 +172,10 @@ def loopDoJogo(direcao):
     if houveMudanca == True:
         # Atualiza a estatística de jogadas
         log.estatisticasDeJogadas(direcao)
-        
+
+        # Atualiza o atributo com o histórico de jogadas da partida
+        mecanica.setHistoricoDeJogadas(direcao)
+
         # Verifica se o alguma peça atingiu o objetivo
         # Se sim, encerra o loop do jogo
         if mecanica.venceuOJogo() == True:
@@ -241,6 +244,9 @@ def fimDeJogo(venceuOJogo):
 
     # Gera o arquivo com as estatísticas da partida
     log.estatisticasDaPartida(mecanica.getValorDaMaiorPeca(), mecanica.getScore(), mecanica.getQuantidadeDeFusoes())
+
+    # Gera o arquivo com o histórico de jogadas da partida
+    log.jogadasDaPartida(mecanica.getHistoricoDeJogadas())
 
     # Mostra a tela de fim de jogo
     interface.pausa(interface.janela, 1500)
