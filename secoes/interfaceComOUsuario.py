@@ -194,6 +194,22 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.scoreDaTelaDeVitoria.grid(row = 1, column = 0)
 
+        self.maiorPecaDaTelaDeVitoria = Label( # Atributo com o texto da maior peça no tabuleiro da tela de vitória
+            master = self.quadroDaTelaDeVitoria,
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.maiorPecaDaTelaDeVitoria.grid(row = 2, column = 0)
+
+        self.quantidadeDeFusoesDaTelaDeVitoria = Label( # Atributo com o texto da quantidade de fusões da tela de vitória
+            master = self.quadroDaTelaDeVitoria,
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.quantidadeDeFusoesDaTelaDeVitoria.grid(row = 3, column = 0)
+
         self.voltarAoMenuPrincipalDaTelaDeVitoria = Label( # Atributo com o texto da tela de vitória para voltar ao menu principal
             master = self.quadroDaTelaDeVitoria,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
@@ -201,7 +217,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             fg = AMARELO,
             bg = COR_DO_FUNDO
         )
-        self.voltarAoMenuPrincipalDaTelaDeVitoria.grid(row = 2, column = 0, pady = 20)
+        self.voltarAoMenuPrincipalDaTelaDeVitoria.grid(row = 4, column = 0, pady = 20)
 
         self.derrota = Label( # Atributo com o título da tela de derrota
             master = self.quadroDaTelaDeDerrota,
@@ -220,6 +236,22 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         )
         self.scoreDaTelaDeDerrota.grid(row = 1, column = 0)
 
+        self.maiorPecaDaTelaDeDerrota = Label( # Atributo com o texto da maior peça no tabuleiro da tela de derrota
+            master = self.quadroDaTelaDeDerrota,
+            font = FONTE_TAMANHO_16,
+            fg = VERMELHO,
+            bg = COR_DO_FUNDO
+        )
+        self.maiorPecaDaTelaDeDerrota.grid(row = 2, column = 0)
+
+        self.quantidadeDeFusoesDaTelaDeDerrota = Label( # Atributo com o texto da quantidade de fusões da tela de derrota
+            master = self.quadroDaTelaDeDerrota,
+            font = FONTE_TAMANHO_16,
+            fg = VERMELHO,
+            bg = COR_DO_FUNDO
+        )
+        self.quantidadeDeFusoesDaTelaDeDerrota.grid(row = 3, column = 0)
+
         self.voltarAoMenuPrincipalDaTelaDeDerrota = Label( # Atributo com o texto da tela de derrota para voltar ao menu principal
             master = self.quadroDaTelaDeDerrota,
             text = 'Aperte Qualquer Tecla para Voltar ao Menu Principal',
@@ -227,7 +259,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             fg = VERMELHO,
             bg = COR_DO_FUNDO
         )
-        self.voltarAoMenuPrincipalDaTelaDeDerrota.grid(row = 2, column = 0, pady = 20)
+        self.voltarAoMenuPrincipalDaTelaDeDerrota.grid(row = 4, column = 0, pady = 20)
 
         # Atributos com os componentes da tela de pause
         self.quadroDaTelaDePause = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela de pause
@@ -516,9 +548,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.quadroDaTelaDeDerrota',
             'self.vitoria',
             'self.scoreDaTelaDeVitoria',
+            'self.maiorPecaDaTelaDeVitoria',
+            'self.quantidadeDeFusoesDaTelaDeVitoria',
             'self.voltarAoMenuPrincipalDaTelaDeVitoria',
             'self.derrota',
             'self.scoreDaTelaDeDerrota',
+            'self.maiorPecaDaTelaDeDerrota',
+            'self.quantidadeDeFusoesDaTelaDeDerrota',
             'self.voltarAoMenuPrincipalDaTelaDeDerrota',
             'self.quadroDaTelaDePause',
             'self.pause',
@@ -640,9 +676,13 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.quadroDaTelaDeDerrota': 'Atributo com o quadro para armazenar o conteúdo da tela de derrota.',
             'self.vitoria': 'Atributo com o título da tela de vitória.',
             'self.scoreDaTelaDeVitoria': 'Atributo com o texto do score da tela de vitória.',
+            'self.maiorPecaDaTelaDeVitoria': 'Atributo com o texto da maior peça no tabuleiro da tela de vitória.',
+            'self.quantidadeDeFusoesDaTelaDeVitoria': 'Atributo com o texto da quantidade de fusões da tela de vitória.',
             'self.voltarAoMenuPrincipalDaTelaDeVitoria': 'Atributo com o texto da tela de vitória para voltar ao menu principal.',
             'self.derrota': 'Atributo com o título da tela de derrota.',
             'self.scoreDaTelaDeDerrota': 'Atributo com o texto do score da tela de derrota.',
+            'self.maiorPecaDaTelaDeDerrota': 'Atributo com o texto da maior peça no tabuleiro da tela de derrota.',
+            'self.quantidadeDeFusoesDaTelaDeDerrota': 'Atributo com o texto da quantidade de fusões da tela de derrota.',
             'self.voltarAoMenuPrincipalDaTelaDeDerrota': 'Atributo com o texto da tela de derrota para voltar ao menu principal.',
             'self.quadroDaTelaDePause': 'Atributo com o quadro para armazenar o conteúdo da tela de pause.',
             'self.pause': 'Atributo com o título da tela de pause.',
@@ -941,17 +981,22 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         # Atualiza a janela
         self.janela.update()
 
-    def telaDeFimDeJogo(self, foiVencedor, score):
+    def telaDeFimDeJogo(self, foiVencedor, score, valorDaMaiorPeca, quantidadeDeFusoes):
         '''
         Método para exibir a tela de fim de jogo.
 
-        Self, bool, int -> None
+        Self, bool, int, int, int -> None
         '''
-
         # Se foi vencedor, exibe a tela de vencedor
         if foiVencedor == True:
             # Atualiza o atributo com o score
             self.scoreDaTelaDeVitoria['text'] = f'SCORE:    {score}'
+
+            # Atualiza o atributo com a maior peça no tabuleiro
+            self.maiorPecaDaTelaDeVitoria['text'] = f'MAIOR PEÇA NO TABULEIRO:    {valorDaMaiorPeca}'
+
+            # Atualiza o atributo com a quantidade de fusões
+            self.quantidadeDeFusoesDaTelaDeVitoria['text'] = f'QUANTIDADE DE FUSÕES:    {quantidadeDeFusoes}'
 
             # Exibe a tela de vitória
             self.quadroDaTelaDeVitoria.grid()
@@ -963,6 +1008,12 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         else:
             # Atualiza o atributo com o score
             self.scoreDaTelaDeDerrota['text'] = f'SCORE:    {score}'
+
+            # Atualiza o atributo com a maior peça no tabuleiro
+            self.maiorPecaDaTelaDeDerrota['text'] = f'MAIOR PEÇA NO TABULEIRO:    {valorDaMaiorPeca}'
+
+            # Atualiza o atributo com a quantidade de fusões
+            self.quantidadeDeFusoesDaTelaDeDerrota['text'] = f'QUANTIDADE DE FUSÕES:    {quantidadeDeFusoes}'
 
             # Exibe a tela de derrota
             self.quadroDaTelaDeDerrota.grid()

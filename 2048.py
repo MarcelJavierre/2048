@@ -251,7 +251,7 @@ def fimDeJogo(venceuOJogo):
     # Mostra a tela de fim de jogo
     interface.pausa(interface.janela, 1500)
     interface.limpaTela(interface.janela)
-    interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore())
+    interface.telaDeFimDeJogo(venceuOJogo, mecanica.getScore(), mecanica.getValorDaMaiorPeca(), mecanica.getQuantidadeDeFusoes())
 
     # Reinicia a instância da mecânica do jogo
     mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
