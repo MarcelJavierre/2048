@@ -527,6 +527,103 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         self.botaoVoltarAoMenuPrincipalDaTelaDoManual.bind('<Enter>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDoManual, CINZA)) # Define o evento que muda a cor de fundo ao passar o mouse em cima do botão
         self.botaoVoltarAoMenuPrincipalDaTelaDoManual.bind('<Leave>', lambda evento: self.mudaCorDeFundoDoBotao(self.botaoVoltarAoMenuPrincipalDaTelaDoManual, COR_DO_FUNDO)) # Define o evento que muda a cor de fundo ao tirar o mouse de cima do botão
 
+        # Atributos com os componentes da tela dos controles
+        self.quadroDaTelaDosControles = Frame(master = self.janela, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar o conteúdo da tela dos controles
+
+        self.controles = Label( # Atributo com o título da tela dos controles
+            master = self.quadroDaTelaDosControles,
+            text = 'Controles',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.controles.grid(row = 0, column = 0, pady = 20)
+
+        self.textoMovimentacao = Label( # Atributo com o texto "movimentação" da tela dos controles
+            master = self.quadroDaTelaDosControles,
+            text = 'Movimentação',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.textoMovimentacao.grid(row = 1, column = 0, pady = 5)
+
+        self.quadroComAsTeclasDeMovimento = Frame(master = self.quadroDaTelaDosControles, bg = COR_DO_FUNDO) # Atributo com o quadro para armazenar as representações das teclas de movimento
+        self.quadroComAsTeclasDeMovimento.grid(row = 2, column = 0)
+
+        self.teclaCima = Label( # Atributo com a representação da tecla seta para cima
+            master = self.quadroComAsTeclasDeMovimento,
+            text = '↑',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = COR_DO_FUNDO,
+            bg = AMARELO,
+            width = 5,
+            height = 3
+        )
+        self.teclaCima.grid(row = 0, column = 1, padx = 5, pady = 5)
+
+        self.teclaEsquerda = Label( # Atributo com a representação da tecla seta para a esquerda
+            master = self.quadroComAsTeclasDeMovimento,
+            text = '←',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = COR_DO_FUNDO,
+            bg = AMARELO,
+            width = 5,
+            height = 3
+        )
+        self.teclaEsquerda.grid(row = 1, column = 0, padx = 5, pady = 5)
+
+        self.teclaBaixo = Label( # Atributo com a representação da tecla seta para baixo
+            master = self.quadroComAsTeclasDeMovimento,
+            text = '↓',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = COR_DO_FUNDO,
+            bg = AMARELO,
+            width = 5,
+            height = 3
+        )
+        self.teclaBaixo.grid(row = 1, column = 1, padx = 5, pady = 5)
+
+        self.teclaDireita = Label( # Atributo com a representação da tecla seta para a direita
+            master = self.quadroComAsTeclasDeMovimento,
+            text = '→',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = COR_DO_FUNDO,
+            bg = AMARELO,
+            width = 5,
+            height = 3
+        )
+        self.teclaDireita.grid(row = 1, column = 2, padx = 5, pady = 5)
+
+        self.textoPause = Label( # Atributo com o texto "pause" da tela dos controles
+            master = self.quadroDaTelaDosControles,
+            text = 'Pause',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.textoPause.grid(row = 3, column = 0, pady = (20, 5))
+
+        self.teclaDePause = Label( # Atributo com a representação da tecla Esc
+            master = self.quadroDaTelaDosControles,
+            text = 'Esc',
+            font = FONTE_TAMANHO_24_EM_NEGRITO,
+            fg = COR_DO_FUNDO,
+            bg = AMARELO,
+            width = 5,
+            height = 3
+        )
+        self.teclaDePause.grid(row = 4, column = 0, pady = 5)
+
+        self.iniciarAPartida = Label( # Atributo com o texto da tela dos controles para iniciar a partida
+            master = self.quadroDaTelaDosControles,
+            text = 'Aperte Qualquer Tecla para Iniciar a Partida',
+            font = FONTE_TAMANHO_16,
+            fg = AMARELO,
+            bg = COR_DO_FUNDO
+        )
+        self.iniciarAPartida.grid(row = 5, column = 0, pady = 20)
+        
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.janela',
@@ -585,6 +682,17 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.manualDoDesenvolvedor',
             'self.textoDoManualDoDesenvolvedor',
             'self.botaoVoltarAoMenuPrincipalDaTelaDoManual',
+            'self.quadroDaTelaDosControles',
+            'self.controles',
+            'self.textoMovimentacao',
+            'self.quadroComAsTeclasDeMovimento',
+            'self.teclaCima',
+            'self.teclaEsquerda',
+            'self.teclaBaixo',
+            'self.teclaDireita',
+            'self.textoPause',
+            'self.teclaDePause',
+            'self.iniciarAPartida',
             'self.__atributos',
             'self.__metodos'
         }
@@ -713,6 +821,17 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
             'self.manualDoDesenvolvedor': 'Atributo com o título da tela do manual do desenvolvedor.',
             'self.textoDoManualDoDesenvolvedor': 'Atributo com o conteúdo do manual do desenvolvedor.',
             'self.botaoVoltarAoMenuPrincipalDaTelaDoManual': 'Atributo com o botão "Voltar ao Menu Principal" da tela do manual do desenvolvedor.',
+            'self.quadroDaTelaDosControles': 'Atributo com o quadro para armazenar o conteúdo da tela dos controles.',
+            'self.controles': 'Atributo com o título da tela dos controles.',
+            'self.textoMovimentacao': 'Atributo com o texto "movimentação" da tela dos controles.',
+            'self.quadroComAsTeclasDeMovimento': 'Atributo com o quadro para armazenar as representações das teclas de movimento.',
+            'self.teclaCima': 'Atributo com a representação da tecla seta para cima.',
+            'self.teclaEsquerda': 'Atributo com a representação da tecla seta para a esquerda.',
+            'self.teclaBaixo': 'Atributo com a representação da tecla seta para baixo.',
+            'self.teclaDireita': 'Atributo com a representação da tecla seta para a direita.',
+            'self.textoPause': 'Atributo com o texto "pause" da tela dos controles.',
+            'self.teclaDePause': 'Atributo com a representação da tecla Esc.',
+            'self.iniciarAPartida': 'Atributo com o texto da tela dos controles para iniciar a partida.',
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
             '__init__': self.__init__.__doc__,
@@ -1020,3 +1139,14 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
             # Atualiza a janela
             self.janela.update()
+
+    def telaDosControles(self):
+        '''
+        Método para exibir a tela com os controles do jogo.
+
+        Self -> None
+        '''
+        self.quadroDaTelaDosControles.grid()
+
+        # Atualiza a janela
+        self.janela.update()

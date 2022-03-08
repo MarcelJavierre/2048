@@ -80,11 +80,36 @@ def main():
     interface.menuPrincipal()
 
     # Configura o comando de cada botão
-    interface.botaoNovoJogo['command'] = iniciaLoopDoJogo
+    interface.botaoNovoJogo['command'] = controles
     interface.botaoCarregarJogo['command'] = partidasSalvas
     interface.botaoOpcoes['command'] = opcoes
     interface.botaoEstatisticas['command'] = estatisticas
     interface.botaoManualDoDesenvolvedor['command'] = manual
+
+def controles():
+    '''
+    Função para mostrar a tela com os controles do jogo.
+
+    () -> None
+    '''
+    # Definindo a utilização das variáveis de configuração globais
+    global tamanhoDoTabuleiro
+    global objetivo
+
+    # Definindo a utilização das instâncias de cada seção globais
+    global interface
+    global mecanica
+    global log
+
+    # Limpa a tela
+    interface.limpaTela(interface.janela)
+
+    # Mostra a tela dos controles
+    interface.telaDosControles()
+
+    # Define os eventos para iniciar o loop do jogo
+    interface.janela.bind('<KeyRelease>', lambda evento: interface.removeEvento(interface.janela, '<KeyRelease>'), '+')
+    interface.janela.bind('<KeyRelease>', lambda evento: iniciaLoopDoJogo(), '+')
 
 def iniciaLoopDoJogo():
     '''
