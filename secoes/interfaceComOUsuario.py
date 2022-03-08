@@ -575,36 +575,36 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         else:
             return None
 
-    def telaDeFimDeJogo(self, foiVencedor, score):
+    def telaDeFimDeJogo(self, foiVencedor, score, valorDaMaiorPeca, quantidadeDeFusoes):
         '''
         Método para exibir a tela de fim de jogo.
 
-        Self, bool, int -> None
+        Self, bool, int, int, int -> None
         '''
+        print('\n' * (int((get_terminal_size().lines - 10) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
 
-        # Se foi vencedor, exibe a tela de vencedor
+        # Se foi vencedor, exibe "VOCÊ VENCEU!"
         if foiVencedor == True:
-            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
             print('\x1b[0;33m', end = '')
             print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
             print('│ V │ O │ C │ Ê │   │ V │ E │ N │ C │ E │ U │ ! │'.center(get_terminal_size().columns))
-            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-            print('\x1b[0;32m')
-            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-            print('─────────────────────────'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
 
-        # Se não, exibe a tela de perdedor
+        # Se não, exibe "VOCÊ PERDEU!"
         else:
-            print('\n' * (int((get_terminal_size().lines - 7) / 2)), end = '') # Centraliza verticalmente a tela de fim de jogo
             print('\x1b[0;31m', end = '')
             print('┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐'.center(get_terminal_size().columns))
             print('│ V │ O │ C │ Ê │   │ P │ E │ R │ D │ E │ U │ ! │'.center(get_terminal_size().columns))
-            print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
-            print('\x1b[0;32m')
-            print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-            print('─────────────────────────'.center(get_terminal_size().columns))
-            print('\x1b[0;0m')
+
+        print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
+        print('\x1b[0;32m')
+        
+        # Exibe as estatísticas da partida
+        print('───────────────────────────────────'.center(get_terminal_size().columns))
+        print(f'SCORE:    {score}'.center(get_terminal_size().columns))
+        print(f'MAIOR PEÇA NO TABULEIRO:    {valorDaMaiorPeca}'.center(get_terminal_size().columns))
+        print(f'QUANTIDADE DE FUSÕES:    {quantidadeDeFusoes}'.center(get_terminal_size().columns))
+        print('───────────────────────────────────'.center(get_terminal_size().columns))
+        print('\x1b[0;0m')
 
     def telaDosControles(self):
         '''
