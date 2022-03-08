@@ -55,7 +55,7 @@ objetivo = 2048
 
 # Inicializando as instâncias de cada seção
 interface = InterfaceComOUsuario()
-mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+mecanica = MecanicaDoJogo()
 log = Log()
 
 def main():
@@ -475,6 +475,9 @@ def carregarJogo(dadosDasPartidasSalvas):
             # Reinicia a instância da mecânica do jogo
             mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
 
+            # Reinicia a instância da interface com o usuário
+            interface = InterfaceComOUsuario(tamanhoDoTabuleiro)
+
             # Atualiza o tabuleiro e o score com os dados da partida salva
             mecanica.carregarJogo(eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 3]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 4]), int(dadosDasPartidasSalvas[indiceDaPartidaSalva + 5]), eval(dadosDasPartidasSalvas[indiceDaPartidaSalva + 6]))
 
@@ -635,6 +638,9 @@ def atualizaConfiguracao(opcao):
             try:
                 # Reinicia a instância da mecânica do jogo com o novo parâmetro
                 mecanica = MecanicaDoJogo(tamanhoDoTabuleiro, objetivo)
+
+                # Reinicia a instância da interface com o usuário com o novo parâmetro
+                interface = InterfaceComOUsuario(tamanhoDoTabuleiro)
 
             # Caso o número inserido não seja válido, gera um relatório de erro, imprime uma mensagem na tela e repete a função de atualizar a configuração
             except ValueError as mensagemDeErro:

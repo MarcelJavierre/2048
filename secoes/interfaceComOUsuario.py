@@ -21,19 +21,33 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
     pedido ao usuário ou mostrado para ele é função desta classe.
     '''
 
-    def __init__(self):
+    def __init__(self, tamanhoDoTabuleiro = 4):
         '''
         Método construtor.
 
-        Self -> None
+        Self, int -> None
         '''
+        # Atributo que armazena o tamanho do tabuleiro
+        self.tamanhoDoTabuleiro = tamanhoDoTabuleiro
+
+        # Atributos com as strings para construção do tabuleiro
+        self.topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (self.tamanhoDoTabuleiro - 1) + '┐' # Atributo com a borda do topo do tabuleiro
+        self.centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (self.tamanhoDoTabuleiro - 1) + '┤' # Atributo com a borda do espaço entre os números do tabuleiro
+        self.fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (self.tamanhoDoTabuleiro - 1) + '┘' # Atributo com a borda do fundo do tabuleiro
+        self.espacoEntreOsNumeros = '│      ' * self.tamanhoDoTabuleiro + '│' # Atributo com o espaço entre os números do tabuleiro
+
         # Define o estilo dos gráficos
         plt.style.use('dark_background')
 
         # Conjunto com todos os atributos da classe
         self.__atributos = {
             'self.__atributos',
-            'self.__metodos'
+            'self.__metodos',
+            'self.tamanhoDoTabuleiro',
+            'self.topoDaBordaDoTabuleiro',
+            'self.centroDaBordaDoTabuleiro',
+            'self.fundoDaBordaDoTabuleiro',
+            'self.espacoEntreOsNumeros'
         }
 
         # Conjunto com todos os métodos da classe
@@ -106,6 +120,11 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
         return {
             'self.__atributos': 'Conjunto com todos os atributos da classe.',
             'self.__metodos': 'Conjunto com todos os métodos da classe.',
+            'self.tamanhoDoTabuleiro': 'Atributo que armazena o tamanho do tabuleiro.',
+            'self.topoDaBordaDoTabuleiro': 'Atributo com a borda do topo do tabuleiro.',
+            'self.centroDaBordaDoTabuleiro': 'Atributo com a borda do espaço entre os números do tabuleiro.',
+            'self.fundoDaBordaDoTabuleiro': 'Atributo com a borda do fundo do tabuleiro.',
+            'self.espacoEntreOsNumeros': 'Atributo com o espaço entre os números do tabuleiro.',
             '__init__': self.__init__.__doc__,
             '__str__': self.__str__.__doc__,
             'getAtributos': self.getAtributos.__doc__,
@@ -475,38 +494,31 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         Self, numpy.ndarray[int], int, int, bool -> str | None
         '''
-
-        # Strings com as bordas do tabuleiro
-        topoDaBordaDoTabuleiro = '┌──────' + '┬──────' * (len(tabuleiro[0]) - 1) + '┐'
-        centroDaBordaDoTabuleiro = '├──────' + '┼──────' * (len(tabuleiro[0]) - 1) + '┤'
-        fundoDaBordaDoTabuleiro = '└──────' + '┴──────' * (len(tabuleiro[0]) - 1) + '┘'
-        espacoEntreOsNumeros = '│      ' * len(tabuleiro[0]) + '│'
-
-        # Escreve na tela o score
+        # Escreve na tela os dados da partida
         print('\x1b[0;0m')
         print(f'OBJETIVO:    {objetivo}'.center(get_terminal_size().columns))
         print(f'SCORE:    {score}'.center(get_terminal_size().columns))
-        print(('─' * len(topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
+        print(('─' * len(self.topoDaBordaDoTabuleiro)).center(get_terminal_size().columns))
 
         # Escreve na tela o tabuleiro
-        # Centraliza o tabuleiro
-        margem = int((get_terminal_size().columns - len(topoDaBordaDoTabuleiro)) / 2)
+        # Variável para centralizar o tabuleiro
+        margem = int((get_terminal_size().columns - len(self.topoDaBordaDoTabuleiro)) / 2)
 
         # Escreve na tela o topo da borda do tabuleiro
         print(' ' * margem, end = '')
-        print(topoDaBordaDoTabuleiro)
+        print(self.topoDaBordaDoTabuleiro)
 
         # Passa por todas as linhas
-        for i in range(len(tabuleiro)):
+        for i in range(self.tamanhoDoTabuleiro):
             # Escreve o espaço entre a borda e os números
             print(' ' * margem, end = '')
-            print(espacoEntreOsNumeros)
+            print(self.espacoEntreOsNumeros)
 
             # Variável para armazenar a linha do tabuleiro
             linhaComOValorDasPecas = ''
 
             # Passa por todas as colunas
-            for j in range(len(tabuleiro[i])):
+            for j in range(self.tamanhoDoTabuleiro):
                 # Determina o espaço do número dependendo de quantas casas o número possui
                 if tabuleiro[i][j] == 0:
                     linhaComOValorDasPecas += f'│      '
@@ -537,16 +549,16 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
             # Escreve o espaço entre a borda e os números
             print(' ' * margem, end = '')
-            print(espacoEntreOsNumeros)
+            print(self.espacoEntreOsNumeros)
 
             # Caso seja a última iteração, não escreve na tela o centro do tabuleiro
-            if i != (len(tabuleiro[i]) - 1):
+            if i != (self.tamanhoDoTabuleiro - 1):
                 print(' ' * margem, end = '')
-                print(centroDaBordaDoTabuleiro)
+                print(self.centroDaBordaDoTabuleiro)
 
         # Escreve na tela o fundo da borda do tabuleiro
         print(' ' * margem, end = '')
-        print(fundoDaBordaDoTabuleiro)
+        print(self.fundoDaBordaDoTabuleiro)
 
         # Caso o parâmentro "recebeEntradaDoUsuario" for "True", recebe a entrada do usuário
         if recebeEntradaDoUsuario == True:
@@ -597,7 +609,7 @@ class InterfaceComOUsuario(FerramentasDeInterfaceComOUsuario):
 
         print('└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘'.center(get_terminal_size().columns))
         print('\x1b[0;32m')
-        
+
         # Exibe as estatísticas da partida
         print('───────────────────────────────────'.center(get_terminal_size().columns))
         print(f'SCORE:    {score}'.center(get_terminal_size().columns))
