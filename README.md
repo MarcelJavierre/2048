@@ -28,3 +28,7 @@ O jogo é vencido quando uma peça com o valor de 2048 aparece no tabuleiro. Qua
 O código do jogo foi feito 100% em python e utilizando programação orientada a objetos.
 
 A primeira prova consistia na modelagem do código, na qual só era necessário a definição dos métodos e atributos das classes e suas documentações. O código dessa primeira parte se encontra [aqui](https://github.com/MarcelJavierre/2048/releases/tag/Prova_1).
+
+A segunda prova consistia na criação de arquivos para persistência de dados, tratamento de exceções e criação de estatísticas com os módulos numpy e matplotlib. O código dessa segunda parte se encontra [aqui](https://github.com/MarcelJavierre/2048/releases/tag/Prova_2) e a versão com interface gráfica se encontra [aqui](https://github.com/MarcelJavierre/2048/releases/tag/Prova_2_tkinter).
+
+A entrega final do projeto consistia na finalização do jogo, com todas as funções completas. O código da entrega final se encontra [aqui](https://github.com/MarcelJavierre/2048/releases/tag/Prova_3) e a versão com interface gráfica se encontra [aqui](https://github.com/MarcelJavierre/2048/releases/tag/Prova_3_tkinter).
